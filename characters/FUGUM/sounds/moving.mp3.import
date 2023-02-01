@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/moving.mp3-f04f1b535b410583748371e4cefac279.mp3str"
+
+[deps]
+
+source_file="res://characters/FUGUM/sounds/moving.mp3"
+dest_files=[ "res://.import/moving.mp3-f04f1b535b410583748371e4cefac279.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

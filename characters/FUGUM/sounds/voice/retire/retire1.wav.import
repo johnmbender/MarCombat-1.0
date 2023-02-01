@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/retire1.wav-28f2e29677f7c7882a880eb1443a580f.sample"
+
+[deps]
+
+source_file="res://characters/FUGUM/sounds/voice/retire/retire1.wav"
+dest_files=[ "res://.import/retire1.wav-28f2e29677f7c7882a880eb1443a580f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

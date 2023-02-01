@@ -1,0 +1,120 @@
+extends KinematicBody2D
+
+var spinnerTree
+var timingTree
+var isStunned = false
+var busy = false
+var isCrouching = false
+var isBlocking = false
+var enemy
+var character_name = "F.U.G.U.M."
+var match_over = true
+var enemy_pierced = false
+var random = RandomNumberGenerator.new()
+var positive_lines = [1,2,3,4]
+var negative_lines = [1,2,3,4,5,6]
+var pierce_chance = 0
+var attack
+
+func _ready():
+	spinnerTree = $Wheel/Spinner/SpinnerTree.get("parameters/TimeScale/scale")
+	timingTree = $Wheel/Timing/TimingTree.get("parameters/playback")
+
+func idle():
+	$SoundBlender.play("idle")
+
+func release():
+	# one-time plays the release sound, when stopping or starting
+	$Release.play()
+
+func start_blade():
+	# one-time activate right here
+	$Wheel/Spinner/SpinnerTree.active = true
+	$Wheel/Spinner.play("spin")
+	timingTree.travel("start")
+
+func stop_blade():
+	enemy_pierced = false
+	timingTree.travel("stop")
+
+func stop():
+	$Tween.stop_all()
+
+func voice(type:String):
+	if $Wheel/Voice.playing:
+		$Wheel/Voice.stop()
+		
+	random.randomize()
+	var num = 0
+	var stream
+	if type == "positive":
+		if positive_lines.size() == 0:
+			positive_lines = [1,2,3,4]
+		num = random.randi_range(0, positive_lines.size()-1)
+		stream = "res://characters/FUGUM/sounds/voice/positive/positive%s.wav" % positive_lines[num]
+		positive_lines.remove(num)
+	else:
+		if negative_lines.size() == 0:
+			negative_lines = [1,2,3,4,5,6]
+		num = random.randi_range(0, negative_lines.size()-1)
+		stream = "res://characters/FUGUM/sounds/voice/negative/negative%s.wav" % negative_lines[num]
+		negative_lines.remove(num)
+		
+	$Wheel/Voice.stream = load(stream)
+	$Wheel/Voice.play()
+
+func move(toward_player:bool):
+	$SoundBlender.play("moving")
+	
+	var start = position
+	var end
+	
+	if toward_player:
+		set_collisions(true, false)
+		voice("negative")
+		end = Vector2(700, position.y)
+		timingTree.travel("start")
+	else:
+		set_collisions(false, true)
+		voice("positive")
+		end = Vector2(1000, position.y)
+		
+	$Tween.interpolate_property(self, "position",
+			start, end, 5.0,
+			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Tween.start()
+
+func leave():
+	$SoundBlender.play("leave")
+
+func set_collisions(monitoring:bool, disabled:bool):
+	$Wheel/AtRot0.monitoring = monitoring
+	$Wheel/AtRot0/CollisionShape2D.disabled = disabled
+	$Wheel/AtRot90.monitoring = monitoring
+	$Wheel/AtRot90/CollisionShape2D.disabled = disabled
+	$Wheel/AtRot180.monitoring = monitoring
+	$Wheel/AtRot180/CollisionShape2D.disabled = disabled
+	$Wheel/AtRot270.monitoring = monitoring
+	$Wheel/AtRot270/CollisionShape2D.disabled = disabled
+
+func notify_player_pierced(area:String):
+	if enemy_pierced == false:
+		get_parent().player_pierced(area)
+		enemy_pierced = true
+		set_collisions(false, true)
+
+func _on_AtRot0_area_entered(area):
+	notify_player_pierced("AtRot0")
+
+func _on_AtRot90_area_entered(area):
+	notify_player_pierced("AtRot90")
+
+func _on_AtRot180_area_entered(area):
+	notify_player_pierced("AtRot180")
+
+func _on_AtRot270_area_entered(area):
+	notify_player_pierced("AtRot270")
+
+func _on_Tween_tween_all_completed():
+	# done moving, notify level
+	get_parent().allow_input()

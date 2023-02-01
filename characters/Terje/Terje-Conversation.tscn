@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://characters/Terje/sprites/conversations/normal/normal.png" type="Texture" id=1]
+[ext_resource path="res://characters/Terje/Terje-Conversation.gd" type="Script" id=2]
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "normal",
+"speed": 5.0
+} ]
+
+[node name="Sprite" type="AnimatedSprite"]
+modulate = Color( 0.545098, 0.545098, 0.545098, 1 )
+position = Vector2( 800, 352 )
+scale = Vector2( 1.44297, 1.44297 )
+frames = SubResource( 4 )
+animation = "normal"
+flip_h = true
+script = ExtResource( 2 )

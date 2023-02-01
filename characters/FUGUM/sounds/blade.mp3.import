@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/blade.mp3-ce7bbc6e807a395dd4565a07cf45d79d.mp3str"
+
+[deps]
+
+source_file="res://characters/FUGUM/sounds/blade.mp3"
+dest_files=[ "res://.import/blade.mp3-ce7bbc6e807a395dd4565a07cf45d79d.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

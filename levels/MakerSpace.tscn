@@ -1,0 +1,91 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://levels/backgrounds/makerspace.jpg" type="Texture" id=1]
+[ext_resource path="res://characters/John/John.tscn" type="PackedScene" id=2]
+[ext_resource path="res://characters/Kelsie/Kelsie.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 26.5555, 286.389 )
+
+[node name="MakerSpace" type="Node2D"]
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 520, 288 )
+scale = Vector2( 0.540741, 0.540741 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Platform" type="StaticBody2D" parent="."]
+visible = false
+collision_mask = 14
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+position = Vector2( 469, 234 )
+rotation = 0.00349066
+shape = SubResource( 1 )
+one_way_collision = true
+
+[node name="Platform2" type="StaticBody2D" parent="."]
+visible = false
+position = Vector2( -1, 170 )
+collision_mask = 14
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2"]
+position = Vector2( 469, 234 )
+rotation = 0.00349066
+shape = SubResource( 1 )
+one_way_collision = true
+
+[node name="Platform3" type="StaticBody2D" parent="."]
+visible = false
+position = Vector2( -3, 335 )
+collision_mask = 14
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform3"]
+position = Vector2( 469, 234 )
+rotation = 0.00349066
+shape = SubResource( 1 )
+one_way_collision = true
+
+[node name="Wall1" type="StaticBody2D" parent="."]
+position = Vector2( -3, 335 )
+collision_mask = 14
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall1"]
+position = Vector2( 112.45, -48.6186 )
+rotation = 0.00349066
+shape = SubResource( 1 )
+
+[node name="Wall2" type="StaticBody2D" parent="."]
+position = Vector2( -3, 335 )
+collision_mask = 14
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
+position = Vector2( 831.45, -48.6186 )
+rotation = 0.00349066
+shape = SubResource( 1 )
+
+[node name="John" parent="." instance=ExtResource( 2 )]
+position = Vector2( 200, 160 )
+scale = Vector2( 0.3, 0.3 )
+
+[node name="Kelsie" parent="." instance=ExtResource( 3 )]
+position = Vector2( 752, 160 )
+scale = Vector2( 0.3, 0.3 )
