@@ -55,7 +55,7 @@
 [ext_resource path="res://characters/Kelsie/sprites/actions/idle/idle_02.png" type="Texture" id=53]
 [ext_resource path="res://ui/PlayerSelectOverlay-P1.png" type="Texture" id=54]
 [ext_resource path="res://scripts/CharacterSelectScreen.gd" type="Script" id=55]
-[ext_resource path="res://levels/backgrounds/Outside-Nighttime.jpg" type="Texture" id=56]
+[ext_resource path="res://levels/backgrounds/titleScreenBkg.jpg" type="Texture" id=56]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {

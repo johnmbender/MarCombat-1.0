@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/publicSpace.mp3-66cce745707609771f9a6ea264ed9421.mp3str"
+
+[deps]
+
+source_file="res://sounds/publicSpace.mp3"
+dest_files=[ "res://.import/publicSpace.mp3-66cce745707609771f9a6ea264ed9421.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

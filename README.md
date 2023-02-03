@@ -3,6 +3,7 @@ A game, to conquer the world.
 
 # TO DO, IN ORDER:
 1: Conversation scene
+    - Make the VS text pop/bounce, like size... so put center at center; boom sound
 2: Story Mode controller
 3: Character selection scene
 4: Polish
