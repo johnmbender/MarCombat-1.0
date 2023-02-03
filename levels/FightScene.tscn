@@ -1,6 +1,5 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://levels/backgrounds/exterior2.jpg" type="Texture" id=1]
 [ext_resource path="res://scripts/Level.gd" type="Script" id=2]
 [ext_resource path="res://scenes/UI_PlayerInfo.tscn" type="PackedScene" id=3]
 [ext_resource path="res://sounds/city-traffic.wav" type="AudioStream" id=4]
@@ -108,13 +107,12 @@ font_data = ExtResource( 6 )
 [sub_resource type="Theme" id=4]
 default_font = SubResource( 3 )
 
-[node name="Environment" type="Node2D"]
+[node name="FightScene" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 544.364, 299.5 )
 scale = Vector2( 0.546364, 0.546364 )
-texture = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
