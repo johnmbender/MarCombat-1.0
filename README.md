@@ -2,8 +2,11 @@
 A game, to conquer the world.
 
 # TO DO, IN ORDER:
+- rebuild Player.gd and, possibly, remove AnimationTree - I feel like it'd make just about as much
+    sense to have the on animation finished playing signal instead
+
 1: Conversation scene
-    - Make the VS text pop/bounce, like size... so put center at center; boom sound
+    - clear up text speed - fast when it shouldn't be
 2: Story Mode controller
     - on lose, restart game, no continue
     - fighting self as "[Name]'s Self-Doubt"

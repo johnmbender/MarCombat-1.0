@@ -18,7 +18,7 @@ func _ready():
 	actionTimer = Timer.new()
 	actionTimer.one_shot = false
 	actionTimer.wait_time = rand_range(0.1, 1.0)
-	actionTimer.connect("timeout", self, "doSomething")
+	var _unused = actionTimer.connect("timeout", self, "doSomething")
 	add_child(actionTimer)
 	actionTimer.start()
 	

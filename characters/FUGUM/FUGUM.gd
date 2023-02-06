@@ -88,14 +88,14 @@ func leave():
 	$SoundBlender.play("leave")
 
 func set_collisions(monitoring:bool, disabled:bool):
-	$Wheel/AtRot0.monitoring = monitoring
-	$Wheel/AtRot0/CollisionShape2D.disabled = disabled
-	$Wheel/AtRot90.monitoring = monitoring
-	$Wheel/AtRot90/CollisionShape2D.disabled = disabled
-	$Wheel/AtRot180.monitoring = monitoring
-	$Wheel/AtRot180/CollisionShape2D.disabled = disabled
-	$Wheel/AtRot270.monitoring = monitoring
-	$Wheel/AtRot270/CollisionShape2D.disabled = disabled
+	$Wheel/AtRot0.set_deferred("monitoriing", monitoring)
+	$Wheel/AtRot0/CollisionShape2D.set_deferred("disabled", disabled)
+	$Wheel/AtRot90.set_deferred("monitoriing", monitoring)
+	$Wheel/AtRot90/CollisionShape2D.set_deferred("disabled", disabled)
+	$Wheel/AtRot180.set_deferred("monitoriing", monitoring)
+	$Wheel/AtRot180/CollisionShape2D.set_deferred("disabled", disabled)
+	$Wheel/AtRot270.set_deferred("monitoriing", monitoring)
+	$Wheel/AtRot270/CollisionShape2D.set_deferred("disabled", disabled)
 
 func notify_player_pierced(area:String):
 	if enemy_pierced == false:

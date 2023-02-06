@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://scripts/Level.gd" type="Script" id=2]
+[ext_resource path="res://scripts/FightScene.gd" type="Script" id=2]
 [ext_resource path="res://scenes/UI_PlayerInfo.tscn" type="PackedScene" id=3]
 [ext_resource path="res://sounds/city-traffic.wav" type="AudioStream" id=4]
 [ext_resource path="res://sounds/gong.wav" type="AudioStream" id=5]
@@ -10,7 +10,7 @@
 extents = Vector2( 660, 17 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 19.3094, 556.406 )
+extents = Vector2( 19.3094, 370.085 )
 
 [sub_resource type="Animation" id=6]
 length = 0.001
@@ -110,16 +110,11 @@ default_font = SubResource( 3 )
 [node name="FightScene" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 544.364, 299.5 )
-scale = Vector2( 0.546364, 0.546364 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 512, 300 )
 
-[node name="Floor" type="StaticBody2D" parent="Sprite"]
-position = Vector2( -996.34, 520.715 )
-scale = Vector2( 1.83028, 1.83028 )
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2( -48, 576 )
 collision_layer = 2147483648
 collision_mask = 17
 __meta__ = {
@@ -127,12 +122,12 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Floor"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 position = Vector2( 540, 7 )
 shape = SubResource( 1 )
 
-[node name="WallLeft" type="StaticBody2D" parent="Sprite"]
-position = Vector2( -981.698, -6.40601 )
+[node name="WallLeft" type="StaticBody2D" parent="."]
+position = Vector2( -8, 472 )
 collision_layer = 2147483648
 collision_mask = 17
 __meta__ = {
@@ -140,12 +135,12 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/WallLeft"]
-position = Vector2( 9.30939, 8.23621 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallLeft"]
+position = Vector2( 9.30939, -178.085 )
 shape = SubResource( 2 )
 
-[node name="WallRight" type="StaticBody2D" parent="Sprite"]
-position = Vector2( 848.585, -6.40598 )
+[node name="WallRight" type="StaticBody2D" parent="."]
+position = Vector2( 1016, 288 )
 collision_layer = 2147483648
 collision_mask = 17
 __meta__ = {
@@ -153,11 +148,23 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/WallRight"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallRight"]
 position = Vector2( 9.30939, 8.23621 )
 shape = SubResource( 2 )
 
-[node name="Timer" type="Timer" parent="."]
+[node name="NextMatchTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+__meta__ = {
+"_editor_description_": "Delays the next round"
+}
+
+[node name="EndFightTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+__meta__ = {
+"_editor_description_": "Holds the end of a match for a bit before retturning to parent scene."
+}
 
 [node name="UI" parent="." instance=ExtResource( 3 )]
 margin_left = 40.0
@@ -172,7 +179,7 @@ volume_db = -22.0
 autoplay = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 512, 312 )
+position = Vector2( 512, 300 )
 current = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -208,3 +215,6 @@ scroll_active = false
 
 [node name="Announcer" type="AudioStreamPlayer" parent="."]
 volume_db = -10.0
+
+[connection signal="timeout" from="NextMatchTimer" to="." method="_on_NextMatchTimer_timeout"]
+[connection signal="timeout" from="EndFightTimer" to="." method="_on_EndFightTimer_timeout"]

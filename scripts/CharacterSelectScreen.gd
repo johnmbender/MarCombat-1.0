@@ -44,7 +44,7 @@ func _ready():
 #	level.demoMode = true
 #	get_tree().change_scene_to(level)
 
-func _process(delta):
+func _process(_delta):
 	if enabled == true:
 		if Input.is_action_just_pressed("quit"):
 			get_tree().quit()
@@ -76,12 +76,16 @@ func _process(delta):
 func start_match():
 	var level
 	if bossFight == false:
-		var levelScene = load("res://levels/WestEntrance.tscn")
+		var fight_scene = load("res://scenes/FightScene.tscn")
 		var character = players[overlay_position]
 		var random_char = players[random.randi_range(0,2)]
-		level = levelScene.instance()
-		level.selected_player1 = players[overlay_position]
-		level.selected_player2 = random_char
+		level = fight_scene.instance()
+		level.set_match_type("deathmatch")
+		level.set_selected_player1(players[overlay_position])
+		level.set_selected_player2(random_char)
+		var backgrounds = ['arrivals', 'breakroom', 'courtyard', 'humanHistory', 'lobby', 'office', 'parking', 'roundhouse', 'shop']
+		backgrounds.shuffle()
+		level.set_background(random.randi_range(0, backgrounds.size()))
 	else:
 		var levelScene = load("res://levels/WestEntrance-bossFight.tscn")
 		var character = players[overlay_position]

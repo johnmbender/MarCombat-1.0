@@ -98,10 +98,10 @@ func reset_player():
 	$John.character_name = "John"
 #	$John.set_z_index(10)
 	$John.WALK_SPEED = 90
-	$John/AttackCircle.monitorable = false
-	$John/AttackCircle/CollisionShape2D.disabled = true
-#	$John/HitBox.monitoring = false
-	$John/HitBox.monitorable = true
+	$John/AttackCircle.set_deferred("monitorable", false)
+	$John/AttackCircle/CollisionShape2D.set_deferred("disabled", true)
+#	$John/HitBox.set_deferred("montoring", false)
+	$John/HitBox.set_deferred("monitorable", true)
 	$John/HitBox.collision_layer = 1
 	$John.enemy = $FUGUM
 

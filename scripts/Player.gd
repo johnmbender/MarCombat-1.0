@@ -53,7 +53,7 @@ func getInput():
 			uppercut()
 		if Input.is_action_just_released("crouch"):
 			crouch_return()
-	elif not busy:
+	elif doing_blocking_action() == false:
 		if Input.is_action_pressed("punch"):
 #			if (scale.y > 0 and Input.is_action_pressed("left")) or (scale.y < 0 and Input.is_action_pressed("right")):
 #				throw()
@@ -85,6 +85,13 @@ func getInput():
 			move("left")
 		else:
 			idle()
+
+func doing_blocking_action():
+	match $AnimationPlayer.current_animation:
+		"walk-foward", "walk-backward", "idle":
+			return false
+		_:
+			return true
 
 func fatality():
 	pass
@@ -196,17 +203,19 @@ func setBlocking(blocking:bool):
 	isBlocking = blocking
 
 func setStunned(stunned:bool):
+	animTree.travel("idle")
+	animTree.travel("stunned")
 	isStunned = stunned
 	if bot:
 		$ActionTimer.stop()
-	animTree.travel("stunned")
 
 func setAttack(atk:String):
 	attack = atk
 
 func collapse():
-	get_parent().match_over(self, false)
+	animTree.travel("idle")
 	animTree.travel("collapse")
+	get_parent().match_over(self, false)
 
 func victory():
 	animTree.travel("victory")
@@ -220,19 +229,13 @@ func _on_HitBox_area_entered(area):
 		setBusy(true)
 		animTree.travel("block-release")
 	else:
-
 		var atk = enemy.attack
-		
-		# cancel current animation
-		$AnimationPlayer.stop(true)
-		$AnimationTree.active = false
-		$AnimationTree.active = true
+		animTree.travel("idle")
 		var damage = 0
 		
 		if atk != null:
 			# disable AttackCircle
-			$AttackCircle/CollisionShape2D.disabled = true
-			busy = true
+			$AttackCircle/CollisionShape2D.set_deferred("disabled", true)
 			match atk:
 				"punch-far", "kick-far", "punch-close":
 					animTree.travel("hit-face")

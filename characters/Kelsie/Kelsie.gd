@@ -48,7 +48,7 @@ func reset_special_spam():
 func fatality():
 	animTree.travel("fatality")
 	# cancel the parent timer to prevent collapse
-	get_parent().get_node("Timer").stop()
+#	get_parent().get_node("EndFightTimer").stop()
 	
 	# place Kelsie highest so boot is over victim
 	z_index = 1000

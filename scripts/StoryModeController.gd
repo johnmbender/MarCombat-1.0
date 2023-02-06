@@ -7,13 +7,16 @@ extends Node2D
 # and then fades in the fight scene
 # and the reverse
 
-var player
+var player = "Kelsie" # jovi
 var opponent
-var opponents = ["John", "Kelsie", "Terje"]
+var opponents = ["Kelsie", "Terje"] # re-add John
 var bosses = ["Ox Anna", "FUGUM"]
 var fight_number
 var conversation_scene
 var fight_scene
+var current_background
+var backgrounds
+var random
 
 func set_player(playerName:String):
 	# called by CharacterSelectScene
@@ -21,8 +24,10 @@ func set_player(playerName:String):
 
 func _ready():
 	fight_number = 0
-	randomize()
+	random = RandomNumberGenerator.new()
+	random.randomize()
 	shuffle_opponent_order()
+	pick_background()
 	get_opponent()
 	load_conversation()
 
@@ -32,30 +37,48 @@ func shuffle_opponent_order():
 	opponents.append(player) # add player's self-doubt
 	opponents.append_array(bosses) # add the bosses at the end
 
+func pick_background():
+	if backgrounds == null or backgrounds.size() == 0:
+		shuffle_backgrounds()
+	current_background = backgrounds[random.randi_range(0, backgrounds.size()-1)]
+
+func shuffle_backgrounds():
+	backgrounds = ['arrivals', 'breakroom', 'courtyard', 'humanHistory', 'lobby', 'office', 'parking', 'roundhouse', 'shop']
+	backgrounds.shuffle()
+
 func get_opponent():
 	opponent = opponents[fight_number]
 
 func load_conversation():
 	conversation_scene = load("res://scenes/ConversationScene.tscn").instance()
-	# pass the scene number
-	conversation_scene.fight_number = fight_number
 	$ConversationScene.add_child(conversation_scene)
+	conversation_scene.set_fight_number(fight_number)
+	conversation_scene.set_player(player)
+	conversation_scene.set_opponent(opponent)
+	conversation_scene.set_background(current_background)
+	if current_background == "office":
+		current_background = "officeSpace"
 	$AnimationPlayer.play("fade in conversation")
 
 func load_fight():
-	fight_scene = load("res://scene/Level.tscn")
+	fight_scene = load("res://scenes/FightScene.tscn").instance()
 	# jovi need to pass the player and opponent first
 	$FightScene.add_child(fight_scene)
+	$FightScene/FightScene.set_match_type("storymode")
+	$FightScene/FightScene.set_selected_player1(player)
+	$FightScene/FightScene.set_selected_player2(opponent)
+	$FightScene/FightScene.set_background(current_background)
+	$FightScene/FightScene.prepare_fight()
 	$AnimationPlayer.play("fade in fight")
 
 func remove_conversation_scene():
 	if $ConversationScene.has_node("ConversationScene"):
-		var node = get_node("ConversationScene/ConversationScene")
+		var node = $ConversationScene.get_node("ConversationScene")
 		$ConversationScene.remove_child(node)
-
+		
 func remove_fight_scene():
-	if $FightScene.has_node("Environment"):
-		var node = get_node("FightScene/Environment")
+	if $FightScene.has_node("FightScene"):
+		var node = $FightScene.get_node("FightScene")
 		$FightScene.remove_child(node)
 
 func conversation_done():
@@ -83,9 +106,9 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			# remove the scene
 			remove_fight_scene()
 			# start next convo/fight
-			next_fight()
+			next_opponent() # jovi
 
-func next_fight():
+func next_opponent():
 	fight_number += 1
 	
 	if fight_number <= opponents.size():
