@@ -12,7 +12,8 @@ const DAMAGE_MEDIUM = 15
 const DAMAGE_HIGH = 20
 
 var fighting = false # for _process()
-var match_type # storymode or deathmatch; only affects what happens after match
+var match_type # storymode, deathmatch, or ai_vs_ai; only affects what happens after match
+var background # background image
 
 func set_match_type(type:String):
 	match_type = type
@@ -46,10 +47,6 @@ func _process(_delta):
 				player2.facing = "right"
 				player2.scale = Vector2(abs(player2.scale.x), abs(player2.scale.y))
 				player2.rotation_degrees = 0
-		# this helps free a lock-up
-		if player1.get_node("AnimationTree").active == false and player2.get_node("AnimationTree").active == false:
-			player1.get_node("AnimationTree").active = true
-			player2.get_node("AnimationTree").active = true
 
 func addPlayer(character, name, bot):
 	# collision is the starting number of the four-set
@@ -59,7 +56,6 @@ func addPlayer(character, name, bot):
 	player.bot = bot
 	if bot:
 		player.script = load("res://scripts/AI.gd")
-	player.position = position
 	player.character_name = character
 	add_child(player)
 	
@@ -83,12 +79,44 @@ func start_fight():
 	fighting = true
 	$AnimationPlayer.play("RoundFight")
 
+func choose_random_player():
+	var characters = ["John","Kelsie","Terje"]
+	var random = RandomNumberGenerator.new()
+	random.randomize()
+	characters.shuffle()
+	return characters[random.randi_range(0, characters.size()-1)]
+
+func choose_random_background():
+	var backgrounds = ["arrivals","breakRoom","courtyard","hallway","humanHistory","lobby","naturalHistory","officeSpace","parking","roundhouse","shop"]
+	var random = RandomNumberGenerator.new()
+	random.randomize()
+	backgrounds.shuffle()
+	return backgrounds[random.randi_range(0, backgrounds.size()-1)]
+
 func prepare_fight():
+	if match_type == null:
+		set_match_type("ai_vs_ai")
+	if selected_player1 == null:
+		set_selected_player1(choose_random_player())
+	if selected_player2 == null:
+		set_selected_player2(choose_random_player())
+	if $Background.texture == null:
+		set_background(choose_random_background())
+	
 	if player1: # clear them if they exist (fight reset up to 3 rounds)
 		remove_child(player1)
 		remove_child(player2)
 	
-	player1 = addPlayer(selected_player1, "p1", false)
+	match match_type:
+		"ai_vs_ai":
+			player1 = addPlayer(selected_player1, "p1", true)
+			player2 = addPlayer(selected_player2, "p2", true)
+		"deathmatch","storymode":
+			player1 = addPlayer(selected_player1, "p1", false)
+			player2 = addPlayer(selected_player2, "p2", true)
+		"multiplayer":
+			print("TO WRITE")
+			pass
 		
 	$UI.set_player_name(1, selected_player1)
 	player1.health = 100
@@ -97,7 +125,6 @@ func prepare_fight():
 	if player1_wins == 1:
 		$UI.show_skull(1)
 		
-	player2 = addPlayer(selected_player2, "p2", true)
 	$UI.set_player_name(2, selected_player2)
 	player2.health = 100
 	$UI.set_player_health(2, 100)
@@ -106,7 +133,7 @@ func prepare_fight():
 		$UI.show_skull(2)
 		
 	if selected_player1 == selected_player2:
-		if match_type == "deathmatch":
+		if match_type == "deathmatch" or match_type == "ai_vs_ai":
 			if selected_player1 == "Terje":
 				$UI.set_player_name(2, "Terry B")
 			else:
@@ -119,6 +146,8 @@ func prepare_fight():
 	
 	player1.enemy = player2
 	player2.enemy = player1
+	
+	start_fight()
 
 func show_round():
 	format_text_for_label("ROUND %s" % (player1_wins + player2_wins + 1))
@@ -183,7 +212,9 @@ func match_over(player, winner):
 	player1.match_over = true
 	player2.match_over = true
 	
-	if winner:
+	if match_type == "ai_vs_ai":
+		close_out_game()
+	elif winner:
 		if player == player1:
 			player1_wins += 1
 			if player1_wins == 2:
@@ -219,7 +250,6 @@ func match_over(player, winner):
 				format_text_for_label("%s WINS!" % $UI.get_player_name(1))
 				$NextMatchTimer.start()
 
-				
 func clear_label():
 	$HBoxContainer/Label.visible = false
 	$HBoxContainer/Label.text = ""
@@ -232,18 +262,16 @@ func format_text_for_label(text:String):
 	$HBoxContainer/Label.visible = true
 
 func close_out_game():
-	if match_type == "deathmatch":
-		get_tree().get_root().get_node("LaunchScreen/AnimationPlayer").play("crossfadeMusicBack")
-	elif match_type == "storymode":
-		$EndFightTimer.start()
+	$EndFightTimer.start()
 
 func _on_NextMatchTimer_timeout():
 	prepare_fight()
-	start_fight()
 
 func _on_EndFightTimer_timeout():
-	if match_type == "deathmatch":
-		get_tree().get_root().get_node("LaunchScreen").start()
-		get_tree().get_root().remove_child(self)
-	elif match_type == "storymode":
-		get_parent().get_parent().fight_done()
+	get_parent().lower_fight_music()
+	$AnimationPlayer.play("fade out")
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	match anim_name:
+		"fade out":
+			get_parent().fight_done()

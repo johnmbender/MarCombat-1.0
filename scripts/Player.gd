@@ -19,16 +19,12 @@ var health
 var enemy
 var character_name # actual name, no Nega
 
-var character_select_screen
-
 var match_over = true
 var can_use_fatality = false
 
 var velocity
 
 func _ready():
-	character_select_screen = load("res://scenes/CharacterSelectScreen.tscn")
-	
 	$AnimationTree.active = true
 	animTree = $AnimationTree.get("parameters/playback")
 	health = 100
@@ -36,7 +32,7 @@ func _ready():
 func getInput():
 	if match_over:
 		return
-		
+	
 	if Input.is_action_pressed("quit"):
 		match_over = true
 		animTree.travel("idle")

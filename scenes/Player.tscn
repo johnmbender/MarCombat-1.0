@@ -11,7 +11,4 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Player"]
 
-[node name="AnimationTree" type="AnimationTree" parent="Player"]
-anim_player = NodePath("../AnimationPlayer")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]

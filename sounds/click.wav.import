@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/blade-gut-hit.wav-95f54255ca41725f68d22d71ed700899.sample"
+path="res://.import/click.wav-d21aa4592f4e9fc283cc78a017df9eb2.sample"
 
 [deps]
 
-source_file="res://characters/FUGUM/sounds/blade-gut-hit.wav"
-dest_files=[ "res://.import/blade-gut-hit.wav-95f54255ca41725f68d22d71ed700899.sample" ]
+source_file="res://sounds/click.wav"
+dest_files=[ "res://.import/click.wav-d21aa4592f4e9fc283cc78a017df9eb2.sample" ]
 
 [params]
 

@@ -1,17 +1,22 @@
 extends Node2D
 
-var allow_input
-var next_screen
+onready var allow_input = false
+var game_mode
+
+# selection(s) hold the options to select from menu and their positions
 var selection = 0
-var selections = [[Vector2(330, 300), Vector2(690, 300)], [Vector2(290, 370), Vector2(730, 370)], [Vector2(390, 430), Vector2(630, 430)]]
+var selections = [
+	[Vector2(328, 288), Vector2(692, 288)],
+	[Vector2(328, 352), Vector2(692, 352)],
+	[Vector2(296, 417), Vector2(724, 417)],
+	[Vector2(400, 529), Vector2(620, 529)],
+]
 
 func _ready():
-	allow_input = false
-	start()
+	get_parent().scene_ready("LaunchScreen")
 
 func start():
 	$AnimationPlayer.play("fadeIn")
-	next_screen = preload("res://scenes/CharacterSelectScreen.tscn").instance()
 	
 func _input(event):
 	if allow_input == false:
@@ -25,6 +30,10 @@ func _input(event):
 		move_skulls(-1)
 	elif event.is_action_released("quit"):
 		get_tree().quit()
+	elif event.is_action_released("cheat"):
+		game_mode = "player_test"
+		$AnimationPlayer.play("fadeOut")
+		
 
 func allow_input():
 	allow_input = true
@@ -38,40 +47,32 @@ func move_skulls(direction:int):
 	
 	$MammothLeft.position = selections[selection][0]
 	$MammothRight.position = selections[selection][1]
+	
+	$Click.play()
 
 func do_selection():
-	match selection:
-		0:
-			load_game()
-		1:
-			return
-		2:
-			get_tree().quit()
-
-func load_game():
 	$Boom.play()
+	
+	match selection:
+		3:
+			$AnimationPlayer.play("quit")
+			return
+		0:
+			game_mode = "storymode"
+		1:
+			game_mode = "deathmatch"
+		2:
+			game_mode = "multiplayer"
+			
 	$AnimationPlayer.play("fadeOut")
 
-func go_to_character_select():
-	allow_input = false
-	get_tree().get_root().add_child(next_screen)
-	next_screen.enabled = true
+func _on_AnimationPlayer_animation_finished(anim_name):
+	match anim_name:
+		"quit":
+			get_parent().quit_game()
+		"fadeOut":
+			get_parent().set_game_mode(game_mode)
 
-func fadeLevelAmbience():
-	get_tree().get_root().get_node("Environment/AnimationPlayer").play("fadeAmbience")
-
-func _on_Music_finished():
-	$IntroMusic.play()
-	# start demo
-	# this doesn't work
-#	var random = RandomNumberGenerator.new()
-#	random.randomize()
-#	var players = ['John', 'Kelsie', 'Terje']
-#	var levelScene = preload("res://levels/WestEntrance.tscn")
-#	var rand_char1 = players[random.randi_range(0,2)]
-#	var rand_char2 = players[random.randi_range(0,2)]
-#	var level = levelScene.instance()
-#	level.selected_player1 = rand_char1
-#	level.selected_player2 = rand_char2
-#	level.demoMode = true
-#	get_tree().change_scene_to(levelScene)
+func _on_DemoTimer_timeout():
+	game_mode = "ai_vs_ai"
+	$AnimationPlayer.play("fadeOut")

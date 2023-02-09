@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/FightScene.gd" type="Script" id=2]
 [ext_resource path="res://scenes/UI_PlayerInfo.tscn" type="PackedScene" id=3]
@@ -25,6 +25,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ -22.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -80,6 +92,21 @@ tracks/2/keys = {
 "args": [ "FIGHT!" ],
 "method": "format_text_for_label"
 } ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "fade out"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -185,6 +212,7 @@ current = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 6 )
 anims/RoundFight = SubResource( 5 )
+"anims/fade out" = SubResource( 8 )
 anims/fadeAmbience = SubResource( 7 )
 
 [node name="Gong" type="AudioStreamPlayer" parent="."]
@@ -218,3 +246,4 @@ volume_db = -10.0
 
 [connection signal="timeout" from="NextMatchTimer" to="." method="_on_NextMatchTimer_timeout"]
 [connection signal="timeout" from="EndFightTimer" to="." method="_on_EndFightTimer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

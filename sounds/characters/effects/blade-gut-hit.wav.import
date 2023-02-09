@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/punch.wav-18a981b505bfd3afeb9c65d281e66f97.sample"
+path="res://.import/blade-gut-hit.wav-32c245cf41735c81c71098345119814f.sample"
 
 [deps]
 
-source_file="res://sounds/characters/effects/punch.wav"
-dest_files=[ "res://.import/punch.wav-18a981b505bfd3afeb9c65d281e66f97.sample" ]
+source_file="res://sounds/characters/effects/blade-gut-hit.wav"
+dest_files=[ "res://.import/blade-gut-hit.wav-32c245cf41735c81c71098345119814f.sample" ]
 
 [params]
 

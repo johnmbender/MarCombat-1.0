@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/kick.wav-609d5b71eeab8289e1f46d02dac7fd2c.sample"
+path="res://.import/kicked.wav-3b365368022c2202a392f7d7df13da26.sample"
 
 [deps]
 
-source_file="res://sounds/characters/effects/kick.wav"
-dest_files=[ "res://.import/kick.wav-609d5b71eeab8289e1f46d02dac7fd2c.sample" ]
+source_file="res://sounds/characters/effects/kicked.wav"
+dest_files=[ "res://.import/kicked.wav-3b365368022c2202a392f7d7df13da26.sample" ]
 
 [params]
 
