@@ -1,9 +1,9 @@
 extends "res://scripts/TestPlayer.gd"
 
-var aggression = 0.8
-var blockChance = 0.6
-var defensiveness = 0.4
-var quickness = 0.7
+var aggression = 0.7
+var block_chance = 0.4
+var defensiveness = 0.2
+var quickness = 0.7 # what for?
 var actionTimer:Timer
 
 var action
@@ -22,11 +22,9 @@ func set_enemy(e):
 
 func doSomething():
 	var roll = randf()
-	if enemy_is_close():
+	if enemy_in_range():
 		if roll <= defensiveness:
 			action = "back up"
-		elif roll <= blockChance:
-			action = "block"
 		elif roll <= aggression:
 			action = "attack"
 		else:
@@ -45,14 +43,17 @@ func doSomething():
 func _physics_process(_delta):
 	velocity = Vector2()
 	velocity.y += GRAVITY
-	if action == "approach":
+	
+	if blocking and action != "block":
+		unblock()
+	elif action == "approach":
 		$AnimationPlayer.play("walk-forward")
 		if enemy.global_position.x < (global_position.x - 100):
 			velocity.x -= MOVE_SPEED
 		elif enemy.global_position.x > (global_position.x + 100):
 			velocity.x += MOVE_SPEED
 		else:
-			action = "idle"
+			action = "wait"
 			velocity.x = 0
 	elif action == "back up":
 		$AnimationPlayer.play("walk-backward")
@@ -61,13 +62,20 @@ func _physics_process(_delta):
 		elif enemy.global_position.x < global_position.x:
 			velocity.x -= MOVE_SPEED
 		else:
-			action = "idle"
+			action = "wait"
 			velocity.x = 0
+	elif action == "attack" and not attacking:
+		attack()
+#	elif action == "special": BROKEN
+#		special()
+	elif action == "block":
+		block()
 			
 	var _unused = move_and_slide(velocity, Vector2.UP)
 
 func attack():
-	var modifier = ""
+	attacking = true
+	var modifier = "-far"
 	if enemy_is_close():
 		modifier = "-close"
 		
@@ -85,11 +93,24 @@ func special():
 func block():
 	if not blocking:
 		$AnimationPlayer.play("block")
+		blocking = true
+
+func unblock():
+	if blocking:
+		$AnimationPlayer.play("block-release")
 
 func bot_damage_taken():
 	actionTimer.stop()
-	action = "wait"
+	
+	var enemy_action = enemy.get_node("AnimationPlayer").current_animation
+	if blockable.has(enemy_action) and randf() < block_chance:
+		action = "block"
+	else:
+		action = "wait"
 
 func bot_resume_action_timer():
 	actionTimer.wait_time = 0.001
 	actionTimer.start()
+
+func enemy_in_range():
+	return abs(enemy.global_position.x - global_position.x) < 300

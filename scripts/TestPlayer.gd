@@ -9,6 +9,7 @@ const DAMAGE_HIGH = 20
 
 var blocking = false
 var crouching = false
+var attacking = false # for bot
 
 var bot
 signal bot_damage_taken
@@ -17,6 +18,7 @@ var enemy
 
 var velocity
 var free_animations = ["walk-backward","walk-forward","idle"] # list of animations that can be interrupted
+var blockable = ["punch-far","kick-far","special"]
 
 var character_name
 
@@ -99,7 +101,8 @@ func _on_AnimationPlayer_animation_started(anim_name):
 		"stagger":
 			emit_signal("bot_damage_taken")
 
-func _on_AnimationPlayer_animation_finished(anim_name):	
+func _on_AnimationPlayer_animation_finished(anim_name):
+	attacking = false
 	match anim_name:
 		"block":
 			$AnimationPlayer.play("blocking")
@@ -118,34 +121,40 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			$AnimationPlayer.play("idle")
 
 func _on_AttackCircle_body_entered(_body):
+	if free_animations.has($AnimationPlayer.current_animation):
+		# don't want to freeze if we walk into each other
+		return
+		
 	if z_index <= enemy.z_index:
 		z_index = 1
 		enemy.z_index = 0
 	enemy.damage_taken($AnimationPlayer.current_animation)
 
-func damage_taken(animation:String): # jovi
+func damage_taken(animation:String):
 	if bot:
 		emit_signal("bot_damage_taken")
 		
-	if not busy():
-		if blocking:
-			play_sound("res://sounds/characters/effects/block.wav", true)
-			$AnimationPlayer.play("block-release")
-		else:
-			$AnimationPlayer.stop()
-				
-			match animation:
-				"punch-far", "punch-close", "kick-far":
-					$AnimationPlayer.play("hit-face")
-				"kick-close":
-					$AnimationPlayer.play("hit-gut")
-				"uppercut":
-					$AnimationPlayer.play("hit-uppercut")
-				"throw":
-					$AnimationPlayer.play("thrown")
+#	if not busy():
+	if blocking:
+		print("yeah blocking")
+		play_sound("res://sounds/characters/effects/block.wav", true)
+		$AnimationPlayer.play("block-release")
+		emit_signal("bot_resume_action_timer")
+	else:
+		$AnimationPlayer.stop()
+			
+		match animation:
+			"punch-far", "punch-close", "kick-far":
+				$AnimationPlayer.play("hit-face")
+			"kick-close":
+				$AnimationPlayer.play("hit-gut")
+			"uppercut":
+				$AnimationPlayer.play("hit-uppercut")
+			"throw":
+				$AnimationPlayer.play("thrown")
 
 func enemy_is_close():
-	return abs(enemy.global_position.x - global_position.x) < 125
+	return abs(enemy.global_position.x - global_position.x) < 130
 	
 func tween(to:Vector2, rot, time:float):
 	var tween = get_node("Tween")
