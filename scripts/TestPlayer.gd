@@ -13,7 +13,8 @@ var attacking = false # for bot
 
 var bot
 signal bot_damage_taken
-signal bot_resume_action_timer
+signal bot_resume_timer
+signal bot_stop_timer
 var enemy
 
 var velocity
@@ -32,9 +33,11 @@ func set_bot(isBot:bool):
 	bot = isBot
 	
 	if bot:
-		scale.x = -1
-		var _unused1 = connect("bot_damage_taken", self, "bot_damage_taken")
-		var _unused2 = connect("bot_resume_action_timer", self, "bot_resume_action_timer")
+		var _unused = connect("bot_damage_taken", self, "bot_damage_taken")
+		_unused = connect("bot_resume_timer", self, "bot_resume_timer")
+		_unused = connect("bot_stop_timer", self, "bot_stop_timer")
+		if name == "player2":
+			scale.x = -1
 
 func _physics_process(_delta):
 	if bot == false:
@@ -83,6 +86,12 @@ func get_input():
 			velocity.x = 0
 
 func _on_AnimationPlayer_animation_started(anim_name):
+	if free_animations.has(anim_name):
+		return
+	
+	if bot:
+		emit_signal("bot_stop_timer")
+	
 	match anim_name:
 		"block":
 			blocking = true
@@ -99,10 +108,12 @@ func _on_AnimationPlayer_animation_started(anim_name):
 		"hit-gut":
 			play_sound("res://sounds/characters/effects/kicked.wav", true)
 		"stagger":
-			emit_signal("bot_damage_taken")
+			if bot:
+				emit_signal("bot_damage_taken")
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	attacking = false
+	
 	match anim_name:
 		"block":
 			$AnimationPlayer.play("blocking")
@@ -115,34 +126,35 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		"knock-back":
 			$AnimationPlayer.play("get-up")
 		"get-up","hit-face","hit-gut":
-			emit_signal("bot_resume_action_timer")
 			$AnimationPlayer.play("idle")
 		_:
 			$AnimationPlayer.play("idle")
+	
+	if bot:
+		emit_signal("bot_resume_timer")
 
 func _on_AttackCircle_body_entered(_body):
-	if free_animations.has($AnimationPlayer.current_animation):
-		# don't want to freeze if we walk into each other
-		return
-		
+#	if free_animations.has($AnimationPlayer.current_animation):
+#		# don't want to freeze if we walk into each other
+#		return
 	if z_index <= enemy.z_index:
 		z_index = 1
 		enemy.z_index = 0
 	enemy.damage_taken($AnimationPlayer.current_animation)
 
 func damage_taken(animation:String):
+	# emit might get picked up by both!?
 	if bot:
 		emit_signal("bot_damage_taken")
-		
-#	if not busy():
+
 	if blocking:
-		print("yeah blocking")
 		play_sound("res://sounds/characters/effects/block.wav", true)
 		$AnimationPlayer.play("block-release")
-		emit_signal("bot_resume_action_timer")
+		if bot:
+			emit_signal("bot_resume_timer")
 	else:
 		$AnimationPlayer.stop()
-			
+
 		match animation:
 			"punch-far", "punch-close", "kick-far":
 				$AnimationPlayer.play("hit-face")
@@ -154,7 +166,8 @@ func damage_taken(animation:String):
 				$AnimationPlayer.play("thrown")
 
 func enemy_is_close():
-	return abs(enemy.global_position.x - global_position.x) < 130
+	var distance = abs(enemy.global_position.x - global_position.x)
+	return distance < 130
 	
 func tween(to:Vector2, rot, time:float):
 	var tween = get_node("Tween")
@@ -183,6 +196,8 @@ func play_sound(soundPath:String, variate:bool):
 func is_getting_shot(currently:bool):
 	if currently:
 		$AnimationPlayer.play("stagger")
+		if bot:
+			emit_signal("bot_stop_timer")
 	else:
 		$AnimationPlayer.play("knock-back")
 
@@ -195,16 +210,13 @@ func busy():
 
 # JOHN
 func _JOHN_shoot_bullets(shoot):
+	$Bullets.emitting = shoot
+	enemy.is_getting_shot(shoot)
+	
 	if shoot:
 		$SoundPlayer.stream = load("res://sounds/characters/John/shot.wav")
 		$SoundPlayer.play()
 		$Bullets.lifetime = abs(enemy.global_position.x - global_position.x) / 180
-		$Bullets.emitting = true
-		
-		enemy.is_getting_shot(true)
-	else:
-		$Bullets.emitting = false
-		enemy.is_getting_shot(false)
 
 func _JOHN_fatality_start():
 	$AnimationPlayer.play("fatality-start")

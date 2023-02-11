@@ -10,12 +10,12 @@ func _ready():
 func set_scene():
 	var player1_scene = load("res://characters/John/John.tscn")
 	player1 = player1_scene.instance()
-	player1.script = load("res://scripts/TestPlayer.gd")
+	player1.script = load("res://scripts/AI-new.gd")
 	add_child(player1)
 	player1.idle()
 	player1.set_name("John")
 	player1.name = "player1"
-	player1.set_bot(false)
+	player1.set_bot(true)
 	player1.position = Vector2(512, 200)
 	player1.collision_layer = 1
 	player1.collision_mask = 48
