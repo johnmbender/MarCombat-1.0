@@ -30,10 +30,6 @@ func _input(event):
 		move_skulls(-1)
 	elif event.is_action_released("quit"):
 		get_tree().quit()
-	elif event.is_action_released("cheat"):
-		game_mode = "player_test"
-		$AnimationPlayer.play("fadeOut")
-		
 
 func allow_input():
 	allow_input = true

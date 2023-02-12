@@ -7,14 +7,17 @@ const DAMAGE_LOW = 10
 const DAMAGE_MEDIUM = 15
 const DAMAGE_HIGH = 20
 
+var fighting = false
 var blocking = false
 var crouching = false
 var attacking = false # for bot
+var can_use_fatality = false
 
 var bot
 signal bot_damage_taken
 signal bot_resume_timer
 signal bot_stop_timer
+signal update_health(health)
 var enemy
 
 var velocity
@@ -22,9 +25,25 @@ var free_animations = ["walk-backward","walk-forward","idle"] # list of animatio
 var blockable = ["punch-far","kick-far","special"]
 
 var character_name
+var health
+
+func _ready():
+	var _unused = connect("update_health", get_parent(), "update_health")
+
+func set_health(h:int):
+	health = h
 
 func idle():
 	$AnimationPlayer.play("idle")
+
+func collapse():
+	$AnimationPlayer.play("collapse")
+
+func stunned():
+	$AnimationPlayer.play("stunned")
+
+func victory():
+	$AnimationPlayer.play("victory")
 
 func set_name(name:String):
 	character_name = name
@@ -47,6 +66,9 @@ func _physics_process(_delta):
 		var _unused = move_and_slide(velocity, Vector2.UP)
 
 func get_input():
+	if not fighting:
+		return
+		
 	if blocking and Input.is_action_just_released("block"):
 		$AnimationPlayer.play("block-release")
 	elif crouching:
@@ -81,6 +103,8 @@ func get_input():
 		elif Input.is_action_pressed("ui_right"):
 			$AnimationPlayer.play("walk-forward")
 			velocity.x += MOVE_SPEED
+		elif can_use_fatality and Input.is_action_pressed("fatality"):
+			fatality()
 		else:
 			$AnimationPlayer.play("idle")
 			velocity.x = 0
@@ -127,6 +151,13 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			$AnimationPlayer.play("get-up")
 		"get-up","hit-face","hit-gut":
 			$AnimationPlayer.play("idle")
+		"fatality-start":
+			$AnimationPlayer.play("fatality-repeat")
+		"victory", "fatality-end":
+			set_process(false)
+		"response-john":
+			if character_name != "John":
+				collapse()
 		_:
 			$AnimationPlayer.play("idle")
 	
@@ -143,28 +174,37 @@ func _on_AttackCircle_body_entered(_body):
 	enemy.damage_taken($AnimationPlayer.current_animation)
 
 func damage_taken(animation:String):
-	# emit might get picked up by both!?
+	# emit might get picked up by both bots!
 	if bot:
 		emit_signal("bot_damage_taken")
 
-	if blocking:
+	if $AnimationPlayer.current_animation == "stunned":
+		$AnimationPlayer.play("collapse")
+		get_parent().match_over(enemy)
+	elif blocking:
 		play_sound("res://sounds/characters/effects/block.wav", true)
 		$AnimationPlayer.play("block-release")
 		if bot:
 			emit_signal("bot_resume_timer")
+		health -= 5
 	else:
 		$AnimationPlayer.stop()
 
 		match animation:
 			"punch-far", "punch-close", "kick-far":
 				$AnimationPlayer.play("hit-face")
+				health -= DAMAGE_LOW
 			"kick-close":
 				$AnimationPlayer.play("hit-gut")
+				health -= DAMAGE_LOW
 			"uppercut":
 				$AnimationPlayer.play("hit-uppercut")
+				health -= DAMAGE_HIGH
 			"throw":
 				$AnimationPlayer.play("thrown")
 
+	emit_signal("update_health", self, health)
+	
 func enemy_is_close():
 	var distance = abs(enemy.global_position.x - global_position.x)
 	return distance < 130
@@ -204,6 +244,13 @@ func is_getting_shot(currently:bool):
 func busy():
 	return free_animations.has($AnimationPlayer.current_animation) == false
 
+func fatality():
+	fighting = false
+	get_parent().get_node("FatalityTimer").stop()
+	match character_name:
+		"John":
+			_JOHN_fatality_start()
+
 ################################
 # CHARACTER-SPECIFIC FUNCTIONS #
 ################################
@@ -228,28 +275,24 @@ func _JOHN_fatality_start():
 
 func _JOHN_fatality_end():
 	if enemy.character_name != "John":
-		enemy.animTree.travel("response-john")
-		var timer = Timer.new()
-		timer.one_shot = true
-		timer.wait_time = 3.0
-		timer.connect("timeout", self, "close_out_game")
-		add_child(timer)
-		timer.start()
+		enemy.get_node("AnimationPlayer").play("response-john")
 		get_parent().format_text_for_label("punality")
-		get_parent().announcer("punality")
+		get_parent().announcer_speak("punality")
 	else:
 		# delay a bit for comedic effect!
 		var timer = Timer.new()
 		timer.one_shot = true
 		timer.wait_time = 1.0
-		timer.connect("timeout", self, "punality")
+		timer.connect("timeout", enemy, "_JOHN_punality")
 		add_child(timer)
 		timer.start()
-		get_parent().format_text_for_label("friendship")
+		get_parent().announcer_speak("sigh")
 		
+	get_parent().get_node("EndFightTimer").start()
 	$AnimationPlayer.play("fatality-end")
 
 func _JOHN_punality():
+	set_process(false)
 	$AnimationPlayer.play("response-john")
 
 func _on_FatalityPlayer_finished():

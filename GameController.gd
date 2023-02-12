@@ -20,14 +20,6 @@ func load_deathmatch():
 	scene.match_type = "deathmatch"
 	scene.prepare_fight()
 
-func load_player_test():
-	current_scene = "TestScene"
-	# create a new, specific scene to test a single player's actions
-	var scene = preload("res://scenes/TestScene.tscn").instance()
-	add_child(scene)
-	scene.set_selected_player1("John")
-	scene.prepare_fight()
-
 func load_demo():
 	raise_fight_music()
 	current_scene = "FightScene"
@@ -58,12 +50,14 @@ func set_game_mode(mode:String):
 			pass
 		"ai_vs_ai":
 			load_demo()
-		"player_test":
-			load_player_test()
 
 func fight_done():
 	remove_scene()
-	load_launch_screen()
+	match game_mode:
+		"deathmatch":
+			load_launch_screen()
+		"storymode":
+			print("next storymode scene!")
 
 func quit_game():
 	$AnimationPlayer.play("quit")
