@@ -1,6 +1,6 @@
 extends "res://scripts/Player.gd"
 
-var aggression = 0.7
+var aggression = 0.8
 var block_chance = 0.3
 var defensiveness = 0.2
 var quickness = 0.7 # what for?
@@ -34,7 +34,9 @@ func doSomething():
 		else:
 			action = "wait"
 	else:
-		if roll <= 0.7: # removed special, because it's problematic
+		if roll <= defensiveness:
+			action = "special"
+		elif roll <= aggression:
 			action = "approach"
 		else:
 			action = "wait"
@@ -110,7 +112,6 @@ func wait():
 	bot_next_action()
 
 func special():
-	bot_stop_timer()
 	$AnimationPlayer.play("special")
 
 func block():

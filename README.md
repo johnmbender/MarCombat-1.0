@@ -2,7 +2,6 @@
 A game, to conquer the world.
 
 # TO DO, IN ORDER:
-- sometimes AI gets stuck walking towards player
 
 1: Conversation scene
     - clear up text speed - fast when it shouldn't be

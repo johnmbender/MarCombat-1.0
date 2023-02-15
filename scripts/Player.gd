@@ -156,22 +156,22 @@ func _on_AnimationPlayer_animation_started(anim_name):
 func _on_AnimationPlayer_animation_finished(anim_name):
 	match anim_name:
 		"block":
-			$AnimationPlayer.play("blocking")
+			if blocking:
+				$AnimationPlayer.play("blocking")
 			return
-		"blocking":
-			$AnimationPlayer.play("block-release")
-			return
+		"block-release":
+			blocking = false
+			$AnimationPlayer.play("idle")
 		"crouch":
+			crouching = true
 			$AnimationPlayer.play("crouching")
-			return
-		"crouching":
-			$AnimationPlayer.play("crouch-return")
 			return
 		"crouch-return":
 			crouching = false
-			return
+			$AnimationPlayer.play("idle")
 		"hit-uppercut","knock-back":
 			$AnimationPlayer.play("get-up")
+			return
 		"collapse":
 			play_sound("res://sounds/characters/effects/drop.wav", true)
 			$AnimationPlayer.stop()
@@ -244,9 +244,12 @@ func damage_taken(animation:String):
 				$AnimationPlayer.play("thrown")
 			"special":
 				match enemy.character_name:
+					# John's is calculated in getting_shot
 					"Kelsie":
+						health -= DAMAGE_LOW
 						$AnimationPlayer.play("hit-face")
 					"Terje":
+						health -= DAMAGE_LOW
 						$AnimationPlayer.play("knock-back")
 			_:
 				$AnimationPlayer.play("idle")
