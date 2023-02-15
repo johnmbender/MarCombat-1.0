@@ -2,8 +2,7 @@
 A game, to conquer the world.
 
 # TO DO, IN ORDER:
-- rebuild Player.gd and, possibly, remove AnimationTree - I feel like it'd make just about as much
-    sense to have the on animation finished playing signal instead
+- sometimes AI gets stuck walking towards player
 
 1: Conversation scene
     - clear up text speed - fast when it shouldn't be

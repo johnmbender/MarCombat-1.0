@@ -11,14 +11,35 @@ func load_launch_screen():
 	var scene = preload("res://scenes/LaunchScreen.tscn").instance()
 	add_child(scene)
 
-func load_deathmatch():
-	raise_fight_music()
-	current_scene = "FightScene"
-	var scene = preload("res://scenes/FightScene.tscn").instance()
+func load_character_select():
+	var scene = preload("res://scenes/CharacterSelect.tscn").instance()
 	add_child(scene)
-	scene.set_selected_player1("John")
-	scene.match_type = "deathmatch"
-	scene.prepare_fight()
+	remove_scene()
+	current_scene = "CharacterSelect"
+
+func load_deathmatch(player1, player2):
+	var characters = ["John","Kelsie","Terje"]
+	randomize()
+	characters.shuffle()
+	if player2 == false:
+		# vs AI opponent
+		var scene = preload("res://scenes/FightScene.tscn").instance()
+		add_child(scene)
+		remove_scene()
+		current_scene = "FightScene"
+		scene.set_player1(player1)
+		scene.set_player2(characters[0])
+		scene.set_match_type("deathmatch")
+		scene.prepare_fight()
+	else:
+		# 2 players
+		pass
+#	raise_fight_music()
+#	current_scene = "FightScene"
+#	add_child(scene)
+#	scene.set_selected_player1("John")
+#	scene.match_type = "deathmatch"
+#	scene.prepare_fight()
 
 func load_demo():
 	raise_fight_music()
@@ -45,7 +66,7 @@ func set_game_mode(mode:String):
 		"storymode":
 			pass
 		"deathmatch":
-			load_deathmatch()
+			load_character_select()
 		"multiplayer":
 			pass
 		"ai_vs_ai":

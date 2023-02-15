@@ -332,7 +332,7 @@ tracks/8/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "allow_input"
+"method": "set_allow_input"
 } ]
 }
 tracks/9/type = "method"
@@ -589,6 +589,8 @@ anims/quit = SubResource( 10 )
 stream = ExtResource( 5 )
 volume_db = -20.0
 bus = "Reverb"
+
+[node name="Announcer" type="AudioStreamPlayer" parent="."]
 
 [node name="Boom" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )

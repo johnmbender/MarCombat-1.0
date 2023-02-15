@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://fonts/Louis George Cafe.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=1]
+size = 18
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[node name="CharacterInfo" type="Control"]
+margin_right = 512.0
+margin_bottom = 600.0
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 65.0
+margin_top = 430.0
+margin_right = 465.0
+margin_bottom = 570.0
+
+[node name="PlayerInfo" type="RichTextLabel" parent="Panel"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 380.0
+margin_bottom = 120.0
+theme = SubResource( 2 )
+text = "Name: Kelsie
+Birthday: January 4
+Hometown: St. Albert, Alberta"

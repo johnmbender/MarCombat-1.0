@@ -1,6 +1,6 @@
 [gd_scene load_steps=40 format=2]
 
-[ext_resource path="res://characters/Kelsie/sprites/conversations/normal/normal_01.png" type="Texture" id=1]
+[ext_resource path="res://characters/Kelsie/sprites/conversations/normal.png" type="Texture" id=1]
 [ext_resource path="res://characters/Kelsie/sprites/conversations/offended/offended_03.png" type="Texture" id=2]
 [ext_resource path="res://characters/Kelsie/sprites/conversations/yes/yes_02.png" type="Texture" id=3]
 [ext_resource path="res://characters/Kelsie/sprites/conversations/no/no_03.png" type="Texture" id=4]
@@ -88,8 +88,8 @@ animations = [ {
 } ]
 
 [node name="AnimatedSprite" type="AnimatedSprite"]
-position = Vector2( 240, 312 )
 scale = Vector2( 1.44297, 1.44297 )
 frames = SubResource( 3 )
 animation = "normal"
+centered = false
 script = ExtResource( 38 )

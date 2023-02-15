@@ -1,4 +1,4 @@
-extends "res://scripts/TestPlayer.gd"
+extends "res://scripts/Player.gd"
 
 var aggression = 0.7
 var block_chance = 0.3
@@ -11,9 +11,8 @@ var action
 func _ready():
 	action = "wait"
 	actionTimer = Timer.new()
-	actionTimer.one_shot = false
-	actionTimer.autostart = true
-	actionTimer.wait_time = rand_range(0.1, 1.0)
+	actionTimer.one_shot = true
+	actionTimer.autostart = false
 	var _u = actionTimer.connect("timeout", self, "doSomething")
 	actionTimer.name = "ActionTimer"
 	add_child(actionTimer)
@@ -23,6 +22,7 @@ func set_enemy(e):
 
 func doSomething():
 	if not fighting:
+		action = null
 		return
 	
 	var roll = randf()
@@ -38,13 +38,16 @@ func doSomething():
 			action = "approach"
 		else:
 			action = "wait"
+	
+	blocking = false
+	crouching = false
 
 func _physics_process(_delta):
 	velocity = Vector2()
 	velocity.y = 0
 	velocity.y += GRAVITY
 
-	if attacking: # blocking?
+	if action == null or attacking or blocking or crouching:
 		return
 		
 	if blocking and action != "block":
@@ -56,7 +59,7 @@ func _physics_process(_delta):
 		elif enemy.global_position.x > (global_position.x + 100):
 			velocity.x += MOVE_SPEED
 		else:
-			bot_resume_timer()
+			bot_next_action()
 			velocity.x = 0
 	elif action == "back up":
 		$AnimationPlayer.play("walk-backward")
@@ -65,13 +68,13 @@ func _physics_process(_delta):
 		elif enemy.global_position.x > global_position.x:
 			velocity.x -= MOVE_SPEED
 		else:
-			bot_resume_timer()
+			bot_next_action()
 			velocity.x = 0
 		
 		if name == "player2" and global_position.x > 800:
-			action = "wait"
+			bot_next_action()
 		elif name == "player1" and global_position.x <= 150:
-			action = "wait"
+			bot_next_action()
 	elif action == "attack" and not attacking:
 		attack()
 	elif action == "special":
@@ -103,9 +106,8 @@ func attack():
 	action = "wait"
 
 func wait():
-#	actionTimer.stop()
 	$AnimationPlayer.play("idle")
-#	bot_resume_timer()
+	bot_next_action()
 
 func special():
 	bot_stop_timer()
@@ -129,16 +131,15 @@ func bot_damage_taken():
 		blocking = true
 	else:
 		action = "wait"
-		bot_resume_timer()
+		bot_next_action()
 
 func bot_stop_timer():
 	action = null
 	actionTimer.stop()
 
-func bot_resume_timer():
-#	actionTimer.stop()
-#	actionTimer.wait_time = 0.001
-	actionTimer.wait_time = rand_range(0.3, 1.0)
+func bot_next_action():
+	actionTimer.stop()
+	actionTimer.wait_time = rand_range(0.001, 1.5)
 	actionTimer.start()
 
 func enemy_in_range():

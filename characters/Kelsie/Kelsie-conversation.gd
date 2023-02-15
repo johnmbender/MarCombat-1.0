@@ -1,5 +1,10 @@
 extends AnimatedSprite
 
+onready var info = {
+	"name": "Kelsie",
+	"birthday": "single-digits January",
+	"hometown": "St. Albert"
+}
 onready var pronouns = ["she", "her", "her"]
 onready var dialogue = {
 	"player": {

@@ -7,7 +7,7 @@
 [ext_resource path="res://characters/John/sprites/actions/idle/idle_6.png" type="Texture" id=5]
 [ext_resource path="res://characters/John/sprites/actions/idle/idle_7.png" type="Texture" id=6]
 [ext_resource path="res://characters/John/sprites/actions/idle/idle_4.png" type="Texture" id=7]
-[ext_resource path="res://scripts/TestPlayer.gd" type="Script" id=8]
+[ext_resource path="res://scripts/Player.gd" type="Script" id=8]
 [ext_resource path="res://characters/John/sprites/actions/walk/walk_11.png" type="Texture" id=9]
 [ext_resource path="res://characters/John/sprites/actions/walk/walk_06.png" type="Texture" id=10]
 [ext_resource path="res://characters/John/sprites/actions/walk/walk_07.png" type="Texture" id=11]
@@ -479,7 +479,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=80]
-resource_name = "crouch-release"
+resource_name = "crouch-return"
 length = 0.18
 step = 0.01
 tracks/0/type = "value"
@@ -1313,7 +1313,7 @@ anims/block-release = SubResource( 62 )
 anims/blocking = SubResource( 128 )
 anims/collapse = SubResource( 26 )
 anims/crouch = SubResource( 79 )
-anims/crouch-release = SubResource( 80 )
+anims/crouch-return = SubResource( 80 )
 anims/crouching = SubResource( 129 )
 anims/fatality-end = SubResource( 42 )
 anims/fatality-repeat = SubResource( 41 )
@@ -1363,7 +1363,7 @@ lifetime = 2.0
 [node name="NegaSmoke" type="AnimatedSprite" parent="."]
 visible = false
 modulate = Color( 0, 0, 0, 0.392157 )
-position = Vector2( -8, -40 )
+position = Vector2( -16, -88 )
 frames = SubResource( 113 )
 frame = 4
 

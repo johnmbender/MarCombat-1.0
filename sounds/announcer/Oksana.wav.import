@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Oksana.wav-ead19d61c530d6ac27c6e8a12cf88439.sample"
+
+[deps]
+
+source_file="res://sounds/announcer/Oksana.wav"
+dest_files=[ "res://.import/Oksana.wav-ead19d61c530d6ac27c6e8a12cf88439.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

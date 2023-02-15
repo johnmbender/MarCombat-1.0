@@ -1,7 +1,7 @@
-[gd_scene load_steps=340 format=2]
+[gd_scene load_steps=253 format=2]
 
 [ext_resource path="res://characters/Kelsie/sprites/actions/victory/victory_05.png" type="Texture" id=1]
-[ext_resource path="res://characters/Kelsie/Kelsie.gd" type="Script" id=2]
+[ext_resource path="res://scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://characters/Kelsie/sprites/actions/idle/idle_05.png" type="Texture" id=3]
 [ext_resource path="res://characters/Kelsie/sprites/actions/idle/idle_03.png" type="Texture" id=4]
 [ext_resource path="res://characters/Kelsie/sprites/actions/idle/idle_01.png" type="Texture" id=5]
@@ -156,7 +156,6 @@
 [ext_resource path="res://characters/Kelsie/sprites/actions/uppercut/uppercut_02.png" type="Texture" id=154]
 [ext_resource path="res://characters/Kelsie/sprites/actions/uppercut/uppercut_05.png" type="Texture" id=155]
 [ext_resource path="res://characters/Kelsie/sprites/actions/uppercut/uppercut_01.png" type="Texture" id=156]
-[ext_resource path="res://characters/Kelsie/sprites/actions/somersault/somersault-forward_01.png" type="Texture" id=157]
 [ext_resource path="res://characters/Kelsie/sprites/actions/hit-uppercut/hit-uppercut_02.png" type="Texture" id=158]
 [ext_resource path="res://characters/Kelsie/sprites/actions/hit-uppercut/hit-uppercut_07.png" type="Texture" id=159]
 [ext_resource path="res://characters/Kelsie/sprites/actions/hit-uppercut/hit-uppercut_03.png" type="Texture" id=160]
@@ -195,7 +194,6 @@
 [ext_resource path="res://characters/effects/nega-smoke/09.png" type="Texture" id=193]
 [ext_resource path="res://characters/Kelsie/sprites/others/boot-01.png" type="Texture" id=194]
 [ext_resource path="res://characters/effects/blood/blood.png" type="Texture" id=195]
-[ext_resource path="res://characters/Kelsie/sprites/actions/somersault/somersault-backward_01.png" type="Texture" id=196]
 [ext_resource path="res://characters/Kelsie/sprites/actions/response-john/response-john_08.png" type="Texture" id=197]
 [ext_resource path="res://characters/Kelsie/sprites/actions/response-john/response-john_09.png" type="Texture" id=198]
 [ext_resource path="res://characters/Kelsie/sprites/actions/response-john/response-john_15.png" type="Texture" id=199]
@@ -221,308 +219,11 @@
 [ext_resource path="res://characters/Kelsie/sprites/actions/walk/walk_12.png" type="Texture" id=224]
 [ext_resource path="res://characters/Kelsie/sprites/actions/walk/walk_11.png" type="Texture" id=225]
 
-[sub_resource type="AnimationNodeAnimation" id=63]
-animation = "block-release"
-
-[sub_resource type="AnimationNodeAnimation" id=64]
-animation = "block"
-
-[sub_resource type="AnimationNodeAnimation" id=27]
-animation = "collapse"
-
-[sub_resource type="AnimationNodeAnimation" id=81]
-animation = "crouch-return"
-
-[sub_resource type="AnimationNodeAnimation" id=82]
-animation = "crouch"
-
-[sub_resource type="AnimationNodeAnimation" id=118]
-animation = "fatality"
-
-[sub_resource type="AnimationNodeAnimation" id=89]
-animation = "get-up"
-
-[sub_resource type="AnimationNodeAnimation" id=22]
-animation = "hit-face"
-
-[sub_resource type="AnimationNodeAnimation" id=58]
-animation = "hit-gut"
-
-[sub_resource type="AnimationNodeAnimation" id=74]
-animation = "hit-uppercut"
-
-[sub_resource type="AnimationNodeAnimation" id=4]
-animation = "idle"
-
-[sub_resource type="AnimationNodeAnimation" id=50]
-animation = "kick-close"
-
-[sub_resource type="AnimationNodeAnimation" id=54]
-animation = "kick-far"
-
-[sub_resource type="AnimationNodeAnimation" id=113]
-animation = "knock-back"
-
-[sub_resource type="AnimationNodeAnimation" id=37]
-animation = "punch-close"
-
-[sub_resource type="AnimationNodeAnimation" id=17]
-animation = "punch-far"
-
-[sub_resource type="AnimationNodeAnimation" id=126]
-animation = "response-john"
-
-[sub_resource type="AnimationNodeAnimation" id=130]
-animation = "skeletonize"
-
-[sub_resource type="AnimationNodeAnimation" id=106]
-animation = "somersault-backward"
-
-[sub_resource type="AnimationNodeAnimation" id=101]
-animation = "somersault-forward"
-
-[sub_resource type="AnimationNodeAnimation" id=69]
-animation = "special"
-
-[sub_resource type="AnimationNodeAnimation" id=122]
-animation = "squish"
-
-[sub_resource type="AnimationNodeAnimation" id=30]
-animation = "stunned"
-
-[sub_resource type="AnimationNodeAnimation" id=93]
-animation = "throw"
-
-[sub_resource type="AnimationNodeAnimation" id=97]
-animation = "thrown"
-
-[sub_resource type="AnimationNodeAnimation" id=133]
-animation = "tossed-by-oxanna"
-
-[sub_resource type="AnimationNodeAnimation" id=75]
-animation = "uppercut"
-
-[sub_resource type="AnimationNodeAnimation" id=34]
-animation = "victory"
-
-[sub_resource type="AnimationNodeAnimation" id=11]
-animation = "walk-backward"
-
-[sub_resource type="AnimationNodeAnimation" id=7]
-animation = "walk-forward"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=8]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=12]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=13]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=14]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=18]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=19]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=23]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=24]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=28]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=31]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=32]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=35]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=38]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=39]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=51]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=52]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=55]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=56]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=59]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=60]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=65]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=66]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=67]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=70]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=71]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=76]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=77]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=78]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=83]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=84]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=85]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=86]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=90]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=91]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=94]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=95]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=98]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=99]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=102]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=103]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=107]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=108]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=112]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=114]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=115]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=119]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=120]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=123]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=127]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=128]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=131]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=134]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=135]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachine" id=5]
-states/block/node = SubResource( 64 )
-states/block/position = Vector2( -951.81, -184.588 )
-states/block-release/node = SubResource( 63 )
-states/block-release/position = Vector2( -952.06, -94.2373 )
-states/collapse/node = SubResource( 27 )
-states/collapse/position = Vector2( -868.144, -311.304 )
-states/crouch/node = SubResource( 82 )
-states/crouch/position = Vector2( -204.947, -0.845657 )
-states/crouch-return/node = SubResource( 81 )
-states/crouch-return/position = Vector2( -204.947, 70.1543 )
-states/fatality/node = SubResource( 118 )
-states/fatality/position = Vector2( -470.142, 84.2715 )
-states/get-up/node = SubResource( 89 )
-states/get-up/position = Vector2( -624.794, -588.51 )
-states/hit-face/node = SubResource( 22 )
-states/hit-face/position = Vector2( -569.144, -389.857 )
-states/hit-gut/node = SubResource( 58 )
-states/hit-gut/position = Vector2( -566.758, -313.161 )
-states/hit-uppercut/node = SubResource( 74 )
-states/hit-uppercut/position = Vector2( -800.116, -515.967 )
-states/idle/node = SubResource( 4 )
-states/idle/position = Vector2( -403.434, -95.0935 )
-states/kick-close/node = SubResource( 50 )
-states/kick-close/position = Vector2( -83.5349, -389.411 )
-states/kick-far/node = SubResource( 54 )
-states/kick-far/position = Vector2( -253.05, -387.206 )
-states/knock-back/node = SubResource( 113 )
-states/knock-back/position = Vector2( -1030.35, -270.482 )
-states/punch-close/node = SubResource( 37 )
-states/punch-close/position = Vector2( -84.3406, -306.156 )
-states/punch-far/node = SubResource( 17 )
-states/punch-far/position = Vector2( -254.542, -304.514 )
-states/response-john/node = SubResource( 126 )
-states/response-john/position = Vector2( -1150.43, -381.301 )
-states/skeletonize/node = SubResource( 130 )
-states/skeletonize/position = Vector2( -1254.61, -316.956 )
-states/somersault-backward/node = SubResource( 106 )
-states/somersault-backward/position = Vector2( -636.122, 161.924 )
-states/somersault-forward/node = SubResource( 101 )
-states/somersault-forward/position = Vector2( -172.622, 163.424 )
-states/special/node = SubResource( 69 )
-states/special/position = Vector2( -32.3098, 13.8477 )
-states/squish/node = SubResource( 122 )
-states/squish/position = Vector2( -1078.1, -441.741 )
-states/stunned/node = SubResource( 30 )
-states/stunned/position = Vector2( -866.144, -426.304 )
-states/throw/node = SubResource( 93 )
-states/throw/position = Vector2( -52.5223, -206.61 )
-states/thrown/node = SubResource( 97 )
-states/thrown/position = Vector2( -788.548, -213.666 )
-states/tossed-by-oxanna/node = SubResource( 133 )
-states/tossed-by-oxanna/position = Vector2( -733.786, -284.106 )
-states/uppercut/node = SubResource( 75 )
-states/uppercut/position = Vector2( -258.972, -517.676 )
-states/victory/node = SubResource( 34 )
-states/victory/position = Vector2( -401.918, -414.154 )
-states/walk-backward/node = SubResource( 11 )
-states/walk-backward/position = Vector2( -748.534, -95.521 )
-states/walk-forward/node = SubResource( 7 )
-states/walk-forward/position = Vector2( -52.5343, -95.9485 )
-transitions = [ "idle", "walk-forward", SubResource( 8 ), "idle", "walk-backward", SubResource( 12 ), "walk-backward", "idle", SubResource( 13 ), "walk-forward", "idle", SubResource( 14 ), "idle", "punch-far", SubResource( 18 ), "punch-far", "idle", SubResource( 19 ), "idle", "hit-face", SubResource( 23 ), "hit-face", "idle", SubResource( 24 ), "idle", "collapse", SubResource( 28 ), "stunned", "collapse", SubResource( 31 ), "idle", "stunned", SubResource( 32 ), "idle", "victory", SubResource( 35 ), "idle", "punch-close", SubResource( 38 ), "punch-close", "idle", SubResource( 39 ), "idle", "kick-close", SubResource( 51 ), "kick-close", "idle", SubResource( 52 ), "idle", "kick-far", SubResource( 55 ), "kick-far", "idle", SubResource( 56 ), "idle", "hit-gut", SubResource( 59 ), "hit-gut", "idle", SubResource( 60 ), "idle", "block", SubResource( 65 ), "block", "block-release", SubResource( 66 ), "block-release", "idle", SubResource( 67 ), "idle", "special", SubResource( 70 ), "special", "idle", SubResource( 71 ), "idle", "uppercut", SubResource( 76 ), "uppercut", "idle", SubResource( 77 ), "idle", "hit-uppercut", SubResource( 78 ), "idle", "crouch", SubResource( 83 ), "crouch", "crouch-return", SubResource( 84 ), "crouch-return", "idle", SubResource( 85 ), "crouch", "uppercut", SubResource( 86 ), "hit-uppercut", "get-up", SubResource( 90 ), "get-up", "idle", SubResource( 91 ), "idle", "throw", SubResource( 94 ), "throw", "idle", SubResource( 95 ), "idle", "thrown", SubResource( 98 ), "thrown", "get-up", SubResource( 99 ), "idle", "somersault-forward", SubResource( 102 ), "somersault-forward", "idle", SubResource( 103 ), "idle", "somersault-backward", SubResource( 107 ), "somersault-backward", "idle", SubResource( 108 ), "special", "stunned", SubResource( 112 ), "idle", "knock-back", SubResource( 114 ), "knock-back", "get-up", SubResource( 115 ), "idle", "fatality", SubResource( 119 ), "fatality", "victory", SubResource( 120 ), "stunned", "squish", SubResource( 123 ), "stunned", "response-john", SubResource( 127 ), "response-john", "collapse", SubResource( 128 ), "stunned", "skeletonize", SubResource( 131 ), "idle", "tossed-by-oxanna", SubResource( 134 ), "tossed-by-oxanna", "get-up", SubResource( 135 ) ]
-start_node = "idle"
-graph_offset = Vector2( -968.386, -643.441 )
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+[sub_resource type="RectangleShape2D" id=136]
+extents = Vector2( 40, 160 )
+
+[sub_resource type="CircleShape2D" id=20]
+radius = 24.0
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -539,7 +240,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 5 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("AttackCircle/CollisionShape2D:disabled")
+tracks/1/path = NodePath("AttackCircle:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -548,7 +249,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ false ]
+"values": [ Vector2( 0, 0 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("AttackCircle/CollisionShape2D:position")
@@ -563,7 +264,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("AttackCircle:position")
+tracks/3/path = NodePath("Hair:texture")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -572,10 +273,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [ ExtResource( 118 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("AttackCircle/CollisionShape2D:position")
+tracks/4/path = NodePath("Hair:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -584,10 +285,10 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [ false ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("AttackCircle/CollisionShape2D:disabled")
+tracks/5/path = NodePath("AttackCircle:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -596,10 +297,10 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ false ]
+"values": [ Vector2( 1, 1 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("AttackCircle:monitorable")
+tracks/6/path = NodePath("Sprite:flip_h")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -608,10 +309,10 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ true ]
+"values": [ false ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Hair:texture")
+tracks/7/path = NodePath("BloodSquirt:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -620,10 +321,10 @@ tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ ExtResource( 118 ) ]
+"values": [ Vector2( -16, -56 ) ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Hair:visible")
+tracks/8/path = NodePath("BloodSquirt:scale")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -632,10 +333,10 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ false ]
+"values": [ Vector2( 0.5, 0.5 ) ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("AttackCircle:scale")
+tracks/9/path = NodePath("AttackCircle/CollisionShape2D:scale")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -647,7 +348,7 @@ tracks/9/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("Sprite:flip_h")
+tracks/10/path = NodePath("Sprite:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -656,10 +357,10 @@ tracks/10/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ false ]
+"values": [ Vector2( 0, 0 ) ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("HitBox/CollsionShape2D:position")
+tracks/11/path = NodePath("Sprite:rotation_degrees")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -668,7 +369,7 @@ tracks/11/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 8, -44 ) ]
+"values": [ 0.0 ]
 }
 tracks/12/type = "value"
 tracks/12/path = NodePath("HitBox:position")
@@ -680,10 +381,10 @@ tracks/12/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -16, 104 ) ]
+"values": [ Vector2( -24, 64 ) ]
 }
 tracks/13/type = "value"
-tracks/13/path = NodePath("BloodSquirt:position")
+tracks/13/path = NodePath("HitBox:scale")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/imported = false
@@ -692,10 +393,10 @@ tracks/13/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -16, -56 ) ]
+"values": [ Vector2( 1, 1 ) ]
 }
 tracks/14/type = "value"
-tracks/14/path = NodePath("BloodSquirt:scale")
+tracks/14/path = NodePath("AttackCircle:monitoring")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/imported = false
@@ -703,44 +404,8 @@ tracks/14/enabled = true
 tracks/14/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0.5, 0.5 ) ]
-}
-tracks/15/type = "value"
-tracks/15/path = NodePath("AttackCircle/CollisionShape2D:scale")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-tracks/16/type = "value"
-tracks/16/path = NodePath("Sprite:position")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ) ]
-}
-tracks/17/type = "value"
-tracks/17/path = NodePath("Sprite:rotation_degrees")
-tracks/17/interp = 1
-tracks/17/loop_wrap = true
-tracks/17/imported = false
-tracks/17/enabled = true
-tracks/17/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=61]
@@ -759,20 +424,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 222 ), ExtResource( 144 ), ExtResource( 223 ), ExtResource( 8 ) ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ true ],
-"method": "setBlocking"
-} ]
-}
 
 [sub_resource type="Animation" id=62]
 resource_name = "block-release"
@@ -790,36 +441,22 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 8 ), ExtResource( 223 ), ExtResource( 144 ), ExtResource( 222 ) ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.17 ),
+
+[sub_resource type="Animation" id=137]
+resource_name = "blocking"
+length = 0.001
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ false ],
-"method": "setBlocking"
-} ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.17 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ true ],
-"method": "setBusy"
-}, {
-"args": [ false ],
-"method": "setBusy"
-} ]
+"update": 1,
+"values": [ ExtResource( 8 ) ]
 }
 
 [sub_resource type="Animation" id=26]
@@ -838,35 +475,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 14 ), ExtResource( 19 ), ExtResource( 18 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 13 ), ExtResource( 17 ) ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ true ],
-"method": "setBusy"
-}, {
-"args": [ "res://sounds/characters/effects/drop.wav" ],
-"method": "play_sound"
-} ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("AttackCircle/CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
 
 [sub_resource type="Animation" id=79]
 resource_name = "crouch"
@@ -884,22 +492,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
+tracks/1/type = "value"
+tracks/1/path = NodePath("HitBox:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ true ],
-"method": "setCrouching"
-} ]
+"times": PoolRealArray( 0, 0.05, 0.06, 0.11, 0.12, 0.17, 0.18 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -24, 64 ), Vector2( -24, 64 ), Vector2( -24, 80 ), Vector2( -24, 80 ), Vector2( -24, 104 ), Vector2( -24, 104 ), Vector2( -24, 112 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("HitBox:position")
+tracks/2/path = NodePath("HitBox:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -908,10 +514,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.05, 0.06, 0.11, 0.12, 0.17, 0.18 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -16, 104 ), Vector2( -16, 104 ), Vector2( -16, 128 ), Vector2( -16, 128 ), Vector2( -16, 176 ), Vector2( -16, 176 ), Vector2( -16, 200 ) ]
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1, 0.9 ), Vector2( 1, 0.9 ), Vector2( 1, 0.75 ), Vector2( 1, 0.75 ), Vector2( 1, 0.7 ) ]
 }
 
-[sub_resource type="Animation" id=80]
+[sub_resource type="Animation" id=139]
 resource_name = "crouch-return"
 length = 0.18
 step = 0.01
@@ -927,22 +533,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 12 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 9 ) ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
+tracks/1/type = "value"
+tracks/1/path = NodePath("HitBox:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.18 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ false ],
-"method": "setCrouching"
-} ]
+"times": PoolRealArray( 0, 0.05, 0.06, 0.11, 0.12, 0.17, 0.18 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -24, 112 ), Vector2( -24, 112 ), Vector2( -24, 104 ), Vector2( -24, 104 ), Vector2( -24, 80 ), Vector2( -24, 80 ), Vector2( -24, 64 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("HitBox:position")
+tracks/2/path = NodePath("HitBox:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -951,7 +555,24 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.05, 0.06, 0.11, 0.12, 0.17, 0.18 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -16, 196 ), Vector2( -16, 196 ), Vector2( -16, 176 ), Vector2( -16, 176 ), Vector2( -16, 128 ), Vector2( -16, 128 ), Vector2( -16, 112 ) ]
+"values": [ Vector2( 1, 0.7 ), Vector2( 1, 0.7 ), Vector2( 1, 0.75 ), Vector2( 1, 0.75 ), Vector2( 1, 0.9 ), Vector2( 1, 0.9 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=138]
+resource_name = "crouching"
+length = 0.001
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 12 ) ]
 }
 
 [sub_resource type="Animation" id=116]
@@ -976,34 +597,20 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ true ],
-"method": "setBusy"
-} ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 0, 1.8, 1.9, 3.9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
-"method": "position_boot"
+"method": "_KELSIE_position_boot"
 }, {
 "args": [  ],
-"method": "drop_boot"
+"method": "_KELSIE_drop_boot"
 }, {
 "args": [ "res://sounds/characters/Kelsie/boot-stomp.wav" ],
 "method": "play_sound"
 }, {
 "args": [  ],
-"method": "raise_boot"
+"method": "_KELSIE_raise_boot"
 } ]
 }
 
@@ -1023,32 +630,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 32 ), ExtResource( 169 ), ExtResource( 30 ), ExtResource( 33 ), ExtResource( 29 ), ExtResource( 31 ), ExtResource( 167 ), ExtResource( 168 ) ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.48 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ false ],
-"method": "setBusy"
-} ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("HitBox/CollsionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0.48 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
 
 [sub_resource type="Animation" id=25]
 resource_name = "hit-face"
@@ -1066,49 +647,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 170 ), ExtResource( 26 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 179 ), ExtResource( 178 ) ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.36 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ true ],
-"method": "setBusy"
-}, {
-"args": [ false ],
-"method": "setBusy"
-} ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("AttackCircle/CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.36 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "res://sounds/characters/effects/punch.wav" ],
-"method": "play_sound"
-} ]
-}
 
 [sub_resource type="Animation" id=57]
 resource_name = "hit-gut"
@@ -1125,49 +663,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ ExtResource( 107 ), ExtResource( 108 ), ExtResource( 111 ), ExtResource( 109 ), ExtResource( 110 ), ExtResource( 108 ), ExtResource( 107 ) ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ true ],
-"method": "setBusy"
-}, {
-"args": [ false ],
-"method": "setBusy"
-} ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("AttackCircle/CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "res://sounds/characters/effects/drop.wav" ],
-"method": "play_sound"
-} ]
 }
 
 [sub_resource type="Animation" id=73]
@@ -1192,17 +687,11 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.55, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0.55 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ true ],
-"method": "setBusy"
-}, {
-"args": [ "res://sounds/characters/effects/drop.wav" ],
+"args": [ "res://sounds/characters/effects/drop.wav", false ],
 "method": "play_sound"
-}, {
-"args": [ false ],
-"method": "setBusy"
 } ]
 }
 tracks/2/type = "method"
@@ -1212,12 +701,9 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1, 0.15, 0.25, 0.35, 0.45, 0.55, 0.65 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0.1, 0.15, 0.25, 0.35, 0.45, 0.55, 0.65 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
-"args": [ "res://sounds/characters/effects/punch.wav" ],
-"method": "play_sound"
-}, {
 "args": [ Vector2( -20, -30 ), 0, 0.05 ],
 "method": "tween"
 }, {
@@ -1240,18 +726,6 @@ tracks/2/keys = {
 "method": "tween"
 } ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("AttackCircle/CollisionShape2D:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
 
 [sub_resource type="Animation" id=3]
 resource_name = "idle"
@@ -1270,18 +744,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 3 ) ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("AttackCircle/CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
 
 [sub_resource type="Animation" id=49]
 resource_name = "kick-close"
@@ -1299,75 +761,17 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 93 ), ExtResource( 94 ), ExtResource( 92 ), ExtResource( 76 ), ExtResource( 76 ), ExtResource( 92 ), ExtResource( 94 ), ExtResource( 93 ) ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
+tracks/1/type = "value"
+tracks/1/path = NodePath("AttackCircle:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.45 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ true ],
-"method": "setBusy"
-}, {
-"args": [ false ],
-"method": "setBusy"
-} ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.45 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ "kick-close" ],
-"method": "setAttack"
-}, {
-"args": [ null ],
-"method": "setAttack"
-} ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("AttackCircle:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 0, 0.14, 0.15, 0.29, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 120, 16 ), Vector2( 120, 16 ), Vector2( 0, 0 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("AttackCircle:monitorable")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("AttackCircle/CollisionShape2D:disabled")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0, 0.15, 0.29 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true ]
 }
 
 [sub_resource type="Animation" id=53]
@@ -1386,75 +790,17 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 104 ), ExtResource( 106 ), ExtResource( 103 ), ExtResource( 101 ), ExtResource( 105 ), ExtResource( 102 ), ExtResource( 102 ), ExtResource( 105 ), ExtResource( 101 ), ExtResource( 103 ), ExtResource( 106 ), ExtResource( 104 ) ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
+tracks/1/type = "value"
+tracks/1/path = NodePath("AttackCircle:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ true ],
-"method": "setBusy"
-}, {
-"args": [ false ],
-"method": "setBusy"
-} ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ "kick-far" ],
-"method": "setAttack"
-}, {
-"args": [ null ],
-"method": "setAttack"
-} ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("AttackCircle:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 0, 0.23, 0.24, 0.39, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 192, -80 ), Vector2( 192, -80 ), Vector2( 0, 0 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("AttackCircle:monitorable")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.18, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("AttackCircle/CollisionShape2D:disabled")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0, 0.24, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true ]
 }
 
 [sub_resource type="Animation" id=110]
@@ -1473,35 +819,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 14 ), ExtResource( 19 ), ExtResource( 18 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 13 ), ExtResource( 17 ) ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ true ],
-"method": "setBusy"
-}, {
-"args": [ "res://sounds/characters/effects/drop.wav" ],
-"method": "play_sound"
-} ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("AttackCircle/CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
 
 [sub_resource type="Animation" id=36]
 resource_name = "punch-close"
@@ -1519,75 +836,17 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 59 ), ExtResource( 61 ), ExtResource( 63 ), ExtResource( 60 ), ExtResource( 62 ), ExtResource( 62 ), ExtResource( 60 ), ExtResource( 63 ), ExtResource( 61 ), ExtResource( 59 ) ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
+tracks/1/type = "value"
+tracks/1/path = NodePath("AttackCircle:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ "punch-close" ],
-"method": "setAttack"
-}, {
-"args": [ null ],
-"method": "setAttack"
-} ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("AttackCircle:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 0, 0.11, 0.12, 0.17, 0.18, 0.31, 0.32 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 112, -56 ), Vector2( 112, -56 ), Vector2( 120, -64 ), Vector2( 120, -64 ), Vector2( 0, 0 ) ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ true ],
-"method": "setBusy"
-}, {
-"args": [ false ],
-"method": "setBusy"
-} ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("AttackCircle:monitorable")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.12, 0.32 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("AttackCircle/CollisionShape2D:disabled")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0, 0.12, 0.32 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true ]
 }
 
 [sub_resource type="Animation" id=16]
@@ -1606,75 +865,17 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 20 ), ExtResource( 23 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 20 ) ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
+tracks/1/type = "value"
+tracks/1/path = NodePath("AttackCircle:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ true ],
-"method": "setBusy"
-}, {
-"args": [ false ],
-"method": "setBusy"
-} ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ "punch-far" ],
-"method": "setAttack"
-}, {
-"args": [ null ],
-"method": "setAttack"
-} ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("AttackCircle:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 0, 0.14, 0.15, 0.29, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 168, -72 ), Vector2( 168, -72 ), Vector2( 0, 0 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("AttackCircle:monitorable")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("AttackCircle/CollisionShape2D:disabled")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true ]
 }
 
 [sub_resource type="Animation" id=125]
@@ -1693,20 +894,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 212 ), ExtResource( 215 ), ExtResource( 211 ), ExtResource( 213 ), ExtResource( 200 ), ExtResource( 201 ), ExtResource( 209 ), ExtResource( 197 ), ExtResource( 198 ), ExtResource( 208 ), ExtResource( 210 ), ExtResource( 202 ), ExtResource( 203 ), ExtResource( 206 ), ExtResource( 199 ), ExtResource( 214 ), ExtResource( 207 ), ExtResource( 204 ), ExtResource( 205 ) ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ true ],
-"method": "setBusy"
-} ]
-}
 
 [sub_resource type="Animation" id=129]
 resource_name = "skeletonize"
@@ -1721,123 +908,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ ExtResource( 216 ) ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ true ],
-"method": "setBusy"
-} ]
-}
-
-[sub_resource type="Animation" id=124]
-resource_name = "somersault-backward"
-length = 0.6
-step = 0.01
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ ExtResource( 196 ), ExtResource( 196 ) ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ true ],
-"method": "setBusy"
-}, {
-"args": [ false ],
-"method": "setBusy"
-} ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"values": [  ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite:rotation_degrees")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 720.0, 0.0 ]
-}
-
-[sub_resource type="Animation" id=100]
-resource_name = "somersault-forward"
-length = 0.6
-step = 0.01
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ ExtResource( 157 ), ExtResource( 157 ) ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ true ],
-"method": "setBusy"
-}, {
-"args": [ false ],
-"method": "setBusy"
-} ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:rotation_degrees")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 720.0 ]
 }
 
 [sub_resource type="Animation" id=111]
@@ -1893,28 +963,30 @@ tracks/3/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 192, -32 ), Vector2( 192, -32 ), Vector2( 328, -56 ), Vector2( 328, -56 ), Vector2( 0, 0 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("AttackCircle:monitorable")
+tracks/4/path = NodePath("AttackCircle:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.25, 0.34, 0.35 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, true, false ]
+"times": PoolRealArray( 0, 0.24, 0.25, 0.29, 0.3, 0.34, 0.35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 4, 2 ), Vector2( 4, 2 ), Vector2( 10, 2 ), Vector2( 10, 2 ), Vector2( 1, 1 ) ]
 }
-tracks/5/type = "value"
-tracks/5/path = NodePath("AttackCircle:scale")
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 0.24, 0.25, 0.29, 0.3, 0.34, 0.35 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 4, 2 ), Vector2( 4, 2 ), Vector2( 10, 2 ), Vector2( 10, 2 ), Vector2( 1, 1 ) ]
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://sounds/characters/Kelsie/special.wav" ],
+"method": "play_sound"
+} ]
 }
 tracks/6/type = "method"
 tracks/6/path = NodePath(".")
@@ -1923,61 +995,12 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 0.7 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ "special" ],
-"method": "setAttack"
-}, {
-"args": [ null ],
-"method": "setAttack"
-} ]
-}
-tracks/7/type = "method"
-tracks/7/path = NodePath(".")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0, 0.2, 0.7 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"values": [ {
-"args": [ true ],
-"method": "setBusy"
-}, {
-"args": [ "res://sounds/characters/Kelsie/special.wav" ],
-"method": "play_sound"
-}, {
-"args": [ false ],
-"method": "setBusy"
-} ]
-}
-tracks/8/type = "method"
-tracks/8/path = NodePath(".")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "special_used"
+"method": "_KELSIE_special_used"
 } ]
-}
-tracks/9/type = "value"
-tracks/9/path = NodePath("AttackCircle/CollisionShape2D:disabled")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/keys = {
-"times": PoolRealArray( 0, 0.25, 0.35 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true ]
 }
 
 [sub_resource type="Animation" id=121]
@@ -2014,20 +1037,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 45 ), ExtResource( 35 ), ExtResource( 34 ), ExtResource( 44 ), ExtResource( 40 ), ExtResource( 46 ), ExtResource( 36 ), ExtResource( 41 ), ExtResource( 38 ), ExtResource( 37 ), ExtResource( 39 ) ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ true ],
-"method": "setBusy"
-} ]
-}
 
 [sub_resource type="Animation" id=92]
 resource_name = "throw"
@@ -2044,83 +1053,25 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 165 ), ExtResource( 164 ), ExtResource( 143 ), ExtResource( 42 ), ExtResource( 166 ), ExtResource( 43 ), ExtResource( 47 ), ExtResource( 163 ), ExtResource( 171 ), ExtResource( 142 ), ExtResource( 142 ) ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
+tracks/1/type = "value"
+tracks/1/path = NodePath("AttackCircle:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ true ],
-"method": "setBusy"
-}, {
-"args": [ false ],
-"method": "setBusy"
-} ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ "throw" ],
-"method": "setAttack"
-}, {
-"args": [ null ],
-"method": "setAttack"
-} ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("AttackCircle:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 0, 0.09, 0.1, 0.34, 0.35, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 144, 8 ), Vector2( 144, 8 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ]
 }
-tracks/4/type = "value"
-tracks/4/path = NodePath("AttackCircle:monitorable")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.1, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("AttackCircle/CollisionShape2D:disabled")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0, 0.1, 0.35 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("AttackCircle/CollisionShape2D:scale")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
+tracks/2/type = "value"
+tracks/2/path = NodePath("AttackCircle/CollisionShape2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0, 0.09, 0.1, 0.34, 0.35 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
@@ -2138,35 +1089,6 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ true ],
-"method": "setBusy"
-}, {
-"args": [ "res://sounds/characters/effects/drop.wav" ],
-"method": "play_sound"
-} ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("AttackCircle/CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
@@ -2201,25 +1123,25 @@ tracks/2/keys = {
 "method": "tween"
 } ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite:texture")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ ExtResource( 175 ), ExtResource( 173 ), ExtResource( 172 ), ExtResource( 180 ), ExtResource( 181 ), ExtResource( 177 ), ExtResource( 182 ), ExtResource( 176 ), ExtResource( 183 ), ExtResource( 174 ), ExtResource( 17 ) ]
 }
-tracks/4/type = "method"
-tracks/4/path = NodePath(".")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 1 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -2239,35 +1161,20 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ true ],
-"method": "setBusy"
-}, {
 "args": [ "res://sounds/characters/effects/drop.wav" ],
 "method": "play_sound"
 } ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("AttackCircle/CollisionShape2D:disabled")
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
@@ -2302,25 +1209,25 @@ tracks/2/keys = {
 "method": "tween"
 } ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite:texture")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ ExtResource( 175 ), ExtResource( 173 ), ExtResource( 172 ), ExtResource( 180 ), ExtResource( 181 ), ExtResource( 177 ), ExtResource( 182 ), ExtResource( 176 ), ExtResource( 183 ), ExtResource( 174 ), ExtResource( 17 ) ]
 }
-tracks/4/type = "method"
-tracks/4/path = NodePath(".")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
 "times": PoolRealArray( 1 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -2345,89 +1252,17 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 156 ), ExtResource( 154 ), ExtResource( 151 ), ExtResource( 145 ), ExtResource( 155 ), ExtResource( 148 ), ExtResource( 146 ), ExtResource( 152 ), ExtResource( 149 ), ExtResource( 147 ), ExtResource( 153 ), ExtResource( 150 ) ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
+tracks/1/type = "value"
+tracks/1/path = NodePath("AttackCircle:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.44 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ true ],
-"method": "setBusy"
-}, {
-"args": [ false ],
-"method": "setBusy"
-} ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.44 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ "uppercut" ],
-"method": "setAttack"
-}, {
-"args": [ null ],
-"method": "setAttack"
-} ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ false ],
-"method": "setCrouching"
-} ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("AttackCircle:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
 "times": PoolRealArray( 0, 0.15, 0.16, 0.19, 0.2, 0.27 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 136, -24 ), Vector2( 136, -24 ), Vector2( 128, -80 ), Vector2( 128, -80 ) ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("AttackCircle:monitorable")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0, 0.16, 0.28 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("AttackCircle/CollisionShape2D:disabled")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0, 0.16, 0.28 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true ]
 }
 
 [sub_resource type="Animation" id=33]
@@ -2445,23 +1280,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ ExtResource( 50 ), ExtResource( 54 ), ExtResource( 49 ), ExtResource( 48 ), ExtResource( 1 ), ExtResource( 51 ), ExtResource( 53 ), ExtResource( 52 ) ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.78 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ true ],
-"method": "setBusy"
-}, {
-"args": [  ],
-"method": "notify_match_over"
-} ]
 }
 
 [sub_resource type="Animation" id=109]
@@ -2500,12 +1318,6 @@ tracks/0/keys = {
 "values": [ ExtResource( 96 ), ExtResource( 100 ), ExtResource( 64 ), ExtResource( 115 ), ExtResource( 116 ), ExtResource( 97 ), ExtResource( 117 ), ExtResource( 98 ), ExtResource( 114 ), ExtResource( 95 ), ExtResource( 225 ), ExtResource( 224 ), ExtResource( 99 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=21]
-extents = Vector2( 44, 156 )
-
-[sub_resource type="CircleShape2D" id=20]
-radius = 24.0
-
 [sub_resource type="SpriteFrames" id=117]
 animations = [ {
 "frames": [ ExtResource( 191 ), ExtResource( 192 ), ExtResource( 185 ), ExtResource( 186 ), ExtResource( 187 ), ExtResource( 188 ), ExtResource( 189 ), ExtResource( 190 ), ExtResource( 193 ), ExtResource( 82 ), ExtResource( 83 ), ExtResource( 84 ), ExtResource( 85 ), ExtResource( 86 ), ExtResource( 87 ), ExtResource( 88 ), ExtResource( 89 ), ExtResource( 90 ), ExtResource( 91 ), ExtResource( 184 ) ],
@@ -2522,10 +1334,23 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2( -5.77776, 29.4403 )
-scale = Vector2( 0.555556, 0.587687 )
-polygon = PoolVector2Array( 0, -216, 104, 317.447, -112, 317.447 )
+[node name="HitBox" type="CollisionShape2D" parent="."]
+position = Vector2( -24, 64 )
+shape = SubResource( 136 )
+
+[node name="AttackCircle" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+monitorable = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackCircle"]
+shape = SubResource( 20 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="BloodSquirt" type="CPUParticles2D" parent="."]
 position = Vector2( -16, -56 )
@@ -2549,6 +1374,27 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="GutBloodSquirt" type="CPUParticles2D" parent="."]
+rotation = -3.14159
+scale = Vector2( 0.5, 0.5 )
+emitting = false
+amount = 80
+lifetime = 1.3
+one_shot = true
+speed_scale = 30.0
+explosiveness = 1.0
+texture = ExtResource( 195 )
+direction = Vector2( -1, -2 )
+spread = 30.0
+gravity = Vector2( 100, 0 )
+initial_velocity = 171.21
+initial_velocity_random = 0.47
+angular_velocity_random = 1.0
+damping = 60.0
+damping_random = 1.0
+scale_amount = 3.0
+scale_amount_random = 1.0
+
 [node name="Hair" type="Sprite" parent="."]
 visible = false
 position = Vector2( 18, -370 )
@@ -2558,19 +1404,16 @@ texture = ExtResource( 118 )
 visible = false
 texture = ExtResource( 194 )
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 5 )
-anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 6 )
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 method_call_mode = 1
 anims/RESET = SubResource( 2 )
 anims/block = SubResource( 61 )
 anims/block-release = SubResource( 62 )
+anims/blocking = SubResource( 137 )
 anims/collapse = SubResource( 26 )
 anims/crouch = SubResource( 79 )
-anims/crouch-return = SubResource( 80 )
+anims/crouch-return = SubResource( 139 )
+anims/crouching = SubResource( 138 )
 anims/fatality = SubResource( 116 )
 anims/get-up = SubResource( 88 )
 anims/hit-face = SubResource( 25 )
@@ -2584,8 +1427,6 @@ anims/punch-close = SubResource( 36 )
 anims/punch-far = SubResource( 16 )
 anims/response-john = SubResource( 125 )
 anims/skeletonize = SubResource( 129 )
-anims/somersault-backward = SubResource( 124 )
-anims/somersault-forward = SubResource( 100 )
 anims/special = SubResource( 111 )
 anims/squish = SubResource( 121 )
 anims/stunned = SubResource( 29 )
@@ -2596,33 +1437,6 @@ anims/uppercut = SubResource( 72 )
 anims/victory = SubResource( 33 )
 anims/walk-backward = SubResource( 109 )
 anims/walk-forward = SubResource( 9 )
-
-[node name="HitBox" type="Area2D" parent="."]
-position = Vector2( -16, 104 )
-collision_layer = 0
-collision_mask = 0
-monitorable = false
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollsionShape2D" type="CollisionShape2D" parent="HitBox"]
-position = Vector2( 8, -44 )
-shape = SubResource( 21 )
-
-[node name="AttackCircle" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 0
-monitoring = false
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackCircle"]
-shape = SubResource( 20 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="SoundPlayer" type="AudioStreamPlayer2D" parent="."]
 __meta__ = {
@@ -2639,10 +1453,11 @@ __meta__ = {
 [node name="NegaSmoke" type="AnimatedSprite" parent="."]
 visible = false
 modulate = Color( 0, 0, 0, 0.392157 )
-position = Vector2( -16, 104 )
-scale = Vector2( 2.05, 2.05 )
+position = Vector2( -16, -24 )
 frames = SubResource( 117 )
-frame = 4
+frame = 9
 
-[connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
+[connection signal="body_entered" from="AttackCircle" to="." method="_on_AttackCircle_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
 [connection signal="finished" from="FatalityPlayer" to="." method="_on_FatalityPlayer_finished"]

@@ -31,7 +31,7 @@ func _input(event):
 	elif event.is_action_released("quit"):
 		get_tree().quit()
 
-func allow_input():
+func set_allow_input():
 	allow_input = true
 
 func move_skulls(direction:int):
@@ -47,6 +47,11 @@ func move_skulls(direction:int):
 	$Click.play()
 
 func do_selection():
+	if selection == 2:
+		$Announcer.stream = load("res://sounds/announcer/TBD.wav")
+		$Announcer.play()
+		return
+		
 	$Boom.play()
 	
 	match selection:
