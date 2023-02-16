@@ -29,7 +29,7 @@ func _input(event):
 	elif event.is_action_released("ui_up"):
 		move_skulls(-1)
 	elif event.is_action_released("quit"):
-		get_tree().quit()
+		get_parent().quit_game()
 
 func set_allow_input():
 	allow_input = true

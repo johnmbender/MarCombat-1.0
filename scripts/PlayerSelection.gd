@@ -100,5 +100,6 @@ func draw_selection():
 			get_node("GridContainer/TextureRect%s" % c).texture = random_unselected
 
 func select_character():
+	get_parent().get_parent().get_parent().get_parent().gong()
 	if player_count == 1:
 		get_tree().get_root().get_node("GameController").load_deathmatch(characters[selected], false)

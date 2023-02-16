@@ -30,16 +30,11 @@ func load_deathmatch(player1, player2):
 		scene.set_player1(player1)
 		scene.set_player2(characters[0])
 		scene.set_match_type("deathmatch")
-		scene.prepare_fight()
+		scene.set_scene()
+		raise_fight_music()
 	else:
 		# 2 players
 		pass
-#	raise_fight_music()
-#	current_scene = "FightScene"
-#	add_child(scene)
-#	scene.set_selected_player1("John")
-#	scene.match_type = "deathmatch"
-#	scene.prepare_fight()
 
 func load_demo():
 	raise_fight_music()
@@ -74,11 +69,19 @@ func set_game_mode(mode:String):
 
 func fight_done():
 	remove_scene()
+	$AnimationPlayer.play("fade fight music")
 	match game_mode:
 		"deathmatch":
 			load_launch_screen()
 		"storymode":
 			print("next storymode scene!")
+
+func gong():
+	$Gong.play()
+
+func fatalityHorn():
+	$FatalityHorn.play()
+#	$FightMusic.volume_db = -30
 
 func quit_game():
 	$AnimationPlayer.play("quit")

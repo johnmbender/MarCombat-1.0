@@ -296,6 +296,8 @@ func busy():
 	return free_animations.has($AnimationPlayer.current_animation) == false
 
 func fatality():
+	get_parent().modulate = Color(0.7, 0.4, 0.4, 1.0)
+	get_parent().get_parent().fatalityHorn()
 	fighting = false
 	get_parent().get_node("FatalityTimer").stop()
 	match character_name:

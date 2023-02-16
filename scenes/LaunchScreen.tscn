@@ -66,7 +66,7 @@ tracks/2/keys = {
 "values": [ 0.0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("2PDeathmatch:percent_visible")
+tracks/3/path = NodePath("Online:percent_visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -162,7 +162,7 @@ tracks/10/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("2PDeathmatch:modulate")
+tracks/11/path = NodePath("Online:modulate")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -262,7 +262,7 @@ tracks/2/keys = {
 "values": [ 0.0, 0.0, 0.0, 1.0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("2PDeathmatch:percent_visible")
+tracks/3/path = NodePath("Online:percent_visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -425,7 +425,7 @@ tracks/4/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("2PDeathmatch:modulate")
+tracks/5/path = NodePath("Online:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -537,17 +537,17 @@ text = "deathmatch"
 scroll_active = false
 deselect_on_focus_loss_enabled = false
 
-[node name="2PDeathmatch" type="RichTextLabel" parent="."]
+[node name="Online" type="RichTextLabel" parent="."]
 modulate = Color( 0.545098, 0.537255, 0.537255, 1 )
-margin_left = 360.0
+margin_left = 368.0
 margin_top = 392.0
-margin_right = 664.0
+margin_right = 656.0
 margin_bottom = 440.0
 theme = SubResource( 4 )
 visible_characters = 0
 percent_visible = 0.0
 meta_underlined = false
-text = "2P deathmatch"
+text = "Online versus"
 scroll_active = false
 deselect_on_focus_loss_enabled = false
 

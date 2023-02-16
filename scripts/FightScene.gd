@@ -22,9 +22,6 @@ func _ready():
 	player1_wins = 0
 	player2_wins = 0
 	
-	# testing
-	match_type = "deathmatch"
-	
 	if player1_name == null:
 		randomize()
 		set_player1(characters[randi() % characters.size()])
@@ -44,6 +41,9 @@ func set_player1(playerName:String):
 
 func set_player2(playerName:String):
 	player2_name = playerName
+
+func set_match_type(type:String):
+	match_type = type
 
 func set_background(bkg:String):
 	background = bkg
@@ -203,8 +203,11 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			if player2_node.bot:
 				player2_node.doSomething()
 		"end match fade":
-			print("aaaaand scene!")
-#			get_parent().fight_done()
+			var game_controller = get_parent()
+			if game_controller:
+				get_parent().fight_done()
+			else:
+				get_tree().quit()
 
 func _on_FatalityTimer_timeout():
 	loser.collapse()
