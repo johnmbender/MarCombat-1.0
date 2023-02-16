@@ -297,7 +297,9 @@ func busy():
 
 func fatality():
 	get_parent().modulate = Color(0.7, 0.4, 0.4, 1.0)
-	get_parent().get_parent().fatalityHorn()
+	get_tree().get_root().get_node("GameController").fatalityHorn()
+	get_tree().get_root().get_node("GameController").fight_to_conversation()
+	
 	fighting = false
 	get_parent().get_node("FatalityTimer").stop()
 	match character_name:

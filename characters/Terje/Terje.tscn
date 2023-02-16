@@ -743,14 +743,11 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.55, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.55 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ "res://sounds/characters/effects/drop.wav" ],
 "method": "play_sound"
-}, {
-"args": [ false ],
-"method": "setBusy"
 } ]
 }
 tracks/2/type = "method"

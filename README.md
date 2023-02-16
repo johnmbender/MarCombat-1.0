@@ -2,6 +2,7 @@
 A game, to conquer the world.
 
 # TO DO, IN ORDER:
+- positioning of conversation sprites is wonky - normalize that
 
 1: Conversation scene
     - clear up text speed - fast when it shouldn't be

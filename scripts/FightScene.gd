@@ -106,7 +106,7 @@ func set_scene():
 		"demo":
 			player1_node = addPlayer(player1_name, "player1", true)
 			player2_node = addPlayer(player2_name, "player2", true)
-		"deathmatch":
+		"storymode","deathmatch":
 			player1_node = addPlayer(player1_name, "player1", false)
 			player2_node = addPlayer(player2_name, "player2", true)
 		"multiplayer":
@@ -204,10 +204,11 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 				player2_node.doSomething()
 		"end match fade":
 			var game_controller = get_parent()
-			if game_controller:
-				get_parent().fight_done()
+			if game_controller.name == "FightScene":
+				# storymode
+				get_parent().get_parent().fight_done()
 			else:
-				get_tree().quit()
+				get_parent().fight_done()
 
 func _on_FatalityTimer_timeout():
 	loser.collapse()

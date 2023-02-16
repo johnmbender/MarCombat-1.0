@@ -193,7 +193,7 @@ onready var dialogue = {
 				"lines": {
 					5: {
 						"line": "I'm embarrasssed to be you.",
-						"action": "no"
+						"action": "angry"
 					}
 				}
 			}

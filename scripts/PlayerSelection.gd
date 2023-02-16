@@ -3,6 +3,8 @@ extends Control
 var character_info_scene
 var player_count = 1
 
+onready var game_controller = get_tree().get_root().get_node("GameController")
+
 var selected = 0
 onready var characters = ["John","Kelsie","Terje"]
 onready var random_unselected = preload("res://sprites/UI/random-unselected.png")
@@ -73,11 +75,8 @@ func draw_selection():
 		var convo_scene = load("res://characters/%s/%s-conversation.tscn" % [character, character]).instance()
 		convo_scene.name = character
 		character_info_scene.add_child(convo_scene)
-		if character == "John":
-			convo_scene.offset = Vector2(-90, 50)
-			convo_scene.scale = Vector2(1.6, 1.6)
-		else:
-			convo_scene.offset = Vector2(50, 50)
+		convo_scene.offset = Vector2(-90, 50)
+		convo_scene.scale = Vector2(1.6, 1.6)
 		character_info_scene.move_child(convo_scene, 0)
 		convo_scene.flip_h = true
 		var info = convo_scene.info
@@ -100,6 +99,6 @@ func draw_selection():
 			get_node("GridContainer/TextureRect%s" % c).texture = random_unselected
 
 func select_character():
-	get_parent().get_parent().get_parent().get_parent().gong()
+	game_controller.gong()
 	if player_count == 1:
-		get_tree().get_root().get_node("GameController").load_deathmatch(characters[selected], false)
+		game_controller.load_mode(characters[selected], false)

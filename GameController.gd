@@ -17,6 +17,22 @@ func load_character_select():
 	remove_scene()
 	current_scene = "CharacterSelect"
 
+func load_mode(player1, player2):
+	match game_mode:
+		"deathmatch":
+			load_deathmatch(player1, player2)
+		"storymode":
+			load_storymode(player1)
+
+func load_storymode(player):
+	var scene = preload("res://scenes/StoryModeController.tscn").instance()
+	add_child(scene)
+	remove_scene()
+	current_scene = "StoryModeController"
+	scene.set_player(player)
+	scene.prepare_story()
+	$AnimationPlayer.play("fade to storymode")
+
 func load_deathmatch(player1, player2):
 	var characters = ["John","Kelsie","Terje"]
 	randomize()
@@ -49,6 +65,12 @@ func raise_fight_music():
 func lower_fight_music():
 	$AnimationPlayer.play("intro music")
 
+func storymode_to_fight_scene():
+	$AnimationPlayer.play("storymode to fight scene")
+
+func fight_to_conversation():
+	$AnimationPlayer.play("fight to conversation")
+
 func scene_ready(scene:String):
 	match scene:
 		"LaunchScreen":
@@ -59,7 +81,7 @@ func set_game_mode(mode:String):
 	remove_child(get_node(current_scene))
 	match game_mode:
 		"storymode":
-			pass
+			load_character_select()
 		"deathmatch":
 			load_character_select()
 		"multiplayer":
@@ -81,13 +103,16 @@ func gong():
 
 func fatalityHorn():
 	$FatalityHorn.play()
-#	$FightMusic.volume_db = -30
+	$AnimationPlayer.play("fade fight music")
 
 func quit_game():
 	$AnimationPlayer.play("quit")
 
 func remove_scene():
-	remove_child(get_node(current_scene))
+	if current_scene:
+		var node = get_node_or_null(current_scene)
+		if node:
+			remove_child(node)
 	current_scene = null
 
 func _on_AnimationPlayer_animation_finished(anim_name):

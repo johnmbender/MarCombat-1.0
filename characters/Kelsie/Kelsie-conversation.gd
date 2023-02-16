@@ -168,7 +168,7 @@ onready var dialogue = {
 			1: {
 				"lines": {
 					1: {
-						"line": "Hey s%, you ok? You don't look so good.",
+						"line": "Hey %s, you ok? You don't look so good.",
 						"action": "normal"
 					},
 					3: {

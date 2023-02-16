@@ -1,15 +1,16 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://fonts/American Captain.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://music/flu-shot.mp3" type="AudioStream" id=2]
 [ext_resource path="res://ui/backdrop.png" type="Texture" id=3]
-[ext_resource path="res://fonts/kenvector_future_thin.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://fonts/Louis George Cafe.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://scripts/ConversationScene.gd" type="Script" id=5]
 [ext_resource path="res://fonts/Hey August.otf" type="DynamicFontData" id=6]
 [ext_resource path="res://sounds/characters/Kelsie/boot-stomp.wav" type="AudioStream" id=7]
 
 [sub_resource type="DynamicFont" id=41]
-size = 200
+size = 240
+outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 extra_spacing_char = 30
 font_data = ExtResource( 6 )
@@ -107,20 +108,29 @@ tracks/5/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ) ]
 }
-
-[sub_resource type="Animation" id=47]
-resource_name = "exposition"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Exposition:percent_visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+tracks/6/type = "value"
+tracks/6/path = NodePath("DialogueBox/Dialogue:percent_visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.0, 1.0 ]
+"values": [ 0.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Exposition:percent_visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 0,
+"values": [  ]
 }
 
 [sub_resource type="Animation" id=44]
@@ -137,6 +147,30 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Background:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Background:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=46]
@@ -200,6 +234,18 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Background:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=45]
@@ -265,6 +311,21 @@ tracks/4/keys = {
 "values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="Animation" id=47]
+resource_name = "play exposition"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Exposition:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
 [sub_resource type="Animation" id=13]
 resource_name = "speak"
 length = 1.5
@@ -280,9 +341,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 0.0, 1.0 ]
 }
-
-[sub_resource type="Animation" id=40]
-resource_name = "start fight"
 
 [sub_resource type="Animation" id=43]
 resource_name = "vs"
@@ -316,20 +374,25 @@ tracks/1/keys = {
 script = ExtResource( 5 )
 
 [node name="Background" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 1 )
 self_modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 512, 300 )
 
 [node name="player" type="Node2D" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 
+[node name="opponent" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+
 [node name="VS" type="RichTextLabel" parent="."]
 visible = false
 modulate = Color( 1, 0, 0, 1 )
-margin_left = 424.0
-margin_top = 232.0
-margin_right = 644.0
-margin_bottom = 412.0
+margin_left = 416.0
+margin_top = 224.0
+margin_right = 656.0
+margin_bottom = 434.0
 rect_scale = Vector2( 0.8, 0.8 )
+rect_clip_content = false
 theme = SubResource( 42 )
 meta_underlined = false
 text = "VS"
@@ -339,9 +402,6 @@ deselect_on_focus_loss_enabled = false
 [node name="VS_boom" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 
-[node name="opponent" type="Node2D" parent="."]
-modulate = Color( 1, 1, 1, 0 )
-
 [node name="Exposition" type="RichTextLabel" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 margin_left = 64.0
@@ -350,7 +410,7 @@ margin_right = 960.0
 margin_bottom = 536.0
 theme = SubResource( 6 )
 visible_characters = 0
-percent_visible = 0.1
+percent_visible = 0.0
 meta_underlined = false
 scroll_active = false
 deselect_on_focus_loss_enabled = false
@@ -374,21 +434,20 @@ margin_right = 385.0
 margin_bottom = 63.0
 theme = SubResource( 7 )
 visible_characters = 0
-percent_visible = 0.666667
+percent_visible = 0.0
 meta_underlined = false
 scroll_active = false
 
 [node name="Ambience" type="AudioStreamPlayer" parent="."]
-volume_db = -30.0
+volume_db = -80.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 48 )
-anims/exposition = SubResource( 47 )
 "anims/fade in dialogue" = SubResource( 44 )
 "anims/fade in from exposition" = SubResource( 46 )
 "anims/fade to exposition" = SubResource( 45 )
+"anims/play exposition" = SubResource( 47 )
 anims/speak = SubResource( 13 )
-"anims/start fight" = SubResource( 40 )
 anims/vs = SubResource( 43 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]

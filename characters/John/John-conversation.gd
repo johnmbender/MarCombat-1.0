@@ -24,7 +24,7 @@ onready var dialogue = {
 						"action": "confused",
 					},
 					6: {
-						"line": "Not a chance in hell, %s!",
+						"line": "No way in hell, %s, I worked hard on this!",
 						"action": "angry",
 					},
 					8: {
@@ -152,8 +152,8 @@ onready var dialogue = {
 						"action": "normal"
 					},
 					5: {
-						"line": "Why so mad? Is it that big of a deal?",
-						"action": "normal"
+						"line": "Why so mad? I'll say you helped... a little.",
+						"action": "confused"
 					},
 					7: {
 						"line": "Do I really need to kick your ass, %s?",
