@@ -36,22 +36,26 @@ onready var dialogue = {
 			1: {
 				"lines": {
 					0: {
-						"line": "I can't believe that just happened. This isn't right.  I should probably contact HR, but I need to talk to %s.",
+						"line": "I can't believe that just happened. This isn't right.",
 						"action": "confused"
 					},
-					2: {
+					1: {
+						"line": "%s! Can I talk to you for a sec, please?",
+						"action": "yes"
+					},
+					3: {
 						"line": "Yeah... it's... ",
 						"action": "no"
 					},
-					5: {
+					7: {
 						"line": "I'm excited about it, but is it really worth fighting over?",
 						"action": "confused"
 					},
-					7: {
-						"line": "%s, you must be joking.",
-						"action": "shocked"
-					},
 					9: {
+						"line": "%s, you must be joking.",
+						"action": "offended"
+					},
+					11: {
 						"line": null,
 						"action": "fight"
 					}
@@ -72,10 +76,14 @@ onready var dialogue = {
 						"action" :"no"
 					},
 					3: {
-						"line": "Is that... is that ME?!",
+						"line": "... maybe check Sprout Social.",
 						"action": "angry"
 					},
 					4: {
+						"line": "Is that... is that ME?!",
+						"action": "shocked"
+					},
+					6: {
 						"line": null,
 						"action": "fight"
 					}
@@ -92,29 +100,29 @@ onready var dialogue = {
 						"action": "smile"
 					},
 					2: {
-						"line": "I'll buy her a coffee, and maybe she won't turn on me like the others.",
+						"line": "I'll get her a coffee, and maybe she won't turn on me like the others.",
 						"action": "yes"
 					},
 					3: {
 						"line": "Today's been a bit much.",
 						"action": "no"
 					},
-					4: {
-						"line": "Hey Oksana, do you have a moment to chat about something?",
+					5: {
+						"line": "Hey Oksana! Jayne said you were up here. Do you have a moment to chat about something?",
 						"action": "smile"
 					},
-					6: {
-						"line": "Thanks, Oksana, those are great ideas.",
+					7: {
+						"line": "Yep! Thanks, Oksana, I appreciate the help!",
 						"action": "smile"
 					},
-					8: {
+					9: {
 						"line": "What? I even spelled it for them.",
 						"action": "smile"
 					},
-					10: {
+					11: {
 						"line": null,
 						"action": "shocked"
-					}
+					},
 				}
 			},
 			4: {
@@ -163,27 +171,27 @@ onready var dialogue = {
 			},
 			1: {
 				"lines": {
-					1: {
+					2: {
 						"line": "Hey %s, are you feeling alright? You don't look well.",
 						"action": "normal"
 					},
-					3: {
+					4: {
 						"line": "You can share and I will listen.",
 						"action": "smile"
 					},
-					4: {
+					6: {
 						"line": "What? That's crazy.",
 						"action": "confused"
 					},
-					6: {
-						"line": "I'm thinking yes.",
+					8: {
+						"line": "For a congratulatory email to all ministry? Absolutely.",
 						"action": "yes"
 					},
-					8: {
-						"line": "It's on, jackass.",
-						"action": "angry"
-					},
 					10: {
+						"line": "Everyone reads those!",
+						"action": "shocked"
+					},
+					12: {
 						"line": null,
 						"action": "fight"
 					}
@@ -192,8 +200,8 @@ onready var dialogue = {
 			2: {
 				"lines": {
 					5: {
-						"line": "I'm embarrasssed to be you.",
-						"action": "angry"
+						"line": null,
+						"action": "fight"
 					}
 				}
 			}

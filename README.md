@@ -2,7 +2,19 @@
 A game, to conquer the world.
 
 # TO DO, IN ORDER:
-- positioning of conversation sprites is wonky - normalize that
+- ambience not playing
+- can't hit Kelsie while she's dizzy
+- John's self doubt smoke not gone while on ground
+- delay the visibility of self-doubt in conversation a bit more
+- if Kelsie's special gets interrupted, hair is lying on the field
+- bots sometimes don't attack - ATTACK is left on somehow?? - maybe reset when timer resets, but timer isn't resetting
+- NegaSmoke remains after Kelsie (only?) is fatality'd
+- sometimes after an uppercut, all other attacks don't land?
+- bots too easy; also, maybe make them increasingly harder
+- fight music loop is bad
+- sounds from people like: Kelsie: "owwwwwuh", etc
+- Kelsie vs. Kelsie, on bootality: (muffled) I like your boots!
+- Terje vs. Terje, on fatality: ?
 
 1: Conversation scene
     - clear up text speed - fast when it shouldn't be

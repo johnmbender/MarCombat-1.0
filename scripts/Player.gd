@@ -21,6 +21,7 @@ signal update_health(health)
 var enemy
 
 # CHARACTER-SPECIFIC VARIABLES
+var _KELSIE_is_dizzy = false
 var _KELSIE_special_spam = 3
 var _KELSIE_dizzy_timer
 var _KELSIE_special_reset_timer
@@ -151,7 +152,16 @@ func _on_AnimationPlayer_animation_started(anim_name):
 				emit_signal("bot_damage_taken")
 		"special":
 			if character_name == "Kelsie":
-				play_sound("res://sounds/characters/Kelsie/special.wav", false)
+				if _KELSIE_special_spam == 3:
+					_KELSIE_start_special_reset_timer()
+					
+				_KELSIE_special_spam -= 1
+				
+				if _KELSIE_special_spam == 0:
+					_KELSIE_dizzy()
+					play_sound("res://sounds/characters/Kelsie/dizzy.wav", false)
+				else:
+					play_sound("res://sounds/characters/Kelsie/special.wav", false)
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	match anim_name:
@@ -292,6 +302,10 @@ func is_getting_shot(currently:bool):
 	else:
 		$AnimationPlayer.play("idle")
 
+func bullet_damage():
+	health -= 2
+	emit_signal("update_health", self, health)
+
 func busy():
 	return free_animations.has($AnimationPlayer.current_animation) == false
 
@@ -359,15 +373,6 @@ func _on_FatalityPlayer_finished():
 
 
 # KELSIE
-func _KELSIE_special_used():
-	if _KELSIE_special_spam == 3:
-		_KELSIE_start_special_reset_timer()
-		
-	_KELSIE_special_spam -= 1
-	
-	if _KELSIE_special_spam == 0:
-		_KELSIE_dizzy()
-
 func _KELSIE_start_special_reset_timer():
 	_KELSIE_special_reset_timer = Timer.new()
 	_KELSIE_special_reset_timer.wait_time = 3
@@ -377,6 +382,7 @@ func _KELSIE_start_special_reset_timer():
 	_KELSIE_special_reset_timer.start()
 
 func _KELSIE_dizzy():
+	_KELSIE_is_dizzy = true
 	if _KELSIE_special_reset_timer:
 		_KELSIE_special_reset_timer = null
 
@@ -384,11 +390,12 @@ func _KELSIE_dizzy():
 	_KELSIE_dizzy_timer = Timer.new()
 	_KELSIE_dizzy_timer.wait_time = 3
 	_KELSIE_dizzy_timer.one_shot = true
-	_KELSIE_dizzy_timer.connect("timeout", self, "undizzy")
+	_KELSIE_dizzy_timer.connect("timeout", self, "_KELSIE_undizzy")
 	add_child(_KELSIE_dizzy_timer)
 	_KELSIE_dizzy_timer.start()
 
 func _KELSIE_undizzy():
+	_KELSIE_is_dizzy = false
 	if _KELSIE_dizzy_timer:
 		_KELSIE_dizzy_timer = null
 

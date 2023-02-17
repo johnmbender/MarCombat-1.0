@@ -10,7 +10,7 @@ extends Node2D
 var player
 var opponent
 var opponents = ["John", "Kelsie", "Terje"]
-var bosses = ["Ox Anna", "FUGUM"]
+var bosses = ["Ox_Anna", "FUGUM"]
 var fight_number
 var conversation_scene
 var fight_scene
@@ -22,7 +22,7 @@ func set_player(playerName:String):
 	player = playerName
 
 func prepare_story():
-	fight_number = 0
+	fight_number = 3
 	random = RandomNumberGenerator.new()
 	random.randomize()
 	randomize()
@@ -72,7 +72,6 @@ func load_fight():
 	fight_scene.set_match_type("storymode")
 	fight_scene.set_scene()
 	$AnimationPlayer.play("fade in fight")
-	get_parent().storymode_to_fight_scene()
 
 func remove_conversation_scene():
 	if $ConversationScene.has_node("ConversationScene"):

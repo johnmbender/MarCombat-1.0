@@ -155,6 +155,7 @@ func update_health(player, health:int):
 		player.fighting = false
 		player.collapse()
 		player.enemy.fighting = false
+		announcer_speak(player.enemy.character_name)
 		var smoke = player.get_node("NegaSmoke")
 		smoke.visible = false
 		smoke.playing = false

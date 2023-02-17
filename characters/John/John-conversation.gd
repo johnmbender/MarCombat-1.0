@@ -36,22 +36,26 @@ onready var dialogue = {
 			1: {
 				"lines": {
 					0: {
-						"line": "Seriously. What just happened? I need to find %s.",
+						"line": "Seriously. What just happened?",
 						"action": "confused"
 					},
-					2: {
-						"line": "You won't believe this.",
+					1: {
+						"line": "Oh, hey, %s! Over here!",
+						"action": "yes"
+					},
+					3: {
+						"line": "You won't believe this...",
 						"action": "no"
 					},
-					5: {
+					7: {
 						"line": "Don't get me wrong. Helluva idea, but worth fighting someone for?",
 						"action": "confused"
 					},
-					7: {
-						"line": "lolwut?",
-						"action": "shocked"
-					},
 					9: {
+						"line": "Seriously?!",
+						"action": "offended"
+					},
+					11: {
 						"line": null,
 						"action": "fight"
 					}
@@ -96,29 +100,29 @@ onready var dialogue = {
 						"action": "smile"
 					},
 					2: {
-						"line": "I'll pick her up an Americano from Starbucks, she'll like that.",
+						"line": "I'll buy her a coffee, she'll like that.",
 						"action": "yes"
 					},
 					3: {
-						"line": "That way she won't beat me up for my idea. Theoretically...",
+						"line": "That way she won't beat me up for my idea. Hopefully...",
 						"action": "no"
 					},
-					4: {
-						"line": "Hey Oksana. How goes? Have a moment?",
+					5: {
+						"line": "Hey Oksana. Jayne said you were up here. Have a moment?",
 						"action": "smile"
 					},
-					6: {
-						"line": "Wooo! I'm so happy to hear that, thanks.",
+					7: {
+						"line": "My pleasure! So, I have an idea I wanted to run by you...",
 						"action": "smile"
 					},
-					8: {
-						"line": "I know I joke around but I didn't write that. Funny though, right?",
+					9: {
+						"line": "Man, they NEVER get your name right. Haha!",
 						"action": "smile"
 					},
-					10: {
+					11: {
 						"line": null,
 						"action": "shocked"
-					}
+					},
 				}
 			},
 			4: {
@@ -167,27 +171,27 @@ onready var dialogue = {
 			},
 			1: {
 				"lines": {
-					1: {
+					2: {
 						"line": "You don't look so great, %s. Everything ok?",
 						"action": "normal"
 					},
-					3: {
+					4: {
 						"line": "Happy to lend an ear anytime, %s.",
 						"action": "smile"
 					},
-					4: {
+					6: {
 						"line": "WTF?!",
 						"action": "confused"
 					},
-					6: {
-						"line": "I'd kick your ass for it, actually.",
+					8: {
+						"line": "That would land me a Premier's Award of Excellence, maybe, yeah.",
 						"action": "yes"
 					},
-					8: {
-						"line": "It's on like Donkey Kong!",
+					10: {
+						"line": "It comes with, like, $100 after taxes!",
 						"action": "angry"
 					},
-					10: {
+					12: {
 						"line": null,
 						"action": "fight"
 					}
@@ -196,8 +200,8 @@ onready var dialogue = {
 			2: {
 				"lines": {
 					5: {
-						"line": "Ugh.",
-						"action": "no"
+						"line": null,
+						"action": "fight"
 					}
 				}
 			}

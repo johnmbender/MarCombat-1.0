@@ -1,12 +1,22 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://fonts/American Captain.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://music/flu-shot.mp3" type="AudioStream" id=2]
 [ext_resource path="res://ui/backdrop.png" type="Texture" id=3]
-[ext_resource path="res://fonts/Louis George Cafe.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://fonts/Betternight.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://scripts/ConversationScene.gd" type="Script" id=5]
 [ext_resource path="res://fonts/Hey August.otf" type="DynamicFontData" id=6]
 [ext_resource path="res://sounds/characters/Kelsie/boot-stomp.wav" type="AudioStream" id=7]
+[ext_resource path="res://characters/Ox_Anna/starbucks.png" type="Texture" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="Theme" id=7]
+default_font = SubResource( 1 )
 
 [sub_resource type="DynamicFont" id=41]
 size = 240
@@ -26,54 +36,46 @@ font_data = ExtResource( 1 )
 [sub_resource type="Theme" id=6]
 default_font = SubResource( 5 )
 
-[sub_resource type="DynamicFont" id=1]
-size = 30
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 4 )
-
-[sub_resource type="Theme" id=7]
-default_font = SubResource( 1 )
-
 [sub_resource type="Animation" id=48]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Background:self_modulate")
+tracks/0/path = NodePath("VS:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("player:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("VS:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("ContentContainer/DialogueBox/Dialogue:percent_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Exposition:percent_visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.00167772 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
 tracks/3/type = "value"
-tracks/3/path = NodePath("opponent:modulate")
+tracks/3/path = NodePath("ContentContainer:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -82,10 +84,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 0, 0, 0, 1 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Exposition:modulate")
+tracks/4/path = NodePath("ContentContainer/Background:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -94,10 +96,10 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("DialogueBox:modulate")
+tracks/5/path = NodePath("ContentContainer/opponent:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -106,164 +108,64 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 0.55, 0.55, 0.55, 1 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("DialogueBox/Dialogue:percent_visible")
+tracks/6/path = NodePath("ContentContainer/DialogueBox:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( 0.00314822 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("Exposition:percent_visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"update": 0,
-"values": [  ]
-}
-
-[sub_resource type="Animation" id=44]
-resource_name = "fade in dialogue"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("DialogueBox:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Background:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Background:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=46]
-resource_name = "fade in from exposition"
-tracks/0/type = "value"
-tracks/0/path = NodePath("player:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("opponent:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("DialogueBox:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Exposition:percent_visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Background:self_modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("Background:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=45]
-resource_name = "fade to exposition"
+resource_name = "dialogue to exposition"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Background:modulate")
+tracks/0/path = NodePath("Exposition:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ContentContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
 }
+
+[sub_resource type="Animation" id=46]
+resource_name = "exposition to dialogue"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Exposition:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
 tracks/1/type = "value"
-tracks/1/path = NodePath("player:modulate")
+tracks/1/path = NodePath("ContentContainer:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -272,43 +174,47 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("opponent:modulate")
+tracks/2/path = NodePath("ContentContainer/DialogueBox:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"times": PoolRealArray( 1.00428 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("DialogueBox:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Exposition:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 1 ),
+
+[sub_resource type="Animation" id=44]
+resource_name = "fade to dialogue"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("ContentContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ContentContainer/DialogueBox:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.502142 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=47]
@@ -325,12 +231,24 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 0.0, 1.0 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Exposition:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=13]
 resource_name = "speak"
 length = 1.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("DialogueBox/Dialogue:percent_visible")
+tracks/0/path = NodePath("ContentContainer/DialogueBox/Dialogue:percent_visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -369,20 +287,161 @@ tracks/1/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("ContentContainer/DialogueBox:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=50]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("ContentContainer/Coffee:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 512, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("ContentContainer/Coffee:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 800, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ContentContainer/Coffee:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 512, 760 ) ]
+}
+
+[sub_resource type="Animation" id=51]
+resource_name = "hide"
+tracks/0/type = "value"
+tracks/0/path = NodePath("ContentContainer/Coffee:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("ContentContainer/Coffee:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 512, -0.25, 0, 0.25, 0, 512, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("ContentContainer/Coffee:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 460, -0.7, -21.9171, 0.25, 0, 760, -0.25, 0, 0.2, -48.8931 ),
+"times": PoolRealArray( 0, 1 )
+}
+
+[sub_resource type="Animation" id=49]
+resource_name = "reveal"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("ContentContainer/Coffee:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("ContentContainer/Coffee:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 512, -0.25, 0, 0.25, 0, 512, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 2, 3 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("ContentContainer/Coffee:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 760, -0.25, 0, 0.2, -48.8931, 460, -0.7, -21.9171, 0.25, 0 ),
+"times": PoolRealArray( 2, 3 )
+}
 
 [node name="ConversationScene" type="Node2D"]
 script = ExtResource( 5 )
 
-[node name="Background" type="Sprite" parent="."]
+[node name="ContentContainer" type="Node2D" parent="."]
 modulate = Color( 0, 0, 0, 1 )
-self_modulate = Color( 1, 1, 1, 0 )
+
+[node name="Background" type="Sprite" parent="ContentContainer"]
 position = Vector2( 512, 300 )
 
-[node name="player" type="Node2D" parent="."]
-modulate = Color( 1, 1, 1, 0 )
+[node name="player" type="Node2D" parent="ContentContainer"]
 
-[node name="opponent" type="Node2D" parent="."]
-modulate = Color( 1, 1, 1, 0 )
+[node name="opponent" type="Node2D" parent="ContentContainer"]
+modulate = Color( 0.55, 0.55, 0.55, 1 )
+
+[node name="Coffee" type="Sprite" parent="ContentContainer"]
+position = Vector2( 512, 800 )
+texture = ExtResource( 8 )
+
+[node name="DialogueBox" type="Sprite" parent="ContentContainer"]
+position = Vector2( 512, 512 )
+scale = Vector2( 1.18447, 0.64 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Dialogue" type="RichTextLabel" parent="ContentContainer/DialogueBox"]
+margin_left = -385.0
+margin_top = -62.0
+margin_right = 385.0
+margin_bottom = 63.0
+theme = SubResource( 7 )
+visible_characters = 0
+percent_visible = 0.0
+meta_underlined = false
+scroll_active = false
 
 [node name="VS" type="RichTextLabel" parent="."]
 visible = false
@@ -403,7 +462,6 @@ deselect_on_focus_loss_enabled = false
 stream = ExtResource( 7 )
 
 [node name="Exposition" type="RichTextLabel" parent="."]
-modulate = Color( 1, 1, 1, 0 )
 margin_left = 64.0
 margin_top = 64.0
 margin_right = 960.0
@@ -418,34 +476,14 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="DialogueBox" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 512, 512 )
-scale = Vector2( 1.18447, 0.64 )
-texture = ExtResource( 3 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Dialogue" type="RichTextLabel" parent="DialogueBox"]
-margin_left = -385.0
-margin_top = -62.0
-margin_right = 385.0
-margin_bottom = 63.0
-theme = SubResource( 7 )
-visible_characters = 0
-percent_visible = 0.0
-meta_underlined = false
-scroll_active = false
-
 [node name="Ambience" type="AudioStreamPlayer" parent="."]
 volume_db = -80.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 48 )
-"anims/fade in dialogue" = SubResource( 44 )
-"anims/fade in from exposition" = SubResource( 46 )
-"anims/fade to exposition" = SubResource( 45 )
+"anims/dialogue to exposition" = SubResource( 45 )
+"anims/exposition to dialogue" = SubResource( 46 )
+"anims/fade to dialogue" = SubResource( 44 )
 "anims/play exposition" = SubResource( 47 )
 anims/speak = SubResource( 13 )
 anims/vs = SubResource( 43 )
@@ -454,4 +492,14 @@ anims/vs = SubResource( 43 )
 stream = ExtResource( 2 )
 volume_db = -10.0
 
+[node name="KeypressTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CoffeeRevealer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 50 )
+anims/hide = SubResource( 51 )
+anims/reveal = SubResource( 49 )
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
+[connection signal="timeout" from="KeypressTimer" to="." method="_on_KeypressTimer_timeout"]

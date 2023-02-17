@@ -24,7 +24,7 @@ onready var dialogue = {
 						"action": "confused",
 					},
 					6: {
-						"line": "Like hell you are! I worked hard on this!",
+						"line": "Hells no! I worked hard on this!",
 						"action": "angry",
 					},
 					8: {
@@ -36,22 +36,26 @@ onready var dialogue = {
 			1: {
 				"lines": {
 					0: {
-						"line": "I can't believe I just fought a coworker. This is insane. There must be some sort of HR protocol for this, but I need to talk to %s.",
+						"line": "I can't believe I just fought a coworker. I should probably talk to HR about it...",
 						"action": "confused"
 					},
-					2: {
+					1: {
+						"line": "Oh, hey %s!",
+						"action": "yes"
+					},
+					3: {
 						"line": "I... it's hard to explain.",
 						"action": "no"
 					},
-					5: {
+					7: {
 						"line": "Right? I mean, it's a fantastic idea, but worth fighting over?",
 						"action": "confused"
 					},
-					7: {
+					9: {
 						"line": "You're kidding, right?",
 						"action": "shocked"
 					},
-					9: {
+					11: {
 						"line": null,
 						"action": "fight"
 					}
@@ -103,22 +107,22 @@ onready var dialogue = {
 						"line": "I've had enough drama for today.",
 						"action": "no"
 					},
-					4: {
-						"line": "Hey OG! Mind if I run an idea by you?",
+					5: {
+						"line": "Hey OG! Jayne told me you were up here. Mind if I run an idea by you?",
 						"action": "smile"
 					},
-					6: {
-						"line": "Thanks, OG, you're the best.",
+					7: {
+						"line": "You're very welcome! And, thanks, OG, you're the best.",
 						"action": "smile"
 					},
-					8: {
+					9: {
 						"line": "Oh, ha! They got it wrong again I guess.",
 						"action": "smile"
 					},
-					10: {
+					11: {
 						"line": null,
 						"action": "shocked"
-					}
+					},
 				}
 			},
 			4: {
@@ -167,27 +171,27 @@ onready var dialogue = {
 			},
 			1: {
 				"lines": {
-					1: {
+					2: {
 						"line": "Hey %s, you ok? You don't look so good.",
 						"action": "normal"
 					},
-					3: {
+					4: {
 						"line": "Try. I'm here to listen, as a coworker but also a friend.",
 						"action": "smile"
 					},
-					4: {
+					6: {
 						"line": "Whoa... that's just...",
 						"action": "confused"
 					},
-					6: {
-						"line": "Yes, it totally is.",
+					8: {
+						"line": "The chance to punch you in the face for kudos? Definitely.",
 						"action": "yes"
 					},
-					8: {
-						"line": "It's on, bitch.",
+					10: {
+						"line": "Bring that ugly face to my fist, bitch!",
 						"action": "angry"
 					},
-					10: {
+					12: {
 						"line": null,
 						"action": "fight"
 					}
@@ -196,8 +200,8 @@ onready var dialogue = {
 			2: {
 				"lines": {
 					5: {
-						"line": "You make me sick.",
-						"action": "no"
+						"line": null,
+						"action": "fight"
 					}
 				}
 			}
