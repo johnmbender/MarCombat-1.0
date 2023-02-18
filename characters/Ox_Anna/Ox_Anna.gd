@@ -15,6 +15,8 @@ var match_over
 var isStunned
 var destination
 var attack
+var fighting = true
+var bot = false
 
 func _ready():
 	$AnimationTree.active = true
@@ -50,6 +52,9 @@ func _physics_process(delta):
 			velocity.x += RUN_SPEED * speed_modifier
 			
 	var _result = move_and_slide(velocity, Vector2.UP)
+
+func idle():
+	$AnimationPlayer.play("idle")
 
 func charge():
 	isCharging = true

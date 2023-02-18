@@ -87,7 +87,6 @@ func start_conversation():
 	
 	set_exposition()
 	merge_scripts()
-	print(scene_script)
 	
 	match fight_number:
 		1, 2, 3:
@@ -186,7 +185,7 @@ func speak_line():
 				elif current_line == 10:
 					$CoffeeRevealer.play("hide")
 				elif current_line == 11:
-					current_line +=1
+					$AnimationPlayer.play("vs")
 
 			if text != null:
 				if "%" in text:
@@ -251,6 +250,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			speak_line()
 		"dialogue to exposition":
 			$AnimationPlayer.play("play exposition")
+			$ContentContainer/player/AnimatedSprite.play("normal")
+			$ContentContainer/opponent/AnimatedSprite.play("normal")
 			if opponent == "Ox_Anna":
 				$ContentContainer/opponent.modulate = Color(0.55, 0.55, 0.55, 1)
 		"fade to dialogue":

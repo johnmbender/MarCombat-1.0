@@ -63,7 +63,12 @@ func load_conversation():
 	$AnimationPlayer.play("fade in conversation")
 
 func load_fight():
-	fight_scene = preload("res://scenes/FightScene.tscn").instance()
+	if opponent == "Ox_Anna":
+		fight_scene = preload("res://scenes/FightScene.tscn").instance()
+	elif opponent == "FUGUM":
+		pass
+	else:
+		fight_scene = preload("res://scenes/FightScene.tscn").instance()
 	
 	$FightScene.add_child(fight_scene)
 	fight_scene.set_player1(player)

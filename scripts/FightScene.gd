@@ -52,11 +52,11 @@ func addPlayer(character:String, node_name:String, bot:bool):
 	var scenePath = "res://characters/%s/%s.tscn" % [character, character]
 	var player = load(scenePath).instance()
 	player.name = node_name
-	if bot:
-		player.script = load("res://scripts/AI.gd")
-	player.character_name = character
+	if character != "Ox_Anna" and bot:
+		player.script = preload("res://scripts/AI.gd")
+		player.set_bot(bot)
+		player.character_name = character
 	add_child(player)
-	player.set_bot(bot)
 	player.health = 100
 	player.idle()
 
@@ -96,7 +96,10 @@ func addPlayer(character:String, node_name:String, bot:bool):
 	return player
 
 func set_scene():
-	$Background.texture = load("res://levels/backgrounds/%s.jpg" % background)
+	if player2_name == "Ox_Anna":
+		$Background.texture = load("res://levels/backgrounds/rooftop.jpg")
+	else:
+		$Background.texture = load("res://levels/backgrounds/%s.jpg" % background)
 	
 	if player1_node:
 		remove_child(player1_node)

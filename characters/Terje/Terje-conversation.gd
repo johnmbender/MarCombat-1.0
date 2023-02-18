@@ -104,7 +104,7 @@ onready var dialogue = {
 						"action": "yes"
 					},
 					3: {
-						"line": "Today's been a bit much.",
+						"line": "Today's been a biiiitt much.",
 						"action": "no"
 					},
 					5: {
@@ -113,10 +113,10 @@ onready var dialogue = {
 					},
 					7: {
 						"line": "Yep! Thanks, Oksana, I appreciate the help!",
-						"action": "smile"
+						"action": "yes"
 					},
 					9: {
-						"line": "What? I even spelled it for them.",
+						"line": "What? I even spelled it to them. That's hilarious!",
 						"action": "smile"
 					},
 					11: {
