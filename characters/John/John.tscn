@@ -1,4 +1,4 @@
-[gd_scene load_steps=273 format=2]
+[gd_scene load_steps=280 format=2]
 
 [ext_resource path="res://characters/John/sprites/actions/idle/idle_1.png" type="Texture" id=1]
 [ext_resource path="res://characters/John/sprites/actions/idle/idle_2.png" type="Texture" id=2]
@@ -211,6 +211,10 @@
 [ext_resource path="res://characters/John/sprites/actions/thrown/thrown_07.png" type="Texture" id=209]
 [ext_resource path="res://characters/John/sprites/actions/thrown/thrown_09.png" type="Texture" id=210]
 [ext_resource path="res://characters/John/sprites/actions/thrown/thrown_11.png" type="Texture" id=211]
+[ext_resource path="res://characters/John/sprites/actions/yes/yes_05.png" type="Texture" id=212]
+[ext_resource path="res://characters/John/sprites/actions/yes/yes_02.png" type="Texture" id=213]
+[ext_resource path="res://characters/John/sprites/actions/yes/yes_04.png" type="Texture" id=214]
+[ext_resource path="res://characters/John/sprites/actions/yes/yes_03.png" type="Texture" id=215]
 [ext_resource path="res://characters/effects/nega-smoke/10.png" type="Texture" id=222]
 [ext_resource path="res://characters/effects/nega-smoke/11.png" type="Texture" id=223]
 [ext_resource path="res://characters/effects/nega-smoke/12.png" type="Texture" id=224]
@@ -233,7 +237,6 @@
 [ext_resource path="res://characters/effects/nega-smoke/09.png" type="Texture" id=241]
 [ext_resource path="res://characters/effects/blood/blood.png" type="Texture" id=242]
 [ext_resource path="res://characters/John/sprites/actions/skeletonize/skeletonize.png" type="Texture" id=243]
-[ext_resource path="res://sounds/characters/effects/blade-gut-hit.wav" type="AudioStream" id=244]
 
 [sub_resource type="RectangleShape2D" id=130]
 extents = Vector2( 40, 160 )
@@ -580,6 +583,23 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ ExtResource( 179 ), ExtResource( 190 ), ExtResource( 188 ), ExtResource( 178 ), ExtResource( 186 ), ExtResource( 181 ), ExtResource( 184 ), ExtResource( 182 ), ExtResource( 183 ), ExtResource( 189 ), ExtResource( 185 ), ExtResource( 187 ), ExtResource( 180 ) ]
+}
+
+[sub_resource type="Animation" id=133]
+resource_name = "gored"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 202 ), ExtResource( 201 ) ]
 }
 
 [sub_resource type="Animation" id=127]
@@ -1162,6 +1182,109 @@ tracks/2/keys = {
 "values": [ ExtResource( 202 ), ExtResource( 201 ), ExtResource( 206 ), ExtResource( 203 ), ExtResource( 204 ), ExtResource( 205 ), ExtResource( 209 ), ExtResource( 207 ), ExtResource( 210 ), ExtResource( 208 ), ExtResource( 211 ) ]
 }
 
+[sub_resource type="Animation" id=132]
+resource_name = "tossed-by-oxanna"
+length = 1.2
+step = 0.05
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://sounds/characters/effects/drop.wav", true ],
+"method": "play_sound"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ Vector2( 20, -45 ), 0, 0.05 ],
+"method": "tween"
+}, {
+"args": [ Vector2( 60, -105 ), 0, 0.05 ],
+"method": "tween"
+}, {
+"args": [ Vector2( 120, -150 ), 0, 0.05 ],
+"method": "tween"
+}, {
+"args": [ Vector2( 120, -75 ), 0, 0.1 ],
+"method": "tween"
+}, {
+"args": [ Vector2( 120, 40 ), 0, 0.1 ],
+"method": "tween"
+}, {
+"args": [ Vector2( 120, 0 ), 0, 0.1 ],
+"method": "tween"
+}, {
+"args": [ Vector2( 80, 60 ), 0, 0.1 ],
+"method": "tween"
+}, {
+"args": [ Vector2( 60, 100 ), 0, 0.1 ],
+"method": "tween"
+}, {
+"args": [ Vector2( 40, 140 ), 0, 0.1 ],
+"method": "tween"
+}, {
+"args": [ Vector2( 0, 240 ), null, 0.0 ],
+"method": "tween"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 202 ), ExtResource( 201 ), ExtResource( 206 ), ExtResource( 203 ), ExtResource( 204 ), ExtResource( 205 ), ExtResource( 209 ), ExtResource( 207 ), ExtResource( 210 ), ExtResource( 208 ), ExtResource( 211 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "landing_damage"
+} ]
+}
+
+[sub_resource type="Animation" id=134]
+resource_name = "ungored"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 201 ), ExtResource( 202 ) ]
+}
+
 [sub_resource type="Animation" id=72]
 resource_name = "uppercut"
 length = 0.48
@@ -1239,6 +1362,23 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ ExtResource( 18 ), ExtResource( 12 ), ExtResource( 15 ), ExtResource( 13 ), ExtResource( 17 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 19 ), ExtResource( 16 ), ExtResource( 14 ), ExtResource( 9 ) ]
+}
+
+[sub_resource type="Animation" id=135]
+resource_name = "yes"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 213 ), ExtResource( 215 ), ExtResource( 214 ), ExtResource( 212 ), ExtResource( 214 ), ExtResource( 215 ) ]
 }
 
 [sub_resource type="SpriteFrames" id=113]
@@ -1333,6 +1473,7 @@ anims/fatality-end = SubResource( 42 )
 anims/fatality-repeat = SubResource( 41 )
 anims/fatality-start = SubResource( 40 )
 anims/get-up = SubResource( 88 )
+anims/gored = SubResource( 133 )
 anims/hit-blade = SubResource( 127 )
 anims/hit-face = SubResource( 25 )
 anims/hit-gut = SubResource( 57 )
@@ -1351,13 +1492,15 @@ anims/stagger = SubResource( 131 )
 anims/stunned = SubResource( 29 )
 anims/throw = SubResource( 92 )
 anims/thrown = SubResource( 96 )
+anims/tossed-by-oxanna = SubResource( 132 )
+anims/ungored = SubResource( 134 )
 anims/uppercut = SubResource( 72 )
 anims/victory = SubResource( 33 )
 anims/walk-backward = SubResource( 10 )
 anims/walk-forward = SubResource( 9 )
+anims/yes = SubResource( 135 )
 
 [node name="SoundPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 244 )
 __meta__ = {
 "_edit_lock_": true
 }

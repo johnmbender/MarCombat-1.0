@@ -2,6 +2,10 @@
 A game, to conquer the world.
 
 # TO DO, IN ORDER:
+- ox anna's defeated animation
+- ox anna's collapse animation (round loss)
+- randomize the number of pawings, and make Ox invincible until running
+- no tossing people off building: gore instead, horn sticking out gut (add to player sprites?)
 - ambience not playing
 - can't hit Kelsie while she's dizzy
 - John's self doubt smoke not gone while on ground

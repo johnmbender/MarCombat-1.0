@@ -96,10 +96,7 @@ func addPlayer(character:String, node_name:String, bot:bool):
 	return player
 
 func set_scene():
-	if player2_name == "Ox_Anna":
-		$Background.texture = load("res://levels/backgrounds/rooftop.jpg")
-	else:
-		$Background.texture = load("res://levels/backgrounds/%s.jpg" % background)
+	$Background.texture = load("res://levels/backgrounds/%s.jpg" % background)
 	
 	if player1_node:
 		remove_child(player1_node)
