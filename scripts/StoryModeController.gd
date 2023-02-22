@@ -64,7 +64,7 @@ func load_conversation():
 
 func load_fight():
 	if opponent == "Ox_Anna":
-		fight_scene = preload("res://scenes/FightScene.tscn").instance()
+		fight_scene = preload("res://scenes/BossFight-Ox_Anna.tscn").instance()
 	elif opponent == "FUGUM":
 		pass
 	else:

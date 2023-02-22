@@ -82,12 +82,6 @@ func _physics_process(_delta):
 		velocity.y += GRAVITY
 		get_input()
 		var _unused = move_and_slide(velocity, Vector2.UP)
-	
-	if being_gored:
-		var ox_anna = get_parent().get_node("Ox_Anna/Head").global_position
-		var update_position = Vector2(ox_anna.x - 200, ox_anna.y)
-		global_position = update_position
-		
 
 func get_input():
 	if not fighting:
@@ -220,9 +214,6 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			if health > 10:
 				$AnimationPlayer.play("get-up")
 			return
-		"ungored":
-			$AnimationPlayer.play("collapse")
-			return
 		_:
 			$AnimationPlayer.play("idle")
 	
@@ -234,7 +225,6 @@ func _on_AttackCircle_body_entered(_body):
 #	if free_animations.has($AnimationPlayer.current_animation):
 #		# don't want to freeze if we walk into each other
 #		return
-	print("yes?")
 	if z_index <= enemy.z_index:
 		z_index = 1
 		enemy.z_index = 0
@@ -243,16 +233,6 @@ func _on_AttackCircle_body_entered(_body):
 func landing_damage():
 	health -= 10
 	emit_signal("update_health", self, health)
-
-func gored():
-	# when Ox Anna gores at the end of the match
-	being_gored = true
-	$AnimationPlayer.play("gored")
-
-func ungore():
-	# when Ox Anna lets go after victory gore and drops player
-	being_gored = false
-	$AnimationPlayer.play("ungored")
 
 func damage_taken(animation:String):
 #	if not free_animations.has($AnimationPlayer.current_animation):

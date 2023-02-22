@@ -56,7 +56,31 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 0.431373, 0.431373, 0.431373, 1 ) ]
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("HBoxContainer2/Countdown:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("HBoxContainer2:rect_position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 240 ) ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -167,7 +191,6 @@ tracks/2/keys = {
 script = ExtResource( 2 )
 
 [node name="Background" type="Sprite" parent="."]
-modulate = Color( 0.431373, 0.431373, 0.431373, 1 )
 position = Vector2( 512, 300 )
 texture = ExtResource( 1 )
 
@@ -191,6 +214,30 @@ meta_underlined = false
 text = "ROUND 1"
 scroll_active = false
 deselect_on_focus_loss_enabled = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+margin_top = 240.0
+margin_right = 1024.0
+margin_bottom = 400.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="Countdown" type="RichTextLabel" parent="HBoxContainer2"]
+visible = false
+modulate = Color( 1, 0, 0, 1 )
+margin_left = 462.0
+margin_top = 100.0
+margin_right = 562.0
+margin_bottom = 260.0
+rect_min_size = Vector2( 100, 0 )
+rect_clip_content = false
+theme = SubResource( 5 )
+meta_underlined = false
+text = "10"
+scroll_active = false
+deselect_on_focus_loss_enabled = false
+
+[node name="CountdownTimer" type="Timer" parent="HBoxContainer2"]
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2( -48, 576 )
@@ -255,6 +302,11 @@ anims/intro = SubResource( 3 )
 wait_time = 2.0
 one_shot = true
 
+[node name="Delay" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="timeout" from="HBoxContainer2/CountdownTimer" to="." method="_on_CountdownTimer_timeout"]
 [connection signal="finished" from="Announcer" to="." method="_on_Announcer_finished"]
 [connection signal="timeout" from="EndFightTimer" to="." method="_on_EndFightTimer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://GameController.gd" type="Script" id=1]
 [ext_resource path="res://fonts/Louis George Cafe.ttf" type="DynamicFontData" id=2]
@@ -232,6 +232,36 @@ tracks/1/keys = {
 "values": [ -80.0, -30.0, -5.0 ]
 }
 
+[sub_resource type="Animation" id=11]
+resource_name = "just fade fight music"
+tracks/0/type = "value"
+tracks/0/path = NodePath("FightMusic:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -10.0, -30.0, -80.0 ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "just fight music"
+tracks/0/type = "value"
+tracks/0/path = NodePath("FightMusic:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -80.0, -30.0, -10.0 ]
+}
+
 [sub_resource type="Animation" id=3]
 resource_name = "quit"
 length = 5.0
@@ -357,6 +387,8 @@ anims/RESET = SubResource( 4 )
 "anims/fight music" = SubResource( 5 )
 "anims/fight to conversation" = SubResource( 10 )
 "anims/intro music" = SubResource( 6 )
+"anims/just fade fight music" = SubResource( 11 )
+"anims/just fight music" = SubResource( 12 )
 anims/quit = SubResource( 3 )
 "anims/storymode to fight scene" = SubResource( 9 )
 

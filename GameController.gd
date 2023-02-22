@@ -59,8 +59,11 @@ func load_demo():
 	add_child(scene)
 	scene.prepare_fight()
 
-func raise_fight_music():
-	$AnimationPlayer.play("fight music")
+func raise_fight_music(transition:bool = true):
+	if transition:
+		$AnimationPlayer.play("fight music")
+	else:
+		$AnimationPlayer.play("just fight music")
 
 func lower_fight_music():
 	$AnimationPlayer.play("intro music")
@@ -98,12 +101,22 @@ func fight_done():
 		"storymode":
 			print("next storymode scene!")
 
+func storymode_quit():
+	remove_scene()
+	load_launch_screen()
+
 func gong():
 	$Gong.play()
 
 func fatalityHorn():
 	$FatalityHorn.play()
-	$AnimationPlayer.play("fade fight music")
+	fade_fight_music()
+
+func fade_fight_music(transition:bool = true):
+	if transition:
+		$AnimationPlayer.play("fade fight music")
+	else:
+		$AnimationPlayer.play("just fade fight music")
 
 func quit_game():
 	$AnimationPlayer.play("quit")

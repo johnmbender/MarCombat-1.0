@@ -60,9 +60,9 @@ func draw_characters():
 		get_node("GridContainer/TextureRect%s" % c).texture = random_unselected
 		
 func draw_selection():
-	var character_to_display = "random"
+	var _character_to_display = "random"
 	if selected < characters.size():
-		character_to_display = characters[selected]
+		_character_to_display = characters[selected]
 	
 	for node in character_info_scene.get_children():
 		if node.name != "Panel":

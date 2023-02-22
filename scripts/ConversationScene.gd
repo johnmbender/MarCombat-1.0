@@ -108,7 +108,7 @@ func set_exposition():
 		},
 		3: {
 			4: {
-				"line": "%s goes to Starbucks and gets Oksana's favourite: Americano, black.\n\nWhen %s gets back, %s finds Oksana upstairs on the patio." % [player, player_pronouns[0], player_pronouns[0]]
+				"line": "%s goes to Starbucks and gets Oksana's favourite: Americano, black.\n\nWhen %s returns, %s finds Oksana upstairs on the patio." % [player, player_pronouns[0], player_pronouns[0]]
 			}
 		}
 	}

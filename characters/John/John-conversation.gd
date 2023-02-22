@@ -92,7 +92,7 @@ onready var dialogue = {
 			3: {
 				"lines": {
 					0: {
-						"line": "Ok ok ok ok. I feel better, strangely.",
+						"line": "I feel better, strangely.",
 						"action": "yes"
 					},
 					1: {

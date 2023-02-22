@@ -13,8 +13,9 @@ var body_action = "idle"
 var facing = "left"
 var running = false
 var entrance_complete = false
-var victory_gore = false
-var enemy_gored = false
+var moving_to_centre = false
+var walk_away = false
+
 var enemy
 var got_hit = false
 var fighting = false
@@ -52,14 +53,25 @@ func _physics_process(_delta):
 		if position.x <= 900:
 			entrance_complete = true
 			$Coordinator.play("idle")
-	elif victory_gore and not enemy_gored:
-		if (enemy.position.x - 200) < position.x:
-			velocity.x -= RUN_SPEED
-		elif (enemy.position.x + 200) > position.x:
-			velocity.x += RUN_SPEED
+	elif moving_to_centre:
+		if facing == "right" and global_position.x < 512:
+			velocity.x += WALK_SPEED
+		elif facing == "left" and global_position.x > 512:
+			velocity.x -= WALK_SPEED
 		else:
 			velocity.x = 0
-			victory_gore = false
+			$Coordinator.play("idle")
+			moving_to_centre = false
+	elif walk_away:
+		if abs(global_position.x) - abs(enemy.global_position.x) < 10:
+			moo()
+			
+		if facing == "right" and global_position.x < 1500:
+			velocity.x += WALK_SPEED
+		elif facing == "left" and global_position.x > -500:
+			velocity.x -= WALK_SPEED
+		else:
+			queue_free()
 	elif fighting == false:
 		$Coordinator.play("idle")
 		velocity.x = 0
@@ -75,6 +87,10 @@ func _on_ChargeTimer_timeout():
 	random.randomize()
 	paw_counter = random.randi_range(0,3)
 	$Coordinator.play("pawing")
+
+func move_to_centre():
+	moving_to_centre = true
+	$Coordinator.play("run")
 
 func turn():
 	$ChargeTimer.start()
@@ -105,52 +121,35 @@ func damage_taken(animation:String):
 		moo()
 
 func moo():
+	if $SoundPlayer.playing:
+		return
+		
 	$SoundPlayer.stream = load("res://sounds/characters/Ox_Anna/moo_%s.wav" % (randi() % 4))
+	$SoundPlayer.pitch_scale = rand_range(0.8, 1.2)
 	$SoundPlayer.play()
 
 func collapse():
 	$ChargeTimer.stop()
 	running = false
-	print("playing collapse?")
 	$Coordinator.play("collapse")
 
 func disable_hit_checks():
 	# disables Ox Anna's ability to throw player for a bit
-	$HeadDown.monitoring = false
-	$Gore.monitoring = false
+	set_deferred("$Ox_Anna/HeadDown.monitoring", false)
+	set_deferred("$Ox_Anna/Gore.monitoring", false)
 
 func enable_hit_checks():
-	$HeadDown.monitoring = true
-	$Gore.monitoring = true
-
-func victory():
-	# run to the stunned player
-	victory_gore = true # jovi
-	# gore them
-	# take them to the middle area
-	# drop them
-	# play victory
-#	$Coordinator.play("victory")
+	set_deferred("$Ox_Anna/HeadDown.monitoring", true)
+	set_deferred("$Ox_Anna/Gore.monitoring", true)
 
 func is_getting_shot(_meh):
 	# moo! ignore, as it does nothing and goes over her head anyhow
 	pass
 
 func _on_Gore_body_entered(_body):
-	if victory_gore == true:
-		enemy.gored()
-		enemy_gored = true
-		$ChargeTimer.stop()
-		running = false
-		$Coordinator.play("victory gore")
-	elif not got_hit:
+	if not got_hit:
 		$Coordinator.play("goring")
 		enemy.damage_taken("tossed-by-oxanna")
-
-func drop_player_after_gore():
-	enemy.ungore()
-	$Coordinator.play("idle")
-	get_parent().victory_scene()
 
 func roasted():
 	$Coordinator.play("roasted")
@@ -165,20 +164,26 @@ func _on_HeadDown_body_entered(_body):
 		paw_counter = 0
 
 func _on_Coordinator_animation_finished(anim_name):
-	if anim_name == "pawing":
-		if paw_counter == 0:
+	match anim_name:
+		"pawing":
+			if paw_counter == 0:
+				$Coordinator.play("run")
+				$Coordinator.playback_speed = speed_modifier
+	#			$Body.speed_scale = speed_modifier
+	#			$Head.speed_scale = speed_modifier
+				running = true
+			else:
+				paw_counter -= 1
+				$Coordinator.play("pawing")
+				running = false
+		"goring":
+			call_deferred("disable_hit_checks")
+		"victory":
+			$Coordinator.play("back down")
+		"back down":
 			$Coordinator.play("run")
-			$Coordinator.playback_speed = speed_modifier
-#			$Body.speed_scale = speed_modifier
-#			$Head.speed_scale = speed_modifier
-			running = true
-		else:
-			paw_counter -= 1
-			$Coordinator.play("pawing")
-			running = false
-	elif anim_name == "goring":
-		call_deferred("disable_hit_checks")
-
+			$Head.visible = true
+			walk_away = true
 
 func _on_HeadDown_body_exited(_body):
 	$Head/HeadPlayer.play("idle")

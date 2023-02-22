@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=2]
+[gd_scene load_steps=111 format=2]
 
 [ext_resource path="res://characters/Ox_Anna/pawing/head_03.png" type="Texture" id=1]
 [ext_resource path="res://characters/Ox_Anna/idle/head_02.png" type="Texture" id=2]
@@ -103,6 +103,20 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+
+[sub_resource type="Animation" id=71]
+resource_name = "back down"
+length = 0.2
+tracks/0/type = "animation"
+tracks/0/path = NodePath("Body/BodyPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": PoolStringArray( "back down" ),
+"times": PoolRealArray( 0 )
 }
 
 [sub_resource type="Animation" id=53]
@@ -319,7 +333,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=61]
 resource_name = "victory"
-length = 10.0
+length = 8.0
 tracks/0/type = "animation"
 tracks/0/path = NodePath("Body/BodyPlayer")
 tracks/0/interp = 1
@@ -361,48 +375,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.1, 0.3, 6, 8, 8.1 ),
+"times": PoolRealArray( 0.1, 0.3, 6, 7.9, 8 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ -80.0, 0.0, 0.0, -30.0, -80.0 ]
-}
-
-[sub_resource type="Animation" id=65]
-resource_name = "victory gore"
-length = 1.2
-tracks/0/type = "animation"
-tracks/0/path = NodePath("Head/HeadPlayer")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"clips": PoolStringArray( "goring" ),
-"times": PoolRealArray( 0 )
-}
-tracks/1/type = "animation"
-tracks/1/path = NodePath("Body/BodyPlayer")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"clips": PoolStringArray( "idle" ),
-"times": PoolRealArray( 0 )
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0.8 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "drop_player_after_gore"
-} ]
 }
 
 [sub_resource type="Animation" id=38]
@@ -478,6 +454,22 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ ExtResource( 3 ) ]
+}
+
+[sub_resource type="Animation" id=70]
+resource_name = "back down"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 41 ), ExtResource( 40 ), ExtResource( 42 ) ]
 }
 
 [sub_resource type="Animation" id=43]
@@ -606,7 +598,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=62]
 resource_name = "victory"
-length = 10.0
+length = 8.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:texture")
 tracks/0/interp = 1
@@ -614,10 +606,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6, 6.1, 6.2, 6.3, 6.4, 6.5, 6.6, 6.7, 6.8, 6.9, 7, 7.1, 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8, 7.9, 8, 8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 9, 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7, 9.8, 9.9, 10 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6, 6.1, 6.2, 6.3, 6.4, 6.5, 6.6, 6.7, 6.8, 6.9, 7, 7.1, 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8, 7.9, 8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 42 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ) ]
+"values": [ ExtResource( 42 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ), ExtResource( 45 ), ExtResource( 4 ), ExtResource( 39 ), ExtResource( 4 ) ]
 }
 
 [sub_resource type="Animation" id=44]
@@ -842,10 +834,10 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=26]
-extents = Vector2( 105.714, 142.857 )
+extents = Vector2( 105.714, 121.429 )
 
 [sub_resource type="RectangleShape2D" id=27]
-extents = Vector2( 60, 142.857 )
+extents = Vector2( 60, 116.428 )
 
 [node name="Ox_Anna" type="KinematicBody2D"]
 collision_layer = 16
@@ -859,6 +851,7 @@ shape = SubResource( 25 )
 
 [node name="Coordinator" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 64 )
+"anims/back down" = SubResource( 71 )
 anims/collapse = SubResource( 53 )
 anims/goring = SubResource( 54 )
 "anims/head down" = SubResource( 55 )
@@ -869,7 +862,6 @@ anims/roasted = SubResource( 66 )
 anims/run = SubResource( 59 )
 "anims/slide stop" = SubResource( 60 )
 anims/victory = SubResource( 61 )
-"anims/victory gore" = SubResource( 65 )
 
 [node name="Body" type="Sprite" parent="."]
 texture = ExtResource( 16 )
@@ -877,6 +869,7 @@ texture = ExtResource( 16 )
 [node name="BodyPlayer" type="AnimationPlayer" parent="Body"]
 root_node = NodePath("../..")
 anims/RESET = SubResource( 38 )
+"anims/back down" = SubResource( 70 )
 anims/collapse = SubResource( 43 )
 anims/goring = SubResource( 41 )
 "anims/head down" = SubResource( 40 )
@@ -913,7 +906,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HeadDown"]
-position = Vector2( -400, 100 )
+position = Vector2( -400, 121.428 )
 scale = Vector2( 0.999999, 0.999999 )
 shape = SubResource( 26 )
 
@@ -925,7 +918,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gore"]
-position = Vector2( -220, 90 )
+position = Vector2( -220, 116.428 )
 scale = Vector2( 1, 1 )
 shape = SubResource( 27 )
 
