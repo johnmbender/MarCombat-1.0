@@ -214,7 +214,7 @@
 extents = Vector2( 40, 156 )
 
 [sub_resource type="CircleShape2D" id=20]
-radius = 40.7922
+radius = 24.0
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -243,7 +243,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:flip_h")
+tracks/2/path = NodePath("BrochuresParticlesLeft:emitting")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -255,7 +255,7 @@ tracks/2/keys = {
 "values": [ false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("BrochuresParticlesLeft:emitting")
+tracks/3/path = NodePath("BrochuresParticlesRight:emitting")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -267,7 +267,7 @@ tracks/3/keys = {
 "values": [ false ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("BrochuresParticlesRight:emitting")
+tracks/4/path = NodePath("BrochuresParticlesBig:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -276,10 +276,10 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ false ]
+"values": [ Vector2( 0, -200 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("BrochuresParticlesBig:position")
+tracks/5/path = NodePath("BrochuresParticlesBig:emitting")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -288,10 +288,10 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, -200 ) ]
+"values": [ false ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("BrochuresParticlesBig:emitting")
+tracks/6/path = NodePath("BrochuresParticlesBig:amount")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -299,11 +299,11 @@ tracks/6/enabled = true
 tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
+"update": 1,
+"values": [ 400 ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("BrochuresParticlesBig:amount")
+tracks/7/path = NodePath("HitBox:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -311,11 +311,11 @@ tracks/7/enabled = true
 tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 400 ]
+"update": 0,
+"values": [ Vector2( -2, 40 ) ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("BloodSquirt:position")
+tracks/8/path = NodePath("HitBox:scale")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -324,10 +324,10 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -16, -80 ) ]
+"values": [ Vector2( 1, 1 ) ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("BloodSquirt:scale")
+tracks/9/path = NodePath("AttackCircle:position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -336,55 +336,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0.5, 0.5 ) ]
-}
-tracks/10/type = "value"
-tracks/10/path = NodePath("HitBox:position")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -2, 40 ) ]
-}
-tracks/11/type = "value"
-tracks/11/path = NodePath("HitBox:scale")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-tracks/12/type = "value"
-tracks/12/path = NodePath("AttackCircle:monitoring")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/13/type = "value"
-tracks/13/path = NodePath("AttackCircle/CollisionShape2D:disabled")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
+"values": [ Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=61]
@@ -440,6 +392,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=138]
 resource_name = "blocking"
 length = 0.001
+loop = true
 step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -556,6 +509,7 @@ tracks/2/keys = {
 [sub_resource type="Animation" id=140]
 resource_name = "crouching"
 length = 0.001
+loop = true
 step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -1228,8 +1182,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [ Vector2( 20, -45 ), 0, 0.05 ],
 "method": "tween"
@@ -1253,12 +1207,6 @@ tracks/1/keys = {
 "method": "tween"
 }, {
 "args": [ Vector2( 60, 100 ), 0, 0.1 ],
-"method": "tween"
-}, {
-"args": [ Vector2( 40, 140 ), 0, 0.1 ],
-"method": "tween"
-}, {
-"args": [ Vector2( 0, 240 ), null, 0.0 ],
 "method": "tween"
 } ]
 }
@@ -1450,6 +1398,27 @@ texture = ExtResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="GutBloodSquirt" type="CPUParticles2D" parent="."]
+rotation = -3.14159
+scale = Vector2( 0.5, 0.5 )
+emitting = false
+amount = 80
+lifetime = 1.3
+one_shot = true
+speed_scale = 30.0
+explosiveness = 1.0
+texture = ExtResource( 195 )
+direction = Vector2( -1, -2 )
+spread = 30.0
+gravity = Vector2( 100, 0 )
+initial_velocity = 171.21
+initial_velocity_random = 0.47
+angular_velocity_random = 1.0
+damping = 60.0
+damping_random = 1.0
+scale_amount = 3.0
+scale_amount_random = 1.0
 
 [node name="BrochuresParticlesBig" type="CPUParticles2D" parent="."]
 position = Vector2( 0, -200 )

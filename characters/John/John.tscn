@@ -1,4 +1,4 @@
-[gd_scene load_steps=280 format=2]
+[gd_scene load_steps=278 format=2]
 
 [ext_resource path="res://characters/John/sprites/actions/idle/idle_1.png" type="Texture" id=1]
 [ext_resource path="res://characters/John/sprites/actions/idle/idle_2.png" type="Texture" id=2]
@@ -239,7 +239,7 @@
 [ext_resource path="res://characters/John/sprites/actions/skeletonize/skeletonize.png" type="Texture" id=243]
 
 [sub_resource type="RectangleShape2D" id=130]
-extents = Vector2( 40, 160 )
+extents = Vector2( 40, 96.6667 )
 
 [sub_resource type="CircleShape2D" id=20]
 radius = 24.0
@@ -259,7 +259,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("AttackCircle/CollisionShape2D:position")
+tracks/1/path = NodePath("AttackCircle:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -271,7 +271,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("AttackCircle:position")
+tracks/2/path = NodePath("GutBloodSquirt:emitting")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -280,10 +280,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [ false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath(".:rotation_degrees")
+tracks/3/path = NodePath("SoundPlayer:stream")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -292,10 +292,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.0 ]
+"values": [ null ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("BloodSquirt:position")
+tracks/4/path = NodePath("SoundPlayer:playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -304,10 +304,10 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -16, -96 ) ]
+"values": [ false ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("AttackCircle:scale")
+tracks/5/path = NodePath("GutBloodSquirt:speed_scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -316,10 +316,10 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ) ]
+"values": [ 30.0 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("GutBloodSquirt:emitting")
+tracks/6/path = NodePath("HitBox:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -328,10 +328,10 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ false ]
+"values": [ Vector2( -24, 32 ) ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("SoundPlayer:stream")
+tracks/7/path = NodePath("HitBox:scale")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -340,31 +340,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ null ]
-}
-tracks/8/type = "value"
-tracks/8/path = NodePath("SoundPlayer:playing")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/9/type = "value"
-tracks/9/path = NodePath("GutBloodSquirt:speed_scale")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 30.0 ]
+"values": [ Vector2( 1, 1.65 ) ]
 }
 
 [sub_resource type="Animation" id=123]
@@ -480,6 +456,30 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 168 ), ExtResource( 170 ), ExtResource( 169 ), ExtResource( 167 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("HitBox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.06, 0.11, 0.12, 0.17, 0.18 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -24, 32 ), Vector2( -24, 32 ), Vector2( -24, 51.697 ), Vector2( -24, 51.697 ), Vector2( -24, 76 ), Vector2( -24, 76 ), Vector2( -24, 96 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HitBox:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.06, 0.11, 0.12, 0.17, 0.18 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1.65 ), Vector2( 1, 1.65 ), Vector2( 1, 1.45 ), Vector2( 1, 1.45 ), Vector2( 1, 1.2 ), Vector2( 1, 1.2 ), Vector2( 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=80]
 resource_name = "crouch-return"
@@ -496,6 +496,30 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ ExtResource( 167 ), ExtResource( 169 ), ExtResource( 170 ), ExtResource( 168 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HitBox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.06, 0.11, 0.12, 0.17, 0.18 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -24, 96 ), Vector2( -24, 96 ), Vector2( -24, 76 ), Vector2( -24, 76 ), Vector2( -24, 52 ), Vector2( -24, 52 ), Vector2( -24, 32 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HitBox:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.06, 0.11, 0.12, 0.17, 0.18 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1, 1.2 ), Vector2( 1, 1.2 ), Vector2( 1, 1.45 ), Vector2( 1, 1.45 ), Vector2( 1, 1.65 ) ]
 }
 
 [sub_resource type="Animation" id=129]
@@ -583,23 +607,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ ExtResource( 179 ), ExtResource( 190 ), ExtResource( 188 ), ExtResource( 178 ), ExtResource( 186 ), ExtResource( 181 ), ExtResource( 184 ), ExtResource( 182 ), ExtResource( 183 ), ExtResource( 189 ), ExtResource( 185 ), ExtResource( 187 ), ExtResource( 180 ) ]
-}
-
-[sub_resource type="Animation" id=133]
-resource_name = "gored"
-length = 3.0
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ ExtResource( 202 ), ExtResource( 201 ) ]
 }
 
 [sub_resource type="Animation" id=127]
@@ -1207,8 +1214,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [ Vector2( 20, -45 ), 0, 0.05 ],
 "method": "tween"
@@ -1232,12 +1239,6 @@ tracks/1/keys = {
 "method": "tween"
 }, {
 "args": [ Vector2( 60, 100 ), 0, 0.1 ],
-"method": "tween"
-}, {
-"args": [ Vector2( 40, 140 ), 0, 0.1 ],
-"method": "tween"
-}, {
-"args": [ Vector2( 0, 240 ), null, 0.0 ],
 "method": "tween"
 } ]
 }
@@ -1266,23 +1267,6 @@ tracks/3/keys = {
 "args": [  ],
 "method": "landing_damage"
 } ]
-}
-
-[sub_resource type="Animation" id=134]
-resource_name = "ungored"
-length = 0.1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ ExtResource( 201 ), ExtResource( 202 ) ]
 }
 
 [sub_resource type="Animation" id=72]
@@ -1399,6 +1383,7 @@ __meta__ = {
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
 position = Vector2( -24, 32 )
+scale = Vector2( 1, 1.65 )
 shape = SubResource( 130 )
 
 [node name="AttackCircle" type="Area2D" parent="."]
@@ -1473,7 +1458,6 @@ anims/fatality-end = SubResource( 42 )
 anims/fatality-repeat = SubResource( 41 )
 anims/fatality-start = SubResource( 40 )
 anims/get-up = SubResource( 88 )
-anims/gored = SubResource( 133 )
 anims/hit-blade = SubResource( 127 )
 anims/hit-face = SubResource( 25 )
 anims/hit-gut = SubResource( 57 )
@@ -1493,7 +1477,6 @@ anims/stunned = SubResource( 29 )
 anims/throw = SubResource( 92 )
 anims/thrown = SubResource( 96 )
 anims/tossed-by-oxanna = SubResource( 132 )
-anims/ungored = SubResource( 134 )
 anims/uppercut = SubResource( 72 )
 anims/victory = SubResource( 33 )
 anims/walk-backward = SubResource( 10 )

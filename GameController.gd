@@ -7,9 +7,12 @@ func _ready():
 	load_launch_screen()
 
 func load_launch_screen():
-	current_scene = "LaunchScreen"
 	var scene = preload("res://scenes/LaunchScreen.tscn").instance()
 	add_child(scene)
+	
+	if current_scene != "LaunchScreen":
+		remove_scene()
+	current_scene = "LaunchScreen"
 
 func load_character_select():
 	var scene = preload("res://scenes/CharacterSelect.tscn").instance()
@@ -98,12 +101,13 @@ func fight_done():
 	match game_mode:
 		"deathmatch":
 			load_launch_screen()
-		"storymode":
-			print("next storymode scene!")
+#		"storymode":
+#			print("next storymode scene!")
 
 func storymode_quit():
 	remove_scene()
 	load_launch_screen()
+	$IntroMusic.playing = true
 
 func gong():
 	$Gong.play()

@@ -92,7 +92,7 @@ onready var dialogue = {
 			3: {
 				"lines": {
 					0: {
-						"line": "I feel better, strangely.",
+						"line": "That was cathartic.",
 						"action": "yes"
 					},
 					1: {
@@ -121,7 +121,7 @@ onready var dialogue = {
 					},
 					11: {
 						"line": null,
-						"action": "shocked"
+						"action": "offended"
 					},
 				}
 			},

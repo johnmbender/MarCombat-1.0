@@ -53,7 +53,7 @@ func update_gift_modulations():
 		else:
 			gift.modulate = Color(0,0,0,1)
 
-func _process(delta):
+func _process(_delta):
 	if not fight_over:
 		if blade_caught:
 			$John.global_position = $FUGUM/Wheel.get_node(area_attached_to).global_position

@@ -10,6 +10,8 @@ var player2_wins
 var winner
 var loser
 
+var fight_speed = 1.1
+
 var end_match = false
 
 var characters = ["John","Kelsie","Terje"]
@@ -21,7 +23,7 @@ var match_type
 func _ready():
 	player1_wins = 0
 	player2_wins = 0
-	
+#
 	if player1_name == null:
 		randomize()
 		set_player1(characters[randi() % characters.size()])
@@ -33,8 +35,6 @@ func _ready():
 		set_background(backgrounds[randi() % backgrounds.size()])
 	if match_type == null:
 		match_type = "demo"
-		
-	set_scene()
 
 func set_player1(playerName:String):
 	player1_name = playerName
@@ -52,25 +52,28 @@ func addPlayer(character:String, node_name:String, bot:bool):
 	var scenePath = "res://characters/%s/%s.tscn" % [character, character]
 	var player = load(scenePath).instance()
 	player.name = node_name
-	if character != "Ox_Anna" and bot:
+	if bot:
 		player.script = preload("res://scripts/AI.gd")
-		player.set_bot(bot)
-		player.character_name = character
+	
+	player.set_bot(bot)
+	player.character_name = character
 	add_child(player)
 	player.health = 100
 	player.idle()
 
 	if node_name == "player1":
+		player.facing = "right"
 		$UI/Player1/HBoxContainer/Name.text = player1_name
 		if player1_wins == 1:
 			$UI/Player1/SkullContainer/Skull.visible = true
 		$UI/Player1/HealthBar.value = 100
 	
-		player.position = Vector2(100, 370)
+		player.position = Vector2(100, 350)
 		player.collision_layer = 1
 		player.collision_mask = 48
 		player.get_node("AttackCircle").collision_layer = 2
 	elif node_name == "player2":
+		player.facing = "left"
 		if $player2.character_name == $player1.character_name:
 			if match_type == "storymode":
 				$UI/Player2/HBoxContainer/Name.text = "%s's self-doubt" % player2_name
@@ -88,7 +91,7 @@ func addPlayer(character:String, node_name:String, bot:bool):
 		if player2_wins == 1:
 			$UI/Player2/SkullContainer/Skull.visible = true
 		
-		player.position = Vector2(924, 370)
+		player.position = Vector2(924, 350)
 		player.collision_layer = 16
 		player.collision_mask = 3
 		player.get_node("AttackCircle").collision_layer = 32
@@ -163,7 +166,7 @@ func update_health(player, health:int):
 		$EndFightTimer.start()
 
 func _on_EndFightTimer_timeout():
-	if player1_wins == 2 or player2_wins == 2:
+	if player1_wins >= 2 or player2_wins >= 2:
 		$AnimationPlayer.play("end match fade")
 	else:
 		$AnimationPlayer.play("fade to round")
@@ -209,6 +212,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 				# storymode
 				get_parent().get_parent().fight_done()
 			else:
+				get_parent().fade_fight_music()
 				get_parent().fight_done()
 
 func _on_FatalityTimer_timeout():

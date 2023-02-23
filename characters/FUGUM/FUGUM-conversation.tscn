@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://characters/FUGUM/sprites/conversations/screen_01.png" type="Texture" id=1]
+[ext_resource path="res://characters/FUGUM/sprites/conversations/updates.png" type="Texture" id=2]
+[ext_resource path="res://characters/FUGUM/sprites/conversations/screen_02.png" type="Texture" id=3]
+[ext_resource path="res://characters/FUGUM/FUGUM-conversation.gd" type="Script" id=4]
+[ext_resource path="res://characters/FUGUM/sprites/conversations/screen_02_mac.png" type="Texture" id=5]
+[ext_resource path="res://characters/FUGUM/sprites/conversations/screen_01_mac.png" type="Texture" id=6]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "fight",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "hidden",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "message",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "message-mac",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "normal",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "normal-mac",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "updates",
+"speed": 5.0
+} ]
+
+[node name="AnimatedSprite" type="AnimatedSprite"]
+scale = Vector2( 1.44297, 1.44297 )
+frames = SubResource( 3 )
+animation = "hidden"
+centered = false
+script = ExtResource( 4 )
+
+[node name="Voice" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="finished" from="Voice" to="." method="_on_Voice_finished"]

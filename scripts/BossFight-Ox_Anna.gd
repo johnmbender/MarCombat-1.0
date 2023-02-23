@@ -13,13 +13,11 @@ var game_controller
 var end_game_input = false
 
 func _ready():
-	# jovi
-	# add back in once done testing storymode
 	game_controller = get_tree().get_root().get_node("GameController")
 	storymode_controller = game_controller.get_node("StoryModeController")
 	player_wins = 0
 	boss_wins = 1
-
+	
 func set_player1(name:String):
 	player_name = name
 
@@ -39,7 +37,8 @@ func set_scene():
 	if player:
 		remove_child(player)
 		remove_child(boss)
-		$HBoxContainer2/Countdown.text = 10
+		$HBoxContainer2/Countdown.text = "10"
+		$UI.visible = true
 
 	var scenePath = "res://characters/%s/%s.tscn" % [player_name, player_name]
 	player = load(scenePath).instance()
@@ -86,13 +85,19 @@ func _input(event):
 	if end_game_input:
 		if event is InputEventMouse:
 			return # so dumb
-		player_wins = 0
-		boss_wins = 0
-		$HBoxContainer2/CountdownTimer.stop()
-		$HBoxContainer2/Countdown.visible = false
-		
-		game_controller.raise_fight_music(false)
+			
+		end_game_input = false
+		reset()
 		set_scene()
+
+func reset():
+	player_wins = 0
+	boss_wins = 0
+	$HBoxContainer2/CountdownTimer.stop()
+	$HBoxContainer2/Countdown.visible = false
+	$UI/Player1/SkullContainer/Skull.visible = false
+	$UI/Player2/SkullContainer/Skull.visible = false
+	game_controller.raise_fight_music(false)
 
 func announcer_speak(line:String):
 	var path = "res://sounds/announcer/"
@@ -130,30 +135,35 @@ func update_health(character, health:int):
 		# player won round
 		player_wins += 1
 	
-	if player_wins == 2:
+	if player_wins >= 2:
 		winner = player
 		loser = boss
 		loser.collapse()
 		winner.victory()
+		game_controller.fade_fight_music()
 		$EndFightTimer.start()
-	elif boss_wins == 2:
+	elif boss_wins >= 2:
 		winner = boss
 		loser = player
 		player.fighting = false
 		victory_scene()
 	else:
 		# undeciding round
-#		character.collapse()
+		if character == boss:
+			$Ox_Anna.collapse()
+		else:
+			$Ox_Anna/ChargeTimer.stop()
+			
+		character.fighting = false
 		character.enemy.fighting = false
 		announcer_speak(character.enemy.character_name)
 		$EndFightTimer.wait_time = 3
 		$EndFightTimer.start()
-#		character.fighting = false
 
 func victory_scene():
 	$Ox_Anna.running = false
 	$Ox_Anna/ChargeTimer.stop()
-	$Ox_Anna.disable_hit_checks()
+	$Ox_Anna.fighting = false
 	announcer_speak("Ox Anna")
 	format_text_for_label("Ox Anna wins")
 	$Ox_Anna.move_to_centre()
@@ -167,13 +177,14 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		"end match fade":
 			if winner == player:
 				if $Ox_Anna/Coordinator.current_animation == "roasted":
-					get_parent().get_parent().fight_done()
+					storymode_controller.fight_done()
 				else:
 					# now we fade back into the roasting scene
 					$Background.modulate = Color(0.5, 0.5, 0.5, 1)
 					$Player.modulate = Color(0.7, 0.7, 0.7, 1)
-					$Background.texture = load("res://levels/backgrounds/rooftop-nighttime.jpg")
+					$Background.texture = load("res://levels/backgrounds/rooftop-foreground.png")
 					$UI.visible = false
+					$Stars.visible = true
 					$AnimationPlayer.play("fade in night")
 					$Ox_Anna.roasted()
 					$Ox_Anna.global_position.x = 600
@@ -196,7 +207,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			format_text_for_label("barbeque!")
 
 func _process(_delta):
-	if end_game_input:
+	if end_game_input or $Ox_Anna/Anthem.is_playing():
 		return
 		
 	if player.global_position.x <= boss.global_position.x and player.is_on_floor():
@@ -209,10 +220,10 @@ func _process(_delta):
 		player.rotation_degrees = 180
 
 func _on_EndFightTimer_timeout():
-	if player_wins == 2:
+	if player_wins >= 2:
 		# player won, so allow the fade
 		$AnimationPlayer.play("end match fade")
-	elif boss_wins == 2:
+	elif boss_wins >= 2:
 		format_text_for_label("continue?")
 		$HBoxContainer.visible = true
 		$HBoxContainer2/Countdown.visible = true
@@ -233,10 +244,14 @@ func speak_correction():
 func update_oksana():
 	format_text_for_label("Oksana wins")
 	$UI/Player2/HBoxContainer/Name.text = "Oksana"
+	$Delay.disconnect("timeout", self, "update_oksana")
 
 func _on_Announcer_finished():
 	match $Announcer.stream.resource_path:
 		"res://sounds/announcer/Ox Anna.wav":
+			if boss_wins < 2:
+				$Ox_Anna/Coordinator.play("idle") # jovi
+				return
 			$Ox_Anna.moo()
 			var _1 = $Delay.connect("timeout", self, "speak_correction")
 			$Delay.start()
@@ -244,13 +259,14 @@ func _on_Announcer_finished():
 			$UI.visible = false
 			$HBoxContainer.visible = false
 			$Ox_Anna/Coordinator.play("victory")
-			$EndFightTimer.wait_time = 8
+			$EndFightTimer.wait_time = 15
 			$EndFightTimer.start()
 
 func _on_CountdownTimer_timeout():
 	continue_counter -= 1
-	$HBoxContainer2/Countdown.text = "%s" % continue_counter
-	if continue_counter == 0:
+	
+	if continue_counter == -1:
 		$HBoxContainer2/CountdownTimer.stop()
-		# jovi re-enable
 		game_controller.storymode_quit()
+	else:
+		$HBoxContainer2/Countdown.text = "%s" % continue_counter

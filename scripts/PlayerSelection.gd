@@ -48,7 +48,7 @@ func _input(event):
 	elif event.is_action_pressed("ui_accept"):
 		select_character()
 	elif event.is_action_pressed("quit"):
-		print("back to launch screen")
+		game_controller.load_launch_screen()
 
 func draw_characters():
 	for c in range(0, characters.size()):
@@ -101,4 +101,9 @@ func draw_selection():
 func select_character():
 	game_controller.gong()
 	if player_count == 1:
+		if selected >= characters.size():
+			# random
+			randomize()
+			characters.shuffle()
+			selected = 0
 		game_controller.load_mode(characters[selected], false)

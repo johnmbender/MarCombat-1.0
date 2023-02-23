@@ -92,7 +92,7 @@ onready var dialogue = {
 			3: {
 				"lines": {
 					0: {
-						"line": "I'm in. I'm determined to make this happen.",
+						"line": "I feel better, strangely.",
 						"action": "yes"
 					},
 					1: {
@@ -116,7 +116,7 @@ onready var dialogue = {
 						"action": "yes"
 					},
 					9: {
-						"line": "What? I even spelled it to them. That's hilarious!",
+						"line": "What? I even spelled it for them. That's hilarious!",
 						"action": "smile"
 					},
 					11: {

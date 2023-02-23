@@ -51,6 +51,9 @@ func load_actor_scene(character:String, role:String):
 			position.y = 100
 		elif character == "Ox_Anna":
 			position = Vector2(440, 120)
+		elif character == "FUGUM":
+			scene.scale = Vector2(1, 1)
+			position = Vector2(500, 100)
 
 		scene.global_position = position
 
@@ -110,8 +113,20 @@ func set_exposition():
 			4: {
 				"line": "%s goes to Starbucks and gets Oksana's favourite: Americano, black.\n\nWhen %s returns, %s finds Oksana upstairs on the patio." % [player, player_pronouns[0], player_pronouns[0]]
 			}
+		},
+		4: {
+			4: {
+				"line": "%s goes to %s desk and types out a well-thought out and comprehensive explanation of %s idea, complete with tangible milestones, goals, and deliverables.\n\nAfter an hour and a half, %s is ready to hit send..." % [player, player_pronouns[2], player_pronouns[2], player]
+			},
+			8: {
+				"line": "Three hours and an entire rewrite later ..."
+			},
+			18: {
+				"line": "%s hops on the LRT to Goverment Centre." % player
+			}
 		}
 	}
+	print(exposition)
 
 func merge_scripts():
 	var lines = player_script.size() + opponent_script.size() + exposition.size()
@@ -130,7 +145,7 @@ func merge_scripts():
 func play_ambience():
 	$Ambience.play()
 
-func _input(event): # jovi
+func _input(event):
 	if ignore_keypress or event is InputEventMouse:
 		return # so dumb
 	
@@ -165,7 +180,7 @@ func speak_line():
 		if current_line == 0:
 			$Exposition.text = line["line"]
 			set_speaking_speed(line["line"])
-			$AnimationPlayer.play("play exposition") # jovi
+			$AnimationPlayer.play("play exposition")
 		else:
 			$Exposition.text = line["line"]
 			$ContentContainer/DialogueBox/Dialogue.percent_visible = 0
@@ -176,6 +191,10 @@ func speak_line():
 			$AnimationPlayer.play("fade to dialogue")
 		else:
 			var action = line["action"]
+			if opponent == "FUGUM" and player == "John":
+				if action == "normal" or action == "message":
+					action = "%s-mac" % action
+
 			var text = line["line"]
 			get_node("ContentContainer/%s/AnimatedSprite" % role).play(action)
 			
@@ -188,7 +207,7 @@ func speak_line():
 					$AnimationPlayer.play("vs")
 
 			if text != null:
-				if "%" in text:
+				if "%s" in text:
 					if role == "player":
 						text = text % opponent
 					else:
@@ -198,7 +217,27 @@ func speak_line():
 				speaker = role
 				light_actor()
 				$AnimationPlayer.play("speak")
+				
+				if opponent == "FUGUM":
+					match current_line:
+						20,22,24,26,28,30,32,34,36,38,40,42,47:
+							ignore_keypress = true
+							$ContentContainer/opponent/Voice.stream = "res://sounds/characters/FUGUM/line_%s.wav" % current_line
+							$ContentContainer/opponent/Voice.play()
+						44:
+							ignore_keypress = true
+							$Announcer.stream = "res://sounds/announcer/fugum_01.wav"
+							$Announcer.play()
+						46:
+							ignore_keypress = true
+							$Announcer.stream = "res://sounds/announcer/fugum_02.wav"
+							$Announcer.play()
+					
 				current_line += 1
+			else:
+				# skips lines with no dialogue, such as FUGUM whilst a monitor
+				current_line += 1
+				speak_line()
 			
 			if action == "fight":
 				get_node("ContentContainer/%s" % role).modulate = Color(1,1,1,1)
@@ -212,7 +251,7 @@ func set_speaking_speed(text:String):
 	
 	var chars_per_sec = 40
 	var seconds = float(chars) / chars_per_sec
-	seconds = clamp(seconds, 1, seconds)
+	seconds = clamp(seconds, 0.5, seconds)
 	var speed = 1.0 / seconds
 
 	$AnimationPlayer.playback_speed = speed
@@ -230,6 +269,10 @@ func light_actor():
 		# Oksana shows up at line 5
 		$ContentContainer/player.modulate = Color(1,1,1,1)
 		$ContentContainer/opponent.modulate.a = 0.0
+	elif opponent == "FUGUM":
+		if current_line < 5:
+			$ContentContainer/player.modulate = Color(1,1,1,1)
+			$ContentContainer/opponent.modulate = Color(1,1,1,0)
 	elif speaker == "player":
 		$ContentContainer/player.modulate = Color(1,1,1,1)
 		$ContentContainer/opponent.modulate = Color(0.55, 0.55, 0.55, 1)
@@ -238,17 +281,27 @@ func light_actor():
 		$ContentContainer/player.modulate = Color(0.55, 0.55, 0.55, 1)
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-	match anim_name: # jovi
+	match anim_name:
 		"play exposition": # exposition is finished playing
 			if opponent == "Ox_Anna":
 				# change background to rooftop
 				set_background("rooftop")
+			elif opponent == "FUGUM":
+				if current_line == 5:
+					set_background('officeSpace-blurred')
+					$ContentContainer/opponent.modulate = Color(1,1,1,1)
+				elif current_line == 19:
+					set_background('legislature-convo')
+					$ContentContainer/opponent/AnimatedSprite.play("hidden")
 			next_action = "exposition to dialogue"
 		"exposition to dialogue":
 			$Exposition.text = ""
 			next_action = "speak_line"
 			speak_line()
 		"dialogue to exposition":
+			if opponent == "FUGUM" and player != "John" and current_line == 8:
+				speak_line()
+				
 			$AnimationPlayer.play("play exposition")
 			$ContentContainer/player/AnimatedSprite.play("normal")
 			$ContentContainer/opponent/AnimatedSprite.play("normal")
@@ -258,7 +311,11 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			next_action = "speak_line"
 			speak_line()
 		"speak":
-			next_action = "speak_line"
+			if opponent == "FUGUM" and player != "John" and current_line == 8:
+#				current_line += 1
+				$AnimationPlayer.play("dialogue to exposition")
+			else:
+				next_action = "speak_line"
 		"vs":
 			get_tree().get_root().get_node("GameController").storymode_to_fight_scene()
 			get_parent().get_parent().conversation_done()
@@ -268,6 +325,7 @@ func _on_KeypressTimer_timeout():
 	ignore_keypress = false
 
 func _on_AnimationPlayer_animation_started(anim_name):
+	print(anim_name)
 	match anim_name:
 		"speak":
 			pass
@@ -275,3 +333,9 @@ func _on_AnimationPlayer_animation_started(anim_name):
 		"play exposition":
 #			ignore_keypress = false
 			$ContentContainer/DialogueBox/Dialogue.percent_visible = 0
+
+func _on_Announcer_finished():
+	ignore_keypress = false
+
+func voice_finished():
+	ignore_keypress = false

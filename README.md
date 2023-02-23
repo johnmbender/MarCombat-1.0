@@ -2,8 +2,21 @@
 A game, to conquer the world.
 
 # TO DO, IN ORDER:
-- ox anna's defeated animation
-- ox anna's collapse animation (round loss)
+- blood squirts!
+- Terje's barbeque animation
+- sometimes when bot hit (usually Terje) his hitbox disappears
+- more moo variations
+- AI VS AI
+- squish plays faster, as boot lands before it, unfortunately
+- AI block chance increased
+- can walk past oksana
+- continue -> launch, music doesn't start
+- re-record "my bad"
+- scratch sound when ox paws, maybe more sounds in general
+- more sounds when people punch (whoof sound)
+- blood when she hits player
+
+
 - randomize the number of pawings, and make Ox invincible until running
 - no tossing people off building: gore instead, horn sticking out gut (add to player sprites?)
 - ambience not playing

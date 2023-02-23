@@ -3,15 +3,14 @@
 [ext_resource path="res://fonts/American Captain.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://music/flu-shot.mp3" type="AudioStream" id=2]
 [ext_resource path="res://ui/backdrop.png" type="Texture" id=3]
-[ext_resource path="res://fonts/Betternight.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://fonts/Louis George Cafe.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://scripts/ConversationScene.gd" type="Script" id=5]
 [ext_resource path="res://fonts/Hey August.otf" type="DynamicFontData" id=6]
 [ext_resource path="res://sounds/characters/Kelsie/boot-stomp.wav" type="AudioStream" id=7]
 [ext_resource path="res://characters/Ox_Anna/starbucks.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=1]
-size = 40
-use_mipmaps = true
+size = 30
 use_filter = true
 font_data = ExtResource( 4 )
 
@@ -125,6 +124,7 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id=45]
 resource_name = "dialogue to exposition"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Exposition:modulate")
 tracks/0/interp = 1
@@ -132,7 +132,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
@@ -144,7 +144,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
@@ -152,6 +152,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=46]
 resource_name = "exposition to dialogue"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Exposition:percent_visible")
 tracks/0/interp = 1
@@ -171,7 +172,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
@@ -183,10 +184,22 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 1.00428 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ContentContainer/DialogueBox:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=44]
@@ -211,7 +224,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.502142 ),
+"times": PoolRealArray( 0.5 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
@@ -270,7 +283,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( 0.6 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
@@ -282,7 +295,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.5 ),
+"times": PoolRealArray( 0.6 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
@@ -298,6 +311,30 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ContentContainer/player:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ContentContainer/opponent:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=50]
@@ -425,6 +462,7 @@ position = Vector2( 512, 800 )
 texture = ExtResource( 8 )
 
 [node name="DialogueBox" type="Sprite" parent="ContentContainer"]
+visible = false
 position = Vector2( 512, 512 )
 scale = Vector2( 1.18447, 0.64 )
 texture = ExtResource( 3 )
@@ -501,6 +539,9 @@ anims/RESET = SubResource( 50 )
 anims/hide = SubResource( 51 )
 anims/reveal = SubResource( 49 )
 
+[node name="Announcer" type="AudioStreamPlayer" parent="."]
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
 [connection signal="timeout" from="KeypressTimer" to="." method="_on_KeypressTimer_timeout"]
+[connection signal="finished" from="Announcer" to="." method="_on_Announcer_finished"]

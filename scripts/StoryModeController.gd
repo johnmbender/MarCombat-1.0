@@ -22,7 +22,7 @@ func set_player(playerName:String):
 	player = playerName
 
 func prepare_story():
-	fight_number = 3
+	fight_number = 4
 	random = RandomNumberGenerator.new()
 	random.randomize()
 	randomize()
@@ -36,6 +36,10 @@ func shuffle_opponent_order():
 	opponents.append_array(bosses) # add the bosses at the end
 
 func pick_background():
+	if opponent == "FUGUM":
+		current_background = "rooftop-nighttime"
+		return
+		
 	if backgrounds == null or backgrounds.size() == 0:
 		shuffle_backgrounds()
 	var choice = random.randi_range(0, backgrounds.size()-1)
@@ -66,7 +70,7 @@ func load_fight():
 	if opponent == "Ox_Anna":
 		fight_scene = preload("res://scenes/BossFight-Ox_Anna.tscn").instance()
 	elif opponent == "FUGUM":
-		pass
+		fight_scene = preload("res://scenes/BossFight-FUGUM.tscn").instance()
 	else:
 		fight_scene = preload("res://scenes/FightScene.tscn").instance()
 	

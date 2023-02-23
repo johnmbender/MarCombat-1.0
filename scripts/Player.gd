@@ -12,7 +12,7 @@ var fighting = false
 var blocking = false
 var crouching = false
 var being_gored = false
-var attacking = false # for bot
+var attacking
 var can_use_fatality = false
 
 var bot
@@ -84,7 +84,7 @@ func _physics_process(_delta):
 		var _unused = move_and_slide(velocity, Vector2.UP)
 
 func get_input():
-	if not fighting:
+	if bot or not fighting:
 		return
 	
 	if blocking and Input.is_action_just_released("block"):
@@ -176,50 +176,39 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		"block":
 			if blocking:
 				$AnimationPlayer.play("blocking")
-			return
 		"block-release":
 			blocking = false
 			$AnimationPlayer.play("idle")
 		"crouch":
 			crouching = true
 			$AnimationPlayer.play("crouching")
-			return
 		"crouch-return":
 			crouching = false
 			$AnimationPlayer.play("idle")
 		"hit-uppercut","knock-back":
 			$AnimationPlayer.play("get-up")
-			return
 		"collapse":
 			play_sound("res://sounds/characters/effects/drop.wav", true)
 			$AnimationPlayer.stop()
-			return
 		"squish":
 			$AnimationPlayer.stop()
-			return
 		"skeletonize":
 			$AnimationPlayer.stop()
-			return
 		"fatality-start":
 			$AnimationPlayer.play("fatality-repeat")
-			return
 		"victory", "fatality-end":
 			set_process(false)
-			return
 		"response-john":
 			if character_name != "John":
 				collapse()
-			return
 		"tossed-by-oxanna":
 			if health > 10:
 				$AnimationPlayer.play("get-up")
-			return
 		_:
 			$AnimationPlayer.play("idle")
-	
+			
 	if bot and fighting:
 		emit_signal("bot_next_action")
-		idle()
 
 func _on_AttackCircle_body_entered(_body):
 #	if free_animations.has($AnimationPlayer.current_animation):
@@ -240,6 +229,10 @@ func damage_taken(animation:String):
 	
 	attacking = false
 	crouching = false
+	
+	# Kelsie's hair gets stuck sometimes if hit mid-swing
+	if character_name == "Kelsie":
+		$Hair.visible = false
 	
 	# emit might get picked up by both bots!
 	if bot:
@@ -505,7 +498,6 @@ func _TERJE_play_brochureClone():
 	$BrochuresParticlesBig/BrochureClone.play()
 
 func _TERJE_throwCyclone():
-	print("p1 is at ", position.x)
 	var tween = get_node("Tween")
 	var from = Vector2(global_position.x, $BrochuresParticlesBig.global_position.y)
 	var to = enemy.global_position

@@ -1,7 +1,7 @@
 [gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://levels/backgrounds/legislature.jpg" type="Texture" id=1]
-[ext_resource path="res://scripts/Ledge-bossFight.gd" type="Script" id=2]
+[ext_resource path="res://scripts/BossFight-FUGUM.gd" type="Script" id=2]
 [ext_resource path="res://scenes/UI_PlayerInfo.tscn" type="PackedScene" id=3]
 [ext_resource path="res://sounds/thunderstorm.mp3" type="AudioStream" id=4]
 [ext_resource path="res://characters/FUGUM/sounds/pulseDrone.mp3" type="AudioStream" id=5]
@@ -830,7 +830,7 @@ nodes/Animation/position = Vector2( 80, 90 )
 nodes/TimeScale/node = SubResource( 12 )
 nodes/TimeScale/position = Vector2( 310, 70 )
 nodes/output/position = Vector2( 550, 70 )
-node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
+node_connections = [ "TimeScale", 0, "Animation", "output", 0, "TimeScale" ]
 
 [sub_resource type="DynamicFont" id=3]
 size = 100

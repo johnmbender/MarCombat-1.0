@@ -3,7 +3,6 @@ extends "res://scripts/Player.gd"
 var aggression = 0.8
 var block_chance = 0.3
 var defensiveness = 0.2
-var quickness = 0.7 # what for?
 var actionTimer:Timer
 
 var action
@@ -85,7 +84,7 @@ func _physics_process(_delta):
 		block()
 	elif action == "wait":
 		wait()
-			
+	
 	var _unused = move_and_slide(velocity, Vector2.UP)
 
 func attack():
@@ -135,13 +134,13 @@ func bot_damage_taken():
 		bot_next_action()
 
 func bot_stop_timer():
-	action = null
-	actionTimer.stop()
+	if action != "approach" and action != "back up":
+		action = null
+	$ActionTimer.stop()
 
 func bot_next_action():
-	actionTimer.stop()
-	actionTimer.wait_time = rand_range(0.001, 1.5)
-	actionTimer.start()
+	$ActionTimer.wait_time = rand_range(0.001, 1.5)
+	$ActionTimer.start()
 
 func enemy_in_range():
 	return abs(enemy.global_position.x - global_position.x) < 250

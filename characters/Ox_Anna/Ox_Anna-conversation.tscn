@@ -36,10 +36,10 @@ animations = [ {
 "name": "normal",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 5 ), SubResource( 6 ), SubResource( 5 ), SubResource( 6 ), SubResource( 5 ), SubResource( 6 ) ],
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": false,
 "name": "shocked",
-"speed": 4.0
+"speed": 1.0
 }, {
 "frames": [ SubResource( 7 ) ],
 "loop": false,

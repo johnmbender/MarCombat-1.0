@@ -16,7 +16,7 @@ onready var dialogue = {
 						"action": "smile"
 					},
 					8: {
-						"line": "What does that say on my coffee? Are you fucking kidding me?",
+						"line": "What does that say on my coffee? Are you freaking kidding me?",
 						"action": "shocked"
 					},
 					10: {

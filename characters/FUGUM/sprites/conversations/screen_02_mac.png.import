@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/officeSpace-blurred.jpg-6dc3ffec96ac5e18c9ea334615cf045d.stex"
+path="res://.import/screen_02_mac.png-a5d0f120d92c8b650c64437aca0b2e6b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/UI/officeSpace-blurred.jpg"
-dest_files=[ "res://.import/officeSpace-blurred.jpg-6dc3ffec96ac5e18c9ea334615cf045d.stex" ]
+source_file="res://characters/FUGUM/sprites/conversations/screen_02_mac.png"
+dest_files=[ "res://.import/screen_02_mac.png-a5d0f120d92c8b650c64437aca0b2e6b.stex" ]
 
 [params]
 

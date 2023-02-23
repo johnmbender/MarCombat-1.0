@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://levels/backgrounds/rooftop.jpg" type="Texture" id=1]
 [ext_resource path="res://scripts/BossFight-Ox_Anna.gd" type="Script" id=2]
 [ext_resource path="res://scenes/UI_PlayerInfo.tscn" type="PackedScene" id=3]
+[ext_resource path="res://levels/backgrounds/rooftop-stars.jpg" type="Texture" id=4]
 [ext_resource path="res://fonts/Hey August.otf" type="DynamicFontData" id=6]
 
 [sub_resource type="DynamicFont" id=4]
@@ -81,6 +82,18 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 0, 240 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Stars:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -190,6 +203,11 @@ tracks/2/keys = {
 [node name="BossFight-Ox_Anna" type="Node2D"]
 script = ExtResource( 2 )
 
+[node name="Stars" type="Sprite" parent="."]
+visible = false
+position = Vector2( 512, 300 )
+texture = ExtResource( 4 )
+
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 512, 300 )
 texture = ExtResource( 1 )
@@ -298,10 +316,6 @@ anims/RESET = SubResource( 6 )
 "anims/fade to round" = SubResource( 7 )
 anims/intro = SubResource( 3 )
 
-[node name="ChargeTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-
 [node name="Delay" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
@@ -310,4 +324,3 @@ one_shot = true
 [connection signal="finished" from="Announcer" to="." method="_on_Announcer_finished"]
 [connection signal="timeout" from="EndFightTimer" to="." method="_on_EndFightTimer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
-[connection signal="timeout" from="ChargeTimer" to="." method="_on_ChargeTimer_timeout"]
