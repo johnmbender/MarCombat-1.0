@@ -8,16 +8,21 @@ var boss
 var winner
 var loser
 var continue_counter = 10
-var storymode_controller
 var game_controller
+var storymode_controller
 var end_game_input = false
+var barbequed = false
 
 func _ready():
-	game_controller = get_tree().get_root().get_node("GameController")
-	storymode_controller = game_controller.get_node("StoryModeController")
 	player_wins = 0
-	boss_wins = 1
-	
+	boss_wins = 0
+
+func set_game_controller(controller):
+	game_controller = controller
+
+func set_storymode_controller(controller):
+	storymode_controller = controller
+
 func set_player1(name:String):
 	player_name = name
 
@@ -36,7 +41,9 @@ func set_match_type(_n):
 func set_scene():
 	if player:
 		remove_child(player)
+		player.queue_free()
 		remove_child(boss)
+		boss.queue_free()
 		$HBoxContainer2/Countdown.text = "10"
 		$UI.visible = true
 
@@ -139,7 +146,8 @@ func update_health(character, health:int):
 		winner = player
 		loser = boss
 		loser.collapse()
-		winner.victory()
+		yield(get_tree().create_timer(1.0), winner.victory())
+#		winner.victory()
 		game_controller.fade_fight_music()
 		$EndFightTimer.start()
 	elif boss_wins >= 2:
@@ -176,7 +184,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			$Player.fighting = true
 		"end match fade":
 			if winner == player:
-				if $Ox_Anna/Coordinator.current_animation == "roasted":
+				if barbequed:
 					storymode_controller.fight_done()
 				else:
 					# now we fade back into the roasting scene
@@ -201,8 +209,9 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 					$EndFightTimer.wait_time = 8
 					$EndFightTimer.start()
 			else:
-				get_parent().get_parent().fight_done()
+				storymode_controller.fight_done()
 		"fade in night":
+			barbequed = true
 			announcer_speak("barbeque")
 			format_text_for_label("barbeque!")
 
@@ -250,7 +259,7 @@ func _on_Announcer_finished():
 	match $Announcer.stream.resource_path:
 		"res://sounds/announcer/Ox Anna.wav":
 			if boss_wins < 2:
-				$Ox_Anna/Coordinator.play("idle") # jovi
+				$Ox_Anna/Coordinator.play("idle")
 				return
 			$Ox_Anna.moo()
 			var _1 = $Delay.connect("timeout", self, "speak_correction")

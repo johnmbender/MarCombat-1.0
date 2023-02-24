@@ -11,20 +11,54 @@ var retirement_years
 var allow_input
 var fight_over = false
 var selected_gift = 1
+var player_name
+var player
+
+var game_controller
+var storymode_controller
 
 func _ready():
 	blade_caught = false
 	area_attached_to = null
 	retirement_years = 29
+	set_player("John")
+	set_scene()
+
+func set_game_controller(controller):
+	game_controller = controller
+
+func set_storymode_controller(controller):
+	storymode_controller = controller
+
+func set_scene():
+	var scenePath = "res://characters/%s/%s.tscn" % [player_name, player_name]
+	player = load(scenePath).instance()
+	player.name = "player"
+	player.set_bot(false)
+	player.global_position = Vector2(100,350)
+	$Player.add_child(player)
+	player.health = 100
+	player.idle()
 	$AnimationPlayer.play("intro")
+	$UI/Player1/HBoxContainer/Name.text = player_name
 	$UI/Player2/HBoxContainer/Name.text = "F.U.G.U.M."
-	$FUGUM.enemy = $John
+	player.set_z_index(10)
+	$Player/player/AttackCircle.set_deferred("monitorable", false)
+	$Player/player/AttackCircle/CollisionShape2D.set_deferred("disabled", true)
+	$Player/player.set_deferred("montoring", false)
+	$Player/player.set_deferred("monitorable", true)
+	$Player/player.collision_layer = 1
+	$FUGUM.enemy = player
+	player.enemy = $FUGUM
+
+func set_player(name:String):
+	player_name = name
 
 func _unhandled_key_input(event):
 	if allow_input:
 		if fight_over == false:
-			var player_tree = $John.animTree
-			player_tree.travel("get-up")
+			player.get_node("AnimationPlayer").play("get-up")
+			player.fighting = true
 			if retirement_years > 0:
 				$UI.set_player_health(1, 100)
 				$FUGUM.enemy.health = 100
@@ -56,7 +90,7 @@ func update_gift_modulations():
 func _process(_delta):
 	if not fight_over:
 		if blade_caught:
-			$John.global_position = $FUGUM/Wheel.get_node(area_attached_to).global_position
+			player.global_position = $FUGUM/Wheel.get_node(area_attached_to).global_position
 			var modifier = 0
 			match area_attached_to:
 				'AtRot90':
@@ -65,8 +99,8 @@ func _process(_delta):
 					modifier = 180
 				'AtRot270':
 					modifier = 270
-			$John.rotation_degrees = $FUGUM/Wheel.rotation_degrees + modifier
-			var adjusted_rot = int($John.rotation_degrees) % 360
+			player.rotation_degrees = $FUGUM/Wheel.rotation_degrees + modifier
+			var adjusted_rot = int(player.rotation_degrees) % 360
 			if adjusted_rot < 0:
 				adjusted_rot += 360
 				
@@ -75,10 +109,9 @@ func _process(_delta):
 				blade_caught = false
 				area_attached_to = null
 				$FUGUM.stop_blade()
-				$John.rotation_degrees = 0
-				var player_tree = $John.animTree
-				player_tree.travel("hit-blade")
-				$John/BloodSquirt.emitting = false
+				player.rotation_degrees = 0
+				player.get_node("AnimationPlayer").play("hit-blade")
+				$Player/player/BloodSquirt.emitting = false
 				if retirement_years <= 0:
 					$RetirementTimer.stop()
 					fight_over = true
@@ -89,21 +122,7 @@ func _process(_delta):
 func start_fight():
 	$FUGUM.move(true)
 	$RetirementTimer.start()
-	reset_player()
-
-func reset_player():
-	$John.match_over = false
-	
-	# all forced for testing, pull at runtime
-	$John.character_name = "John"
-#	$John.set_z_index(10)
-	$John.WALK_SPEED = 90
-	$John/AttackCircle.set_deferred("monitorable", false)
-	$John/AttackCircle/CollisionShape2D.set_deferred("disabled", true)
-#	$John/HitBox.set_deferred("montoring", false)
-	$John/HitBox.set_deferred("monitorable", true)
-	$John/HitBox.collision_layer = 1
-	$John.enemy = $FUGUM
+	player.fighting = true
 
 func clear_label():
 	$HBoxContainer/Label.visible = false
@@ -124,11 +143,10 @@ func start_blade():
 
 func player_pierced(area:String):
 	$UI.set_player_health(1, 0)
-	$John/AnimationTree.active = false
-	$John/AnimationTree.active = true
+	player.get_node("AnimationPlayer").stop()
 	$FUGUM.stop()
 	$RetirementTimer.paused = true
-	$John.busy = true
+	player.fighting = false
 	blade_caught = true
 	area_attached_to = area
 	move_camera(true)
@@ -138,7 +156,7 @@ func move_camera(to_player:bool):
 	var tween = get_node("Tween")
 	var start = $Camera2D.position
 	var end
-	var player_position = $John.global_position
+	var player_position = player.global_position
 	var time
 	
 	if to_player:
@@ -155,8 +173,7 @@ func move_camera(to_player:bool):
 
 func slow_time():
 	Engine.time_scale = 0.01
-	var player_tree = $John.animTree
-	player_tree.travel("blade-gut-hit")
+	player.get_node("AnimationPlayer").play("blade-gut-hit")
 
 func resume_time():
 	move_camera(false)
@@ -181,9 +198,6 @@ func _on_Lightning_timeout():
 func stop_lightning():
 	$LightningTimer.stop()
 
-func allow_input():
-	allow_input = true
-
 func _on_BladeReleaseTimer_timeout():
 	let_go = true
 
@@ -197,17 +211,13 @@ func _on_RetirementTimer_timeout():
 		elif blade_caught == false:
 			$FUGUM.stop_blade()
 			$AnimationPlayer.play("outro")
-			$John.busy = true
-#			$John/AnimationTree.active = false
-#			$John/AnimationTree.active = true
-#			$John/AnimationTree.get("parameters/playback").travel("victory")
-			$John.animTree.travel("victory")
+			player.fighting = false
 			fight_over = true
 	else:
 		retirement_years -= 1
 
 func say_player_name():
-	$Announcer.stream = load("res://characters/FUGUM/sounds/voice/retire/%s.wav" % $FUGUM.enemy.character_name)
+	$Announcer.stream = load("res://characters/FUGUM/sounds/voice/retire/%s.wav" % player_name)
 	$Announcer.play()
 
 func show_gifts():
@@ -222,6 +232,7 @@ func show_gifts():
 	$GiftContainer.modulate = Color(1,1,1,1)
 	
 	remove_child($FUGUM)
+	$FUGUM.queue_free()
 
 func present_gift():
 	var gift
@@ -241,8 +252,8 @@ func present_gift():
 	$AnimationPlayer.play("fade everything")
 
 func return_to_launch():
-	get_tree().get_root().remove_child(self)
+	game_controller.load_launch_screen()
 
-func match_over(thing, thing2):
+func match_over(_t1, _t2):
 	# ignoring
 	pass

@@ -345,6 +345,7 @@ tracks/7/keys = {
 
 [sub_resource type="Animation" id=123]
 resource_name = "blade-gut-hit"
+loop = true
 step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -645,28 +646,25 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.1, 0.15, 0.25, 0.35, 0.45, 0.55, 0.65 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0.1, 0.15, 0.25, 0.35, 0.45, 0.55 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "values": [ {
-"args": [ Vector2( -40, -30 ), 0, 0.05 ],
+"args": [ Vector2( -100, -60 ), 0, 0.05 ],
 "method": "tween"
 }, {
-"args": [ Vector2( -60, -50 ), 0, 0.1 ],
+"args": [ Vector2( -150, -100 ), 0, 0.1 ],
 "method": "tween"
 }, {
-"args": [ Vector2( -60, -50 ), 0, 0.1 ],
+"args": [ Vector2( -150, -100 ), 0, 0.1 ],
 "method": "tween"
 }, {
-"args": [ Vector2( -60, -20 ), 0, 0.1 ],
+"args": [ Vector2( -120, -40 ), 0, 0.1 ],
 "method": "tween"
 }, {
-"args": [ Vector2( -20, 30 ), 0, 0.1 ],
+"args": [ Vector2( -40, 30 ), 0, 0.1 ],
 "method": "tween"
 }, {
-"args": [ Vector2( -20, 50 ), 0, 0.1 ],
-"method": "tween"
-}, {
-"args": [ Vector2( -10, 60 ), 0, 0.05 ],
+"args": [ Vector2( -40, 50 ), 0, 0.1 ],
 "method": "tween"
 } ]
 }

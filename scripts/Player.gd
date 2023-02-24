@@ -120,13 +120,20 @@ func get_input():
 				$AnimationPlayer.play("walk-forward")
 			else:
 				$AnimationPlayer.play("walk-backward")
-			velocity.x -= MOVE_SPEED
+			
+			if enemy.character_name == "F.U.G.U.M.":
+				velocity.x -= (MOVE_SPEED * .5)
+			else:
+				velocity.x -= MOVE_SPEED
 		elif Input.is_action_pressed("ui_right"):
 			if facing == "right":
 				$AnimationPlayer.play("walk-forward")
 			else:
 				$AnimationPlayer.play("walk-backward")
-			velocity.x += MOVE_SPEED
+			if enemy.character_name == "F.U.G.U.M.":
+				velocity.x += (MOVE_SPEED * .5)
+			else:
+				velocity.x += MOVE_SPEED
 		elif can_use_fatality and Input.is_action_pressed("fatality"):
 			fatality()
 		else:
@@ -204,6 +211,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		"tossed-by-oxanna":
 			if health > 10:
 				$AnimationPlayer.play("get-up")
+		"hit-blade":
+			fighting = false
 		_:
 			$AnimationPlayer.play("idle")
 			

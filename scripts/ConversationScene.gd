@@ -17,10 +17,19 @@ var background
 var sound_effect
 var current_line
 
+var game_controller
+var storymode_controller
+
 var speaker
 var next_action = null
 onready var ignore_keypress = false # stores if the user's keypresses will be ignored or not
 onready var first_line_spoken = false # start convo automatically
+
+func set_game_controller(controller):
+	game_controller = controller
+
+func set_storymode_controller(controller):
+	storymode_controller = controller
 
 func set_fight_number(fight:int):
 	fight_number = fight
@@ -54,6 +63,7 @@ func load_actor_scene(character:String, role:String):
 		elif character == "FUGUM":
 			scene.scale = Vector2(1, 1)
 			position = Vector2(500, 100)
+			scene.set_controller(self)
 
 		scene.global_position = position
 
@@ -94,7 +104,7 @@ func start_conversation():
 	match fight_number:
 		1, 2, 3:
 			$ContentContainer/opponent.modulate = Color(1,1,1,0)
-	
+
 	speak_line()
 
 func set_exposition():
@@ -126,7 +136,6 @@ func set_exposition():
 			}
 		}
 	}
-	print(exposition)
 
 func merge_scripts():
 	var lines = player_script.size() + opponent_script.size() + exposition.size()
@@ -151,6 +160,10 @@ func _input(event):
 	
 	# resart keypress timer
 	ignore_keypress = true
+	var FUGUM_voice = get_node_or_null("ContentContainer/opponent/AnimatedSprite/Voice")
+	if FUGUM_voice:
+		FUGUM_voice.stop()
+	$Announcer.stop()
 	$KeypressTimer.start()
 		
 	if $AnimationPlayer.is_playing() and ["speak","play exposition"].has($AnimationPlayer.current_animation) and $AnimationPlayer.playback_speed < 5:
@@ -170,6 +183,12 @@ func _input(event):
 	
 func speak_line():
 	if current_line >= scene_script.size():
+		if opponent == "FUGUM":
+			$VS.text = "VS"
+			$ContentContainer/opponent/AnimatedSprite.modulate = Color(0,0,0,1)
+			$ContentContainer/opponent.scale = Vector2(1.5, 1.5)
+			$ContentContainer/opponent.position = Vector2(-200, -100)
+			$ContentContainer/opponent/AnimatedSprite.play("fight")
 		$AnimationPlayer.play("vs")
 		return
 		
@@ -185,6 +204,9 @@ func speak_line():
 			$Exposition.text = line["line"]
 			$ContentContainer/DialogueBox/Dialogue.percent_visible = 0
 			$AnimationPlayer.play("dialogue to exposition")
+			if current_line == 18:
+				# fade out the music for the Ledge scene
+				game_controller.fade_conversation_music()
 		current_line += 1
 	else:
 		if current_line == 0 && $ContentContainer.modulate == Color(0,0,0,1):
@@ -222,15 +244,18 @@ func speak_line():
 					match current_line:
 						20,22,24,26,28,30,32,34,36,38,40,42,47:
 							ignore_keypress = true
-							$ContentContainer/opponent/Voice.stream = "res://sounds/characters/FUGUM/line_%s.wav" % current_line
-							$ContentContainer/opponent/Voice.play()
+							if current_line != 30:
+								$ContentContainer/opponent/AnimatedSprite/Voice.stream = load("res://sounds/characters/FUGUM/%s.wav" % current_line)
+							else:
+								$ContentContainer/opponent/AnimatedSprite/Voice.stream = load("res://sounds/characters/FUGUM/%s-%s.wav" % [current_line, player])
+							$ContentContainer/opponent/AnimatedSprite/Voice.play()
 						44:
 							ignore_keypress = true
-							$Announcer.stream = "res://sounds/announcer/fugum_01.wav"
+							$Announcer.stream = load("res://sounds/announcer/fugum_01.wav")
 							$Announcer.play()
 						46:
 							ignore_keypress = true
-							$Announcer.stream = "res://sounds/announcer/fugum_02.wav"
+							$Announcer.stream = load("res://sounds/announcer/fugum_02.wav")
 							$Announcer.play()
 					
 				current_line += 1
@@ -317,15 +342,14 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			else:
 				next_action = "speak_line"
 		"vs":
-			get_tree().get_root().get_node("GameController").storymode_to_fight_scene()
-			get_parent().get_parent().conversation_done()
+			game_controller.storymode_to_fight_scene()
+			storymode_controller.conversation_done()
 
 
 func _on_KeypressTimer_timeout():
 	ignore_keypress = false
 
 func _on_AnimationPlayer_animation_started(anim_name):
-	print(anim_name)
 	match anim_name:
 		"speak":
 			pass
@@ -338,4 +362,5 @@ func _on_Announcer_finished():
 	ignore_keypress = false
 
 func voice_finished():
+	print("voice_finished() called... ?")
 	ignore_keypress = false

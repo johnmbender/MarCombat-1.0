@@ -2,6 +2,15 @@
 A game, to conquer the world.
 
 # TO DO, IN ORDER:
+- quicker after "VS"
+    = ConversationScene, in animation_finished: shortened animation by a second; see if the boom gets cut off, though
+- queue free all remove_child instances!
+- last hit on Ox needs to play through before victory
+- ai vs. ai highlights issues with AI; need to solve
+- weird cross-music things between scenes
+- somehow Terje beat Keslie when she was nearly full health - OH WHILE STUNNED
+- make people move to ranges to do their fatalities
+- AI (p2) isn't on the floor at the start until gravity kicks in
 - blood squirts!
 - Terje's barbeque animation
 - sometimes when bot hit (usually Terje) his hitbox disappears
@@ -15,6 +24,7 @@ A game, to conquer the world.
 - scratch sound when ox paws, maybe more sounds in general
 - more sounds when people punch (whoof sound)
 - blood when she hits player
+- boom sound when selecting game mode gets chopped off when switching scene
 
 
 - randomize the number of pawings, and make Ox invincible until running

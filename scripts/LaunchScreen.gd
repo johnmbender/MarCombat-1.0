@@ -2,6 +2,7 @@ extends Node2D
 
 onready var allow_input = false
 var game_mode
+var game_controller
 
 # selection(s) hold the options to select from menu and their positions
 var selection = 0
@@ -12,12 +13,18 @@ var selections = [
 	[Vector2(400, 529), Vector2(620, 529)],
 ]
 
-func _ready():
-	get_parent().scene_ready("LaunchScreen")
+func set_game_controller(controller):
+	game_controller = controller
 
-func start():
+func _ready():
+	game_controller.scene_ready("LaunchScreen")
+
+func start(intro_shown:bool):
 	$AnimationPlayer.play("fadeIn")
-	
+	#not working yet
+	if intro_shown:
+		$AnimationPlayer.seek(7.1)
+
 func _input(event):
 	if allow_input == false:
 		return
@@ -69,10 +76,12 @@ func do_selection():
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	match anim_name:
+		"fadeIn":
+			game_controller.flag_intro_shown()
 		"quit":
-			get_parent().quit_game()
+			game_controller.quit_game()
 		"fadeOut":
-			get_parent().set_game_mode(game_mode)
+			game_controller.set_game_mode(game_mode)
 
 func _on_DemoTimer_timeout():
 	game_mode = "ai_vs_ai"

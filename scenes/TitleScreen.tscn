@@ -112,14 +112,11 @@ anims/hide = SubResource( 1 )
 anims/show = SubResource( 2 )
 
 [node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
-modulate = Color( 0.627451, 0.227451, 0.227451, 1 )
+modulate = Color( 0.627451, 0.227451, 0.227451, 0.8 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 expand = true
 stretch_mode = 7
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/TextureRect2"]
 anims/hide = SubResource( 3 )

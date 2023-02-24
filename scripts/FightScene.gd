@@ -10,6 +10,8 @@ var player2_wins
 var winner
 var loser
 
+var key_to_exit = false
+
 var fight_speed = 1.1
 
 var end_match = false
@@ -19,22 +21,24 @@ var backgrounds = ["arrivals","breakRoom","humanHistory","lobby","naturalHistory
 var background
 
 var match_type
+var game_controller
+var storymode_controller
 
 func _ready():
 	player1_wins = 0
 	player2_wins = 0
-#
-	if player1_name == null:
-		randomize()
-		set_player1(characters[randi() % characters.size()])
-	if player2_name == null:
-		randomize()
-		set_player2(characters[randi() % characters.size()])
-	if background == null:
-		randomize()
-		set_background(backgrounds[randi() % backgrounds.size()])
-	if match_type == null:
-		match_type = "demo"
+
+func _input(event):
+	if not key_to_exit or event is InputEventMouse:
+		return
+
+	game_controller.fight_done()
+
+func set_game_controller(controller):
+	game_controller = controller
+
+func set_storymode_controller(controller):
+	storymode_controller = controller
 
 func set_player1(playerName:String):
 	player1_name = playerName
@@ -99,11 +103,28 @@ func addPlayer(character:String, node_name:String, bot:bool):
 	return player
 
 func set_scene():
+	if player1_name == null:
+		randomize()
+		set_player1(characters[randi() % characters.size()])
+		#ai vs ai demo key to quit
+		key_to_exit = true
+	if player2_name == null:
+		randomize()
+		set_player2(characters[randi() % characters.size()])
+	if background == null:
+		randomize()
+		set_background(backgrounds[randi() % backgrounds.size()])
+	if match_type == null:
+		match_type = "demo"
+
 	$Background.texture = load("res://levels/backgrounds/%s.jpg" % background)
 	
 	if player1_node:
 		remove_child(player1_node)
+		player1_node.queue_free()
 		remove_child(player2_node)
+		player2_node.queue_free()
+	
 	
 	match match_type:
 		"demo":
@@ -207,13 +228,11 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			if player2_node.bot:
 				player2_node.doSomething()
 		"end match fade":
-			var game_controller = get_parent()
-			if game_controller.name == "FightScene":
-				# storymode
-				get_parent().get_parent().fight_done()
+			if match_type == "storymode":
+				storymode_controller.fight_done()
 			else:
-				get_parent().fade_fight_music()
-				get_parent().fight_done()
+				game_controller.fade_fight_music()
+				game_controller.fight_done()
 
 func _on_FatalityTimer_timeout():
 	loser.collapse()

@@ -103,18 +103,19 @@ func notify_player_pierced(area:String):
 		enemy_pierced = true
 		set_collisions(false, true)
 
-func _on_AtRot0_area_entered(area):
-	notify_player_pierced("AtRot0")
-
-func _on_AtRot90_area_entered(area):
-	notify_player_pierced("AtRot90")
-
-func _on_AtRot180_area_entered(area):
-	notify_player_pierced("AtRot180")
-
-func _on_AtRot270_area_entered(area):
-	notify_player_pierced("AtRot270")
 
 func _on_Tween_tween_all_completed():
 	# done moving, notify level
 	get_parent().allow_input()
+
+func _on_AtRot0_body_entered(_body):
+	notify_player_pierced("AtRot0")
+
+func _on_AtRot90_body_entered(_body):
+	notify_player_pierced("AtRot90")
+
+func _on_AtRot180_body_entered(_body):
+	notify_player_pierced("AtRot180")
+
+func _on_AtRot270_body_entered(_body):
+	notify_player_pierced("AtRot270")

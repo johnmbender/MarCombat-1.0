@@ -2,12 +2,14 @@ extends Node2D
 
 var current_scene
 var game_mode
+var intro_shown = false
 
 func _ready():
 	load_launch_screen()
 
 func load_launch_screen():
 	var scene = preload("res://scenes/LaunchScreen.tscn").instance()
+	scene.set_game_controller(self)
 	add_child(scene)
 	
 	if current_scene != "LaunchScreen":
@@ -16,6 +18,7 @@ func load_launch_screen():
 
 func load_character_select():
 	var scene = preload("res://scenes/CharacterSelect.tscn").instance()
+	scene.set_game_controller(self)
 	add_child(scene)
 	remove_scene()
 	current_scene = "CharacterSelect"
@@ -33,6 +36,7 @@ func load_storymode(player):
 	remove_scene()
 	current_scene = "StoryModeController"
 	scene.set_player(player)
+	scene.set_game_controller(self)
 	scene.prepare_story()
 	$AnimationPlayer.play("fade to storymode")
 
@@ -43,6 +47,7 @@ func load_deathmatch(player1, player2):
 	if player2 == false:
 		# vs AI opponent
 		var scene = preload("res://scenes/FightScene.tscn").instance()
+		scene.set_game_controller(self)
 		add_child(scene)
 		remove_scene()
 		current_scene = "FightScene"
@@ -60,7 +65,8 @@ func load_demo():
 	current_scene = "FightScene"
 	var scene = preload("res://scenes/FightScene.tscn").instance()
 	add_child(scene)
-	scene.prepare_fight()
+	scene.set_game_controller(self)
+	scene.set_scene()
 
 func raise_fight_music(transition:bool = true):
 	if transition:
@@ -80,11 +86,17 @@ func fight_to_conversation():
 func scene_ready(scene:String):
 	match scene:
 		"LaunchScreen":
-			$LaunchScreen.start()
+			$LaunchScreen.start(intro_shown)
+
+func flag_intro_shown():
+	intro_shown = true
 
 func set_game_mode(mode:String):
 	game_mode = mode
-	remove_child(get_node(current_scene))
+	var removable = get_node(current_scene)
+	remove_child(removable)
+	removable.queue_free()
+	
 	match game_mode:
 		"storymode":
 			load_character_select()
@@ -99,7 +111,7 @@ func fight_done():
 	remove_scene()
 	$AnimationPlayer.play("fade fight music")
 	match game_mode:
-		"deathmatch":
+		"deathmatch","ai_vs_ai":
 			load_launch_screen()
 #		"storymode":
 #			print("next storymode scene!")
@@ -122,6 +134,9 @@ func fade_fight_music(transition:bool = true):
 	else:
 		$AnimationPlayer.play("just fade fight music")
 
+func fade_conversation_music():
+	$AnimationPlayer.play("fade conversation music")
+
 func quit_game():
 	$AnimationPlayer.play("quit")
 
@@ -130,6 +145,7 @@ func remove_scene():
 		var node = get_node_or_null(current_scene)
 		if node:
 			remove_child(node)
+			node.queue_free()
 	current_scene = null
 
 func _on_AnimationPlayer_animation_finished(anim_name):

@@ -110,7 +110,7 @@ func damage_taken(animation:String):
 
 		got_hit = true
 		$Coordinator.play("hit")
-		health -= 100 # 25
+		health -= 25
 		speed_modifier *= 1.1
 		emit_signal("update_health", self, health)
 		enemy.play_sound("res://sounds/characters/effects/punched.wav", true)

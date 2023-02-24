@@ -17,12 +17,16 @@ var fight_scene
 var current_background
 var backgrounds
 var random
+var game_controller
+
+func set_game_controller(controller):
+	game_controller = controller
 
 func set_player(playerName:String):
 	player = playerName
 
 func prepare_story():
-	fight_number = 4
+	fight_number = 3
 	random = RandomNumberGenerator.new()
 	random.randomize()
 	randomize()
@@ -59,6 +63,8 @@ func load_conversation():
 	conversation_scene.set_fight_number(fight_number)
 	conversation_scene.set_player(player)
 	get_opponent()
+	conversation_scene.set_game_controller(game_controller)
+	conversation_scene.set_storymode_controller(self)
 	conversation_scene.set_opponent(opponent)
 	pick_background()
 	conversation_scene.set_background(current_background)
@@ -79,6 +85,8 @@ func load_fight():
 	fight_scene.set_player2(opponent)
 	fight_scene.set_background(current_background)
 	fight_scene.set_match_type("storymode")
+	fight_scene.set_game_controller(game_controller)
+	fight_scene.set_storymode_controller(self)
 	fight_scene.set_scene()
 	$AnimationPlayer.play("fade in fight")
 
@@ -86,18 +94,26 @@ func remove_conversation_scene():
 	if $ConversationScene.has_node("ConversationScene"):
 		var node = $ConversationScene.get_node("ConversationScene")
 		$ConversationScene.remove_child(node)
+		node.queue_free()
 		
 func remove_fight_scene():
+	var node
 	if $FightScene.has_node("FightScene"):
-		var node = $FightScene.get_node("FightScene")
-		$FightScene.remove_child(node)
+		node = $FightScene.get_node("FightScene")
+	elif $FightScene.has_node("BossFight-Ox_Anna"):
+		node = $FightScene.get_node("BossFight-Ox_Anna")
+	elif $FightScene.has_node("BossFight-FUGUM"):
+		node = $FightScene.get_node("BossFight-FUGUM")
+		
+	$FightScene.remove_child(node)
+	node.queue_free()
 
 func conversation_done():
 	# called by ConversationScene when done
 	$AnimationPlayer.play("fade out conversation")
 
 func fight_done():
-	# called by FightSCene when done
+	# called by FightScene when done
 	$AnimationPlayer.play("fade out fight")
 
 func _on_AnimationPlayer_animation_finished(anim_name):
@@ -105,7 +121,6 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		"fade in conversation": # after conversation scene is visible
 			# start conversation
 			$ConversationScene/ConversationScene.start_conversation()
-#			get_tree().get_root().get_node("GameController").fight_to_conversation()
 		"fade out conversation": # after conversation scene is invisible
 			# remove the scene
 			remove_conversation_scene()
@@ -126,7 +141,4 @@ func next_opponent():
 		load_conversation()
 	else:
 		# StoryMode complete; re-add the launch screen
-		var launch_screen = load("res://scenes/LaunchScreen.tscn").instance()
-		get_tree().get_root().add_child(launch_screen)
-		# then remove self
-		get_tree().get_root().remove_child(self)
+		game_controller.load_launch_screen()

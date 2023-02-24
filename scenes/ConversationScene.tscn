@@ -275,7 +275,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=43]
 resource_name = "vs"
-length = 3.0
+length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("VS:visible")
 tracks/0/interp = 1
@@ -486,13 +486,14 @@ visible = false
 modulate = Color( 1, 0, 0, 1 )
 margin_left = 416.0
 margin_top = 224.0
-margin_right = 656.0
-margin_bottom = 434.0
+margin_right = 666.0
+margin_bottom = 424.0
 rect_scale = Vector2( 0.8, 0.8 )
 rect_clip_content = false
 theme = SubResource( 42 )
 meta_underlined = false
-text = "VS"
+text = "VS
+"
 scroll_active = false
 deselect_on_focus_loss_enabled = false
 
@@ -540,6 +541,7 @@ anims/hide = SubResource( 51 )
 anims/reveal = SubResource( 49 )
 
 [node name="Announcer" type="AudioStreamPlayer" parent="."]
+volume_db = -5.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]

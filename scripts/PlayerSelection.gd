@@ -3,7 +3,7 @@ extends Control
 var character_info_scene
 var player_count = 1
 
-onready var game_controller = get_tree().get_root().get_node("GameController")
+var game_controller
 
 var selected = 0
 onready var characters = ["John","Kelsie","Terje"]
@@ -11,6 +11,9 @@ onready var random_unselected = preload("res://sprites/UI/random-unselected.png"
 onready var random_selected = preload("res://sprites/UI/random-selected.png")
 onready var character_selected = preload("res://sprites/UI/character-selected.png")
 onready var character_unselected = preload("res://sprites/UI/character-unselected.png")
+
+func set_game_controller(controller):
+	game_controller = controller
 
 func _ready():
 	randomize()
@@ -67,6 +70,7 @@ func draw_selection():
 	for node in character_info_scene.get_children():
 		if node.name != "Panel":
 			character_info_scene.remove_child(node)
+			node.queue_free()
 	
 	if selected >= characters.size():
 		character_info_scene.get_node("Panel").visible = false

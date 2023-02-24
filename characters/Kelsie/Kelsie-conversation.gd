@@ -184,7 +184,7 @@ onready var dialogue = {
 						"action": "confused"
 					},
 					25: {
-						"line": "Yes.",
+						"line": "Oh, most definitely.",
 						"action": "yes"
 					},
 					27: {
