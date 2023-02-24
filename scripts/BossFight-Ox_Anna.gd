@@ -146,8 +146,15 @@ func update_health(character, health:int):
 		winner = player
 		loser = boss
 		loser.collapse()
-		yield(get_tree().create_timer(1.0), winner.victory())
-#		winner.victory()
+		# victory_timer delays the player's victory celebration
+		# so they can get their uppercut animation done
+		var victory_timer = Timer.new()
+		victory_timer.wait_time = 1.0
+		victory_timer.name = "VictoryTimer"
+		victory_timer.one_shot = true
+		victory_timer.connect("timeout", self, "delayed_victory")
+		add_child(victory_timer)
+		victory_timer.start()
 		game_controller.fade_fight_music()
 		$EndFightTimer.start()
 	elif boss_wins >= 2:
@@ -167,6 +174,10 @@ func update_health(character, health:int):
 		announcer_speak(character.enemy.character_name)
 		$EndFightTimer.wait_time = 3
 		$EndFightTimer.start()
+
+func delayed_victory():
+	$VictoryTimer.queue_free()
+	winner.victory()
 
 func victory_scene():
 	$Ox_Anna.running = false

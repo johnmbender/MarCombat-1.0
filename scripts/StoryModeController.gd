@@ -26,7 +26,7 @@ func set_player(playerName:String):
 	player = playerName
 
 func prepare_story():
-	fight_number = 3
+	fight_number = 0
 	random = RandomNumberGenerator.new()
 	random.randomize()
 	randomize()

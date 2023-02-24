@@ -1,7 +1,7 @@
 extends "res://scripts/Player.gd"
 
 var aggression = 0.8
-var block_chance = 0.3
+var block_chance = 0.4
 var defensiveness = 0.2
 var actionTimer:Timer
 
@@ -48,7 +48,7 @@ func _physics_process(_delta):
 	velocity.y = 0
 	velocity.y += GRAVITY
 
-	if action == null or attacking or blocking or crouching:
+	if attacking or blocking or crouching:
 		return
 		
 	if blocking and action != "block":

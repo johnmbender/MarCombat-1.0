@@ -59,7 +59,7 @@ func do_selection():
 		$Announcer.play()
 		return
 		
-	$Boom.play()
+	game_controller.get_node("Boom").play()
 	
 	match selection:
 		3:

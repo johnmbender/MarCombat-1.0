@@ -135,6 +135,18 @@ func get_input():
 			else:
 				velocity.x += MOVE_SPEED
 		elif can_use_fatality and Input.is_action_pressed("fatality"):
+			match character_name:
+				"Kelsie":
+					# can't be too close
+					if abs(global_position.x - enemy.global_position.x) < 200:
+						return
+				"Terje":
+					# can't be too close
+					if abs(global_position.x - enemy.global_position.x) < 200:
+						return
+				"John":
+					pass
+					
 			fatality()
 		else:
 			$AnimationPlayer.play("idle")
@@ -247,7 +259,7 @@ func damage_taken(animation:String):
 	if bot:
 		emit_signal("bot_damage_taken")
 
-	if $AnimationPlayer.current_animation == "stunned":
+	if $AnimationPlayer.current_animation == "stunned" and not _KELSIE_is_dizzy:
 		$AnimationPlayer.play("collapse")
 		get_parent().match_over(enemy)
 	elif blocking and enemy.character_name != "Ox Anna":
@@ -255,7 +267,7 @@ func damage_taken(animation:String):
 		$AnimationPlayer.play("block-release")
 		if bot:
 			emit_signal("bot_next_action")
-		health -= 5
+		health -= 3
 	else:
 		$AnimationPlayer.stop()
 

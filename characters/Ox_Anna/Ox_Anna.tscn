@@ -474,6 +474,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 10 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 10 ) ]
 }
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.14 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "pawing_sound"
+} ]
+}
 
 [sub_resource type="Animation" id=67]
 resource_name = "roasted"
@@ -717,7 +731,7 @@ anims/run = SubResource( 59 )
 anims/victory = SubResource( 61 )
 
 [node name="Body" type="Sprite" parent="."]
-texture = ExtResource( 4 )
+texture = ExtResource( 20 )
 
 [node name="BodyPlayer" type="AnimationPlayer" parent="Body"]
 root_node = NodePath("../..")
@@ -734,7 +748,7 @@ anims/run = SubResource( 36 )
 anims/victory = SubResource( 62 )
 
 [node name="Head" type="Sprite" parent="."]
-texture = ExtResource( 28 )
+texture = ExtResource( 31 )
 
 [node name="HeadPlayer" type="AnimationPlayer" parent="Head"]
 root_node = NodePath("../..")
@@ -751,6 +765,7 @@ anims/run = SubResource( 51 )
 
 [node name="HeadDown" type="Area2D" parent="."]
 collision_layer = 0
+monitorable = false
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -763,6 +778,7 @@ shape = SubResource( 26 )
 
 [node name="Gore" type="Area2D" parent="."]
 collision_layer = 0
+monitorable = false
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true

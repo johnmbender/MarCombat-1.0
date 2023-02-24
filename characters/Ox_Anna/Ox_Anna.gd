@@ -79,6 +79,7 @@ func _physics_process(_delta):
 	var _result = move_and_slide(velocity, Vector2.UP)
 
 func _on_ChargeTimer_timeout():
+	$HeadDown.set_deferred("monitoring", true)
 	var random = RandomNumberGenerator.new()
 	random.randomize()
 	paw_counter = random.randi_range(0,3)
@@ -116,6 +117,11 @@ func damage_taken(animation:String):
 		enemy.play_sound("res://sounds/characters/effects/punched.wav", true)
 		moo()
 
+func pawing_sound():
+	$SoundPlayer.stream = load("res://sounds/characters/Ox_Anna/pawing.wav")
+	$SoundPlayer.pitch_scale = rand_range(0.8, 1.2)
+	$SoundPlayer.play()
+
 func moo():
 	if $SoundPlayer.playing:
 		return
@@ -139,6 +145,8 @@ func _on_Gore_body_entered(_body):
 		return
 		
 	if not got_hit:
+		$ChargeTimer.stop()
+		$HeadDown.set_deferred("monitoring", false)
 		$Coordinator.play("goring")
 		enemy.damage_taken("tossed-by-oxanna")
 
@@ -149,9 +157,6 @@ func play_anthem():
 	$Anthem.play()
 
 func _on_HeadDown_body_entered(_body):
-	if not running:
-		return
-		
 	if running:
 		$Coordinator.play("head down")
 	else:
@@ -174,7 +179,6 @@ func _on_Coordinator_animation_finished(anim_name):
 				running = false
 			return
 		"goring":
-#			fighting = false
 			return
 		"victory":
 			$Coordinator.play("back down")
@@ -193,3 +197,4 @@ func _on_Coordinator_animation_finished(anim_name):
 
 func _on_HeadDown_body_exited(_body):
 	$Head/HeadPlayer.play("idle")
+	$HeadDown.set_deferred("monitoring", false)
