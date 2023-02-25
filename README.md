@@ -2,6 +2,7 @@
 A game, to conquer the world.
 
 # TO DO, IN ORDER:
+- check the Krotos app for sound effects
 - full storymode test with music crossovers and Terje/Kelsie animations vs. FUGUM
 - test all ambiences in convo scene
     - ambience in fights, too? if so, put them in game_controller
