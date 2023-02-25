@@ -2,6 +2,8 @@
 A game, to conquer the world.
 
 # TO DO, IN ORDER:
+- use the cartoon PS tutorial to make the whole game more cartoony for fun, as an option
+    - also, 8bit the music or use different music; could bitcrush everything
 - check the Krotos app for sound effects
 - full storymode test with music crossovers and Terje/Kelsie animations vs. FUGUM
 - test all ambiences in convo scene
