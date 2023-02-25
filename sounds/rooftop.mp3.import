@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/rooftop.mp3-49436d7a1e96ef4e3af550c6400d284d.mp3str"
+
+[deps]
+
+source_file="res://sounds/rooftop.mp3"
+dest_files=[ "res://.import/rooftop.mp3-49436d7a1e96ef4e3af550c6400d284d.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

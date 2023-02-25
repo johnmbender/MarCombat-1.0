@@ -21,8 +21,6 @@ func _ready():
 	blade_caught = false
 	area_attached_to = null
 	retirement_years = 29
-	set_player("John")
-	set_scene()
 
 func set_game_controller(controller):
 	game_controller = controller
@@ -51,8 +49,17 @@ func set_scene():
 	$FUGUM.enemy = player
 	player.enemy = $FUGUM
 
-func set_player(name:String):
+func set_player1(name:String):
 	player_name = name
+
+func set_player2(_n):
+	pass
+
+func set_background(_b):
+	pass
+
+func set_match_type(_mt):
+	pass
 
 func _unhandled_key_input(event):
 	if allow_input:

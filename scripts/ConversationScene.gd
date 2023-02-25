@@ -19,6 +19,8 @@ var current_line
 
 var game_controller
 var storymode_controller
+# change this based on the script
+var last_coworker_fight = 1
 
 var speaker
 var next_action = null
@@ -88,11 +90,19 @@ func set_background_sounds(location:String):
 			$Ambience.volume_db = -10
 		"humanHistory","naturalHistory":
 			sound_effect = load("res://sounds/publicSpace.mp3")
-			$Ambience.volume_db = -20
+			$Ambience.volume_db = -10
 		"office":
 			sound_effect = load("res://sounds/pete.mp3")
-	
+			$Ambience.volume_db = -10
+		"breakRoom","hallway","parking":
+			sound_effect = load("res://sounds/office-ambient.mp3")
+			$Ambience.volume_db = 0
+		"rooftop":
+			sound_effect = load("res://sounds/rooftop.mp3")
+			$Ambience.volume_db = -20
+
 	$Ambience.stream = sound_effect
+	$Ambience.play()
 
 func start_conversation():
 	current_line = 0
@@ -139,6 +149,16 @@ func set_exposition():
 
 func merge_scripts():
 	var lines = player_script.size() + opponent_script.size() + exposition.size()
+	
+	# the fight before Self-Doubt, if it happens to be Kelsie v John
+	# swap out the last two lines for "Hey, %s, tell me... how do you pronounce 'gif'?"
+	# and "'gif'" - and then they fight
+	
+	if fight_number == last_coworker_fight:
+		if player == "Kelsie" or player == "John":
+			if opponent == "Kelsie" or opponent == "John":
+				player_script[9]['line'] = 'Tell me, %s... how do you pronounce "gif"?' % opponent
+				opponent_script[10]['line'] = ".... gif."
 	
 	for n in range(0, lines):
 		if exposition.has(fight_number) and exposition[fight_number].has(n):
