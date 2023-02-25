@@ -2,7 +2,7 @@
 A game, to conquer the world.
 
 # TO DO, IN ORDER:
-- Kelsie all messed up vs FUGUM
+- Kelsie all messed up vs FUGUM because anims missing
 - did change to storymode music between a fight
 - Johnm's hitbox went wonky (as AI)
 - lose at Ox, intro music doesn't play (or isn't up)

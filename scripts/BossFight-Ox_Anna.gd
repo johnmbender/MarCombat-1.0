@@ -104,7 +104,7 @@ func reset():
 	$HBoxContainer2/Countdown.visible = false
 	$UI/Player1/SkullContainer/Skull.visible = false
 	$UI/Player2/SkullContainer/Skull.visible = false
-	game_controller.raise_fight_music(false)
+	game_controller.fight_music_adjust("raise")
 
 func announcer_speak(line:String):
 	var path = "res://sounds/announcer/"
@@ -155,7 +155,7 @@ func update_health(character, health:int):
 		victory_timer.connect("timeout", self, "delayed_victory")
 		add_child(victory_timer)
 		victory_timer.start()
-		game_controller.fade_fight_music()
+		game_controller.fight_music_fade("out")
 		$EndFightTimer.start()
 	elif boss_wins >= 2:
 		winner = boss
@@ -164,6 +164,7 @@ func update_health(character, health:int):
 		victory_scene()
 	else:
 		# undeciding round
+		game_controller.fight_music_adjust("lower")
 		if character == boss:
 			$Ox_Anna.collapse()
 		else:
@@ -259,7 +260,7 @@ func speak_correction():
 	var _1 = $Delay.connect("timeout", self, "update_oksana")
 	$Delay.start()
 	$HBoxContainer/Words.text = ""
-	game_controller.fade_fight_music(false)
+	game_controller.fight_music_fade("out")
 
 func update_oksana():
 	format_text_for_label("Oksana wins")

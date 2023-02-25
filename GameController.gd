@@ -55,38 +55,27 @@ func load_deathmatch(player1, player2):
 		scene.set_player2(characters[0])
 		scene.set_match_type("deathmatch")
 		scene.set_scene()
-		raise_fight_music()
+		fight_music_fade("in")
+		intro_music_fade("out")
 	else:
 		# 2 players
 		pass
 
 func load_demo():
-	raise_fight_music()
+	fight_music_fade("in")
+	intro_music_fade("out")
 	current_scene = "FightScene"
 	var scene = preload("res://scenes/FightScene.tscn").instance()
 	add_child(scene)
 	scene.set_game_controller(self)
 	scene.set_scene()
 
-func raise_fight_music(transition:bool = true):
-	if transition:
-		$AnimationPlayer.play("fight music")
-	else:
-		$AnimationPlayer.play("just fight music")
-
-func lower_fight_music():
-	$AnimationPlayer.play("intro music")
-
-func storymode_to_fight_scene():
-	$AnimationPlayer.play("storymode to fight scene")
-
-func fight_to_conversation():
-	$AnimationPlayer.play("fight to conversation")
 
 func scene_ready(scene:String):
 	match scene:
 		"LaunchScreen":
 			$LaunchScreen.start(intro_shown)
+			intro_music_fade("in")
 
 func flag_intro_shown():
 	intro_shown = true
@@ -109,7 +98,8 @@ func set_game_mode(mode:String):
 
 func fight_done():
 	remove_scene()
-	$AnimationPlayer.play("fade fight music")
+	intro_music_fade("in")
+	fight_music_fade("out")
 	match game_mode:
 		"deathmatch","ai_vs_ai":
 			load_launch_screen()
@@ -119,23 +109,14 @@ func fight_done():
 func storymode_quit():
 	remove_scene()
 	load_launch_screen()
-	$IntroMusic.playing = true
+	intro_music_fade("in")
 
 func gong():
 	$Gong.play()
 
 func fatalityHorn():
 	$FatalityHorn.play()
-	fade_fight_music()
-
-func fade_fight_music(transition:bool = true):
-	if transition:
-		$AnimationPlayer.play("fade fight music")
-	else:
-		$AnimationPlayer.play("just fade fight music")
-
-func fade_conversation_music():
-	$AnimationPlayer.play("fade conversation music")
+	fight_music_fade("out")
 
 func quit_game():
 	$AnimationPlayer.play("quit")
@@ -151,3 +132,56 @@ func remove_scene():
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "quit":
 		get_tree().quit()
+
+# MUSIC CONTROLLERS
+func intro_music_fade(which:String, speed:float = 1.0):
+	$IntroMusic/IntroPlayer.playback_speed = speed
+	$IntroMusic/IntroPlayer.play("fade %s" %which)
+
+func intro_music_adjust(which:String, speed:float = 1.0):
+	$IntroMusic/IntroPlayer.playback_speed = speed
+	$IntroMusic/IntroPlayer.play(which)
+
+func storymode_music_fade(which:String, speed:float = 1.0):
+	$StoryModeMusic/StoryModePlayer.playback_speed = speed
+	$StoryModeMusic/StoryModePlayer.play("fade %s" %which)
+
+func storymode_music_adjust(which:String, speed:float = 1.0):
+	$StoryModeMusic/StoryModePlayer.playback_speed = speed
+	$StoryModeMusic/StoryModePlayer.play(which)
+
+func fight_music_fade(which:String, speed:float = 1.0):
+	$FightMusic/FightPlayer.playback_speed = speed
+	$FightMusic/FightPlayer.play("fade %s" %which)
+
+func fight_music_adjust(which:String, speed:float = 1.0):
+	$FightMusic/FightPlayer.playback_speed = speed
+	$FightMusic/FightPlayer.play(which)
+
+func _on_IntroPlayer_animation_finished(anim_name):
+	if anim_name == "fade out":
+		$IntroMusic.playing = false
+
+
+func _on_IntroPlayer_animation_started(anim_name):
+	if anim_name == "fade in":
+		$IntroMusic.playing = true
+
+
+func _on_StoryModePlayer_animation_started(anim_name):
+	if anim_name == "fade in":
+		$StoryModeMusic.playing = true
+
+
+func _on_StoryModePlayer_animation_finished(anim_name):
+	if anim_name == "fade out":
+		$StoryModeMusic.playing = false
+
+func _on_FightPlayer_animation_started(anim_name):
+	if anim_name == "fade in":
+		$FightMusic.playing = true
+
+func _on_FightPlayer_animation_finished(anim_name):
+	if anim_name == "fade out":
+		$FightMusic.playing = false
+

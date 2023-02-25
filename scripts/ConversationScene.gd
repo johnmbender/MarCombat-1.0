@@ -226,7 +226,8 @@ func speak_line():
 			$AnimationPlayer.play("dialogue to exposition")
 			if current_line == 18:
 				# fade out the music for the Ledge scene
-				game_controller.fade_conversation_music()
+				game_controller.storymode_music_fade("out")
+				game_controller.intro_music_fade("in", 0.2) # slowly
 		current_line += 1
 	else:
 		if current_line == 0 && $ContentContainer.modulate == Color(0,0,0,1):

@@ -30,7 +30,7 @@ func _input(event):
 	
 	if event.is_action_pressed("ui_up"):
 		selected -= 3
-		if selected <= 0:
+		if selected < 0:
 			selected += 9
 		draw_selection()
 	elif event.is_action_pressed("ui_down"):
@@ -61,8 +61,13 @@ func draw_characters():
 	
 	for c in range(characters.size(), 9):
 		get_node("GridContainer/TextureRect%s" % c).texture = random_unselected
-		
+
+func play_name(character:String):
+	$Announcer.stream = load("res://sounds/announcer/select-%s.wav" % character)
+	$Announcer.play()
+
 func draw_selection():
+	print(selected)
 	var _character_to_display = "random"
 	if selected < characters.size():
 		_character_to_display = characters[selected]
@@ -76,6 +81,7 @@ func draw_selection():
 		character_info_scene.get_node("Panel").visible = false
 	else:
 		var character = characters[selected]
+		play_name(character)
 		var convo_scene = load("res://characters/%s/%s-conversation.tscn" % [character, character]).instance()
 		convo_scene.name = character
 		character_info_scene.add_child(convo_scene)
