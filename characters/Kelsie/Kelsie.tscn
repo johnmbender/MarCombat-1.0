@@ -1,4 +1,4 @@
-[gd_scene load_steps=266 format=2]
+[gd_scene load_steps=268 format=2]
 
 [ext_resource path="res://characters/Kelsie/sprites/actions/victory/victory_05.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
@@ -335,6 +335,35 @@ tracks/7/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
+[sub_resource type="Animation" id=142]
+resource_name = "blade-gut-hit"
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.01, 0.02, 0.03, 0.04, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 177 ), ExtResource( 181 ), ExtResource( 177 ), ExtResource( 182 ), ExtResource( 177 ), ExtResource( 181 ), ExtResource( 177 ), ExtResource( 182 ), ExtResource( 177 ), ExtResource( 181 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("GutBloodSquirt:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
 [sub_resource type="Animation" id=61]
 resource_name = "block"
 length = 0.18
@@ -573,6 +602,65 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 32 ), ExtResource( 169 ), ExtResource( 30 ), ExtResource( 33 ), ExtResource( 29 ), ExtResource( 31 ), ExtResource( 167 ), ExtResource( 168 ) ]
+}
+
+[sub_resource type="Animation" id=143]
+resource_name = "hit-blade"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.25, 0.35, 0.45, 0.55, 0.65, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 112 ), ExtResource( 158 ), ExtResource( 160 ), ExtResource( 162 ), ExtResource( 113 ), ExtResource( 161 ), ExtResource( 159 ), ExtResource( 159 ), ExtResource( 17 ), ExtResource( 17 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.65 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://sounds/characters/effects/drop.wav" ],
+"method": "play_sound"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 0.15, 0.25, 0.35, 0.45, 0.55 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ Vector2( -100, -60 ), 0, 0.05 ],
+"method": "tween"
+}, {
+"args": [ Vector2( -150, -100 ), 0, 0.1 ],
+"method": "tween"
+}, {
+"args": [ Vector2( -150, -100 ), 0, 0.1 ],
+"method": "tween"
+}, {
+"args": [ Vector2( -120, -40 ), 0, 0.1 ],
+"method": "tween"
+}, {
+"args": [ Vector2( -40, 30 ), 0, 0.1 ],
+"method": "tween"
+}, {
+"args": [ Vector2( -40, 50 ), 0, 0.1 ],
+"method": "tween"
+} ]
 }
 
 [sub_resource type="Animation" id=25]
@@ -1365,6 +1453,7 @@ texture = ExtResource( 194 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 method_call_mode = 1
 anims/RESET = SubResource( 2 )
+anims/blade-gut-hit = SubResource( 142 )
 anims/block = SubResource( 61 )
 anims/block-release = SubResource( 62 )
 anims/blocking = SubResource( 137 )
@@ -1375,6 +1464,7 @@ anims/crouching = SubResource( 138 )
 anims/fatality = SubResource( 116 )
 anims/flossing = SubResource( 141 )
 anims/get-up = SubResource( 88 )
+anims/hit-blade = SubResource( 143 )
 anims/hit-face = SubResource( 25 )
 anims/hit-gut = SubResource( 57 )
 anims/hit-uppercut = SubResource( 73 )

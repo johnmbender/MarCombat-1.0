@@ -3,7 +3,7 @@ extends AnimatedSprite
 onready var info = {
 	"name": "Kelsie",
 	"birthday": "single-digits January",
-	"hometown": "St. Albert"
+	"hometown": "St. Albert, Alberta"
 }
 onready var pronouns = ["she", "her", "her"]
 onready var dialogue = {

@@ -35,6 +35,11 @@ var blockable = ["punch-far","kick-far","special"]
 var character_name
 var health
 
+var game_controller
+
+func set_game_controller(controller):
+	game_controller = controller
+
 func _ready():
 	var _1 = connect("update_health", get_parent(), "update_health")
 
@@ -352,8 +357,8 @@ func busy():
 
 func fatality():
 	get_parent().modulate = Color(0.7, 0.4, 0.4, 1.0)
-	get_tree().get_root().get_node("GameController").fatalityHorn()
-	get_tree().get_root().get_node("GameController").fight_to_conversation()
+	game_controller.fatalityHorn() # jovi
+	game_controller.fight_music_fade("out")
 	
 	fighting = false
 	get_parent().get_node("FatalityTimer").stop()

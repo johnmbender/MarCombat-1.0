@@ -38,7 +38,8 @@ func load_storymode(player):
 	scene.set_player(player)
 	scene.set_game_controller(self)
 	scene.prepare_story()
-	$AnimationPlayer.play("fade to storymode")
+	storymode_music_fade("in")
+	intro_music_fade("out")
 
 func load_deathmatch(player1, player2):
 	var characters = ["John","Kelsie","Terje"]
@@ -75,7 +76,8 @@ func scene_ready(scene:String):
 	match scene:
 		"LaunchScreen":
 			$LaunchScreen.start(intro_shown)
-			intro_music_fade("in")
+			$IntroMusic.volume_db = 0
+			$IntroMusic.play()
 
 func flag_intro_shown():
 	intro_shown = true
@@ -98,8 +100,10 @@ func set_game_mode(mode:String):
 
 func fight_done():
 	remove_scene()
+	if $FightMusic.is_playing():
+		fight_music_fade("out")
+
 	intro_music_fade("in")
-	fight_music_fade("out")
 	match game_mode:
 		"deathmatch","ai_vs_ai":
 			load_launch_screen()

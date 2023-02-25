@@ -105,6 +105,8 @@ func set_background_sounds(location:String):
 	$Ambience.play()
 
 func start_conversation():
+	game_controller.fight_music_fade("out")
+	game_controller.storymode_music_fade("in")
 	current_line = 0
 	scene_script = Array()
 	
@@ -363,7 +365,11 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			else:
 				next_action = "speak_line"
 		"vs":
-			game_controller.storymode_to_fight_scene()
+			game_controller.intro_music_fade("out")
+			
+			if opponent != "F.U.G.U.M.":
+				game_controller.fight_music_fade("in")
+				
 			storymode_controller.conversation_done()
 
 

@@ -40,13 +40,13 @@ func _input(event):
 		draw_selection()
 	elif event.is_action_pressed("ui_left"):
 		selected -= 1
-		if selected < 0:
-			selected = 8
+		if selected == 2 or selected == 5 or selected == -1:
+			selected += 3
 		draw_selection()
 	elif event.is_action_pressed("ui_right"):
 		selected += 1
-		if selected >= 9:
-			selected = 0
+		if selected == 3 or selected == 6 or selected == 9:
+			selected -= 3
 		draw_selection()
 	elif event.is_action_pressed("ui_accept"):
 		select_character()

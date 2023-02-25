@@ -373,7 +373,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3, 1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ -80.0, -30.0, 0.0 ]
+"values": [ -80.0, -30.0, -5.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:playing")
@@ -401,7 +401,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.7, 1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ 0.0, -30.0, -80.0 ]
+"values": [ -5.0, -30.0, -80.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:playing")
@@ -428,7 +428,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.0, -10.0 ]
+"values": [ -5.0, -10.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:playing")
@@ -455,7 +455,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ -10.0, 0.0 ]
+"values": [ -10.0, -5.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:playing")

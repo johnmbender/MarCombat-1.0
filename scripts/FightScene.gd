@@ -61,6 +61,7 @@ func addPlayer(character:String, node_name:String, bot:bool):
 	
 	player.set_bot(bot)
 	player.character_name = character
+	player.set_game_controller(game_controller)
 	add_child(player)
 	player.health = 100
 	player.idle()
@@ -231,7 +232,6 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			if match_type == "storymode":
 				storymode_controller.fight_done()
 			else:
-				game_controller.fade_fight_music()
 				game_controller.fight_done()
 
 func _on_FatalityTimer_timeout():
