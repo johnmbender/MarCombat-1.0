@@ -160,6 +160,8 @@ func _on_AnimationPlayer_animation_started(anim_name):
 		emit_signal("bot_stop_timer")
 	
 	match anim_name:
+		"punch-far","punch-close","kick-far","kick-close":
+			play_sound("res://sounds/characters/effects/attack.wav", true)
 		"block":
 			blocking = true
 		"block-release":
@@ -168,10 +170,13 @@ func _on_AnimationPlayer_animation_started(anim_name):
 			crouching = true
 		"crouch-release","uppercut":
 			crouching = false
+			if anim_name == "uppercut":
+				play_sound("res://sounds/characters/effects/attack.wav", true)
 		"blade-gut-hit":
 			play_sound("res://sounds/characters/effects/blade-gut-hit.wav", false)
 		"hit-face","hit-uppercut":
 			play_sound("res://sounds/characters/effects/punched.wav", true)
+			$BloodSquirt.emitting = true
 		"hit-gut":
 			play_sound("res://sounds/characters/effects/kicked.wav", true)
 		"stagger":

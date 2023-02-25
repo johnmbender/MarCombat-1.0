@@ -211,7 +211,7 @@
 [ext_resource path="res://characters/Terje/sprites/others/brochure.png" type="Texture" id=232]
 
 [sub_resource type="RectangleShape2D" id=137]
-extents = Vector2( 40, 156 )
+extents = Vector2( 40, 154.667 )
 
 [sub_resource type="CircleShape2D" id=20]
 radius = 24.0
@@ -303,7 +303,7 @@ tracks/6/keys = {
 "values": [ 400 ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("HitBox:position")
+tracks/7/path = NodePath("AttackCircle:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -312,10 +312,10 @@ tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -2, 40 ) ]
+"values": [ Vector2( 0, 0 ) ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("HitBox:scale")
+tracks/8/path = NodePath("HitBox:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -324,10 +324,10 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ) ]
+"values": [ Vector2( -2, 44 ) ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("AttackCircle:position")
+tracks/9/path = NodePath("HitBox:scale")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -336,7 +336,31 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("AttackCircle/CollisionShape2D:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
 "values": [ Vector2( 0, 0 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("AttackCircle/CollisionShape2D:scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=61]
@@ -375,18 +399,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ ExtResource( 9 ), ExtResource( 11 ), ExtResource( 10 ), SubResource( 132 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("AttackCircle/CollisionShape2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.05, 0.06, 0.11, 0.12, 0.17, 0.18 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 5.5, 2 ), Vector2( 28, 2 ), Vector2( 28, 2 ), Vector2( 48, 2 ), Vector2( 48, 2 ), Vector2( 16, 2 ) ]
 }
 
 [sub_resource type="Animation" id=138]
@@ -966,7 +978,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=121]
 resource_name = "squish"
-length = 0.15
+length = 0.1
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -975,7 +987,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.05, 0.15 ),
+"times": PoolRealArray( 0.05, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ ExtResource( 178 ), ExtResource( 144 ) ]
@@ -1266,28 +1278,28 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 144, 16 ), Vector2( 144, 16 ), Vector2( 152, -72 ), Vector2( 152, -72 ), Vector2( 0, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("HitBox:scale")
+tracks/2/path = NodePath("HitBox:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.17, 0.18, 0.29, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1, 0.75 ) ]
+"values": [ Vector2( -2, 84 ), Vector2( -2, 84 ), Vector2( -2, 62 ), Vector2( -2, 62 ), Vector2( -2, 46 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("HitBox:position")
+tracks/3/path = NodePath("HitBox:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.17, 0.18, 0.29, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -2, 84 ) ]
+"values": [ Vector2( 1, 0.75 ), Vector2( 1, 0.75 ), Vector2( 1, 0.9 ), Vector2( 1, 0.9 ), Vector2( 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=33]
@@ -1360,7 +1372,7 @@ __meta__ = {
 }
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
-position = Vector2( -2, 40 )
+position = Vector2( -2, 44 )
 shape = SubResource( 137 )
 
 [node name="AttackCircle" type="Area2D" parent="."]
@@ -1377,27 +1389,30 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="BloodSquirt" type="CPUParticles2D" parent="."]
-position = Vector2( -16, -80 )
-rotation = -3.14159
-scale = Vector2( 0.5, 0.5 )
-emitting = false
-amount = 10
-lifetime = 0.3
-one_shot = true
-explosiveness = 1.0
-texture = ExtResource( 195 )
-spread = 30.0
-gravity = Vector2( -200, 0 )
-initial_velocity = 171.21
-initial_velocity_random = 0.47
-angular_velocity_random = 1.0
-
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="BloodSquirt" type="CPUParticles2D" parent="."]
+position = Vector2( -16, -80 )
+rotation = -3.14159
+scale = Vector2( 0.5, 0.5 )
+emitting = false
+amount = 40
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.5
+texture = ExtResource( 195 )
+direction = Vector2( 1, 0.5 )
+spread = 30.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 300.0
+initial_velocity_random = 0.47
+angular_velocity_random = 1.0
+scale_amount = 2.0
+scale_amount_random = 1.0
 
 [node name="GutBloodSquirt" type="CPUParticles2D" parent="."]
 rotation = -3.14159

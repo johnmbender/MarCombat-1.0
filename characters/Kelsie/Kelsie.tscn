@@ -921,7 +921,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id=121]
 resource_name = "squish"
-length = 0.4
+length = 0.2
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -930,7 +930,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.25, 0.4 ),
+"times": PoolRealArray( 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ ExtResource( 13 ), ExtResource( 17 ) ]
@@ -1307,27 +1307,30 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="BloodSquirt" type="CPUParticles2D" parent="."]
-position = Vector2( -16, -56 )
-rotation = -3.14159
-scale = Vector2( 0.5, 0.5 )
-emitting = false
-amount = 10
-lifetime = 0.3
-one_shot = true
-explosiveness = 1.0
-texture = ExtResource( 195 )
-spread = 30.0
-gravity = Vector2( -200, 0 )
-initial_velocity = 171.21
-initial_velocity_random = 0.47
-angular_velocity_random = 1.0
-
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 5 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="BloodSquirt" type="CPUParticles2D" parent="."]
+position = Vector2( -32, -56 )
+rotation = -3.14159
+scale = Vector2( 0.5, 0.5 )
+emitting = false
+amount = 40
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.5
+texture = ExtResource( 195 )
+direction = Vector2( 1, 0.5 )
+spread = 30.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 300.0
+initial_velocity_random = 0.47
+angular_velocity_random = 1.0
+scale_amount = 2.0
+scale_amount_random = 1.0
 
 [node name="GutBloodSquirt" type="CPUParticles2D" parent="."]
 rotation = -3.14159

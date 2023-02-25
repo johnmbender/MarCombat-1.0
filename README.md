@@ -2,21 +2,11 @@
 A game, to conquer the world.
 
 # TO DO, IN ORDER:
-- quicker after "VS"
-    = ConversationScene, in animation_finished: shortened animation by a second; see if the boom gets cut off, though
 - lose at Ox, intro music doesn't play (or isn't up)
-- ai vs. ai highlights issues with AI; need to solve
 - weird cross-music things between scenes
-- make people move to ranges to do their fatalities
-- blood squirts!
+- ai vs. ai highlights issues with AI; need to solve
 - Terje's barbeque animation
-- sometimes when bot hit (usually Terje) his hitbox disappears
-- more moo variations
-- AI VS AI
-- squish plays faster, as boot lands before it, unfortunately
 - continue -> launch, music doesn't start
-- more sounds when people punch (whoof sound)
-- blood when she hits player
 
 
 - randomize the number of pawings, and make Ox invincible until running
