@@ -58,6 +58,12 @@ func get_opponent():
 	opponent = opponents[fight_number]
 
 func load_conversation():
+	if game_controller.menu_music_playing():
+		game_controller.menu_music_fade("out")
+	elif game_controller.fight_music_playing():
+		game_controller.fight_music_fade("out")
+	
+	game_controller.play_storymode_music()
 	conversation_scene = preload("res://scenes/ConversationScene.tscn").instance()
 	$ConversationScene.add_child(conversation_scene)
 	conversation_scene.set_fight_number(fight_number)
@@ -77,6 +83,7 @@ func load_fight():
 		fight_scene = preload("res://scenes/BossFight-Ox_Anna.tscn").instance()
 	elif opponent == "FUGUM":
 		fight_scene = preload("res://scenes/BossFight-FUGUM.tscn").instance()
+		game_controller.storymode_music_fade("out")
 	else:
 		fight_scene = preload("res://scenes/FightScene.tscn").instance()
 	

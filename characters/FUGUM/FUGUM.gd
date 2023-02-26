@@ -106,7 +106,7 @@ func notify_player_pierced(area:String):
 
 func _on_Tween_tween_all_completed():
 	# done moving, notify level
-	get_parent().allow_input()
+	get_parent().allow_input = true
 
 func _on_AtRot0_body_entered(_body):
 	notify_player_pierced("AtRot0")

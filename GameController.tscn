@@ -2,12 +2,10 @@
 
 [ext_resource path="res://GameController.gd" type="Script" id=1]
 [ext_resource path="res://fonts/Louis George Cafe.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://music/Ze-Glitch-loop.mp3" type="AudioStream" id=3]
-[ext_resource path="res://music/Ze-Glitch-intro.mp3" type="AudioStream" id=4]
 [ext_resource path="res://sounds/gong.wav" type="AudioStream" id=5]
 [ext_resource path="res://sounds/fatalityHorn.wav" type="AudioStream" id=6]
-[ext_resource path="res://music/flu-shot.mp3" type="AudioStream" id=7]
 [ext_resource path="res://sounds/characters/Kelsie/boot-stomp.wav" type="AudioStream" id=8]
+[ext_resource path="res://music/menu.wav" type="AudioStream" id=9]
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -100,7 +98,7 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ "out", 0.2 ],
-"method": "intro_music_fade"
+"method": "menu_music_fade"
 } ]
 }
 
@@ -111,35 +109,24 @@ font_data = ExtResource( 2 )
 [sub_resource type="Theme" id=2]
 default_font = SubResource( 1 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=20]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:playing")
+tracks/0/path = NodePath(".:volume_db")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:volume_db")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ -80.0 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=21]
 resource_name = "fade in"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:volume_db")
 tracks/0/interp = 1
@@ -147,14 +134,15 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 1 ),
+"times": PoolRealArray( 0, 0.5, 2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ -80.0, -30.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=22]
 resource_name = "fade out"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:volume_db")
 tracks/0/interp = 1
@@ -162,13 +150,13 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.7, 1 ),
+"times": PoolRealArray( 0, 1.5, 2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ 0.0, -30.0, -80.0 ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=23]
 resource_name = "lower"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:volume_db")
@@ -183,7 +171,7 @@ tracks/0/keys = {
 "values": [ 0.0, -10.0 ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=24]
 resource_name = "raise"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:volume_db")
@@ -227,6 +215,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=9]
 resource_name = "fade in"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:playing")
 tracks/0/interp = 1
@@ -246,14 +235,15 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3, 1 ),
+"times": PoolRealArray( 0, 0.5, 2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ -80.0, -30.0, 0.0 ]
+"values": [ -80.0, -30.0, -5.0 ]
 }
 
 [sub_resource type="Animation" id=10]
 resource_name = "fade out"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:playing")
 tracks/0/interp = 1
@@ -261,7 +251,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -273,10 +263,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.7, 1 ),
+"times": PoolRealArray( 0, 1.5, 2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ 0.0, -30.0, -80.0 ]
+"values": [ -5.0, -30.0, -80.0 ]
 }
 
 [sub_resource type="Animation" id=16]
@@ -303,7 +293,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.0, -10.0 ]
+"values": [ -10.0, -20.0 ]
 }
 
 [sub_resource type="Animation" id=17]
@@ -330,7 +320,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ -10.0, 0.0 ]
+"values": [ -20.0, -10.0 ]
 }
 
 [sub_resource type="Animation" id=11]
@@ -362,7 +352,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=12]
 resource_name = "fade in"
-step = 0.01
+length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:volume_db")
 tracks/0/interp = 1
@@ -370,7 +360,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 1 ),
+"times": PoolRealArray( 0, 0.5, 2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ -80.0, -30.0, -5.0 ]
@@ -390,7 +380,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=13]
 resource_name = "fade out"
-step = 0.01
+length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:volume_db")
 tracks/0/interp = 1
@@ -398,7 +388,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.7, 1 ),
+"times": PoolRealArray( 0, 1.5, 2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ -5.0, -30.0, -80.0 ]
@@ -410,7 +400,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.01, 1.01 ),
+"times": PoolRealArray( 0.01, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -470,6 +460,38 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
+[sub_resource type="Animation" id=25]
+resource_name = "fade in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -80.0, -30.0, -5.0 ]
+}
+
+[sub_resource type="Animation" id=26]
+resource_name = "fade out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -5.0, -30.0, -80.0 ]
+}
+
 [node name="GameController" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -496,19 +518,18 @@ text = "... why do all the good ones leave?"
 scroll_active = false
 deselect_on_focus_loss_enabled = false
 
-[node name="IntroMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
 volume_db = -80.0
 
-[node name="IntroPlayer" type="AnimationPlayer" parent="IntroMusic"]
-anims/RESET = SubResource( 5 )
-"anims/fade in" = SubResource( 6 )
-"anims/fade out" = SubResource( 7 )
-anims/lower = SubResource( 14 )
-anims/raise = SubResource( 15 )
+[node name="MenuPlayer" type="AnimationPlayer" parent="MenuMusic"]
+anims/RESET = SubResource( 20 )
+"anims/fade in" = SubResource( 21 )
+"anims/fade out" = SubResource( 22 )
+anims/lower = SubResource( 23 )
+anims/raise = SubResource( 24 )
 
 [node name="StoryModeMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
 volume_db = -80.0
 
 [node name="StoryModePlayer" type="AnimationPlayer" parent="StoryModeMusic"]
@@ -519,7 +540,6 @@ anims/lower = SubResource( 16 )
 anims/raise = SubResource( 17 )
 
 [node name="FightMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
 volume_db = -80.0
 autoplay = true
 
@@ -529,6 +549,13 @@ anims/RESET = SubResource( 11 )
 "anims/fade out" = SubResource( 13 )
 anims/lower = SubResource( 18 )
 anims/raise = SubResource( 19 )
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+volume_db = -80.0
+
+[node name="AmbiencePlayer" type="AnimationPlayer" parent="Ambience"]
+"anims/fade in" = SubResource( 25 )
+"anims/fade out" = SubResource( 26 )
 
 [node name="Gong" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
@@ -540,9 +567,11 @@ stream = ExtResource( 6 )
 stream = ExtResource( 8 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
-[connection signal="animation_finished" from="IntroMusic/IntroPlayer" to="." method="_on_IntroPlayer_animation_finished"]
-[connection signal="animation_started" from="IntroMusic/IntroPlayer" to="." method="_on_IntroPlayer_animation_started"]
+[connection signal="animation_finished" from="MenuMusic/MenuPlayer" to="." method="_on_MenuPlayer_animation_finished"]
+[connection signal="animation_started" from="MenuMusic/MenuPlayer" to="." method="_on_MenuPlayer_animation_started"]
 [connection signal="animation_finished" from="StoryModeMusic/StoryModePlayer" to="." method="_on_StoryModePlayer_animation_finished"]
 [connection signal="animation_started" from="StoryModeMusic/StoryModePlayer" to="." method="_on_StoryModePlayer_animation_started"]
 [connection signal="animation_finished" from="FightMusic/FightPlayer" to="." method="_on_FightPlayer_animation_finished"]
 [connection signal="animation_started" from="FightMusic/FightPlayer" to="." method="_on_FightPlayer_animation_started"]
+[connection signal="animation_finished" from="Ambience/AmbiencePlayer" to="." method="_on_AmbiencePlayer_animation_finished"]
+[connection signal="animation_started" from="Ambience/AmbiencePlayer" to="." method="_on_AmbiencePlayer_animation_started"]

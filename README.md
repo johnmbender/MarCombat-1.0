@@ -2,6 +2,10 @@
 A game, to conquer the world.
 
 # TO DO, IN ORDER:
+- turn off music (or something else) for Ledge conversation scene
+- turn off music for FUGUM fight
+- John and Terje's lines for FUGUM
+- no Pete at last office level
 - use the cartoon PS tutorial to make the whole game more cartoony for fun, as an option
     - also, 8bit the music or use different music; could bitcrush everything
 - check the Krotos app for sound effects

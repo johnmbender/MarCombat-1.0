@@ -85,28 +85,14 @@ func set_background(bkg:String):
 
 func set_background_sounds(location:String):
 	match location:
-		"arrivals","courtyard","lobby","roundhouse","shop":
-			sound_effect = load("res://sounds/publicSpace.mp3")
-			$Ambience.volume_db = -10
-		"humanHistory","naturalHistory":
-			sound_effect = load("res://sounds/publicSpace.mp3")
-			$Ambience.volume_db = -10
-		"office":
-			sound_effect = load("res://sounds/pete.mp3")
-			$Ambience.volume_db = -10
-		"breakRoom","hallway","parking":
-			sound_effect = load("res://sounds/office-ambient.mp3")
-			$Ambience.volume_db = 0
+		"arrivals","courtyard","lobby","roundhouse","shop","humanHistory","naturalHistory":
+			game_controller.play_ambience("public_space")
+		"breakRoom","hallway","parking","office":
+			game_controller.play_ambience("office_ambience")
 		"rooftop":
-			sound_effect = load("res://sounds/rooftop.mp3")
-			$Ambience.volume_db = -20
-
-	$Ambience.stream = sound_effect
-	$Ambience.play()
+			game_controller.play_ambience("rooftop")
 
 func start_conversation():
-	game_controller.fight_music_fade("out")
-	game_controller.storymode_music_fade("in")
 	current_line = 0
 	scene_script = Array()
 	
@@ -173,9 +159,6 @@ func merge_scripts():
 			opponent_script[n]['role'] = "opponent"
 			scene_script.append(opponent_script[n])
 
-func play_ambience():
-	$Ambience.play()
-
 func _input(event):
 	if ignore_keypress or event is InputEventMouse:
 		return # so dumb
@@ -212,6 +195,7 @@ func speak_line():
 			$ContentContainer/opponent.position = Vector2(-200, -100)
 			$ContentContainer/opponent/AnimatedSprite.play("fight")
 		$AnimationPlayer.play("vs")
+		game_controller.play_fight_music()
 		return
 		
 	var line = scene_script[current_line]
@@ -227,9 +211,7 @@ func speak_line():
 			$ContentContainer/DialogueBox/Dialogue.percent_visible = 0
 			$AnimationPlayer.play("dialogue to exposition")
 			if current_line == 18:
-				# fade out the music for the Ledge scene
-				game_controller.storymode_music_fade("out")
-				game_controller.intro_music_fade("in", 0.2) # slowly
+				game_controller.ledge_music()
 		current_line += 1
 	else:
 		if current_line == 0 && $ContentContainer.modulate == Color(0,0,0,1):
@@ -365,11 +347,6 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			else:
 				next_action = "speak_line"
 		"vs":
-			game_controller.intro_music_fade("out")
-			
-			if opponent != "F.U.G.U.M.":
-				game_controller.fight_music_fade("in")
-				
 			storymode_controller.conversation_done()
 
 

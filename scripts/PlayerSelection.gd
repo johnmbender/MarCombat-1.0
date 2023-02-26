@@ -67,7 +67,6 @@ func play_name(character:String):
 	$Announcer.play()
 
 func draw_selection():
-	print(selected)
 	var _character_to_display = "random"
 	if selected < characters.size():
 		_character_to_display = characters[selected]
@@ -110,6 +109,7 @@ func draw_selection():
 
 func select_character():
 	game_controller.gong()
+	game_controller.menu_music_fade("out")
 	if player_count == 1:
 		if selected >= characters.size():
 			# random

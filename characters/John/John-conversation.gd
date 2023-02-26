@@ -128,17 +128,109 @@ onready var dialogue = {
 			4: {
 				"lines": {
 					0: {
-						"line": "Screw this. I'm just going to send an email to someone up the chain.",
-						"action": "yes"
-					},
-					1: {
-						"line": "Huh... I'd swear they have an autoresponder.",
+						"line": "Well, that was a Ms. Steak.",
 						"action": "smile"
 					},
-					3: {
-						"line": "Okay, so, that was weird. Guess I'd better head down there and find out.",
+					1: {
+						"line": "... and I don't want to think about it. Crap, it's really late!",
 						"action": "yes"
 					},
+					3: {
+						"line": "Maybe I'll just send an email up the ministry and see if I get a response tomorrow.",
+						"action": "normal"
+					},
+					5: {
+						"line": "Cool. Annnd... se-",
+						"action": "smile"
+					},
+					7: {
+						"line": "MOTHER F-",
+						"action": "shocked"
+					},
+					9: {
+						"line": "Send.",
+						"action": "smile"
+					},
+					10: {
+						"line": "I should go home and sleep..",
+						"action": "normal"
+					},
+					12: {
+						"line": "That's wild. Already a response?",
+						"action": "confused"
+					},
+					14: {
+						"line": "Ok, cool. I like where this is going...",
+						"action": "smile"
+					},
+					16: {
+						"line": "That's weird, no signature. I wonder who this is?",
+						"action": "confused"
+					}, 
+					17: {
+						"line": "After today's events it'd be nice to get this over with, for good or bad.",
+						"action": "yes"
+					},
+					19: {
+						"line": "Ledge isn't open in the middle of the night... too tired to think straight. Where should I go?",
+						"action": "confused"
+					},
+					21: {
+						"line": "Gah! Who is that?",
+						"action": "confused"
+					},
+					23: {
+						"line": "What?!",
+						"action": "confused"
+					},
+					25: {
+						"line": "That's a familiar rodeo.",
+						"action": "yes"
+					},
+					27: {
+						"line": "So, you're like a shadow government?",
+						"action": "confused"
+					},
+					29: {
+						"line": "My name is John.",
+						"action": "normal"
+					},
+					31: {
+						"line": "So my idea is approved?",
+						"action": "confused"
+					},
+					33: {
+						"line": "TOO innovative?!",
+						"action": "shocked"
+					}, 
+					35: {
+						"line": "I came down here, this late, for you to just say no?",
+						"action": "angry"
+					},
+					37: {
+						"line": "Oh, well then...",
+						"action": "confused"
+					},
+					39: {
+						"line": "Protect me from what?",
+						"action": "confused"
+					},
+					41: {
+						"line": "Are you going to kill me?!",
+						"action": "shocked"
+					},
+					43: {
+						"line": "Metaphorically? I'm literally standing here. Or am I? I'm so confused.",
+						"action": "confused"
+					},
+					45: {
+						"line": "Now there's two of you? Who are you?",
+						"action": "confused"
+					},
+					48: {
+						"line": "",
+						"action": "fight"
+					}
 				}
 			}
 		},
