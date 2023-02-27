@@ -1,4 +1,4 @@
-[gd_scene load_steps=278 format=2]
+[gd_scene load_steps=279 format=2]
 
 [ext_resource path="res://characters/John/sprites/actions/idle/idle_1.png" type="Texture" id=1]
 [ext_resource path="res://characters/John/sprites/actions/idle/idle_2.png" type="Texture" id=2]
@@ -1009,6 +1009,54 @@ tracks/2/keys = {
 } ]
 }
 
+[sub_resource type="Animation" id=136]
+resource_name = "special jammed"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.9, 0.95, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 128 ), ExtResource( 129 ), ExtResource( 127 ), ExtResource( 130 ), ExtResource( 140 ), ExtResource( 141 ), ExtResource( 141 ), ExtResource( 140 ), ExtResource( 130 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("GunSmoke:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.25 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.05, 0.15, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_JOHN_gun_jammed_click"
+}, {
+"args": [  ],
+"method": "_JOHN_gun_jammed_click"
+}, {
+"args": [  ],
+"method": "_JOHN_gun_jammed_click"
+} ]
+}
+
 [sub_resource type="Animation" id=114]
 resource_name = "squish"
 length = 0.2
@@ -1472,6 +1520,7 @@ anims/punch-far = SubResource( 16 )
 anims/response-john = SubResource( 117 )
 anims/skeletonize = SubResource( 120 )
 anims/special = SubResource( 68 )
+"anims/special jammed" = SubResource( 136 )
 anims/squish = SubResource( 114 )
 anims/stagger = SubResource( 131 )
 anims/stunned = SubResource( 29 )
@@ -1508,6 +1557,24 @@ modulate = Color( 0, 0, 0, 0.392157 )
 position = Vector2( -16, -88 )
 frames = SubResource( 113 )
 frame = 4
+
+[node name="GunSmoke" type="CPUParticles2D" parent="."]
+position = Vector2( 64, -40 )
+emitting = false
+amount = 10
+lifetime = 1.2
+one_shot = true
+explosiveness = 0.4
+randomness = 1.0
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 14.12
+spread = 93.46
+gravity = Vector2( 0, -98 )
+angle = 276.9
+scale_amount = 12.0
+scale_amount_random = 1.0
+color = Color( 0.807843, 0.807843, 0.807843, 0.54902 )
 
 [connection signal="body_entered" from="AttackCircle" to="." method="_on_AttackCircle_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

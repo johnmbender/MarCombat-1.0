@@ -83,7 +83,8 @@ func load_fight():
 		fight_scene = preload("res://scenes/BossFight-Ox_Anna.tscn").instance()
 	elif opponent == "FUGUM":
 		fight_scene = preload("res://scenes/BossFight-FUGUM.tscn").instance()
-		game_controller.storymode_music_fade("out")
+		game_controller.get_node("FightMusic").stop()
+		game_controller.get_node("StoryModeMusic").stop()
 	else:
 		fight_scene = preload("res://scenes/FightScene.tscn").instance()
 	

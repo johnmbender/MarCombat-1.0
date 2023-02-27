@@ -16,7 +16,7 @@ onready var dialogue = {
 						"action": "normal",
 					},
 					2: {
-						"line": "Thanks. Oksana's gonna love it..",
+						"line": "Thanks. I think Oksana's gonna love it ...",
 						"action": "smile",
 					},
 					4: {

@@ -85,6 +85,8 @@ func draw_selection():
 		convo_scene.name = character
 		character_info_scene.add_child(convo_scene)
 		convo_scene.offset = Vector2(-90, 50)
+		if character == "Kelsie":
+			convo_scene.offset.x = -110
 		convo_scene.scale = Vector2(1.6, 1.6)
 		character_info_scene.move_child(convo_scene, 0)
 		convo_scene.flip_h = true

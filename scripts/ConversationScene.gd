@@ -85,10 +85,12 @@ func set_background(bkg:String):
 
 func set_background_sounds(location:String):
 	match location:
-		"arrivals","courtyard","lobby","roundhouse","shop","humanHistory","naturalHistory":
-			game_controller.play_ambience("public_space")
+		"arrivals","courtyard","lobby","roundhouse","shop":
+			game_controller.play_ambience("public_loud")
+		"humanHistory","naturalHistory":
+			game_controller.play_ambience("public_quiet")
 		"breakRoom","hallway","parking","office":
-			game_controller.play_ambience("office_ambience")
+			game_controller.play_ambience("office_drone")
 		"rooftop":
 			game_controller.play_ambience("rooftop")
 
@@ -194,8 +196,10 @@ func speak_line():
 			$ContentContainer/opponent.scale = Vector2(1.5, 1.5)
 			$ContentContainer/opponent.position = Vector2(-200, -100)
 			$ContentContainer/opponent/AnimatedSprite.play("fight")
+		else:
+			game_controller.play_fight_music()
+			
 		$AnimationPlayer.play("vs")
-		game_controller.play_fight_music()
 		return
 		
 	var line = scene_script[current_line]
@@ -218,11 +222,18 @@ func speak_line():
 			$AnimationPlayer.play("fade to dialogue")
 		else:
 			var action = line["action"]
-			if opponent == "FUGUM" and player == "John":
-				if action == "normal" or action == "message":
-					action = "%s-mac" % action
-
 			var text = line["line"]
+			
+			if opponent == "FUGUM" and player == "John":
+				if role == "player":
+					if current_line == 5:
+						current_line = 9
+						text = "Sent!"
+				elif action == "normal" or action == "message":
+					action = "%s-mac" % action
+				
+				print(action, " for ", role)
+			
 			get_node("ContentContainer/%s/AnimatedSprite" % role).play(action)
 			
 			if opponent == "Ox_Anna":
@@ -366,5 +377,4 @@ func _on_Announcer_finished():
 	ignore_keypress = false
 
 func voice_finished():
-	print("voice_finished() called... ?")
 	ignore_keypress = false

@@ -238,7 +238,7 @@ func show_gifts():
 	$GiftContainer.visible = true
 	$GiftContainer.modulate = Color(1,1,1,1)
 	
-	remove_child($FUGUM)
+#	remove_child($FUGUM)
 	$FUGUM.queue_free()
 
 func present_gift():

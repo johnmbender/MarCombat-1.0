@@ -50,14 +50,30 @@ func set_match_type(type:String):
 	match_type = type
 
 func set_background(bkg:String):
+	bkg = "officeSpace"
 	background = bkg
+	if game_controller.ambience_playing() == false:
+		set_background_sounds(bkg)
+
+func set_background_sounds(location:String):
+	match location:
+		"arrivals","courtyard","lobby","roundhouse","shop":
+			game_controller.play_ambience("public_loud")
+		"humanHistory","naturalHistory":
+			game_controller.play_ambience("public_quiet")
+		"breakRoom","hallway","parking":
+			game_controller.play_ambience("office_drone")
+		"rooftop":
+			game_controller.play_ambience("rooftop")
+		"officeSpace":
+			game_controller.play_ambience("pete")
 
 func addPlayer(character:String, node_name:String, bot:bool):
 	var scenePath = "res://characters/%s/%s.tscn" % [character, character]
 	var player = load(scenePath).instance()
 	player.name = node_name
 	if bot:
-		player.script = preload("res://scripts/AI.gd")
+		player.script = load("res://scripts/AI.gd")
 	
 	player.set_bot(bot)
 	player.character_name = character
@@ -126,7 +142,6 @@ func set_scene():
 		remove_child(player2_node)
 		player2_node.queue_free()
 	
-	
 	match match_type:
 		"demo":
 			player1_node = addPlayer(player1_name, "player1", true)
@@ -139,6 +154,8 @@ func set_scene():
 	
 	player1_node.enemy = player2_node
 	player2_node.enemy = player1_node
+	player1_node.will_collapse = false
+	player2_node.will_collapse = false
 	
 	format_text_for_label("Round %s" % (player1_wins + player2_wins + 1))
 	$AnimationPlayer.play("intro")
@@ -178,7 +195,8 @@ func update_health(player, health:int):
 	else:
 		# undeciding round
 		player.fighting = false
-		player.collapse()
+		if player.will_collapse == false:
+			player.collapse()
 		player.enemy.fighting = false
 		announcer_speak(player.enemy.character_name)
 		var smoke = player.get_node("NegaSmoke")
@@ -190,6 +208,7 @@ func update_health(player, health:int):
 func _on_EndFightTimer_timeout():
 	if player1_wins >= 2 or player2_wins >= 2:
 		$AnimationPlayer.play("end match fade")
+		game_controller.ambience_fade("out")
 	else:
 		$AnimationPlayer.play("fade to round")
 
@@ -203,7 +222,7 @@ func match_over(w):
 	$EndFightTimer.start()
 
 func format_text_for_label(text:String):
-	var width = text.length() * 60
+	var width = text.length() * 57
 	$HBoxContainer/Words.rect_min_size.x = width
 	$HBoxContainer/Words.rect_position.x = (1024 - width) / 2
 	$HBoxContainer/Words.text = text.to_upper()
@@ -218,6 +237,9 @@ func announcer_speak(line:String):
 		$Announcer.stream = load("%s%s.wav" % [path, line])
 		
 	$Announcer.playing = true
+
+func fatality_modulate(which:String):
+	$AnimationPlayer.play("fatality modulate %s" % which)
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	match anim_name:

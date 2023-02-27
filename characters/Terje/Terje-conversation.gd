@@ -244,7 +244,7 @@ onready var dialogue = {
 						"action": "smile"
 					},
 					3: {
-						"line": "Buuuuut.... I might just have to take the credit for your idea, %s.",
+						"line": "Yeeaaaahhhh.... I might just have to take the credit for your idea, %s.",
 						"action": "yes"
 					},
 					5: {

@@ -69,7 +69,7 @@ func play_fight_music():
 		
 	var random = RandomNumberGenerator.new()
 	random.randomize()
-	$FightMusic.stream = load("res://music/fight_0%s.wav" % random.randi_range(1,6))
+	$FightMusic.stream = load("res://music/fight_0%s.wav" % random.randi_range(1,5))
 	fight_music_fade("in")
 
 func play_storymode_music():
@@ -196,14 +196,17 @@ func fight_music_playing():
 	return $FightMusic.is_playing()
 
 func ambience_fade(which:String):
-	$Ambience.play("fade %s" % which)
+	$Ambience/AmbiencePlayer.play("fade %s" % which)
 
 func play_ambience(which:String):
-	$Ambience.stream = load("res://sounds/%s.wav" % which)
+	$Ambience.stream = load("res://sounds/ambience/%s.wav" % which)
 	ambience_fade("in")
 
 func stop_ambience():
 	ambience_fade("out")
+
+func ambience_playing():
+	return $Ambience.is_playing()
 
 func _on_MenuPlayer_animation_started(anim_name):
 	if anim_name == "fade in":

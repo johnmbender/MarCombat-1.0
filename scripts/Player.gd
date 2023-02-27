@@ -5,7 +5,7 @@ const MOVE_SPEED = 300
 
 const DAMAGE_LOW = 10
 const DAMAGE_MEDIUM = 15
-const DAMAGE_HIGH = 20
+const DAMAGE_HIGH = 25
 
 var facing
 var fighting = false
@@ -14,6 +14,7 @@ var crouching = false
 var being_gored = false
 var attacking
 var can_use_fatality = false
+var will_collapse # in case of flying from uppercut, want to allow animation to finish
 
 var bot
 signal bot_damage_taken
@@ -22,11 +23,10 @@ signal bot_stop_timer
 signal update_health(health)
 var enemy
 
-# CHARACTER-SPECIFIC VARIABLES
+# CHARACTER-SPECIFIC VARIABLES 
 var _KELSIE_is_dizzy = false
-var _KELSIE_special_spam = 3
-var _KELSIE_dizzy_timer
-var _KELSIE_special_reset_timer
+var _KELSIE_special_spam = 2
+var _JOHN_guns_jammed = false
 
 var velocity
 var free_animations = ["walk-backward","walk-forward","idle","crouch","crouching","crounch-return"] # list of animations that can be interrupted
@@ -50,6 +50,8 @@ func idle():
 	$AnimationPlayer.play("idle")
 
 func collapse():
+	if bot and $NegaSmoke.visible:
+		$NegaSmoke.visible = false
 	$AnimationPlayer.play("collapse")
 
 func stunned():
@@ -57,6 +59,8 @@ func stunned():
 
 func squish():
 	$AnimationPlayer.play("squish")
+	if bot and $NegaSmoke.visible:
+		$NegaSmoke.visible = false
 	play_sound("res://sounds/characters/Kelsie/boot-stomp.wav", false)
 
 func skeletonize():
@@ -87,6 +91,8 @@ func _physics_process(_delta):
 		velocity.y += GRAVITY
 		get_input()
 		var _unused = move_and_slide(velocity, Vector2.UP)
+	
+	# jovi
 
 func get_input():
 	if bot or not fighting:
@@ -119,7 +125,10 @@ func get_input():
 		elif Input.is_action_pressed("crouch"):
 			$AnimationPlayer.play("crouch")
 		elif Input.is_action_pressed("special"):
-			$AnimationPlayer.play("special")
+			if character_name == "John" and _JOHN_guns_jammed:
+				$AnimationPlayer.play("special jammed")
+			else:
+				$AnimationPlayer.play("special")
 		elif Input.is_action_pressed("ui_left"):
 			if facing == "left":
 				$AnimationPlayer.play("walk-forward")
@@ -161,6 +170,9 @@ func _on_AnimationPlayer_animation_started(anim_name):
 #	if free_animations.has(anim_name):
 #		return
 	
+	if character_name == "Kelsie" and anim_name != "special":
+		$Hair.visible = false
+	
 	if bot:
 		emit_signal("bot_stop_timer")
 	
@@ -188,17 +200,27 @@ func _on_AnimationPlayer_animation_started(anim_name):
 			if bot:
 				emit_signal("bot_damage_taken")
 		"special":
-			if character_name == "Kelsie":
-				if _KELSIE_special_spam == 3:
-					_KELSIE_start_special_reset_timer()
-					
+			if character_name == "Kelsie" and not _KELSIE_is_dizzy:
 				_KELSIE_special_spam -= 1
-				
-				if _KELSIE_special_spam == 0:
-					_KELSIE_dizzy()
-					play_sound("res://sounds/characters/Kelsie/dizzy.wav", false)
+
+				if _KELSIE_special_spam < 0:
+					var reset_timer = get_node_or_null("KELSIE_RESET_TIMER")
+					if not reset_timer:
+						_KELSIE_dizzy()
+						play_sound("res://sounds/characters/Kelsie/dizzy.wav", false)
+					else:
+						$AnimationPlayer.play("idle")
 				else:
 					play_sound("res://sounds/characters/Kelsie/special.wav", false)
+			elif character_name == "John":
+				_JOHN_guns_jammed = true
+				var _JOHN_TIMER = Timer.new()
+				_JOHN_TIMER.name = "JOHN_TIMER"
+				_JOHN_TIMER.one_shot = true
+				_JOHN_TIMER.wait_time = 5
+				_JOHN_TIMER.connect("timeout", self, "_JOHN_guns_cooled")
+				add_child(_JOHN_TIMER)
+				$JOHN_TIMER.start()
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	match anim_name:
@@ -215,7 +237,10 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			crouching = false
 			$AnimationPlayer.play("idle")
 		"hit-uppercut","knock-back":
-			$AnimationPlayer.play("get-up")
+			if will_collapse:
+				$AnimationPlayer.stop()
+			else:
+				$AnimationPlayer.play("get-up")
 		"collapse":
 			play_sound("res://sounds/characters/effects/drop.wav", true)
 			$AnimationPlayer.stop()
@@ -229,12 +254,17 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			set_process(false)
 		"response-john":
 			if character_name != "John":
+				get_parent().fatality_modulate("out")
 				collapse()
 		"tossed-by-oxanna":
 			if health > 10:
 				$AnimationPlayer.play("get-up")
 		"hit-blade":
 			fighting = false
+		"get-up":
+			if bot and character_name == enemy.character_name:
+				$NegaSmoke.visible = true
+			$AnimationPlayer.play("idle")
 		_:
 			$AnimationPlayer.play("idle")
 			
@@ -266,7 +296,7 @@ func damage_taken(animation:String):
 		$Hair.visible = false
 	
 	# emit might get picked up by both bots!
-	if bot:
+	if bot: # jovi
 		emit_signal("bot_damage_taken")
 
 	if $AnimationPlayer.current_animation == "stunned" and not _KELSIE_is_dizzy:
@@ -277,20 +307,27 @@ func damage_taken(animation:String):
 		$AnimationPlayer.play("block-release")
 		if bot:
 			emit_signal("bot_next_action")
-		health -= 3
+		health -= 2
 	else:
 		$AnimationPlayer.stop()
 
 		match animation:
 			"punch-far", "punch-close", "kick-far":
 				$AnimationPlayer.play("hit-face")
-				health -= DAMAGE_LOW
+				if animation == "kick-far":
+					health -= DAMAGE_MEDIUM
+				else:
+					health -= DAMAGE_LOW
 			"kick-close":
 				$AnimationPlayer.play("hit-gut")
 				health -= DAMAGE_LOW
 			"uppercut":
 				$AnimationPlayer.play("hit-uppercut")
 				health -= DAMAGE_HIGH
+				if bot and $NegaSmoke.visible:
+					$NegaSmoke.visible = false
+				if health <= 0:
+					will_collapse = true
 			"throw":
 				$AnimationPlayer.play("thrown")
 			"special":
@@ -300,7 +337,7 @@ func damage_taken(animation:String):
 						health -= DAMAGE_LOW
 						$AnimationPlayer.play("hit-face")
 					"Terje":
-						health -= DAMAGE_LOW
+						health -= DAMAGE_MEDIUM
 						$AnimationPlayer.play("knock-back")
 			"tossed-by-oxanna":
 				blocking = false
@@ -349,15 +386,15 @@ func is_getting_shot(currently:bool):
 		$AnimationPlayer.play("idle")
 
 func bullet_damage():
-	health -= 2
+	health -= 3
 	emit_signal("update_health", self, health)
 
 func busy():
 	return free_animations.has($AnimationPlayer.current_animation) == false
 
 func fatality():
-	get_parent().modulate = Color(0.7, 0.4, 0.4, 1.0)
-	game_controller.fatalityHorn() # jovi
+	get_parent().fatality_modulate("in")
+	game_controller.fatalityHorn()
 	game_controller.fight_music_fade("out")
 	
 	fighting = false
@@ -375,6 +412,10 @@ func fatality():
 ################################
 
 # JOHN
+func _JOHN_gun_jammed_click():
+	$SoundPlayer.stream = load("res://sounds/click.wav")
+	$SoundPlayer.play()
+	
 func _JOHN_shoot_bullets(shoot):
 	$Bullets.emitting = shoot
 	enemy.is_getting_shot(shoot)
@@ -383,6 +424,10 @@ func _JOHN_shoot_bullets(shoot):
 		$SoundPlayer.stream = load("res://sounds/characters/John/shot.wav")
 		$SoundPlayer.play()
 		$Bullets.lifetime = abs(enemy.global_position.x - global_position.x) / 180
+
+func _JOHN_guns_cooled():
+	_JOHN_guns_jammed = false
+	$JOHN_TIMER.queue_free()
 
 func _JOHN_fatality_start():
 	$AnimationPlayer.play("fatality-start")
@@ -411,6 +456,7 @@ func _JOHN_fatality_end():
 
 func _JOHN_punality():
 	set_process(false)
+	get_parent().fatality_modulate("out")
 	$AnimationPlayer.play("response-john")
 	get_parent().announcer_speak("sigh")
 
@@ -419,46 +465,36 @@ func _on_FatalityPlayer_finished():
 
 
 # KELSIE
-func _KELSIE_start_special_reset_timer():
-	_KELSIE_special_reset_timer = Timer.new()
-	_KELSIE_special_reset_timer.wait_time = 3
-	_KELSIE_special_reset_timer.one_shot = true
-	_KELSIE_special_reset_timer.connect("timeout", self, "_KELSIE_reset_special_spam")
-	add_child(_KELSIE_special_reset_timer)
-	_KELSIE_special_reset_timer.start()
-
 func _KELSIE_dizzy():
 	_KELSIE_is_dizzy = true
-	if _KELSIE_special_reset_timer:
-		_KELSIE_special_reset_timer = null
 
 	$AnimationPlayer.play("stunned")
-	_KELSIE_dizzy_timer = Timer.new()
-	_KELSIE_dizzy_timer.wait_time = 3
-	_KELSIE_dizzy_timer.one_shot = true
-	_KELSIE_dizzy_timer.connect("timeout", self, "_KELSIE_undizzy")
-	add_child(_KELSIE_dizzy_timer)
-	_KELSIE_dizzy_timer.start()
+	var timer = Timer.new()
+	timer.name = "KELSIE_DIZZY_TIMER"
+	timer.wait_time = 3
+	timer.one_shot = true
+	timer.connect("timeout", self, "_KELSIE_undizzy")
+	add_child(timer)
+	$KELSIE_DIZZY_TIMER.start()
 
 func _KELSIE_undizzy():
 	_KELSIE_is_dizzy = false
-	if _KELSIE_dizzy_timer:
-		_KELSIE_dizzy_timer = null
-
-	_KELSIE_reset_special_spam()
+	$KELSIE_DIZZY_TIMER.queue_free()
+	var timer = Timer.new()
+	timer.name = "KELSIE_RESET_TIMER"
+	timer.wait_time = 2
+	timer.one_shot = true
+	timer.connect("timeout", self, "_KELSIE_reset_special")
+	add_child(timer)
+	$KELSIE_RESET_TIMER.start()
 	idle()
 
-func _KELSIE_reset_special_spam():
-	if _KELSIE_special_reset_timer != null:
-		_KELSIE_special_reset_timer = null
-	_KELSIE_special_spam = 3
+func _KELSIE_reset_special():
+	_KELSIE_special_spam = 2
+	$KELSIE_RESET_TIMER.queue_free()
 
 func _KELSIE_fatality():
 	$AnimationPlayer.play("fatality")
-	# cancel the parent timer to prevent collapse
-#	get_parent().get_node("EndFightTimer").stop()
-	
-	# place Kelsie highest so boot is over victim
 	z_index = 1000
 
 func _KELSIE_position_boot():
@@ -476,6 +512,7 @@ func _KELSIE_drop_boot():
 	tween.start()
 
 func _KELSIE_raise_boot():
+	get_parent().fatality_modulate("out")
 	get_parent().format_text_for_label("such bootality!")
 	get_parent().announcer_speak("fatality")
 	var tween = get_node("Tween")
@@ -547,3 +584,4 @@ func _TERJE_skeletonize_enemy():
 	enemy.skeletonize()
 	victory()
 	get_parent().get_node("EndFightTimer").start()
+	get_parent().fatality_modulate("out")

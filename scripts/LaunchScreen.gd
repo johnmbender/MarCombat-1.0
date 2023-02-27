@@ -9,7 +9,7 @@ var selection = 0
 var selections = [
 	[Vector2(328, 288), Vector2(692, 288)],
 	[Vector2(328, 352), Vector2(692, 352)],
-	[Vector2(296, 417), Vector2(724, 417)],
+	[Vector2(320, 417), Vector2(700, 417)],
 	[Vector2(400, 529), Vector2(620, 529)],
 ]
 
@@ -59,7 +59,6 @@ func do_selection():
 		$Announcer.play()
 		return
 		
-	game_controller.get_node("Boom").play()
 	
 	match selection:
 		3:
@@ -72,6 +71,7 @@ func do_selection():
 		2:
 			game_mode = "multiplayer"
 			
+	game_controller.get_node("Boom").play()
 	$AnimationPlayer.play("fadeOut")
 
 func _on_AnimationPlayer_animation_finished(anim_name):
