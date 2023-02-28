@@ -31,10 +31,24 @@ func _ready():
 func _input(event):
 	if not key_to_exit or event is InputEventMouse:
 		return
+		
+	end_demo()
 
-	game_controller.fight_done()
+func end_demo():
+	game_controller.destroy_demo_end_timer()
+	game_controller.ambience_fade("out")
+	player1_node.get_node("ActionTimer").stop()
+	player1_node.action = null
+	player1_node.fighting = false
+	player1_node.victory()
+	player2_node.get_node("ActionTimer").stop()
+	player2_node.action = null
+	player2_node.fighting = false
+	player2_node.victory()
+	$AnimationPlayer.play("end match fade")
 
 func set_game_controller(controller):
+	print("fightscene setting game_controller as ", controller)
 	game_controller = controller
 
 func set_storymode_controller(controller):
@@ -50,7 +64,6 @@ func set_match_type(type:String):
 	match_type = type
 
 func set_background(bkg:String):
-	bkg = "officeSpace"
 	background = bkg
 	if game_controller.ambience_playing() == false:
 		set_background_sounds(bkg)
@@ -120,19 +133,23 @@ func addPlayer(character:String, node_name:String, bot:bool):
 	return player
 
 func set_scene():
+	if match_type == null:
+		match_type = "demo"
 	if player1_name == null:
 		randomize()
 		set_player1(characters[randi() % characters.size()])
 		#ai vs ai demo key to quit
 		key_to_exit = true
 	if player2_name == null:
+		if match_type == "demo":
+			# remove player1 from list of characters so there's no NegaFighter
+			characters.erase(player1_name)
+		
 		randomize()
 		set_player2(characters[randi() % characters.size()])
 	if background == null:
 		randomize()
 		set_background(backgrounds[randi() % backgrounds.size()])
-	if match_type == null:
-		match_type = "demo"
 
 	$Background.texture = load("res://levels/backgrounds/%s.jpg" % background)
 	
@@ -146,6 +163,7 @@ func set_scene():
 		"demo":
 			player1_node = addPlayer(player1_name, "player1", true)
 			player2_node = addPlayer(player2_name, "player2", true)
+			$AnimationPlayer.play("press key to start flash")
 		"storymode","deathmatch":
 			player1_node = addPlayer(player1_name, "player1", false)
 			player2_node = addPlayer(player2_name, "player2", true)
@@ -157,10 +175,22 @@ func set_scene():
 	player1_node.will_collapse = false
 	player2_node.will_collapse = false
 	
-	format_text_for_label("Round %s" % (player1_wins + player2_wins + 1))
-	$AnimationPlayer.play("intro")
+	if match_type != "demo":
+		format_text_for_label("Round %s" % (player1_wins + player2_wins + 1))
+		$AnimationPlayer.play("intro")
+	else:
+		$UI.visible = false
+		player1_node.fighting = true
+		player1_node.doSomething()
+		player2_node.fighting = true
+		player2_node.doSomething()
 
 func update_health(player, health:int):
+	if match_type == "demo":
+		player1_node.health = 100
+		player2_node.health = 100
+		return
+	
 	if player.health <= 0:
 		player.health = 0
 		
@@ -194,7 +224,11 @@ func update_health(player, health:int):
 		$FatalityTimer.start()
 	else:
 		# undeciding round
+		player.blocking = false
+		player.attacking = false
+		player.crouching = false
 		player.fighting = false
+		player.get_node("AnimationPlayer").play("idle")
 		if player.will_collapse == false:
 			player.collapse()
 		player.enemy.fighting = false
@@ -222,7 +256,7 @@ func match_over(w):
 	$EndFightTimer.start()
 
 func format_text_for_label(text:String):
-	var width = text.length() * 57
+	var width = text.length() * 58
 	$HBoxContainer/Words.rect_min_size.x = width
 	$HBoxContainer/Words.rect_position.x = (1024 - width) / 2
 	$HBoxContainer/Words.text = text.to_upper()

@@ -91,10 +91,10 @@ func load_fight():
 	$FightScene.add_child(fight_scene)
 	fight_scene.set_player1(player)
 	fight_scene.set_player2(opponent)
-	fight_scene.set_background(current_background)
 	fight_scene.set_match_type("storymode")
 	fight_scene.set_game_controller(game_controller)
 	fight_scene.set_storymode_controller(self)
+	fight_scene.set_background(current_background)
 	fight_scene.set_scene()
 	$AnimationPlayer.play("fade in fight")
 

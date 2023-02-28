@@ -225,7 +225,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		"fade in night":
 			barbequed = true
 			$Ox_Anna/SoundPlayer.stream = load("res://sounds/bbq-fire.wav")
-			$OX_Anna/SoundPlayer.play()
+			$Ox_Anna/SoundPlayer.play()
 			announcer_speak("barbeque")
 			format_text_for_label("barbeque!")
 

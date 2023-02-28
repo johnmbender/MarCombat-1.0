@@ -42,6 +42,7 @@ func set_allow_input():
 	allow_input = true
 
 func move_skulls(direction:int):
+	$DemoTimer.start()
 	selection = selection + direction
 	if selection == selections.size():
 		selection = 0

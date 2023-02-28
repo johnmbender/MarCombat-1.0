@@ -242,12 +242,12 @@ func show_gifts():
 	$FUGUM.queue_free()
 
 func present_gift():
-	var gift
+	var _gift
 	for i in range(1, 4):
 		if i != selected_gift:
 			$GiftContainer.get_node("Gift%s" % i).visible = false
 		else:
-			gift = $GiftContainer.get_node("Gift%s" %i)
+			_gift = $GiftContainer.get_node("Gift%s" %i)
 	
 	$Retirement/Label.visible = false
 #	$ChosenGift.texture = gift.texture

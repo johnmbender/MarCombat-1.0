@@ -123,7 +123,7 @@ func _on_AtRot270_body_entered(_body):
 	notify_player_pierced("AtRot270")
 
 func _on_Tween_tween_completed(object, key):
-	if object == "self" and key == "position" and position.x == 1000:
+	if object == self and key == "position" and position.x == 1000:
 		$Swinger.play("stop")
 
 func _on_Swinger_animation_finished(anim_name):

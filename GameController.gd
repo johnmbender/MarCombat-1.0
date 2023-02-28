@@ -31,7 +31,7 @@ func load_mode(player1, player2):
 			load_storymode(player1)
 
 func load_storymode(player):
-	var scene = preload("res://scenes/StoryModeController.tscn").instance()
+	var scene = load("res://scenes/StoryModeController.tscn").instance()
 	add_child(scene)
 	remove_scene()
 	current_scene = "StoryModeController"
@@ -84,20 +84,19 @@ func play_storymode_music():
 	storymode_music_fade("in")
 
 func load_demo():
-	play_fight_music()
 	current_scene = "FightScene"
 	var scene = preload("res://scenes/FightScene.tscn").instance()
 	add_child(scene)
 	scene.set_game_controller(self)
 	scene.set_scene()
 
-
 func scene_ready(scene:String):
 	match scene:
 		"LaunchScreen":
 			$LaunchScreen.start(intro_shown)
-			$MenuMusic.volume_db = 0
-			$MenuMusic.play()
+			if not intro_shown or not menu_music_playing():
+				$MenuMusic.volume_db = 0
+				$MenuMusic.play()
 
 func flag_intro_shown():
 	intro_shown = true
@@ -116,7 +115,22 @@ func set_game_mode(mode:String):
 		"multiplayer":
 			pass
 		"ai_vs_ai":
+			var demo_end_timer = Timer.new()
+			demo_end_timer.name = "DemoEndTimer"
+			demo_end_timer.wait_time = 10060 # 20
+			demo_end_timer.one_shot = true
+			demo_end_timer.connect("timeout", self, "end_demo")
+			add_child(demo_end_timer)
+			$DemoEndTimer.start()
 			load_demo()
+
+func end_demo():
+	destroy_demo_end_timer()
+	$FightScene.end_demo()
+
+func destroy_demo_end_timer():
+	if get_node_or_null("DemoEndTimer"):
+		$DemoEndTimer.queue_free()
 
 func fight_done():
 	if $FightMusic.is_playing():

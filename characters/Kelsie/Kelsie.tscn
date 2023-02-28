@@ -1030,6 +1030,20 @@ tracks/4/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 4, 2 ), Vector2( 4, 2 ), Vector2( 10, 2 ), Vector2( 10, 2 ), Vector2( 1, 1 ) ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.21 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://sounds/characters/Kelsie/special-whip.wav", true ],
+"method": "play_sound"
+} ]
+}
 
 [sub_resource type="Animation" id=121]
 resource_name = "squish"

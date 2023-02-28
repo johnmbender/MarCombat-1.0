@@ -579,7 +579,7 @@ stream = ExtResource( 10 )
 volume_db = -5.0
 
 [node name="DemoTimer" type="Timer" parent="."]
-wait_time = 29.0
+wait_time = 20.0
 one_shot = true
 autostart = true
 

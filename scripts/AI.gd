@@ -1,44 +1,52 @@
 extends "res://scripts/Player.gd"
 
 var aggression = 0.8
-var block_chance = 0.4
+var block_chance = 0.3
 var defensiveness = 0.2
 var actionTimer:Timer
 
 var action
 
 func _ready():
-	action = "wait"
+	action = null
 	actionTimer = Timer.new()
-	actionTimer.one_shot = true
+	actionTimer.one_shot = false
 	actionTimer.autostart = false
+	actionTimer.wait_time = 0.5
 	var _u = actionTimer.connect("timeout", self, "doSomething")
 	actionTimer.name = "ActionTimer"
 	add_child(actionTimer)
+	$ActionTimer.start()
 
 func set_enemy(e):
 	enemy = e
 
 func doSomething():
-	if not fighting:
+	if not fighting or not completed_animation:
 		action = null
 		return
 	
 	var roll = randf()
 	if enemy_in_range():
 		if roll <= defensiveness:
-			action = "back up"
+			if facing == "left" && global_position.x < 700:
+				action = "back up"
+			elif facing == "right" && global_position.x > 200:
+				action = "back up"
 		elif roll <= aggression:
 			action = "attack"
 		else:
-			action = "wait"
+			action = null
 	else:
 		if roll <= defensiveness:
 			action = "special"
 		elif roll <= aggression:
-			action = "approach"
+			if abs(enemy.global_position.x - global_position.x) > 100:
+				action = "approach"
+			else:
+				action = null
 		else:
-			action = "wait"
+			action = null
 	
 	blocking = false
 	crouching = false
@@ -48,42 +56,46 @@ func _physics_process(_delta):
 	velocity.y = 0
 	velocity.y += GRAVITY
 
-	if attacking or blocking or crouching:
+	if action == null or attacking or blocking or crouching:
 		return
 		
 	if blocking and action != "block":
 		unblock()
 	elif action == "approach":
 		$AnimationPlayer.play("walk-forward")
-		if enemy.global_position.x < (global_position.x - 100):
-			velocity.x -= MOVE_SPEED
-		elif enemy.global_position.x > (global_position.x + 100):
-			velocity.x += MOVE_SPEED
+		
+		if abs(enemy.global_position.x - global_position.x) > 100:
+			if facing == "right":
+				velocity.x += MOVE_SPEED
+			else:
+				velocity.x -= MOVE_SPEED
 		else:
-			bot_next_action()
 			velocity.x = 0
+			action = null
+			idle()
 	elif action == "back up":
 		$AnimationPlayer.play("walk-backward")
 		if enemy.global_position.x < global_position.x:
 			velocity.x += MOVE_SPEED
 		elif enemy.global_position.x > global_position.x:
 			velocity.x -= MOVE_SPEED
-		else:
-			bot_next_action()
+		elif name == "player2" and global_position.x >= 800:
 			velocity.x = 0
-		
-		if name == "player2" and global_position.x > 800:
-			bot_next_action()
-		elif name == "player1" and global_position.x <= 150:
-			bot_next_action()
+			idle()
+		elif name == "player1" and global_position.x <= 100:
+			velocity.x = 0
+			idle()
+		else:
+			velocity.x = 0
+			idle()
 	elif action == "attack" and not attacking:
 		attack()
 	elif action == "special":
 		special()
 	elif action == "block":
 		block()
-	elif action == "wait":
-		wait()
+	else:
+		idle()
 	
 	var _unused = move_and_slide(velocity, Vector2.UP)
 
@@ -104,11 +116,10 @@ func attack():
 	else:
 		$AnimationPlayer.play("punch%s" % modifier)
 	
-	action = "wait"
+	action = null
 
-func wait():
-	$AnimationPlayer.play("idle")
-	bot_next_action()
+func bot_null_action():
+	action = null
 
 func special():
 	$AnimationPlayer.play("special")
@@ -123,24 +134,12 @@ func unblock():
 		$AnimationPlayer.play("block-release")
 
 func bot_damage_taken():
-	bot_stop_timer()
-	
 	var enemy_action = enemy.get_node("AnimationPlayer").current_animation
 	if blockable.has(enemy_action) and rand_range(0, 1.0) < block_chance:
 		action = "block"
 		blocking = true
 	else:
-		action = "wait"
-		bot_next_action()
-
-func bot_stop_timer():
-	if action != "approach" and action != "back up":
 		action = null
-	$ActionTimer.stop()
-
-func bot_next_action():
-	$ActionTimer.wait_time = rand_range(0.001, 1.5)
-	$ActionTimer.start()
 
 func enemy_in_range():
 	return abs(enemy.global_position.x - global_position.x) < 250
