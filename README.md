@@ -2,14 +2,18 @@
 A game, to conquer the world.
 
 # TO DO, IN ORDER:
-- John vs. Kelsie, finger guns kept shooting, even though they weren't, and Kelsie's health kept going down
-- office_drone STILL too damn loud
-- still having issues where the AI doesn't collapse after defeat in non-final round - mainly uppercuts?
-- rooftop ambience too loud and/or music too quiet
-- Ox Anna fight needs tweaks: can still sucker punch her
-- John's computer is still not a mac on first view
-- rooftop ambience still plays during computer scene
+- if self-doubt wins, play announcer's "well, I guess that happened"
+- Kelsie bot did three specials in a row :/
+- Ox Anna fight needs tweaks - can still sucker punch her... maybe a timer before she enrages?
+    - CHECK
+- FUGUM silhouette should be down and right a bit more
+    - CHECK
+- sometimes the AIvAI they'll stand just out of each others reach and punch and kick the air
+    - CHECK, but still might need to close the gap more, and not uppercut unless closer
+- if you get too close to an AI it doesn't know what to do
 
+
+- for demo fight, add in some crazy locations that make no sense
 
 - AI issues:
     - Terje (others?) get locked in block animation until hit

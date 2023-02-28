@@ -249,7 +249,7 @@ onready var dialogue = {
 					},
 					5: {
 						"line": "I'm going to go talk to her right now. Byeee!",
-						"action": "normal"
+						"action": "smile"
 					},
 					7: {
 						"line": "Pshh. What are you going to do about it, %s?",

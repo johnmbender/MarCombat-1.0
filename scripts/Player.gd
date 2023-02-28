@@ -20,13 +20,13 @@ var will_collapse # in case of flying from uppercut, want to allow animation to 
 var bot
 signal bot_damage_taken
 signal update_health(health)
-signal bot_null_action
 var enemy
 
 # CHARACTER-SPECIFIC VARIABLES 
 var _KELSIE_is_dizzy = false
 var _KELSIE_special_spam = 3
 var _JOHN_guns_jammed = false
+var _TERJE_brochures_spilt = false
 
 var velocity
 var free_animations = ["walk-backward","walk-forward","idle","crouch","crouching","crouch-return",] # list of animations that can be interrupted
@@ -42,13 +42,20 @@ func set_game_controller(controller):
 
 func _ready():
 	var _1 = connect("update_health", get_parent(), "update_health")
-	var _2 = connect("bot_null_action", self, "bot_null_action")
 
 func set_health(h:int):
 	health = h
 
 func idle():
 	$AnimationPlayer.play("idle")
+	blocking = false
+	crouching = false
+	attacking = false
+	match character_name:
+		"Kelsie":
+			$Hair.visible = false
+		"John":
+			$Bullets.emitting = false
 
 func collapse():
 	if bot and $NegaSmoke.visible:
@@ -133,6 +140,11 @@ func get_input():
 				
 				if _KELSIE_special_spam <= 0:
 					_KELSIE_dizzy()
+					return
+			elif character_name == "Terje":
+				if _TERJE_brochures_spilt:
+					$AnimationPlayer.play("special flubbed")
+					_TERJE_special_timer()
 					return
 			
 			$AnimationPlayer.play("special")
@@ -222,6 +234,12 @@ func _on_AnimationPlayer_animation_started(anim_name):
 					_JOHN_special_timer()
 				else:
 					_JOHN_guns_jammed = true
+			elif character_name == "Terje":
+				if _TERJE_brochures_spilt:
+					$AnimationPlayer.play("special flubbed")
+					_TERJE_special_timer()
+				else:
+					_TERJE_brochures_spilt = true
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if attacking:
@@ -254,8 +272,6 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			$AnimationPlayer.stop()
 		"fatality-start":
 			$AnimationPlayer.play("fatality-repeat")
-		"victory", "fatality-end":
-			set_process(false)
 		"response-john":
 			if character_name != "John":
 				get_parent().fatality_modulate("out")
@@ -270,6 +286,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 				$NegaSmoke.visible = true
 			completed_animation = true
 			$AnimationPlayer.play("idle")
+		"victory":
+			$AnimationPlayer.stop()
 		_:
 			$AnimationPlayer.play("idle")
 		
@@ -290,21 +308,22 @@ func landing_damage():
 func damage_taken(animation:String):
 #	if not free_animations.has($AnimationPlayer.current_animation):
 #		return
-	if completed_animation == false:
-		return
 		
 	attacking = false
 	crouching = false
-	
+
 	# Kelsie's hair gets stuck sometimes if hit mid-swing
 	if character_name == "Kelsie":
 		$Hair.visible = false
 	elif character_name == "John":
 		$Bullets.emitting = false
 	
-	# emit might get picked up by both bots!
-	if bot: # jovi
+	if bot:
 		emit_signal("bot_damage_taken")
+	
+	# this needs to be further down to only play if damage won't kill player	
+#	if completed_animation == false:
+#		return
 
 	if $AnimationPlayer.current_animation == "stunned" and not _KELSIE_is_dizzy:
 		$AnimationPlayer.play("collapse")
@@ -577,6 +596,20 @@ func _TERJE_throwBrochures():
 			brochure.position, Vector2(2000, brochure.position.y), 0.9,
 			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
+
+func _TERJE_special_timer():
+	if not get_node_or_null("TERJE_TIMER"):
+		var _TERJE_TIMER = Timer.new()
+		_TERJE_TIMER.name = "TERJE_TIMER"
+		_TERJE_TIMER.one_shot = true
+		_TERJE_TIMER.wait_time = 5
+		_TERJE_TIMER.connect("timeout", self, "_TERJE_brochures_ready")
+		add_child(_TERJE_TIMER)
+		$TERJE_TIMER.start()
+		
+func _TERJE_brochures_ready():
+	_TERJE_brochures_spilt = false
+	$TERJE_TIMER.queue_free()
 
 func _TERJE_fatality():
 	$AnimationPlayer.play("fatality")

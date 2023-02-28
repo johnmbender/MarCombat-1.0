@@ -200,6 +200,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 					storymode_controller.fight_done()
 				else:
 					# now we fade back into the roasting scene
+					game_controller.play_ambience("rooftop")
 					$Background.modulate = Color(0.5, 0.5, 0.5, 1)
 					$Player.modulate = Color(0.7, 0.7, 0.7, 1)
 					$Background.texture = load("res://levels/backgrounds/rooftop-foreground.png")
@@ -225,6 +226,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		"fade in night":
 			barbequed = true
 			$Ox_Anna/SoundPlayer.stream = load("res://sounds/bbq-fire.wav")
+			$Ox_Anna/SoundPlayer.volume_db = -5
 			$Ox_Anna/SoundPlayer.play()
 			announcer_speak("barbeque")
 			format_text_for_label("barbeque!")

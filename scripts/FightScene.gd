@@ -15,24 +15,44 @@ var key_to_exit = false
 var fight_speed = 1.1
 
 var end_match = false
+var end_game_input = false
 
 var characters = ["John","Kelsie","Terje"]
 var backgrounds = ["arrivals","breakRoom","humanHistory","lobby","naturalHistory","officeSpace","parking","roundhouse","shop"]
+var fun_backgrounds = ["JapanRooftop","Japan_Bridge","JungleWater","Jungle","OldStreet"]
 var background
 
 var match_type
 var game_controller
 var storymode_controller
+var continue_counter
 
 func _ready():
 	player1_wins = 0
 	player2_wins = 0
 
 func _input(event):
-	if not key_to_exit or event is InputEventMouse:
+	if event is InputEventMouse:
 		return
 		
-	end_demo()
+	if end_game_input:
+		end_game_input = false
+		reset()
+		set_scene()
+	elif not key_to_exit:
+		return
+	else:
+		end_demo()
+	
+
+func reset():
+	player1_wins = 0
+	player2_wins = 0
+	$HBoxContainer2/CountdownTimer.stop()
+	$HBoxContainer2/Countdown.visible = false
+	$UI/Player1/SkullContainer/Skull.visible = false
+	$UI/Player2/SkullContainer/Skull.visible = false
+	game_controller.fight_music_adjust("raise")
 
 func end_demo():
 	game_controller.destroy_demo_end_timer()
@@ -48,7 +68,6 @@ func end_demo():
 	$AnimationPlayer.play("end match fade")
 
 func set_game_controller(controller):
-	print("fightscene setting game_controller as ", controller)
 	game_controller = controller
 
 func set_storymode_controller(controller):
@@ -149,9 +168,15 @@ func set_scene():
 		set_player2(characters[randi() % characters.size()])
 	if background == null:
 		randomize()
-		set_background(backgrounds[randi() % backgrounds.size()])
-
-	$Background.texture = load("res://levels/backgrounds/%s.jpg" % background)
+		if randf() <= 0.5:
+			set_background(backgrounds[randi() % backgrounds.size()-1])
+			$Background.texture = load("res://levels/backgrounds/%s.jpg" % background)
+			$Background.visible = true
+		else:
+			load_fun_background(fun_backgrounds[randi() % fun_backgrounds.size()-1])
+	else:
+		$Background.texture = load("res://levels/backgrounds/%s.jpg" % background)
+		$Background.visible = true
 	
 	if player1_node:
 		remove_child(player1_node)
@@ -185,6 +210,14 @@ func set_scene():
 		player2_node.fighting = true
 		player2_node.doSomething()
 
+func load_fun_background(bkg:String):
+	if bkg == "JapanRooftop" or bkg == "OldStreet":
+		$Background.texture = load("res://levels/backgrounds/fun/%s.jpg" % background)
+		$Background.visible = true
+	else:
+		$Background.visible = false
+		$AnimatedBackground.play(bkg)
+
 func update_health(player, health:int):
 	if match_type == "demo":
 		player1_node.health = 100
@@ -216,19 +249,33 @@ func update_health(player, health:int):
 		player1_node.can_use_fatality = true
 		$FatalityTimer.start()
 	elif player2_wins == 2:
-		winner = player2_node
-		loser = player1_node
-		player1_node.stunned()
-		player1_node.fighting = false
-		player2_node.can_use_fatality = true
-		$FatalityTimer.start()
+		if match_type == "storymode":
+			player1_node.fighting = false
+			if not player1_node.will_collapse:
+				player1_node.collapse()
+				
+			player2_node.fighting = false
+			player2_node.victory()
+			if player1_name == player2_name:
+				announcer_speak("self-defeat")
+			else:
+				announcer_speak(player.enemy.character_name)
+			$EndFightTimer.wait_time = 3
+			$EndFightTimer.start()
+		else:
+			winner = player2_node
+			loser = player1_node
+			player1_node.stunned()
+			player1_node.fighting = false
+			player2_node.can_use_fatality = true
+			$FatalityTimer.start()
 	else:
 		# undeciding round
 		player.blocking = false
 		player.attacking = false
 		player.crouching = false
 		player.fighting = false
-		player.get_node("AnimationPlayer").play("idle")
+#		player.get_node("AnimationPlayer").play("idle")
 		if player.will_collapse == false:
 			player.collapse()
 		player.enemy.fighting = false
@@ -240,11 +287,27 @@ func update_health(player, health:int):
 		$EndFightTimer.start()
 
 func _on_EndFightTimer_timeout():
-	if player1_wins >= 2 or player2_wins >= 2:
-		$AnimationPlayer.play("end match fade")
-		game_controller.ambience_fade("out")
-	else:
-		$AnimationPlayer.play("fade to round")
+	if match_type != "storymode":
+		if player1_wins >= 2 or player2_wins >= 2:
+			$AnimationPlayer.play("end match fade")
+			game_controller.ambience_fade("out")
+		else:
+			$AnimationPlayer.play("fade to round")
+	elif match_type == "storymode":
+		if player1_wins >= 2:
+			$AnimationPlayer.play("end match fade")
+			game_controller.ambience_fade("out")
+		elif player2_wins >=2:
+			format_text_for_label("continue?")
+			continue_counter = 10
+			move_child($HBoxContainer2, get_child_count())
+			$HBoxContainer.visible = true
+			$HBoxContainer2/Countdown.visible = true
+			$HBoxContainer2/CountdownTimer.start()
+			announcer_speak("continue")
+			end_game_input = true
+		else:
+			$AnimationPlayer.play("fade to round")
 
 func match_over(w):
 	$FatalityTimer.stop()
@@ -256,7 +319,7 @@ func match_over(w):
 	$EndFightTimer.start()
 
 func format_text_for_label(text:String):
-	var width = text.length() * 58
+	var width = text.length() * 59
 	$HBoxContainer/Words.rect_min_size.x = width
 	$HBoxContainer/Words.rect_position.x = (1024 - width) / 2
 	$HBoxContainer/Words.text = text.to_upper()
@@ -294,3 +357,15 @@ func _on_FatalityTimer_timeout():
 	loser.collapse()
 	winner.victory()
 	$EndFightTimer.start()
+
+
+func _on_CountdownTimer_timeout():
+	continue_counter -= 1
+	
+	if continue_counter <= -1:
+		$HBoxContainer2/CountdownTimer.stop()
+		game_controller.fight_music_fade("out")
+		game_controller.ambience_fade("out")
+		game_controller.storymode_quit()
+	else:
+		$HBoxContainer2/Countdown.text = "%s" % continue_counter

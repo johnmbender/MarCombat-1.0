@@ -145,7 +145,7 @@ onready var dialogue = {
 					},
 					7: {
 						"line": "MOTHER F-",
-						"action": "shocked"
+						"action": "offended"
 					},
 					9: {
 						"line": "Send.",
@@ -197,7 +197,7 @@ onready var dialogue = {
 					},
 					31: {
 						"line": "So my idea is approved then?",
-						"action": "confused"
+						"action": "angry"
 					},
 					33: {
 						"line": "TOO innovative?!",
@@ -268,7 +268,7 @@ onready var dialogue = {
 						"action": "normal"
 					},
 					4: {
-						"line": "You can share and I will listen.",
+						"line": "I'm here to listen, friend.",
 						"action": "smile"
 					},
 					6: {

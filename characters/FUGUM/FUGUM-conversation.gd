@@ -119,14 +119,15 @@ func get_pronouns():
 
 var characters_spoken = 0
 func read_employee_number():
-	$Voice.stream = load("res://sounds/characters/FUGUM/num-%s.wav" % employee_number.substr(characters_spoken, 1))
+	var num_to_read = employee_number.substr(characters_spoken, 1)
+	$Voice.stream = load("res://sounds/characters/FUGUM/num-%s.wav" % num_to_read)
 	$Voice.play()
+	print("employee_number: ", employee_number, " - played ", characters_spoken, " of ", employee_number.length(), ": ", num_to_read)
 	characters_spoken += 1
-	if characters_spoken == employee_number.length():
+	if characters_spoken == employee_number.length()-1:
 		emit_signal("voice_finished")
 
 func _on_Voice_finished():
-	# might have to go up a few levels, or use a signal, for god's sake
 	var resource_path = $Voice.stream.resource_path
 	var path_array = resource_path.split("/")
 	var current = path_array[path_array.size()-1]

@@ -127,6 +127,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=21]
 resource_name = "fade in"
 length = 2.0
+step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:volume_db")
 tracks/0/interp = 1
@@ -138,6 +139,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ -80.0, -30.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.01 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=22]
@@ -154,6 +167,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ 0.0, -30.0, -80.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=23]
@@ -238,7 +263,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.5, 2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ -80.0, -30.0, -5.0 ]
+"values": [ -80.0, -30.0, -10.0 ]
 }
 
 [sub_resource type="Animation" id=10]
@@ -251,10 +276,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true, false ]
+"values": [ false ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:volume_db")
@@ -266,7 +291,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 1.5, 2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ -5.0, -30.0, -80.0 ]
+"values": [ -10.0, -30.0, -80.0 ]
 }
 
 [sub_resource type="Animation" id=16]
@@ -363,7 +388,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5, 2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ -80.0, -30.0, -10.0 ]
+"values": [ -80.0, -30.0, -5.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:playing")
@@ -391,7 +416,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1.5, 2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ -10.0, -30.0, -80.0 ]
+"values": [ -5.0, -30.0, -80.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:playing")
@@ -400,10 +425,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.01, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true, false ]
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=18]
@@ -463,6 +488,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=25]
 resource_name = "fade in"
 length = 2.0
+step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:volume_db")
 tracks/0/interp = 1
@@ -473,7 +499,19 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5, 2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ -80.0, -30.0, -10.0 ]
+"values": [ -80.0, -30.0, -5.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.02 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=26]
@@ -489,7 +527,19 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1.5, 2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ -10.0, -30.0, -80.0 ]
+"values": [ -5.0, -30.0, -80.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [node name="GameController" type="Node2D"]
@@ -541,7 +591,6 @@ anims/raise = SubResource( 17 )
 
 [node name="FightMusic" type="AudioStreamPlayer" parent="."]
 volume_db = -80.0
-autoplay = true
 
 [node name="FightPlayer" type="AnimationPlayer" parent="FightMusic"]
 anims/RESET = SubResource( 11 )
@@ -551,7 +600,7 @@ anims/lower = SubResource( 18 )
 anims/raise = SubResource( 19 )
 
 [node name="Ambience" type="AudioStreamPlayer" parent="."]
-volume_db = -80.0
+volume_db = -5.0
 
 [node name="AmbiencePlayer" type="AnimationPlayer" parent="Ambience"]
 "anims/fade in" = SubResource( 25 )

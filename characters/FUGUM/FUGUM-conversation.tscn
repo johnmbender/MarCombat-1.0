@@ -6,42 +6,42 @@
 [ext_resource path="res://characters/FUGUM/FUGUM-conversation.gd" type="Script" id=4]
 [ext_resource path="res://characters/FUGUM/sprites/conversations/screen_02_mac.png" type="Texture" id=5]
 [ext_resource path="res://characters/FUGUM/sprites/conversations/screen_01_mac.png" type="Texture" id=6]
-[ext_resource path="res://characters/FUGUM/sprites/diggerBlade.png" type="Texture" id=7]
+[ext_resource path="res://characters/FUGUM/sprites/diggerBlade-convo.png" type="Texture" id=7]
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 7 ) ],
-"loop": true,
+"loop": false,
 "name": "fight",
 "speed": 5.0
 }, {
 "frames": [  ],
-"loop": true,
+"loop": false,
 "name": "hidden",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 1 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 3 ) ],
+"frames": [ ExtResource( 1 ), ExtResource( 3 ) ],
 "loop": true,
 "name": "message",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "message-mac",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 1 ) ],
-"loop": true,
+"loop": false,
 "name": "normal",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ) ],
-"loop": true,
+"loop": false,
 "name": "normal-mac",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ) ],
-"loop": true,
+"loop": false,
 "name": "updates",
 "speed": 5.0
 } ]

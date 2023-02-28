@@ -20,7 +20,7 @@ var storymode_controller
 func _ready():
 	blade_caught = false
 	area_attached_to = null
-	retirement_years = 29
+	retirement_years = 29 # 29
 
 func set_game_controller(controller):
 	game_controller = controller
@@ -28,6 +28,14 @@ func set_game_controller(controller):
 func set_storymode_controller(controller):
 	storymode_controller = controller
 
+func set_corpses(characters:Array):
+	$FUGUM/Swing1/Sprite.texture = load("res://characters/%s/sprites/actions/corpse/corpse.png" % characters[0])
+	$FUGUM/Swing2/Sprite.texture = load("res://characters/%s/sprites/actions/corpse/corpse.png" % characters[1])
+	if characters.size() > 2:
+		$FUGUM/Swing3/Sprite.texture = load("res://characters/%s/sprites/actions/corpse/corpse.png" % characters[2])
+		if characters.size() > 3:
+			$FUGUM/Swing4/Sprite.texture = load("res://characters/%s/sprites/actions/corpse/corpse.png" % characters[3])
+	
 func set_scene():
 	var scenePath = "res://characters/%s/%s.tscn" % [player_name, player_name]
 	player = load(scenePath).instance()

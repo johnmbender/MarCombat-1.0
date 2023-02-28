@@ -9,7 +9,8 @@ extends Node2D
 
 var player
 var opponent
-var opponents = ["John", "Kelsie", "Terje"]
+var player_characters = ["John", "Kelsie", "Terje"]
+var opponents = player_characters.duplicate()
 var bosses = ["Ox_Anna", "FUGUM"]
 var fight_number
 var conversation_scene
@@ -26,7 +27,7 @@ func set_player(playerName:String):
 	player = playerName
 
 func prepare_story():
-	fight_number = 0
+	fight_number = 2
 	random = RandomNumberGenerator.new()
 	random.randomize()
 	randomize()
@@ -35,6 +36,7 @@ func prepare_story():
 
 func shuffle_opponent_order():
 	opponents.erase(player) # remove player
+	player_characters.erase(player)
 	opponents.shuffle() # shuffle remaining characters
 	opponents.append(player) # add player's self-doubt
 	opponents.append_array(bosses) # add the bosses at the end
@@ -83,8 +85,9 @@ func load_fight():
 		fight_scene = preload("res://scenes/BossFight-Ox_Anna.tscn").instance()
 	elif opponent == "FUGUM":
 		fight_scene = preload("res://scenes/BossFight-FUGUM.tscn").instance()
-		game_controller.get_node("FightMusic").stop()
-		game_controller.get_node("StoryModeMusic").stop()
+		fight_scene.set_corpses(player_characters)
+		game_controller.fight_music_fade("out")
+		game_controller.ambience_fade("out")
 	else:
 		fight_scene = preload("res://scenes/FightScene.tscn").instance()
 	

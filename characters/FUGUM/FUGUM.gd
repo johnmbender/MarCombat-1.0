@@ -19,6 +19,7 @@ var attack
 func _ready():
 	spinnerTree = $Wheel/Spinner/SpinnerTree.get("parameters/TimeScale/scale")
 	timingTree = $Wheel/Timing/TimingTree.get("parameters/playback")
+	$Swinger.play("forward")
 
 func idle():
 	$SoundBlender.play("idle")
@@ -109,6 +110,7 @@ func notify_player_pierced(area:String):
 func _on_Tween_tween_all_completed():
 	# done moving, notify level
 	get_parent().allow_input = true
+	$Swinger.play("stop")
 
 func _on_AtRot0_body_entered(_body):
 	notify_player_pierced("AtRot0")
@@ -121,10 +123,6 @@ func _on_AtRot180_body_entered(_body):
 
 func _on_AtRot270_body_entered(_body):
 	notify_player_pierced("AtRot270")
-
-func _on_Tween_tween_completed(object, key):
-	if object == self and key == "position" and position.x == 1000:
-		$Swinger.play("stop")
 
 func _on_Swinger_animation_finished(anim_name):
 	if anim_name == "stop":

@@ -63,8 +63,8 @@ func load_actor_scene(character:String, role:String):
 		elif character == "Ox_Anna":
 			position = Vector2(440, 120)
 		elif character == "FUGUM":
-			scene.scale = Vector2(1, 1)
-			position = Vector2(500, 100)
+			scene.scale = Vector2(1.2, 1.2)
+			position = Vector2(400, 100)
 			scene.set_controller(self)
 
 		scene.global_position = position
@@ -89,8 +89,10 @@ func set_background_sounds(location:String):
 			game_controller.play_ambience("public_loud")
 		"humanHistory","naturalHistory":
 			game_controller.play_ambience("public_quiet")
-		"breakRoom","hallway","parking","office":
+		"breakroom","hallway","parking":
 			game_controller.play_ambience("office_drone")
+		"office":
+			game_controller.play_ambience("pete")
 		"rooftop":
 			game_controller.play_ambience("rooftop")
 
@@ -126,13 +128,13 @@ func set_exposition():
 		},
 		4: {
 			4: {
-				"line": "%s goes to %s desk and types out a well-thought out and comprehensive explanation of %s idea, complete with tangible milestones, goals, and deliverables.\n\nAfter an hour and a half, %s is ready to hit send..." % [player, player_pronouns[2], player_pronouns[2], player]
+				"line": "%s goes to %s desk and types a well-thought out and comprehensive explanation of %s idea, complete with tangible milestones, goals, and deliverables.\n\nAfter an hour and a half, %s is ready to hit send..." % [player, player_pronouns[2], player_pronouns[2], player]
 			},
 			8: {
 				"line": "Three hours and an entire rewrite later ..."
 			},
 			18: {
-				"line": "%s hops on the LRT to Goverment Centre." % player
+				"line": "%s hops on the LRT to Government Centre." % player
 			}
 		}
 	}
@@ -194,7 +196,7 @@ func speak_line():
 			$VS.text = "VS"
 			$ContentContainer/opponent/AnimatedSprite.modulate = Color(0,0,0,1)
 			$ContentContainer/opponent.scale = Vector2(1.5, 1.5)
-			$ContentContainer/opponent.position = Vector2(-200, -100)
+			$ContentContainer/opponent.position = Vector2(-100, 0)
 			$ContentContainer/opponent/AnimatedSprite.play("fight")
 		else:
 			game_controller.play_fight_music()
@@ -215,6 +217,7 @@ func speak_line():
 			$ContentContainer/DialogueBox/Dialogue.percent_visible = 0
 			$AnimationPlayer.play("dialogue to exposition")
 			if current_line == 18:
+				game_controller.storymode_music_fade("out")
 				game_controller.ledge_music()
 		current_line += 1
 	else:
@@ -231,8 +234,6 @@ func speak_line():
 						text = "Sent!"
 				elif action == "normal" or action == "message":
 					action = "%s-mac" % action
-				
-				print(action, " for ", role)
 			
 			get_node("ContentContainer/%s/AnimatedSprite" % role).play(action)
 			
@@ -250,8 +251,19 @@ func speak_line():
 						text = text % opponent
 					else:
 						text = text % player
+						
 				$ContentContainer/DialogueBox/Dialogue.text = text
 				set_speaking_speed(text)
+				if opponent == "FUGUM":
+					if role == "player":
+						$ContentContainer/DialogueBox/Dialogue.modulate = Color(1,1,1,1)
+					else:
+						if current_line == 44 or current_line == 46:
+							# Announcer red
+							$ContentContainer/DialogueBox/Dialogue.modulate = Color(1,0,0,1)
+						else:
+							# Alberta Blue would be better, but can't read it
+							$ContentContainer/DialogueBox/Dialogue.modulate = Color(1,1,0,1)
 				speaker = role
 				light_actor()
 				$AnimationPlayer.play("speak")
@@ -330,11 +342,14 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			elif opponent == "FUGUM":
 				if current_line == 5:
 					set_background('officeSpace-blurred')
+					game_controller.play_ambience("office_drone")
 					$ContentContainer/opponent.modulate = Color(1,1,1,1)
 				elif current_line == 19:
 					set_background('legislature-convo')
 					$ContentContainer/opponent/AnimatedSprite.play("hidden")
 			next_action = "exposition to dialogue"
+			if opponent == "FUGUM" and player == "John" and current_line == 5:
+				$ContentContainer/opponent/AnimatedSprite.play("normal-mac")
 		"exposition to dialogue":
 			$Exposition.text = ""
 			next_action = "speak_line"

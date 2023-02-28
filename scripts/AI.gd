@@ -1,9 +1,13 @@
 extends "res://scripts/Player.gd"
 
 var aggression = 0.8
-var block_chance = 0.3
+var block_chance = 0.25
 var defensiveness = 0.2
 var actionTimer:Timer
+var actionTimer_wait_time = 0.6
+# if doSomething finds completed_animation == false, 3 times
+# we change it to true, to make sure bot doesn't get locked
+var freeze_check = 4
 
 var action
 
@@ -12,7 +16,7 @@ func _ready():
 	actionTimer = Timer.new()
 	actionTimer.one_shot = false
 	actionTimer.autostart = false
-	actionTimer.wait_time = 0.5
+	actionTimer.wait_time = actionTimer_wait_time
 	var _u = actionTimer.connect("timeout", self, "doSomething")
 	actionTimer.name = "ActionTimer"
 	add_child(actionTimer)
@@ -22,9 +26,19 @@ func set_enemy(e):
 	enemy = e
 
 func doSomething():
-	if not fighting or not completed_animation:
+	if not fighting:
 		action = null
 		return
+		
+	if completed_animation == false:
+		freeze_check -= 1
+		if freeze_check <= 0:
+			freeze_check = 4
+			completed_animation = true
+		else:
+			return
+	else:
+		freeze_check = 4
 	
 	var roll = randf()
 	if enemy_in_range():
@@ -39,7 +53,14 @@ func doSomething():
 			action = null
 	else:
 		if roll <= defensiveness:
-			action = "special"
+			# sometimes allow CD animation
+			if character_name == "John" and _JOHN_guns_jammed:
+				if randf() > 0.4:
+					action = null
+				else:
+					action = "special"
+			else:
+				action = "special"
 		elif roll <= aggression:
 			if abs(enemy.global_position.x - global_position.x) > 100:
 				action = "approach"
@@ -57,6 +78,7 @@ func _physics_process(_delta):
 	velocity.y += GRAVITY
 
 	if action == null or attacking or blocking or crouching:
+		var _unused = move_and_slide(velocity, Vector2.UP)
 		return
 		
 	if blocking and action != "block":
@@ -116,9 +138,6 @@ func attack():
 	else:
 		$AnimationPlayer.play("punch%s" % modifier)
 	
-	action = null
-
-func bot_null_action():
 	action = null
 
 func special():

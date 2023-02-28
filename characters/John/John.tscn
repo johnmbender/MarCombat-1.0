@@ -540,6 +540,30 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 167 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("HitBox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -24, 96 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HitBox:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=42]
 resource_name = "fatality-end"
@@ -769,7 +793,6 @@ tracks/2/keys = {
 resource_name = "idle"
 length = 0.6
 loop = true
-step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -781,6 +804,30 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HitBox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -24, 32 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HitBox:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1.65 ) ]
 }
 
 [sub_resource type="Animation" id=49]
@@ -1343,6 +1390,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 120, 64 ), Vector2( 120, 64 ), Vector2( 96, -104 ), Vector2( 96, -104 ), Vector2( 0, 0 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("HitBox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.03, 0.04, 0.07, 0.08, 0.11, 0.12, 0.15, 0.16, 0.19, 0.2, 0.23, 0.24, 0.27, 0.28, 0.31, 0.32 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -24, 48 ), Vector2( -24, 48 ), Vector2( -24, 66 ), Vector2( -24, 66 ), Vector2( -24, 85 ), Vector2( -24, 85 ), Vector2( -24, 90 ), Vector2( -24, 90 ), Vector2( -24, 81 ), Vector2( -24, 81 ), Vector2( -24, 61 ), Vector2( -24, 61 ), Vector2( -24, 51 ), Vector2( -24, 51 ), Vector2( -24, 42 ), Vector2( -24, 42 ), Vector2( -24, 32 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("HitBox:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.03, 0.04, 0.07, 0.08, 0.11, 0.12, 0.15, 0.16, 0.19, 0.2, 0.23, 0.24, 0.27, 0.28, 0.31, 0.32 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1.5 ), Vector2( 1, 1.5 ), Vector2( 1, 1.3 ), Vector2( 1, 1.3 ), Vector2( 1, 1.1 ), Vector2( 1, 1.1 ), Vector2( 1, 1.05 ), Vector2( 1, 1.05 ), Vector2( 1, 1.15 ), Vector2( 1, 1.15 ), Vector2( 1, 1.35 ), Vector2( 1, 1.35 ), Vector2( 1, 1.45 ), Vector2( 1, 1.45 ), Vector2( 1, 1.55 ), Vector2( 1, 1.55 ), Vector2( 1, 1.65 ) ]
+}
 
 [sub_resource type="Animation" id=33]
 resource_name = "victory"
@@ -1574,7 +1645,7 @@ gravity = Vector2( 0, -98 )
 angle = 276.9
 scale_amount = 12.0
 scale_amount_random = 1.0
-color = Color( 0.807843, 0.807843, 0.807843, 0.54902 )
+color = Color( 0.807843, 0.807843, 0.807843, 0.866667 )
 
 [connection signal="body_entered" from="AttackCircle" to="." method="_on_AttackCircle_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

@@ -1461,7 +1461,7 @@ scale_amount = 2.0
 scale_amount_random = 1.0
 
 [node name="GutBloodSquirt" type="CPUParticles2D" parent="."]
-position = Vector2( 0, -16 )
+position = Vector2( 56, -8 )
 rotation = -3.14159
 scale = Vector2( 0.5, 0.5 )
 emitting = false

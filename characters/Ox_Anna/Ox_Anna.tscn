@@ -76,7 +76,7 @@
 [ext_resource path="res://characters/Ox_Anna/roasted/roasted_04.png" type="Texture" id=74]
 
 [sub_resource type="RectangleShape2D" id=25]
-extents = Vector2( 188, 94.2857 )
+extents = Vector2( 52, 94.2857 )
 
 [sub_resource type="Animation" id=64]
 length = 0.001
@@ -713,7 +713,7 @@ collision_mask = 0
 script = ExtResource( 14 )
 
 [node name="FloorCheck" type="CollisionShape2D" parent="."]
-position = Vector2( -68, 151.429 )
+position = Vector2( -204, 151.429 )
 shape = SubResource( 25 )
 
 [node name="Coordinator" type="AnimationPlayer" parent="."]

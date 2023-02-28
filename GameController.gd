@@ -117,7 +117,7 @@ func set_game_mode(mode:String):
 		"ai_vs_ai":
 			var demo_end_timer = Timer.new()
 			demo_end_timer.name = "DemoEndTimer"
-			demo_end_timer.wait_time = 10060 # 20
+			demo_end_timer.wait_time = 30
 			demo_end_timer.one_shot = true
 			demo_end_timer.connect("timeout", self, "end_demo")
 			add_child(demo_end_timer)
@@ -140,8 +140,6 @@ func fight_done():
 	match game_mode:
 		"deathmatch","ai_vs_ai":
 			load_launch_screen()
-#		"storymode":
-#			print("next storymode scene!")
 
 func storymode_quit():
 	remove_scene()
@@ -172,9 +170,10 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 # MUSIC and AMBIENCE CONTROLLERS
 func ledge_music():
-	$StoryModeMusic.stream = load("res://music/ledge.wav")
-	$StoryModeMusic.volume_db = -10
-	$StoryModeMusic.play()
+	storymode_music_fade("out")
+	ambience_fade("out")
+	$FightMusic.stream = load("res://music/ledge.wav")
+	fight_music_fade("in")
 
 func menu_music_fade(which:String, speed:float = 1.0):
 	$MenuMusic/MenuPlayer.playback_speed = speed

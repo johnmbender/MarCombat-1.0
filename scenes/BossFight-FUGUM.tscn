@@ -318,7 +318,7 @@ tracks/23/keys = {
 
 [sub_resource type="Animation" id=25]
 resource_name = "fade everything"
-length = 8.0
+length = 10.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Ledge:self_modulate")
 tracks/0/interp = 1
@@ -362,7 +362,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 3, 8 ),
+"times": PoolRealArray( 3, 10 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [ "THE END" ],
@@ -379,7 +379,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 7, 8 ),
+"times": PoolRealArray( 7, 9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 0.545098, 0.545098, 0.545098, 1 ), Color( 0, 0, 0, 1 ) ]
@@ -853,7 +853,7 @@ nodes/Animation/position = Vector2( 80, 90 )
 nodes/TimeScale/node = SubResource( 12 )
 nodes/TimeScale/position = Vector2( 310, 70 )
 nodes/output/position = Vector2( 550, 70 )
-node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
+node_connections = [ "TimeScale", 0, "Animation", "output", 0, "TimeScale" ]
 
 [sub_resource type="DynamicFont" id=3]
 size = 100
@@ -1086,6 +1086,7 @@ scroll_active = false
 
 [node name="Announcer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
+volume_db = 5.0
 
 [node name="Rain" type="CPUParticles2D" parent="."]
 position = Vector2( 450, -16 )
