@@ -41,7 +41,7 @@ func doSomething():
 		freeze_check = 4
 	
 	var roll = randf()
-	if enemy_in_range():
+	if enemy_in_range("striking"):
 		if roll <= defensiveness:
 			if facing == "left" && global_position.x < 700:
 				action = "back up"
@@ -51,6 +51,13 @@ func doSomething():
 			action = "attack"
 		else:
 			action = null
+	elif enemy_in_range("uncomfortable"):
+		if facing == "left" && global_position.x < 700:
+			action = "back up"
+		elif facing == "right" && global_position.x > 200:
+			action = "back up"
+		else:
+			action = "attack"
 	else:
 		if roll <= defensiveness:
 			# sometimes allow CD animation
@@ -134,7 +141,10 @@ func attack():
 	if roll > kick:
 		$AnimationPlayer.play("kick%s" % modifier)
 	elif roll < punch:
-		$AnimationPlayer.play("uppercut")
+		if enemy_in_range("uppercut"):
+			$AnimationPlayer.play("uppercut")
+		else:
+			$AnimationPlayer.play("punch%s" % modifier)
 	else:
 		$AnimationPlayer.play("punch%s" % modifier)
 	
@@ -160,5 +170,14 @@ func bot_damage_taken():
 	else:
 		action = null
 
-func enemy_in_range():
-	return abs(enemy.global_position.x - global_position.x) < 250
+func enemy_in_range(relative:String):
+	match relative:
+		"striking":
+			var result = abs(enemy.global_position.x - global_position.x) < 220
+			return result
+		"uppercut":
+			var result = abs(enemy.global_position.x - global_position.x) < 150
+			return result
+		"uncomfortable":
+			var result = abs(enemy.global_position.x - global_position.x) < 100
+			return result

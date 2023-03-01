@@ -2,15 +2,16 @@
 A game, to conquer the world.
 
 # TO DO, IN ORDER:
-- if self-doubt wins, play announcer's "well, I guess that happened"
 - Kelsie bot did three specials in a row :/
 - Ox Anna fight needs tweaks - can still sucker punch her... maybe a timer before she enrages?
-    - CHECK
+    - maybe she bucks someone behind her?
 - FUGUM silhouette should be down and right a bit more
     - CHECK
-- sometimes the AIvAI they'll stand just out of each others reach and punch and kick the air
+* sometimes the AIvAI they'll stand just out of each others reach and punch and kick the air
     - CHECK, but still might need to close the gap more, and not uppercut unless closer
 - if you get too close to an AI it doesn't know what to do
+    - CHECK (added a function to move back if that close)
+        - if back is to wall, though...? uppercut I guess will free them
 
 
 - for demo fight, add in some crazy locations that make no sense
@@ -23,7 +24,7 @@ A game, to conquer the world.
     - TOO difficult! :) - lower block, lower wait_time on timer, etc..
 - CONTINUE available after every loss
 - story continues currently even after loss!
-- John's bullets need to do more damage with that long CD
+- John's bullets need to do more damage with that long C
 - Terje's special needs improvement, but also a check, because it's OP
 - no Pete on office stage in story mode
 - music on Ox fight is too loud? or just the R&B one in particular
