@@ -167,6 +167,9 @@ func _input(event):
 	if ignore_keypress or event is InputEventMouse:
 		return # so dumb
 	
+	if event.is_action_pressed("cheat"):
+		current_line = scene_script.size()
+	
 	# resart keypress timer
 	ignore_keypress = true
 	var FUGUM_voice = get_node_or_null("ContentContainer/opponent/AnimatedSprite/Voice")
@@ -196,7 +199,7 @@ func speak_line():
 			$VS.text = "VS"
 			$ContentContainer/opponent/AnimatedSprite.modulate = Color(0,0,0,1)
 			$ContentContainer/opponent.scale = Vector2(1.5, 1.5)
-			$ContentContainer/opponent.position = Vector2(-100, 0)
+			$ContentContainer/opponent.position = Vector2(0, 0)
 			$ContentContainer/opponent/AnimatedSprite.play("fight")
 		else:
 			game_controller.play_fight_music()

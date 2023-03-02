@@ -20,8 +20,8 @@ onready var dialogue = {
 						"action": "shocked"
 					},
 					10: {
-						"line": "Do you think this is funny? You want Ox Anna? I'll GIVE YOU Ox Anna!",
-						"action": "angry"
+						"line": "Do you think this is funny? You want Ox Anna? Mess with the Ox and you get the horns!",
+						"action": "squint"
 					},
 				}
 			}

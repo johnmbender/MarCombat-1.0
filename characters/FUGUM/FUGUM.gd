@@ -32,6 +32,7 @@ func start_blade():
 	# one-time activate right here
 	$Wheel/Spinner/SpinnerTree.active = true
 	$Wheel/Spinner.play("spin")
+	$Swinger.play("idle") # jovi
 	timingTree.travel("start")
 
 func stop_blade():
@@ -93,12 +94,20 @@ func leave():
 func set_collisions(monitoring:bool, disabled:bool):
 	$Wheel/AtRot0.set_deferred("monitoriing", monitoring)
 	$Wheel/AtRot0/CollisionShape2D.set_deferred("disabled", disabled)
+	$Wheel/AtRot45.set_deferred("monitoriing", monitoring)
+	$Wheel/AtRot45/CollisionShape2D.set_deferred("disabled", disabled)
 	$Wheel/AtRot90.set_deferred("monitoriing", monitoring)
 	$Wheel/AtRot90/CollisionShape2D.set_deferred("disabled", disabled)
+	$Wheel/AtRot135.set_deferred("monitoriing", monitoring)
+	$Wheel/AtRot135/CollisionShape2D.set_deferred("disabled", disabled)
 	$Wheel/AtRot180.set_deferred("monitoriing", monitoring)
 	$Wheel/AtRot180/CollisionShape2D.set_deferred("disabled", disabled)
+	$Wheel/AtRot225.set_deferred("monitoriing", monitoring)
+	$Wheel/AtRot225/CollisionShape2D.set_deferred("disabled", disabled)
 	$Wheel/AtRot270.set_deferred("monitoriing", monitoring)
 	$Wheel/AtRot270/CollisionShape2D.set_deferred("disabled", disabled)
+	$Wheel/AtRot315.set_deferred("monitoriing", monitoring)
+	$Wheel/AtRot315/CollisionShape2D.set_deferred("disabled", disabled)
 
 func notify_player_pierced(area:String):
 	if enemy_pierced == false:
@@ -115,15 +124,33 @@ func _on_Tween_tween_all_completed():
 func _on_AtRot0_body_entered(_body):
 	notify_player_pierced("AtRot0")
 
+func _on_AtRot45_body_entered(_body):
+	notify_player_pierced("AtRot45")
+
 func _on_AtRot90_body_entered(_body):
 	notify_player_pierced("AtRot90")
+
+func _on_AtRot135_body_entered(_body):
+	notify_player_pierced("AtRot135")
 
 func _on_AtRot180_body_entered(_body):
 	notify_player_pierced("AtRot180")
 
+func _on_AtRot225_body_entered(_body):
+	notify_player_pierced("AtRot225")
+
 func _on_AtRot270_body_entered(_body):
 	notify_player_pierced("AtRot270")
+
+func _on_AtRot315_body_entered(_body):
+	notify_player_pierced("AtRot315")
 
 func _on_Swinger_animation_finished(anim_name):
 	if anim_name == "stop":
 		$Swinger.play("idle")
+
+
+
+
+
+

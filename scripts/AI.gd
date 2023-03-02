@@ -1,8 +1,8 @@
 extends "res://scripts/Player.gd"
 
-var aggression = 0.8
-var block_chance = 0.25
-var defensiveness = 0.2
+var aggression # = 0.8
+var block_chance # = 0.25
+var defensiveness # = 0.2
 var actionTimer:Timer
 var actionTimer_wait_time = 0.6
 # if doSomething finds completed_animation == false, 3 times
@@ -21,6 +21,15 @@ func _ready():
 	actionTimer.name = "ActionTimer"
 	add_child(actionTimer)
 	$ActionTimer.start()
+	
+	randomizeTraits()
+
+func randomizeTraits():
+	var random = RandomNumberGenerator.new()
+	random.randomize()
+	aggression = random.randf_range(0.6, 0.9)
+	block_chance = random.randf_range(0.2, 0.35)
+	defensiveness = random.randf_range(0.1, 0.3)
 
 func set_enemy(e):
 	enemy = e
@@ -62,6 +71,16 @@ func doSomething():
 		if roll <= defensiveness:
 			# sometimes allow CD animation
 			if character_name == "John" and _JOHN_guns_jammed:
+				if randf() > 0.4:
+					action = null
+				else:
+					action = "special"
+			elif character_name == "Kelsie" and _KELSIE_special_spam <= 0:
+				if randf() > 0.4:
+					action = null
+				else:
+					action = "special"
+			elif character_name == "Terje" and _TERJE_brochures_spilt:
 				if randf() > 0.4:
 					action = null
 				else:

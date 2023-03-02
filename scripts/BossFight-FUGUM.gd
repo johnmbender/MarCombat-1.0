@@ -41,7 +41,6 @@ func set_scene():
 	player = load(scenePath).instance()
 	player.name = "player"
 	player.set_bot(false)
-	player.global_position = Vector2(100,350)
 	$Player.add_child(player)
 	player.health = 100
 	player.idle()
@@ -51,9 +50,10 @@ func set_scene():
 	player.set_z_index(10)
 	$Player/player/AttackCircle.set_deferred("monitorable", false)
 	$Player/player/AttackCircle/CollisionShape2D.set_deferred("disabled", true)
-	$Player/player.set_deferred("montoring", false)
+	$Player/player.set_deferred("monitoring", false)
 	$Player/player.set_deferred("monitorable", true)
 	$Player/player.collision_layer = 1
+	player.global_position = Vector2(100,350)
 	$FUGUM.enemy = player
 	player.enemy = $FUGUM
 
@@ -108,12 +108,20 @@ func _process(_delta):
 			player.global_position = $FUGUM/Wheel.get_node(area_attached_to).global_position
 			var modifier = 0
 			match area_attached_to:
+				'AtRot45':
+					modifier = 45
 				'AtRot90':
 					modifier = 90
+				'AtRot135':
+					modifier = 135
 				'AtRot180':
 					modifier = 180
+				'AtRot225':
+					modifier = 225
 				'AtRot270':
 					modifier = 270
+				'AtRot315':
+					modifier = 315
 			player.rotation_degrees = $FUGUM/Wheel.rotation_degrees + modifier
 			var adjusted_rot = int(player.rotation_degrees) % 360
 			if adjusted_rot < 0:
@@ -175,7 +183,7 @@ func move_camera(to_player:bool):
 	var time
 	
 	if to_player:
-		end = Vector2(player_position.x, player_position.y-100)
+		end = Vector2(player_position.x, player_position.y-150)
 		time = 0.1
 	else:
 		end = Vector2(512, 300)
@@ -228,6 +236,9 @@ func _on_RetirementTimer_timeout():
 			$AnimationPlayer.play("outro")
 			player.fighting = false
 			fight_over = true
+			var current_sprite = player.get_node("Sprite").texture.resource_path
+			if current_sprite.find("collapse") == -1:
+				player.collapse()
 	else:
 		retirement_years -= 1
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=268 format=2]
+[gd_scene load_steps=271 format=2]
 
 [ext_resource path="res://characters/Kelsie/sprites/actions/victory/victory_05.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
@@ -229,6 +229,8 @@
 [ext_resource path="res://characters/Kelsie/sprites/actions/flossing/flossing_04.png" type="Texture" id=227]
 [ext_resource path="res://characters/Kelsie/sprites/actions/flossing/flossing_06.png" type="Texture" id=228]
 [ext_resource path="res://characters/Kelsie/sprites/actions/flossing/flossing_11.png" type="Texture" id=229]
+[ext_resource path="res://ui/cooldown-progress.png" type="Texture" id=230]
+[ext_resource path="res://ui/cooldown-under.png" type="Texture" id=231]
 
 [sub_resource type="RectangleShape2D" id=136]
 extents = Vector2( 40, 160 )
@@ -553,6 +555,37 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ ExtResource( 12 ) ]
+}
+
+[sub_resource type="Animation" id=144]
+resource_name = "dizzy"
+length = 2.0
+step = 0.07
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.07, 0.14, 0.21, 0.28, 0.35, 0.42, 0.49, 0.56, 0.63, 0.7, 0.77, 0.84, 0.91, 0.98, 1.05, 1.12, 1.19, 1.26, 1.33, 1.4, 1.47, 1.54, 1.61, 1.68, 1.75, 1.82, 1.89, 1.96 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 45 ), ExtResource( 35 ), ExtResource( 34 ), ExtResource( 44 ), ExtResource( 40 ), ExtResource( 46 ), ExtResource( 36 ), ExtResource( 41 ), ExtResource( 38 ), ExtResource( 37 ), ExtResource( 39 ), ExtResource( 45 ), ExtResource( 35 ), ExtResource( 34 ), ExtResource( 44 ), ExtResource( 40 ), ExtResource( 46 ), ExtResource( 36 ), ExtResource( 41 ), ExtResource( 38 ), ExtResource( 37 ), ExtResource( 39 ), ExtResource( 45 ), ExtResource( 35 ), ExtResource( 34 ), ExtResource( 44 ), ExtResource( 40 ), ExtResource( 46 ), ExtResource( 36 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://sounds/characters/Kelsie/dizzy.wav", false ],
+"method": "play_sound"
+} ]
 }
 
 [sub_resource type="Animation" id=116]
@@ -1502,6 +1535,7 @@ anims/collapse = SubResource( 26 )
 anims/crouch = SubResource( 79 )
 anims/crouch-return = SubResource( 139 )
 anims/crouching = SubResource( 138 )
+anims/dizzy = SubResource( 144 )
 anims/fatality = SubResource( 116 )
 anims/flossing = SubResource( 141 )
 anims/get-up = SubResource( 88 )
@@ -1548,7 +1582,26 @@ position = Vector2( -16, -24 )
 frames = SubResource( 117 )
 frame = 9
 
+[node name="SpecialCooldown" type="TextureProgress" parent="."]
+visible = false
+margin_left = -16.0
+margin_top = -128.0
+margin_right = 24.0
+margin_bottom = -88.0
+rect_scale = Vector2( 0.5, 0.5 )
+max_value = 5.0
+step = -0.1
+value = 5.0
+texture_under = ExtResource( 231 )
+texture_progress = ExtResource( 230 )
+fill_mode = 5
+
+[node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="body_entered" from="AttackCircle" to="." method="_on_AttackCircle_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
 [connection signal="finished" from="FatalityPlayer" to="." method="_on_FatalityPlayer_finished"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_CooldownTimer_timeout"]

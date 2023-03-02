@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://GameController.gd" type="Script" id=1]
 [ext_resource path="res://fonts/Louis George Cafe.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://sounds/closingAnnouncement.wav" type="AudioStream" id=3]
 [ext_resource path="res://sounds/gong.wav" type="AudioStream" id=5]
 [ext_resource path="res://sounds/fatalityHorn.wav" type="AudioStream" id=6]
 [ext_resource path="res://sounds/characters/Kelsie/boot-stomp.wav" type="AudioStream" id=8]
@@ -248,7 +249,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.01 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
@@ -297,24 +298,12 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=16]
 resource_name = "lower"
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:playing")
+tracks/0/path = NodePath(".:volume_db")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.01 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:volume_db")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
@@ -324,24 +313,12 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=17]
 resource_name = "raise"
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:playing")
+tracks/0/path = NodePath(".:volume_db")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.01 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:volume_db")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
@@ -397,7 +374,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.01 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
@@ -445,18 +422,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [ -5.0, -10.0 ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.01 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
 
 [sub_resource type="Animation" id=19]
 resource_name = "raise"
@@ -471,18 +436,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ -10.0, -5.0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.01 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
 }
 
 [sub_resource type="Animation" id=25]
@@ -600,7 +553,7 @@ anims/lower = SubResource( 18 )
 anims/raise = SubResource( 19 )
 
 [node name="Ambience" type="AudioStreamPlayer" parent="."]
-volume_db = -5.0
+volume_db = -80.0
 
 [node name="AmbiencePlayer" type="AnimationPlayer" parent="Ambience"]
 "anims/fade in" = SubResource( 25 )
@@ -614,6 +567,10 @@ stream = ExtResource( 6 )
 
 [node name="Boom" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
+
+[node name="RandomSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="animation_finished" from="MenuMusic/MenuPlayer" to="." method="_on_MenuPlayer_animation_finished"]

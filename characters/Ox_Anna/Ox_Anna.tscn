@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=2]
+[gd_scene load_steps=113 format=2]
 
 [ext_resource path="res://characters/Ox_Anna/pawing/head_03.png" type="Texture" id=1]
 [ext_resource path="res://characters/Ox_Anna/idle/head_02.png" type="Texture" id=2]
@@ -116,6 +116,26 @@ tracks/2/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/3/type = "animation"
+tracks/3/path = NodePath("Body/BodyPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": PoolStringArray( "idle" ),
+"times": PoolRealArray( 0 )
+}
+tracks/4/type = "animation"
+tracks/4/path = NodePath("Head/HeadPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"clips": PoolStringArray( "idle" ),
+"times": PoolRealArray( 0 )
+}
 
 [sub_resource type="Animation" id=71]
 resource_name = "back down"
@@ -155,6 +175,30 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 )
 }
 
+[sub_resource type="Animation" id=75]
+resource_name = "get up"
+length = 2.0
+tracks/0/type = "animation"
+tracks/0/path = NodePath("Body/BodyPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": PoolStringArray( "get up" ),
+"times": PoolRealArray( 1.5 )
+}
+tracks/1/type = "animation"
+tracks/1/path = NodePath("Head/HeadPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": PoolStringArray( "get up" ),
+"times": PoolRealArray( 1.5 )
+}
+
 [sub_resource type="Animation" id=54]
 resource_name = "goring"
 length = 0.8
@@ -192,6 +236,16 @@ tracks/0/keys = {
 "clips": PoolStringArray( "head down" ),
 "times": PoolRealArray( 0 )
 }
+tracks/1/type = "animation"
+tracks/1/path = NodePath("Body/BodyPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": PoolStringArray( "run" ),
+"times": PoolRealArray( 0 )
+}
 
 [sub_resource type="Animation" id=56]
 resource_name = "hit"
@@ -206,18 +260,6 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "clips": PoolStringArray( "hit" ),
 "times": PoolRealArray( 0 )
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.55, 0.7 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=57]
@@ -428,6 +470,23 @@ tracks/0/keys = {
 "values": [ ExtResource( 62 ), ExtResource( 61 ), ExtResource( 57 ), ExtResource( 58 ), ExtResource( 59 ), ExtResource( 60 ) ]
 }
 
+[sub_resource type="Animation" id=74]
+resource_name = "get up"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 60 ), ExtResource( 59 ), ExtResource( 58 ), ExtResource( 57 ), ExtResource( 61 ), ExtResource( 62 ) ]
+}
+
 [sub_resource type="Animation" id=41]
 resource_name = "goring"
 length = 0.8
@@ -487,6 +546,18 @@ tracks/1/keys = {
 "args": [  ],
 "method": "pawing_sound"
 } ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Dust:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.28 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=67]
@@ -581,6 +652,23 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ ExtResource( 66 ), ExtResource( 64 ), ExtResource( 65 ), ExtResource( 63 ), ExtResource( 67 ), ExtResource( 68 ) ]
+}
+
+[sub_resource type="Animation" id=73]
+resource_name = "get up"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Head:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 68 ), ExtResource( 67 ), ExtResource( 63 ), ExtResource( 65 ), ExtResource( 64 ), ExtResource( 66 ) ]
 }
 
 [sub_resource type="Animation" id=46]
@@ -702,10 +790,13 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=26]
-extents = Vector2( 105.714, 121.429 )
+extents = Vector2( 92.857, 61.4285 )
 
 [sub_resource type="RectangleShape2D" id=27]
-extents = Vector2( 60, 116.428 )
+extents = Vector2( 60, 104 )
+
+[sub_resource type="RectangleShape2D" id=72]
+extents = Vector2( 136, 68 )
 
 [node name="Ox_Anna" type="KinematicBody2D"]
 collision_layer = 16
@@ -720,6 +811,7 @@ shape = SubResource( 25 )
 anims/RESET = SubResource( 64 )
 "anims/back down" = SubResource( 71 )
 anims/collapse = SubResource( 53 )
+"anims/get up" = SubResource( 75 )
 anims/goring = SubResource( 54 )
 "anims/head down" = SubResource( 55 )
 anims/hit = SubResource( 56 )
@@ -730,13 +822,26 @@ anims/run = SubResource( 59 )
 "anims/slide stop" = SubResource( 60 )
 anims/victory = SubResource( 61 )
 
+[node name="Dust" type="CPUParticles2D" parent="."]
+position = Vector2( -136, 248 )
+emitting = false
+lifetime = 0.3
+one_shot = true
+emission_shape = 1
+emission_sphere_radius = 6.21
+gravity = Vector2( 1500, -200 )
+scale_amount = 15.0
+scale_amount_random = 1.0
+color = Color( 1, 1, 1, 0.635294 )
+
 [node name="Body" type="Sprite" parent="."]
-texture = ExtResource( 20 )
+texture = ExtResource( 16 )
 
 [node name="BodyPlayer" type="AnimationPlayer" parent="Body"]
 root_node = NodePath("../..")
 "anims/back down" = SubResource( 70 )
 anims/collapse = SubResource( 43 )
+"anims/get up" = SubResource( 74 )
 anims/goring = SubResource( 41 )
 "anims/head down" = SubResource( 40 )
 anims/hit = SubResource( 42 )
@@ -748,11 +853,12 @@ anims/run = SubResource( 36 )
 anims/victory = SubResource( 62 )
 
 [node name="Head" type="Sprite" parent="."]
-texture = ExtResource( 31 )
+texture = ExtResource( 3 )
 
 [node name="HeadPlayer" type="AnimationPlayer" parent="Head"]
 root_node = NodePath("../..")
 anims/collapse = SubResource( 45 )
+"anims/get up" = SubResource( 73 )
 anims/goring = SubResource( 46 )
 "anims/head down" = SubResource( 47 )
 anims/hit = SubResource( 48 )
@@ -762,6 +868,9 @@ anims/run = SubResource( 51 )
 "anims/slide stop" = SubResource( 52 )
 
 [node name="SoundPlayer" type="AudioStreamPlayer2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="HeadDown" type="Area2D" parent="."]
 collision_layer = 0
@@ -772,7 +881,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HeadDown"]
-position = Vector2( -400, 121.428 )
+position = Vector2( -387.143, 181.428 )
 scale = Vector2( 0.999999, 0.999999 )
 shape = SubResource( 26 )
 
@@ -785,8 +894,19 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gore"]
-position = Vector2( -220, 116.428 )
+position = Vector2( -220, 144 )
 shape = SubResource( 27 )
+
+[node name="RunAway" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RunAway"]
+position = Vector2( -16, 180 )
+shape = SubResource( 72 )
 
 [node name="ChargeTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -800,4 +920,6 @@ volume_db = -5.0
 [connection signal="body_entered" from="HeadDown" to="." method="_on_HeadDown_body_entered"]
 [connection signal="body_exited" from="HeadDown" to="." method="_on_HeadDown_body_exited"]
 [connection signal="body_entered" from="Gore" to="." method="_on_Gore_body_entered"]
+[connection signal="body_exited" from="Gore" to="." method="_on_Gore_body_exited"]
+[connection signal="body_entered" from="RunAway" to="." method="_on_RunAway_body_entered"]
 [connection signal="timeout" from="ChargeTimer" to="." method="_on_ChargeTimer_timeout"]

@@ -24,13 +24,13 @@ var enemy
 
 # CHARACTER-SPECIFIC VARIABLES 
 var _KELSIE_is_dizzy = false
-var _KELSIE_special_spam = 3
+var _KELSIE_special_spam = 2
 var _JOHN_guns_jammed = false
 var _TERJE_brochures_spilt = false
 
 var velocity
 var free_animations = ["walk-backward","walk-forward","idle","crouch","crouching","crouch-return",] # list of animations that can be interrupted
-var blockable = ["punch-far","kick-far","special"]
+var blockable = ["punch-far","kick-far"]
 
 var character_name
 var health
@@ -63,6 +63,8 @@ func collapse():
 	$AnimationPlayer.play("collapse")
 
 func stunned():
+	$SpecialCooldown.visible = false
+	$CooldownTimer.stop()
 	$AnimationPlayer.play("stunned")
 
 func squish():
@@ -90,6 +92,10 @@ func set_bot(isBot:bool):
 		var _1 = connect("bot_damage_taken", self, "bot_damage_taken")
 		if name == "player2":
 			scale.x = -1
+
+func _process(_delta):
+	if $SpecialCooldown.visible:
+		$SpecialCooldown.value = $CooldownTimer.time_left
 
 func _physics_process(_delta):
 	if bot == false:
@@ -129,24 +135,6 @@ func get_input():
 		elif Input.is_action_pressed("crouch"):
 			$AnimationPlayer.play("crouch")
 		elif Input.is_action_pressed("special"):
-			if character_name == "John":
-				if _JOHN_guns_jammed:
-					$AnimationPlayer.play("special jammed")
-					_JOHN_special_timer()
-					return
-			elif character_name == "Kelsie":
-				_KELSIE_special_spam -= 1
-				print("counter: ", _KELSIE_special_spam)
-				
-				if _KELSIE_special_spam <= 0:
-					_KELSIE_dizzy()
-					return
-			elif character_name == "Terje":
-				if _TERJE_brochures_spilt:
-					$AnimationPlayer.play("special flubbed")
-					_TERJE_special_timer()
-					return
-			
 			$AnimationPlayer.play("special")
 		elif Input.is_action_pressed("ui_left"):
 			if facing == "left":
@@ -186,11 +174,12 @@ func get_input():
 			velocity.x = 0
 
 func _on_AnimationPlayer_animation_started(anim_name):
-#	if free_animations.has(anim_name):
-#		return
-	
 	if character_name == "Kelsie" and anim_name != "special":
 		$Hair.visible = false
+	elif character_name == "John" and anim_name != "special":
+		$Bullets.emitting = false
+	elif character_name == "Terje" and anim_name != "special":
+		$BrochureSpill.emitting = false
 	
 	match anim_name:
 		"punch-far","punch-close","kick-far","kick-close":
@@ -221,25 +210,32 @@ func _on_AnimationPlayer_animation_started(anim_name):
 			if bot:
 				emit_signal("bot_damage_taken")
 		"special":
-			attacking = true
-			if character_name == "Kelsie" and not _KELSIE_is_dizzy:
-				if _KELSIE_special_spam <= 0:
-					if not get_node_or_null("KELSIE_RESET_TIMER"):
-						_KELSIE_dizzy()
-					else:
-						$AnimationPlayer.play("idle")
+			if character_name == "Kelsie":
+				if _KELSIE_is_dizzy:
+					attacking = true
+					completed_animation = false
+					$AnimationPlayer.play("dizzy")
+					return
+				else:
+					_KELSIE_is_dizzy = true
 			elif character_name == "John":
 				if _JOHN_guns_jammed:
+					attacking = true
+					completed_animation = false
 					$AnimationPlayer.play("special jammed")
-					_JOHN_special_timer()
+					return
 				else:
 					_JOHN_guns_jammed = true
 			elif character_name == "Terje":
 				if _TERJE_brochures_spilt:
+					attacking = true
+					completed_animation = false
 					$AnimationPlayer.play("special flubbed")
-					_TERJE_special_timer()
+					return
 				else:
 					_TERJE_brochures_spilt = true
+			
+			attacking = true
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if attacking:
@@ -259,6 +255,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			crouching = false
 			$AnimationPlayer.play("idle")
 		"hit-uppercut","knock-back":
+			completed_animation = true
 			if will_collapse:
 				$AnimationPlayer.stop()
 			else:
@@ -288,6 +285,14 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			$AnimationPlayer.play("idle")
 		"victory":
 			$AnimationPlayer.stop()
+		"special":
+			special_cooldown_timer()
+			$AnimationPlayer.play("idle")
+		"fatality-end":
+			$AnimationPlayer.stop()
+		"dizzy":
+			completed_animation = true
+			$AnimationPlayer.play("idle")
 		_:
 			$AnimationPlayer.play("idle")
 		
@@ -306,9 +311,6 @@ func landing_damage():
 	emit_signal("update_health", self, health)
 
 func damage_taken(animation:String):
-#	if not free_animations.has($AnimationPlayer.current_animation):
-#		return
-		
 	attacking = false
 	crouching = false
 
@@ -317,6 +319,8 @@ func damage_taken(animation:String):
 		$Hair.visible = false
 	elif character_name == "John":
 		$Bullets.emitting = false
+	elif character_name == "Terje":
+		$BrochureSpill.emitting = false
 	
 	if bot:
 		emit_signal("bot_damage_taken")
@@ -325,13 +329,15 @@ func damage_taken(animation:String):
 #	if completed_animation == false:
 #		return
 
-	if $AnimationPlayer.current_animation == "stunned" and not _KELSIE_is_dizzy:
+	if $AnimationPlayer.current_animation == "stunned":
 		$AnimationPlayer.play("collapse")
 		get_parent().match_over(enemy)
 	elif blocking and enemy.character_name != "Ox Anna":
 		play_sound("res://sounds/characters/effects/block.wav", true)
 		$AnimationPlayer.play("block-release")
 		health -= 2
+		if health <= 0:
+			damage_taken("punch-far")
 	else:
 		$AnimationPlayer.stop()
 
@@ -362,7 +368,9 @@ func damage_taken(animation:String):
 						health -= DAMAGE_LOW
 						$AnimationPlayer.play("hit-face")
 					"Terje":
-						health -= DAMAGE_MEDIUM
+						enemy.get_node("brochure").queue_free()
+						completed_animation = false
+						health -= 20
 						$AnimationPlayer.play("knock-back")
 			"tossed-by-oxanna":
 				blocking = false
@@ -411,7 +419,7 @@ func is_getting_shot(currently:bool):
 		$AnimationPlayer.play("idle")
 
 func bullet_damage():
-	health -= 3
+	health -= 5
 	emit_signal("update_health", self, health)
 
 func busy():
@@ -432,21 +440,23 @@ func fatality():
 		"Terje":
 			_TERJE_fatality()
 
+func special_cooldown_timer():
+	$SpecialCooldown.value = 5.0
+	if not bot:
+		$SpecialCooldown.visible = true
+	$CooldownTimer.start()
+
+func _on_CooldownTimer_timeout():
+	$SpecialCooldown.visible = false
+	_TERJE_brochures_spilt = false
+	_KELSIE_is_dizzy = false
+	_JOHN_guns_jammed = false
+
 ################################
 # CHARACTER-SPECIFIC FUNCTIONS #
 ################################
 
-# JOHN
-func _JOHN_special_timer():
-	if not get_node_or_null("JOHN_TIMER"):
-		var _JOHN_TIMER = Timer.new()
-		_JOHN_TIMER.name = "JOHN_TIMER"
-		_JOHN_TIMER.one_shot = true
-		_JOHN_TIMER.wait_time = 5
-		_JOHN_TIMER.connect("timeout", self, "_JOHN_guns_cooled")
-		add_child(_JOHN_TIMER)
-		$JOHN_TIMER.start()
-	
+# JOHN	
 func _JOHN_gun_jammed_click():
 	$SoundPlayer.stream = load("res://sounds/click.wav")
 	$SoundPlayer.play()
@@ -499,38 +509,8 @@ func _on_FatalityPlayer_finished():
 	_JOHN_fatality_end()
 
 
+
 # KELSIE
-func _KELSIE_dizzy():
-	if not get_node_or_null("KELSIE_DIZZY_TIMER"):
-		_KELSIE_is_dizzy = true
-		play_sound("res://sounds/characters/Kelsie/dizzy.wav", false)
-
-		$AnimationPlayer.play("stunned")
-		var timer = Timer.new()
-		timer.name = "KELSIE_DIZZY_TIMER"
-		timer.wait_time = 3
-		timer.one_shot = true
-		timer.connect("timeout", self, "_KELSIE_undizzy")
-		add_child(timer)
-		$KELSIE_DIZZY_TIMER.start()
-
-func _KELSIE_undizzy():
-	_KELSIE_is_dizzy = false
-	$KELSIE_DIZZY_TIMER.queue_free()
-	
-	var timer = Timer.new()
-	timer.name = "KELSIE_RESET_TIMER"
-	timer.wait_time = 2
-	timer.one_shot = true
-	timer.connect("timeout", self, "_KELSIE_reset_special")
-	add_child(timer)
-	$KELSIE_RESET_TIMER.start()
-	idle()
-
-func _KELSIE_reset_special():
-	_KELSIE_special_spam = 3
-	$KELSIE_RESET_TIMER.queue_free()
-
 func _KELSIE_fatality():
 	$AnimationPlayer.play("fatality")
 	z_index = 1000
@@ -597,20 +577,6 @@ func _TERJE_throwBrochures():
 			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
 
-func _TERJE_special_timer():
-	if not get_node_or_null("TERJE_TIMER"):
-		var _TERJE_TIMER = Timer.new()
-		_TERJE_TIMER.name = "TERJE_TIMER"
-		_TERJE_TIMER.one_shot = true
-		_TERJE_TIMER.wait_time = 5
-		_TERJE_TIMER.connect("timeout", self, "_TERJE_brochures_ready")
-		add_child(_TERJE_TIMER)
-		$TERJE_TIMER.start()
-		
-func _TERJE_brochures_ready():
-	_TERJE_brochures_spilt = false
-	$TERJE_TIMER.queue_free()
-
 func _TERJE_fatality():
 	$AnimationPlayer.play("fatality")
 
@@ -637,3 +603,4 @@ func _TERJE_skeletonize_enemy():
 	victory()
 	get_parent().get_node("EndFightTimer").start()
 	get_parent().fatality_modulate("out")
+

@@ -2,19 +2,39 @@
 A game, to conquer the world.
 
 # TO DO, IN ORDER:
+- FIGHT SCENE
+    - fight music lowers at "X WINS"
+    - John's self-doubt still has negasmoke after defeat on floor
+    - CHECK: play random sound during fight
+    - CHECK: cooldown indicator removed if fight over
+    - CHECK: if bot blocks on attack that drops health at or below 0, they freeze rather than collapse
+    - CHECK: randomize bot traits a little bit - I think it's fine
+- OX
+    - CHECK: rooftop ambience should stay on throughout Ox
+- FUGUM
+    - make proper animation for first time stop-swing corpses IT'S WORTH IT!
+    - CHECK: player collapses at end of FUGUM fight no matter what
+        - CHECK: already lying down
+
+- Terje bot did not collapse after my 2nd win when hit, not fatality'd, but kelsie did?
+- sometimes Ox Anna doesn't turn red on hit, almost always while running to the right
+- sometimes a hit leaves a bot at 0 health (?) and they don't collapse - one more hit and they collapse, and then collapse again
+- hitting a bot mid-special tends to stick 'em
+- after fatality (win) doesn't do victory
+    - John v self-doubt, after fatality, I kept idling after the pointing
+- give Ox eyeliner so her eyes don't look so dead
+- sometimes the last line by FUGUM isn't spoken
+- fade out the ambience at end of FUGUM fight
+
 - Kelsie bot did three specials in a row :/
 - Ox Anna fight needs tweaks - can still sucker punch her... maybe a timer before she enrages?
     - maybe she bucks someone behind her?
-- FUGUM silhouette should be down and right a bit more
-    - CHECK
 * sometimes the AIvAI they'll stand just out of each others reach and punch and kick the air
     - CHECK, but still might need to close the gap more, and not uppercut unless closer
 - if you get too close to an AI it doesn't know what to do
     - CHECK (added a function to move back if that close)
         - if back is to wall, though...? uppercut I guess will free them
 
-
-- for demo fight, add in some crazy locations that make no sense
 
 - AI issues:
     - Terje (others?) get locked in block animation until hit

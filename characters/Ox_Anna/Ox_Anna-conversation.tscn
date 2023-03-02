@@ -3,11 +3,7 @@
 [ext_resource path="res://characters/Ox_Anna/conversation/look_01.png" type="Texture" id=1]
 [ext_resource path="res://characters/Ox_Anna/Ox_Anna-conversation.gd" type="Script" id=2]
 [ext_resource path="res://characters/Ox_Anna/conversation/look_02.png" type="Texture" id=3]
-
-[sub_resource type="AtlasTexture" id=4]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 580, 400 )
+[ext_resource path="res://characters/Ox_Anna/conversation/squint_1.png" type="Texture" id=4]
 
 [sub_resource type="AtlasTexture" id=7]
 flags = 4
@@ -26,11 +22,6 @@ region = Rect2( 0, 0, 580, 400 )
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ SubResource( 4 ) ],
-"loop": false,
-"name": "angry",
-"speed": 10.0
-}, {
 "frames": [ SubResource( 7 ) ],
 "loop": true,
 "name": "normal",
@@ -39,18 +30,25 @@ animations = [ {
 "frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": false,
 "name": "shocked",
-"speed": 1.0
+"speed": 0.7
 }, {
 "frames": [ SubResource( 7 ) ],
 "loop": false,
 "name": "smile",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 4 ) ],
+"loop": false,
+"name": "squint",
+"speed": 1.0
 } ]
 
 [node name="AnimatedSprite" type="AnimatedSprite"]
 position = Vector2( 0, 200 )
 scale = Vector2( 1.2, 1.2 )
 frames = SubResource( 3 )
-animation = "normal"
+animation = "squint"
+frame = 1
+playing = true
 centered = false
 script = ExtResource( 2 )

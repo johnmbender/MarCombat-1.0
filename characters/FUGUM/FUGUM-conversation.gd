@@ -14,7 +14,11 @@ func set_controller(controller):
 func _ready():
 	var random = RandomNumberGenerator.new()
 	random.randomize()
-	employee_number = "00%s" % random.randi_range(100000,999999)
+	employee_number = "00%s" % random.randi_range(10000,99999)
+	# swap the number 9 with 6, since "9" has the longest tail
+	employee_number = employee_number.replace("9","6")
+	# and then add 9 at the end
+	employee_number = "%s9" % employee_number
 	
 	dialogue = {
 		"opponent": {
@@ -58,7 +62,7 @@ func _ready():
 							"action": "hidden"
 						},
 						28: {
-							"line": '"Not quite that simple, %s."' % employee_number,
+							"line": '"Not quite that complicated, %s."' % employee_number,
 							"action": "hidden"
 						},
 						30: {
@@ -120,11 +124,12 @@ func get_pronouns():
 var characters_spoken = 0
 func read_employee_number():
 	var num_to_read = employee_number.substr(characters_spoken, 1)
-	$Voice.stream = load("res://sounds/characters/FUGUM/num-%s.wav" % num_to_read)
-	$Voice.play()
-	print("employee_number: ", employee_number, " - played ", characters_spoken, " of ", employee_number.length(), ": ", num_to_read)
-	characters_spoken += 1
-	if characters_spoken == employee_number.length()-1:
+	if num_to_read.length() > 0:
+		$Voice.stream = load("res://sounds/characters/FUGUM/num-%s.wav" % num_to_read)
+		$Voice.play()
+		print("employee_number: ", employee_number, " - played ", characters_spoken, " of ", employee_number.length(), ": ", num_to_read)
+		characters_spoken += 1
+	if characters_spoken == 7: # MAKES NO SENSE!
 		emit_signal("voice_finished")
 
 func _on_Voice_finished():

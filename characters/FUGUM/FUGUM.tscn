@@ -851,47 +851,95 @@ parameters/playback = SubResource( 34 )
 position = Vector2( 0, -200 )
 collision_layer = 4
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_lock_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wheel/AtRot0"]
+shape = SubResource( 18 )
+
+[node name="AtRot45" type="Area2D" parent="Wheel"]
+position = Vector2( 136, -143 )
+collision_layer = 4
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wheel/AtRot45"]
 shape = SubResource( 18 )
 
 [node name="AtRot90" type="Area2D" parent="Wheel"]
 position = Vector2( 200, -16 )
 collision_layer = 4
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_lock_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wheel/AtRot90"]
+shape = SubResource( 18 )
+
+[node name="AtRot135" type="Area2D" parent="Wheel"]
+position = Vector2( 155, 133 )
+collision_layer = 4
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wheel/AtRot135"]
 shape = SubResource( 18 )
 
 [node name="AtRot180" type="Area2D" parent="Wheel"]
 position = Vector2( 16, 200 )
 collision_layer = 4
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_lock_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wheel/AtRot180"]
+shape = SubResource( 18 )
+
+[node name="AtRot225" type="Area2D" parent="Wheel"]
+position = Vector2( -140, 141 )
+collision_layer = 4
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wheel/AtRot225"]
 shape = SubResource( 18 )
 
 [node name="AtRot270" type="Area2D" parent="Wheel"]
 position = Vector2( -208, 0 )
 collision_layer = 4
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_lock_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wheel/AtRot270"]
+shape = SubResource( 18 )
+
+[node name="AtRot315" type="Area2D" parent="Wheel"]
+position = Vector2( -148, -130 )
+collision_layer = 4
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wheel/AtRot315"]
 shape = SubResource( 18 )
 
 [node name="Flag" type="AnimatedSprite" parent="."]
 position = Vector2( -48, -80 )
 frames = SubResource( 5 )
 animation = "wave"
-frame = 6
+frame = 2
 playing = true
 __meta__ = {
 "_edit_lock_": true
@@ -923,7 +971,11 @@ anims/stop = SubResource( 10 )
 
 [connection signal="animation_finished" from="Swinger" to="." method="_on_Swinger_animation_finished"]
 [connection signal="body_entered" from="Wheel/AtRot0" to="." method="_on_AtRot0_body_entered"]
+[connection signal="body_entered" from="Wheel/AtRot45" to="." method="_on_AtRot45_body_entered"]
 [connection signal="body_entered" from="Wheel/AtRot90" to="." method="_on_AtRot90_body_entered"]
+[connection signal="body_entered" from="Wheel/AtRot135" to="." method="_on_AtRot135_body_entered"]
 [connection signal="body_entered" from="Wheel/AtRot180" to="." method="_on_AtRot180_body_entered"]
+[connection signal="body_entered" from="Wheel/AtRot225" to="." method="_on_AtRot225_body_entered"]
 [connection signal="body_entered" from="Wheel/AtRot270" to="." method="_on_AtRot270_body_entered"]
+[connection signal="body_entered" from="Wheel/AtRot315" to="." method="_on_AtRot315_body_entered"]
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]

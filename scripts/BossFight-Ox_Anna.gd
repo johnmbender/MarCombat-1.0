@@ -104,7 +104,7 @@ func reset():
 	$HBoxContainer2/Countdown.visible = false
 	$UI/Player1/SkullContainer/Skull.visible = false
 	$UI/Player2/SkullContainer/Skull.visible = false
-	game_controller.fight_music_adjust("raise")
+	game_controller.play_fight_music()
 
 func announcer_speak(line:String):
 	var path = "res://sounds/announcer/"
@@ -161,10 +161,11 @@ func update_health(character, health:int):
 		winner = boss
 		loser = player
 		player.fighting = false
+		boss.disable_collisions()
 		victory_scene()
 	else:
 		# undeciding round
-		game_controller.fight_music_adjust("lower")
+#		game_controller.fight_music_adjust("lower") # why?
 		if character == boss:
 			$Ox_Anna.collapse()
 		else:
@@ -200,7 +201,11 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 					storymode_controller.fight_done()
 				else:
 					# now we fade back into the roasting scene
-					game_controller.play_ambience("rooftop")
+#					game_controller.play_ambience("rooftop")
+					game_controller.barbeque_music()
+					$Ox_Anna/SoundPlayer.stream = load("res://sounds/bbq-fire.wav")
+					$Ox_Anna/SoundPlayer.volume_db = -5
+					$Ox_Anna/SoundPlayer.play()
 					$Background.modulate = Color(0.5, 0.5, 0.5, 1)
 					$Player.modulate = Color(0.7, 0.7, 0.7, 1)
 					$Background.texture = load("res://levels/backgrounds/rooftop-foreground.png")
@@ -225,9 +230,6 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 				storymode_controller.fight_done()
 		"fade in night":
 			barbequed = true
-			$Ox_Anna/SoundPlayer.stream = load("res://sounds/bbq-fire.wav")
-			$Ox_Anna/SoundPlayer.volume_db = -5
-			$Ox_Anna/SoundPlayer.play()
 			announcer_speak("barbeque")
 			format_text_for_label("barbeque!")
 
@@ -292,6 +294,7 @@ func _on_CountdownTimer_timeout():
 	
 	if continue_counter == -1:
 		$HBoxContainer2/CountdownTimer.stop()
+		game_controller.ambience_fade("out")
 		game_controller.storymode_quit()
 	else:
 		$HBoxContainer2/Countdown.text = "%s" % continue_counter

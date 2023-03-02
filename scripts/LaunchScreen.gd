@@ -36,7 +36,7 @@ func _input(event):
 	elif event.is_action_released("ui_up"):
 		move_skulls(-1)
 	elif event.is_action_released("quit"):
-		get_parent().quit_game()
+		$AnimationPlayer.play("quit")
 
 func set_allow_input():
 	allow_input = true

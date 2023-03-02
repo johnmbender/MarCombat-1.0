@@ -530,10 +530,11 @@ deselect_on_focus_loss_enabled = false
 
 [node name="Multiplayer" type="RichTextLabel" parent="."]
 modulate = Color( 0.545098, 0.537255, 0.537255, 0 )
-margin_left = 387.0
+margin_left = 385.0
 margin_top = 392.0
-margin_right = 637.0
+margin_right = 641.0
 margin_bottom = 440.0
+rect_clip_content = false
 theme = SubResource( 4 )
 meta_underlined = false
 text = "Multiplayer"
@@ -546,6 +547,7 @@ margin_left = 468.0
 margin_top = 504.0
 margin_right = 556.0
 margin_bottom = 552.0
+rect_clip_content = false
 theme = SubResource( 4 )
 meta_underlined = false
 text = "Quit"

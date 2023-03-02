@@ -27,22 +27,25 @@ var game_controller
 var storymode_controller
 var continue_counter
 
+var health_amount_to_trigger_random_sound = null
+
 func _ready():
 	player1_wins = 0
 	player2_wins = 0
 
 func _input(event):
-	if event is InputEventMouse:
+	if event is InputEventMouse or end_game_input == false:
 		return
-		
-	if end_game_input:
+	
+	if match_type == "demo":
+		end_game_input = false
+		end_demo()
+	elif end_game_input:
 		end_game_input = false
 		reset()
 		set_scene()
 	elif not key_to_exit:
 		return
-	else:
-		end_demo()
 	
 
 func reset():
@@ -60,12 +63,28 @@ func end_demo():
 	player1_node.get_node("ActionTimer").stop()
 	player1_node.action = null
 	player1_node.fighting = false
-	player1_node.victory()
+	var end_type = randf()
+	if end_type >= 0.75:
+		player1_node.victory()
+		player2_node.victory()
+	elif end_type >= 0.5:
+		player1_node.collapse()
+		player2_node.collapse()
+	elif end_type >= 0.25:
+		player1_node.stunned()
+		player2_node.stunned()
+	else:
+		var ox = {
+			"Kelsie": "flossing",
+			"John": "yes",
+			"Terje": "victory"
+		}
+		player1_node.get_node("AnimationPlayer").play(ox[player1_name])
+		player2_node.get_node("AnimationPlayer").play(ox[player2_name])
 	player2_node.get_node("ActionTimer").stop()
 	player2_node.action = null
 	player2_node.fighting = false
-	player2_node.victory()
-	$AnimationPlayer.play("end match fade")
+	$AnimationPlayer.play("end match fade delayed")
 
 func set_game_controller(controller):
 	game_controller = controller
@@ -154,6 +173,7 @@ func addPlayer(character:String, node_name:String, bot:bool):
 func set_scene():
 	if match_type == null:
 		match_type = "demo"
+		end_game_input = true
 	if player1_name == null:
 		randomize()
 		set_player1(characters[randi() % characters.size()])
@@ -209,16 +229,29 @@ func set_scene():
 		player1_node.doSomething()
 		player2_node.fighting = true
 		player2_node.doSomething()
+	
+	# chance to play random sound during second round of fight: 15%
+	if player1_wins + player2_wins == 1 and randf() <= 0.15:
+		# first character to reach the health amount below will trigger it
+		# it's 20-60 health
+		health_amount_to_trigger_random_sound = randi() % 40 + 20
 
 func load_fun_background(bkg:String):
 	if bkg == "JapanRooftop" or bkg == "OldStreet":
-		$Background.texture = load("res://levels/backgrounds/fun/%s.jpg" % background)
+		$Background.texture = load("res://levels/backgrounds/fun/%s.jpg" % bkg)
 		$Background.visible = true
 	else:
 		$Background.visible = false
 		$AnimatedBackground.play(bkg)
 
 func update_health(player, health:int):
+	if player.health == 0:
+		return
+	
+	if background != null and health_amount_to_trigger_random_sound != null and health_amount_to_trigger_random_sound > health:
+		health_amount_to_trigger_random_sound = -1
+		game_controller.play_random_sound(background)
+		
 	if match_type == "demo":
 		player1_node.health = 100
 		player2_node.health = 100
@@ -234,6 +267,12 @@ func update_health(player, health:int):
 	
 	if player.health > 0:
 		return
+	
+	# hide special cooldown indicator
+	player1_node.get_node("SpecialCooldown").visible = false
+	player1_node.get_node("CooldownTimer").stop()
+	player2_node.get_node("SpecialCooldown").visible = false
+	player2_node.get_node("CooldownTimer").stop()
 	
 	# other play won fight
 	if player == player1_node:
@@ -297,7 +336,7 @@ func _on_EndFightTimer_timeout():
 		if player1_wins >= 2:
 			$AnimationPlayer.play("end match fade")
 			game_controller.ambience_fade("out")
-		elif player2_wins >=2:
+		elif player2_wins >= 2:
 			format_text_for_label("continue?")
 			continue_counter = 10
 			move_child($HBoxContainer2, get_child_count())
@@ -313,6 +352,8 @@ func match_over(w):
 	$FatalityTimer.stop()
 	winner = w
 	loser = winner.enemy
+	loser.fighting = false
+	winner.fighting = false
 	winner.victory()
 	format_text_for_label("%s wins" % winner.character_name)
 	announcer_speak(winner.character_name)
@@ -347,6 +388,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			player2_node.fighting = true
 			if player2_node.bot:
 				player2_node.doSomething()
+		"end match fade delayed":
+			$AnimationPlayer.play("end match fade")
 		"end match fade":
 			if match_type == "storymode":
 				storymode_controller.fight_done()

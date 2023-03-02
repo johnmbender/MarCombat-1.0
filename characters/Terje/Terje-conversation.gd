@@ -281,7 +281,7 @@ onready var dialogue = {
 					},
 					10: {
 						"line": "Everyone reads those!",
-						"action": "shocked"
+						"action": "offended"
 					},
 					12: {
 						"line": null,

@@ -80,8 +80,22 @@ func play_storymode_music():
 		
 	var random = RandomNumberGenerator.new()
 	random.randomize()
-	$StoryModeMusic.stream = load("res://music/storymode_0%s.wav" % random.randi_range(1,3))
+	$StoryModeMusic.stream = load("res://music/storymode_0%s.wav" % random.randi_range(1,4))
 	storymode_music_fade("in")
+
+func play_random_sound(location:String):
+	match location:
+		"arrivals","breakroom","courtyard","hallway","humanHistory","lobby","naturalHistory","office","parking","roundhouse","shop":
+			# closing announcement for now, could add more later
+			$RandomSound.stream = load("res://sounds/closingAnnouncement.wav")
+			match location:
+				"arrivals","courtyard","lobby","parking","roundhouse","shop","breakroom","hallway","office":
+					# extra reverb
+					$RandomSound.set_bus("ReverbMedium")
+				_:
+					# low reverb
+					$RandomSound.set_bus("ReverbLow")
+			$RandomSound.play()
 
 func load_demo():
 	current_scene = "FightScene"
@@ -125,6 +139,7 @@ func set_game_mode(mode:String):
 			load_demo()
 
 func end_demo():
+	$FightScene.end_game_input = false
 	destroy_demo_end_timer()
 	$FightScene.end_demo()
 
@@ -173,6 +188,10 @@ func ledge_music():
 	storymode_music_fade("out")
 	ambience_fade("out")
 	$FightMusic.stream = load("res://music/ledge.wav")
+	fight_music_fade("in")
+
+func barbeque_music():
+	$FightMusic.stream = load("res://music/barbeque.wav")
 	fight_music_fade("in")
 
 func menu_music_fade(which:String, speed:float = 1.0):
