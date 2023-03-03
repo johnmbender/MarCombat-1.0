@@ -972,7 +972,7 @@ __meta__ = {
 shape = SubResource( 1 )
 
 [node name="WallLeft" type="StaticBody2D" parent="."]
-position = Vector2( -16, 336 )
+position = Vector2( 0, 336 )
 scale = Vector2( 0.8, 0.8 )
 collision_layer = 2147483648
 __meta__ = {

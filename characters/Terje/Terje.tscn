@@ -388,10 +388,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.01, 0.02, 0.03, 0.04, 0.2, 0.4, 0.6, 0.8, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.02, 0.05, 0.1, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 172 ), ExtResource( 174 ), ExtResource( 172 ), ExtResource( 165 ), ExtResource( 172 ), ExtResource( 174 ), ExtResource( 172 ), ExtResource( 165 ), ExtResource( 172 ), ExtResource( 174 ) ]
+"values": [ ExtResource( 172 ), ExtResource( 174 ), ExtResource( 172 ), ExtResource( 165 ), ExtResource( 174 ), ExtResource( 172 ), ExtResource( 165 ), ExtResource( 172 ), ExtResource( 174 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("GutBloodSquirt:emitting")

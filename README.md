@@ -12,9 +12,6 @@ A game, to conquer the world.
 - OX
     - CHECK: rooftop ambience should stay on throughout Ox
 - FUGUM
-    - make proper animation for first time stop-swing corpses IT'S WORTH IT!
-    - CHECK: player collapses at end of FUGUM fight no matter what
-        - CHECK: already lying down
 
 - Terje bot did not collapse after my 2nd win when hit, not fatality'd, but kelsie did?
 - sometimes a hit leaves a bot at 0 health (?) and they don't collapse - one more hit and they collapse, and then collapse again
@@ -59,7 +56,6 @@ A game, to conquer the world.
 - Terje's barbeque animation???
 - if Kelsie's special gets interrupted, hair is lying on the field - FIXED?
 
-1: tweaks
 2: Tyler - add before self-doubt with "why are you here?" and/or "I don't like you" OR after self-doubt asking what was that about, weirdo? (fight)
     - should throw bugs or something relevant
 3: Julie
@@ -72,9 +68,7 @@ A game, to conquer the world.
 
 
 # Littler To-Dos:
-- visually enhance Terje's special animation
 
 # POLISH
-- bug fixes and testing
 
 # PRIORITY BUG FIXES

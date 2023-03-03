@@ -32,7 +32,7 @@ func start_blade():
 	# one-time activate right here
 	$Wheel/Spinner/SpinnerTree.active = true
 	$Wheel/Spinner.play("spin")
-	$Swinger.play("idle") # jovi
+	$Swinger.play("first stop")
 	timingTree.travel("start")
 
 func stop_blade():
@@ -146,8 +146,9 @@ func _on_AtRot315_body_entered(_body):
 	notify_player_pierced("AtRot315")
 
 func _on_Swinger_animation_finished(anim_name):
-	if anim_name == "stop":
-		$Swinger.play("idle")
+	match anim_name:
+		"stop", "first stop":
+			$Swinger.play("idle")
 
 
 

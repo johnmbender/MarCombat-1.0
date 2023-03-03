@@ -234,11 +234,10 @@ func _on_RetirementTimer_timeout():
 		elif blade_caught == false:
 			$FUGUM.stop_blade()
 			$AnimationPlayer.play("outro")
-			player.fighting = false
 			fight_over = true
-			var current_sprite = player.get_node("Sprite").texture.resource_path
-			if current_sprite.find("collapse") == -1:
+			if player.fighting:
 				player.collapse()
+			player.fighting = false
 	else:
 		retirement_years -= 1
 
