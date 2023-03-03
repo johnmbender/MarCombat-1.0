@@ -77,7 +77,7 @@ func end_demo():
 		var ox = {
 			"Kelsie": "flossing",
 			"John": "yes",
-			"Terje": "victory"
+			"Terje": "dance"
 		}
 		player1_node.get_node("AnimationPlayer").play(ox[player1_name])
 		player2_node.get_node("AnimationPlayer").play(ox[player2_name])

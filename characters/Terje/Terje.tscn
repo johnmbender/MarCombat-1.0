@@ -1,4 +1,4 @@
-[gd_scene load_steps=251 format=2]
+[gd_scene load_steps=264 format=2]
 
 [ext_resource path="res://characters/Terje/sprites/actions/victory/victory_05.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
@@ -156,6 +156,12 @@
 [ext_resource path="res://characters/Terje/sprites/actions/hit-uppercut/hit-uppercut_06.png" type="Texture" id=154]
 [ext_resource path="res://ui/cooldown-progress.png" type="Texture" id=155]
 [ext_resource path="res://ui/cooldown-under.png" type="Texture" id=156]
+[ext_resource path="res://characters/Terje/sprites/actions/dance/dance_05.png" type="Texture" id=157]
+[ext_resource path="res://characters/Terje/sprites/actions/dance/dance_01.png" type="Texture" id=158]
+[ext_resource path="res://characters/Terje/sprites/actions/dance/dance_02.png" type="Texture" id=159]
+[ext_resource path="res://characters/Terje/sprites/actions/dance/dance_03.png" type="Texture" id=160]
+[ext_resource path="res://characters/Terje/sprites/actions/dance/dance_04.png" type="Texture" id=161]
+[ext_resource path="res://characters/Terje/sprites/actions/dance/dance_11.png" type="Texture" id=162]
 [ext_resource path="res://characters/Terje/sprites/actions/thrown/thrown_09.png" type="Texture" id=163]
 [ext_resource path="res://characters/Terje/sprites/actions/thrown/thrown_01.png" type="Texture" id=164]
 [ext_resource path="res://characters/Terje/sprites/actions/thrown/thrown_07.png" type="Texture" id=165]
@@ -203,6 +209,12 @@
 [ext_resource path="res://characters/Terje/sprites/actions/response-john/response-john_13.png" type="Texture" id=207]
 [ext_resource path="res://characters/Terje/sprites/actions/response-john/response-john_15.png" type="Texture" id=208]
 [ext_resource path="res://characters/Terje/sprites/actions/response-john/response-john_16.png" type="Texture" id=209]
+[ext_resource path="res://characters/Terje/sprites/actions/dance/dance_06.png" type="Texture" id=210]
+[ext_resource path="res://characters/Terje/sprites/actions/dance/dance_12.png" type="Texture" id=211]
+[ext_resource path="res://characters/Terje/sprites/actions/dance/dance_07.png" type="Texture" id=212]
+[ext_resource path="res://characters/Terje/sprites/actions/dance/dance_08.png" type="Texture" id=213]
+[ext_resource path="res://characters/Terje/sprites/actions/dance/dance_09.png" type="Texture" id=214]
+[ext_resource path="res://characters/Terje/sprites/actions/dance/dance_10.png" type="Texture" id=215]
 [ext_resource path="res://characters/Terje/sprites/actions/victory/victory_09.png" type="Texture" id=225]
 [ext_resource path="res://characters/Terje/sprites/actions/victory/victory_12.png" type="Texture" id=226]
 [ext_resource path="res://characters/Terje/sprites/actions/victory/victory_11.png" type="Texture" id=227]
@@ -613,6 +625,23 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 0.7 ) ]
+}
+
+[sub_resource type="Animation" id=147]
+resource_name = "dance"
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 158 ), ExtResource( 159 ), ExtResource( 160 ), ExtResource( 161 ), ExtResource( 157 ), ExtResource( 210 ), ExtResource( 212 ), ExtResource( 213 ), ExtResource( 214 ), ExtResource( 215 ), ExtResource( 162 ), ExtResource( 211 ) ]
 }
 
 [sub_resource type="Animation" id=128]
@@ -1700,6 +1729,7 @@ anims/collapse = SubResource( 26 )
 anims/crouch = SubResource( 79 )
 anims/crouch-return = SubResource( 145 )
 anims/crouching = SubResource( 140 )
+anims/dance = SubResource( 147 )
 anims/fatality = SubResource( 128 )
 anims/get-up = SubResource( 88 )
 anims/hit-blade = SubResource( 143 )

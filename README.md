@@ -2,14 +2,6 @@
 A game, to conquer the world.
 
 # Known Bugs
-Ox Anna fight:
-    - collapses properly on first hit, incorrectly thereafter
-    - issue where someone can get punched while flying from an uppercut - feature?
-
-FIGHT SCENE
-    - CHECK: if bot blocks on attack that drops health at or below 0, they freeze rather than collapse
-    - CHECK: sometimes a hit leaves a bot at 0 health (?) and they don't collapse - one more hit and they collapse, and then collapse again
-    - when John shoots bullets just as Terje has thrown his brochures, terje gets shot forever
 
 AI:
     - Terje bot did not collapse after my 2nd win when hit, not fatality'd, but kelsie did?
@@ -18,9 +10,6 @@ AI:
     - Kelsie bot did three specials in a row :/
     - Terje (others?) get locked in block animation until hit
     - Kelsie's never gets dizzy
-
-TERJE:
-    - NEED: Terje's barbeque animation???
 
 
 # IDEAS HEAP
