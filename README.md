@@ -1,7 +1,8 @@
 # MarCombat
 A game, to conquer the world.
 
-# TO DO, IN ORDER:
+# TO DO, IN ORDER
+- John stop emitting bullets if collapsed
 - FIGHT SCENE
     - fight music lowers at "X WINS"
     - John's self-doubt still has negasmoke after defeat on floor
@@ -12,6 +13,8 @@ A game, to conquer the world.
 - OX
     - CHECK: rooftop ambience should stay on throughout Ox
 - FUGUM
+    - check Kelsie and Terje specials vs
+
 
 - Terje bot did not collapse after my 2nd win when hit, not fatality'd, but kelsie did?
 - sometimes a hit leaves a bot at 0 health (?) and they don't collapse - one more hit and they collapse, and then collapse again
