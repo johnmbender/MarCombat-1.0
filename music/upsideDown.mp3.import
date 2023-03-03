@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/upsideDown.mp3-a42691a7c91e55026b9af2b4d3b4d81a.mp3str"
+
+[deps]
+
+source_file="res://music/upsideDown.mp3"
+dest_files=[ "res://.import/upsideDown.mp3-a42691a7c91e55026b9af2b4d3b4d81a.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

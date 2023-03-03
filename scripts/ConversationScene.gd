@@ -113,7 +113,7 @@ func set_exposition():
 	exposition = {
 		0: {
 			0: {
-				"line": "One day, %s comes up with the best idea ever.\n\n%s idea would skyrocket the prestige of the museum, make it highly profitable, and spike morale. It's risk-free and nearly zero cost.\n\n%s wants to run the idea past a coworker before taking it up the line.\n\n%s finds %s and explains it to %s, who cheerfully provides a lot of constructive feedback..." % [player, player_pronouns[2], player_pronouns[0], player, opponent, opponent_pronouns[1]],
+				"line": "One day, %s comes up with the best idea ever.\n\n%s idea would skyrocket the prestige of the museum, make it highly profitable, and spike morale. It's risk-free and nearly zero cost.\n\n%s wants to run the idea past a coworker before taking it up the line.\n\n%s finds %s and explains it to %s, who cheerfully provides constructive feedback..." % [player, player_pronouns[2], player_pronouns[0], player, opponent, opponent_pronouns[1]],
 			}
 		},
 		1: {
@@ -300,12 +300,12 @@ func speak_line():
 				current_line += 1
 				speak_line()
 
-func set_speaking_speed(text:String):
+func set_speaking_speed(text:String):	
 	var chars = text.length()
 	if chars == 0:
 		return
 	
-	var chars_per_sec = 40
+	var chars_per_sec = 25
 	var seconds = float(chars) / chars_per_sec
 	seconds = clamp(seconds, 0.5, seconds)
 	var speed = 1.0 / seconds

@@ -96,11 +96,11 @@ onready var dialogue = {
 						"action": "yes"
 					},
 					1: {
-						"line": "Oksana will know what to do.",
+						"line": "Oksana will know what to do, I hope.",
 						"action": "smile"
 					},
 					2: {
-						"line": "I'll buy her a coffee, she'll like that.",
+						"line": "I'll buy her a coffee. She loves her coffee.",
 						"action": "yes"
 					},
 					3: {
@@ -184,7 +184,7 @@ onready var dialogue = {
 						"action": "confused"
 					},
 					25: {
-						"line": "That's a familiar rodeo.",
+						"line": "Oh god, yes.",
 						"action": "yes"
 					},
 					27: {
@@ -192,7 +192,7 @@ onready var dialogue = {
 						"action": "confused"
 					},
 					29: {
-						"line": "My name is John.",
+						"line": "A number. Soooo personal.",
 						"action": "normal"
 					},
 					31: {

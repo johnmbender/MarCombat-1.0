@@ -28,6 +28,7 @@ var storymode_controller
 var continue_counter
 
 var health_amount_to_trigger_random_sound = null
+var upside_down = false
 
 func _ready():
 	player1_wins = 0
@@ -39,6 +40,9 @@ func _input(event):
 	
 	if match_type == "demo":
 		end_game_input = false
+		var bullets = find_node("Bullets")
+		if bullets:
+			bullets.emitting = false
 		end_demo()
 	elif end_game_input:
 		end_game_input = false
@@ -55,7 +59,6 @@ func reset():
 	$HBoxContainer2/Countdown.visible = false
 	$UI/Player1/SkullContainer/Skull.visible = false
 	$UI/Player2/SkullContainer/Skull.visible = false
-	game_controller.fight_music_adjust("raise")
 
 func end_demo():
 	game_controller.destroy_demo_end_timer()
@@ -118,6 +121,8 @@ func set_background_sounds(location:String):
 			game_controller.play_ambience("rooftop")
 		"officeSpace":
 			game_controller.play_ambience("pete")
+		_:
+			pass
 
 func addPlayer(character:String, node_name:String, bot:bool):
 	var scenePath = "res://characters/%s/%s.tscn" % [character, character]
@@ -188,12 +193,29 @@ func set_scene():
 		set_player2(characters[randi() % characters.size()])
 	if background == null:
 		randomize()
-		if randf() <= 0.5:
+		
+		var picker
+		if upside_down:
+			picker = 1.0
+		else:
+			picker = randf()
+			
+		if picker <= 0.5:
 			set_background(backgrounds[randi() % backgrounds.size()-1])
 			$Background.texture = load("res://levels/backgrounds/%s.jpg" % background)
 			$Background.visible = true
 		else:
-			load_fun_background(fun_backgrounds[randi() % fun_backgrounds.size()-1])
+			if picker >= 0.9:
+				scale = Vector2(1, -1)
+				position.y = 600
+				$Background.texture = load("res://levels/backgrounds/fun/upsideDown.jpg")
+				$Background.visible = true
+				if upside_down == false:
+					# only start music once
+					game_controller.play_fight_music("upsideDown.mp3")
+				upside_down = true
+			else:
+				load_fun_background(fun_backgrounds[randi() % fun_backgrounds.size()-1])
 	else:
 		$Background.texture = load("res://levels/backgrounds/%s.jpg" % background)
 		$Background.visible = true
@@ -208,6 +230,7 @@ func set_scene():
 		"demo":
 			player1_node = addPlayer(player1_name, "player1", true)
 			player2_node = addPlayer(player2_name, "player2", true)
+			
 			$AnimationPlayer.play("press key to start flash")
 		"storymode","deathmatch":
 			player1_node = addPlayer(player1_name, "player1", false)
@@ -219,6 +242,19 @@ func set_scene():
 	player2_node.enemy = player1_node
 	player1_node.will_collapse = false
 	player2_node.will_collapse = false
+	
+	if upside_down:
+		player1_node.upside_down = true
+		player1_node.modulate = Color(0.03, 0.67, 0.93, 0.9)
+		player2_node.upside_down = true
+		player2_node.modulate = Color(0.03, 0.67, 0.93, 0.9)
+		$UI.rect_scale = Vector2(0.63, -0.63)
+		$UI.rect_position.y = 140
+		$HBoxContainer.rect_scale = Vector2(1, -1)
+		$HBoxContainer.rect_position.y = 270
+		$PressKeyToStart.rect_scale.y = -1
+		player1_node.gravity = -1000
+		player2_node.gravity = -1000
 	
 	if match_type != "demo":
 		format_text_for_label("Round %s" % (player1_wins + player2_wins + 1))
@@ -320,8 +356,8 @@ func update_health(player, health:int):
 		player.enemy.fighting = false
 		announcer_speak(player.enemy.character_name)
 		var smoke = player.get_node("NegaSmoke")
-		smoke.visible = false
-		smoke.playing = false
+		if smoke.is_playing():
+			smoke.visible = false
 		$EndFightTimer.wait_time = 3
 		$EndFightTimer.start()
 
@@ -412,3 +448,10 @@ func _on_CountdownTimer_timeout():
 		game_controller.storymode_quit()
 	else:
 		$HBoxContainer2/Countdown.text = "%s" % continue_counter
+
+func pause_game():
+	get_tree().paused = true
+	$PauseDialog.visible = true
+
+func _on_PauseDialog_confirmed():
+	get_tree().paused = false

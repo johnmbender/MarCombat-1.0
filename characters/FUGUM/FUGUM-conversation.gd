@@ -66,7 +66,7 @@ func _ready():
 							"action": "hidden"
 						},
 						30: {
-							"line": '"................... ok ........... %s."',
+							"line": '"................... ok ................ %s."',
 							"action": "hidden"
 						},
 						32: {
@@ -127,9 +127,8 @@ func read_employee_number():
 	if num_to_read.length() > 0:
 		$Voice.stream = load("res://sounds/characters/FUGUM/num-%s.wav" % num_to_read)
 		$Voice.play()
-		print("employee_number: ", employee_number, " - played ", characters_spoken, " of ", employee_number.length(), ": ", num_to_read)
 		characters_spoken += 1
-	if characters_spoken == 7: # MAKES NO SENSE!
+	if characters_spoken == 7:
 		emit_signal("voice_finished")
 
 func _on_Voice_finished():

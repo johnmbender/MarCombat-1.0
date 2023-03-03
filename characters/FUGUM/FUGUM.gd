@@ -24,6 +24,9 @@ func _ready():
 func idle():
 	$SoundBlender.play("idle")
 
+func is_getting_shot(_unused):
+	pass
+
 func release():
 	# one-time plays the release sound, when stopping or starting
 	$Release.play()
@@ -90,6 +93,7 @@ func move(toward_player:bool):
 
 func leave():
 	$SoundBlender.play("leave")
+	$Swinger.play("backward")
 
 func set_collisions(monitoring:bool, disabled:bool):
 	$Wheel/AtRot0.set_deferred("monitoriing", monitoring)

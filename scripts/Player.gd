@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const GRAVITY = 1000
+var gravity = 1000
 const MOVE_SPEED = 300
 
 const DAMAGE_LOW = 10
@@ -37,6 +37,8 @@ var health
 
 var game_controller
 
+var upside_down = false
+
 func set_game_controller(controller):
 	game_controller = controller
 
@@ -58,8 +60,9 @@ func idle():
 			$Bullets.emitting = false
 
 func collapse():
-	if bot and $NegaSmoke.visible:
+	if $NegaSmoke.is_playing():
 		$NegaSmoke.visible = false
+	#jovi
 	$AnimationPlayer.play("collapse")
 
 func stunned():
@@ -69,7 +72,7 @@ func stunned():
 
 func squish():
 	$AnimationPlayer.play("squish")
-	if bot and $NegaSmoke.visible:
+	if $NegaSmoke.is_playing():
 		$NegaSmoke.visible = false
 	play_sound("res://sounds/characters/Kelsie/boot-stomp.wav", false)
 
@@ -100,7 +103,7 @@ func _process(_delta):
 func _physics_process(_delta):
 	if bot == false:
 		velocity = Vector2()
-		velocity.y += GRAVITY
+		velocity.y += gravity
 		get_input()
 		var _unused = move_and_slide(velocity, Vector2.UP)
 
@@ -108,53 +111,100 @@ func get_input():
 	if bot or not fighting:
 		return
 	
-	if blocking and Input.is_action_just_released("block"):
+	if Input.is_action_just_released("quit"):
+		get_parent().pause_game()
+	elif blocking and Input.is_action_just_released("block"):
+		$AnimationPlayer.play("block-release")
+	elif blocking and upside_down and Input.is_action_just_released("special"):
 		$AnimationPlayer.play("block-release")
 	elif crouching:
-		if Input.is_action_pressed("punch"):
-			$AnimationPlayer.play('uppercut')
-		elif Input.is_action_just_released("crouch"):
-			$AnimationPlayer.play("crouch-return")
+		if upside_down:
+			if Input.is_action_pressed("kick"):
+				$AnimationPlayer.play('uppercut')
+			elif Input.is_action_just_released("ui_up"):
+				$AnimationPlayer.play("crouch-return")
+		else:
+			if Input.is_action_pressed("punch"):
+				$AnimationPlayer.play('uppercut')
+			elif Input.is_action_just_released("crouch"):
+				$AnimationPlayer.play("crouch-return")
 	elif not busy():
 		if Input.is_action_pressed("punch"):
 			if enemy_is_close():
-				# taking this out because PITA
-	#				if (Input.is_action_pressed("ui_left") and enemy.scale.y < 0) or (Input.is_action_pressed("ui_right") and enemy.scale.y > 0):
-	#					$AnimationPlayer.play("throw")
-	#				else:
-				$AnimationPlayer.play("punch-close")
+				if upside_down:
+					$AnimationPlayer.play("kick-close")
+				else:
+					$AnimationPlayer.play("punch-close")
 			else:
-				$AnimationPlayer.play("punch-far")
+				if upside_down:
+					$AnimationPlayer.play("kick-far")
+				else:
+					$AnimationPlayer.play("punch-far")
 		elif Input.is_action_pressed("kick"):
 			if enemy_is_close():
-				$AnimationPlayer.play("kick-close")
+				if upside_down:
+					$AnimationPlayer.play("punch-close")
+				else:
+					$AnimationPlayer.play("kick-close")
 			else:
-				$AnimationPlayer.play("kick-far")
+				if upside_down:
+					$AnimationPlayer.play("punch-far")
+				else:
+					$AnimationPlayer.play("kick-far")
 		elif Input.is_action_pressed("block"):
-			$AnimationPlayer.play("block")
-		elif Input.is_action_pressed("crouch"):
+			if upside_down:
+				$AnimationPlayer.play("special")
+			else:
+				$AnimationPlayer.play("block")
+		elif Input.is_action_pressed("crouch") and upside_down == false:
+			$AnimationPlayer.play("crouch")
+		elif Input.is_action_pressed("ui_up") and upside_down == true:
 			$AnimationPlayer.play("crouch")
 		elif Input.is_action_pressed("special"):
-			$AnimationPlayer.play("special")
+			if upside_down:
+				$AnimationPlayer.play("block")
+			else:
+				$AnimationPlayer.play("special")
 		elif Input.is_action_pressed("ui_left"):
-			if facing == "left":
-				$AnimationPlayer.play("walk-forward")
+			if upside_down:
+				if facing == "left":
+					$AnimationPlayer.play("walk-backward")
+				else:
+					$AnimationPlayer.play("walk-forward")
+				
+				if enemy.character_name == "F.U.G.U.M.":
+					velocity.x -= (MOVE_SPEED * .5)
+				else:
+					velocity.x += MOVE_SPEED
 			else:
-				$AnimationPlayer.play("walk-backward")
-			
-			if enemy.character_name == "F.U.G.U.M.":
-				velocity.x -= (MOVE_SPEED * .5)
-			else:
-				velocity.x -= MOVE_SPEED
+				if facing == "left":
+					$AnimationPlayer.play("walk-forward")
+				else:
+					$AnimationPlayer.play("walk-backward")
+				
+				if enemy.character_name == "F.U.G.U.M.":
+					velocity.x -= (MOVE_SPEED * .5)
+				else:
+					velocity.x -= MOVE_SPEED
 		elif Input.is_action_pressed("ui_right"):
-			if facing == "right":
-				$AnimationPlayer.play("walk-forward")
+			if upside_down:
+				if facing == "right":
+					$AnimationPlayer.play("walk-backward")
+				else:
+					$AnimationPlayer.play("walk-facing")
+				if enemy.character_name == "F.U.G.U.M.":
+					velocity.x += (MOVE_SPEED * .5)
+				else:
+					velocity.x -= MOVE_SPEED
 			else:
-				$AnimationPlayer.play("walk-backward")
-			if enemy.character_name == "F.U.G.U.M.":
-				velocity.x += (MOVE_SPEED * .5)
-			else:
-				velocity.x += MOVE_SPEED
+				if facing == "right":
+					$AnimationPlayer.play("walk-forward")
+				else:
+					$AnimationPlayer.play("walk-backward")
+				if enemy.character_name == "F.U.G.U.M.":
+					velocity.x += (MOVE_SPEED * .5)
+				else:
+					velocity.x += MOVE_SPEED
 		elif can_use_fatality and Input.is_action_pressed("fatality"):
 			match character_name:
 				"Kelsie":
@@ -197,18 +247,34 @@ func _on_AnimationPlayer_animation_started(anim_name):
 				attacking = true
 				play_sound("res://sounds/characters/effects/attack.wav", true)
 		"blade-gut-hit":
-			play_sound("res://sounds/characters/effects/blade-gut-hit.wav", false)
+			if character_name == "Kelsie":
+				$Hair.visible = false
+			elif character_name == "Terje":
+				$BrochureSpill.emitting = false
+			elif character_name == "John":
+				$Bullets.emitting = false
+			$SpecialCooldown.visible = false
+			play_sound("res://sounds/characters/effects/blade-gut-hit.wav", true)
 		"hit-face","hit-uppercut":
 			if enemy.character_name != "Kelsie" or enemy.get_node("AnimationPlayer").current_animation != "special":
 				play_sound("res://sounds/characters/effects/punched.wav", true)
 			$BloodSquirt.emitting = true
 			if anim_name == "hit-uppercut":
 				completed_animation = false
+				$SpecialCooldown.visible = false
 		"hit-gut":
 			play_sound("res://sounds/characters/effects/kicked.wav", true)
+		"fatality":
+			$SpecialCooldown.visible = false
+		"fatality-start":
+			$SpecialCooldown.visible = false
 		"stagger":
 			if bot:
 				emit_signal("bot_damage_taken")
+		"collapse":
+			$SpecialCooldown.visible = false
+		"stunned":
+			$SpecialCooldown.visible = false
 		"special":
 			if character_name == "Kelsie":
 				if _KELSIE_is_dizzy:
@@ -264,8 +330,10 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			play_sound("res://sounds/characters/effects/drop.wav", true)
 			$AnimationPlayer.stop()
 		"squish":
+			$SpecialCooldown.visible = false
 			$AnimationPlayer.stop()
 		"skeletonize":
+			$SpecialCooldown.visible = false
 			$AnimationPlayer.stop()
 		"fatality-start":
 			$AnimationPlayer.play("fatality-repeat")
@@ -274,16 +342,20 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 				get_parent().fatality_modulate("out")
 				collapse()
 		"tossed-by-oxanna":
+			$SpecialCooldown.visible = false
 			if health > 10:
 				$AnimationPlayer.play("get-up")
 		"hit-blade":
 			fighting = false
 		"get-up":
-			if bot and character_name == enemy.character_name:
+			if not bot and $CooldownTimer.time_left > 0:
+				$SpecialCooldown.visible = true
+			if $NegaSmoke.is_playing():
 				$NegaSmoke.visible = true
 			completed_animation = true
 			$AnimationPlayer.play("idle")
 		"victory":
+			$SpecialCooldown.visible = false
 			$AnimationPlayer.stop()
 		"special":
 			special_cooldown_timer()
@@ -314,6 +386,9 @@ func damage_taken(animation:String):
 	attacking = false
 	crouching = false
 
+	# jovi: testing this to see if it blocks AI from getting stuck
+	completed_animation = true
+	
 	# Kelsie's hair gets stuck sometimes if hit mid-swing
 	if character_name == "Kelsie":
 		$Hair.visible = false
@@ -354,7 +429,7 @@ func damage_taken(animation:String):
 			"uppercut":
 				$AnimationPlayer.play("hit-uppercut")
 				health -= DAMAGE_HIGH
-				if bot and $NegaSmoke.visible:
+				if $NegaSmoke.is_playing():
 					$NegaSmoke.visible = false
 				if health <= 0:
 					will_collapse = true
@@ -365,10 +440,12 @@ func damage_taken(animation:String):
 					# John's is calculated in getting_shot
 					"Kelsie":
 						play_sound("res://sounds/characters/Kelsie/special-crack.wav", true)
-						health -= DAMAGE_LOW
+						health -= 20
 						$AnimationPlayer.play("hit-face")
 					"Terje":
-						enemy.get_node("brochure").queue_free()
+						var brochure_node = enemy.get_node_or_null("brouchure")
+						if brochure_node:
+							brochure_node.queue_free()
 						completed_animation = false
 						health -= 20
 						$AnimationPlayer.play("knock-back")
@@ -508,7 +585,8 @@ func _JOHN_punality():
 func _on_FatalityPlayer_finished():
 	_JOHN_fatality_end()
 
-
+func skeletonized():
+	$AnimationPlayer.play("skeletonize")
 
 # KELSIE
 func _KELSIE_fatality():

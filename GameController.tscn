@@ -543,6 +543,7 @@ anims/lower = SubResource( 16 )
 anims/raise = SubResource( 17 )
 
 [node name="FightMusic" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
 volume_db = -80.0
 
 [node name="FightPlayer" type="AnimationPlayer" parent="FightMusic"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=264 format=2]
+[gd_scene load_steps=267 format=2]
 
 [ext_resource path="res://characters/Terje/sprites/actions/victory/victory_05.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
@@ -215,6 +215,8 @@
 [ext_resource path="res://characters/Terje/sprites/actions/dance/dance_08.png" type="Texture" id=213]
 [ext_resource path="res://characters/Terje/sprites/actions/dance/dance_09.png" type="Texture" id=214]
 [ext_resource path="res://characters/Terje/sprites/actions/dance/dance_10.png" type="Texture" id=215]
+[ext_resource path="res://sprites/lightbulb_02.png" type="Texture" id=216]
+[ext_resource path="res://sprites/lightbulb_01.png" type="Texture" id=217]
 [ext_resource path="res://characters/Terje/sprites/actions/victory/victory_09.png" type="Texture" id=225]
 [ext_resource path="res://characters/Terje/sprites/actions/victory/victory_12.png" type="Texture" id=226]
 [ext_resource path="res://characters/Terje/sprites/actions/victory/victory_11.png" type="Texture" id=227]
@@ -387,6 +389,18 @@ tracks/12/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ) ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Lightbulb:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=144]
@@ -1573,6 +1587,14 @@ animations = [ {
 "speed": 18.0
 } ]
 
+[sub_resource type="SpriteFrames" id=148]
+animations = [ {
+"frames": [ ExtResource( 217 ), ExtResource( 216 ) ],
+"loop": true,
+"name": "default",
+"speed": 3.0
+} ]
+
 [node name="Terje" type="KinematicBody2D"]
 collision_layer = 0
 collision_mask = 2147483648
@@ -1816,6 +1838,12 @@ fill_mode = 5
 [node name="CooldownTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+
+[node name="Lightbulb" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 24, -224 )
+scale = Vector2( 1.2, 1.2 )
+frames = SubResource( 148 )
 
 [connection signal="body_entered" from="AttackCircle" to="." method="_on_AttackCircle_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

@@ -993,7 +993,7 @@ shape = SubResource( 18 )
 position = Vector2( -48, -80 )
 frames = SubResource( 5 )
 animation = "wave"
-frame = 8
+frame = 2
 playing = true
 __meta__ = {
 "_edit_lock_": true

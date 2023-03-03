@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://levels/backgrounds/arrivals.jpg" type="Texture" id=1]
 [ext_resource path="res://scripts/FightScene.gd" type="Script" id=2]
@@ -290,6 +290,8 @@ font_data = ExtResource( 4 )
 [sub_resource type="Theme" id=12]
 default_font = SubResource( 11 )
 
+[sub_resource type="Theme" id=18]
+
 [node name="FightScene" type="Node2D"]
 script = ExtResource( 2 )
 
@@ -422,7 +424,17 @@ rect_clip_content = false
 theme = SubResource( 12 )
 text = "press any key to start"
 
+[node name="PauseDialog" type="AcceptDialog" parent="."]
+pause_mode = 2
+margin_left = 421.0
+margin_top = 240.0
+margin_right = 605.0
+margin_bottom = 312.0
+theme = SubResource( 18 )
+window_title = "Game paused"
+
 [connection signal="timeout" from="HBoxContainer2/CountdownTimer" to="." method="_on_CountdownTimer_timeout"]
 [connection signal="timeout" from="FatalityTimer" to="." method="_on_FatalityTimer_timeout"]
 [connection signal="timeout" from="EndFightTimer" to="." method="_on_EndFightTimer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="confirmed" from="PauseDialog" to="." method="_on_PauseDialog_confirmed"]

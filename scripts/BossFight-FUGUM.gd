@@ -13,6 +13,7 @@ var fight_over = false
 var selected_gift = 1
 var player_name
 var player
+var lightbulb
 
 var game_controller
 var storymode_controller
@@ -39,6 +40,8 @@ func set_corpses(characters:Array):
 func set_scene():
 	var scenePath = "res://characters/%s/%s.tscn" % [player_name, player_name]
 	player = load(scenePath).instance()
+	lightbulb = player.get_node("Lightbulb")
+	lightbulb.play("default")
 	player.name = "player"
 	player.set_bot(false)
 	$Player.add_child(player)
@@ -72,6 +75,8 @@ func set_match_type(_mt):
 func _unhandled_key_input(event):
 	if allow_input:
 		if fight_over == false:
+			lightbulb.visible = true
+			player.play_sound("res://sounds/characters/effects/lightbulb.wav", false)
 			player.get_node("AnimationPlayer").play("get-up")
 			player.fighting = true
 			if retirement_years > 0:
@@ -167,6 +172,14 @@ func start_blade():
 func player_pierced(area:String):
 	$UI.set_player_health(1, 0)
 	player.get_node("AnimationPlayer").stop()
+	# this doesn't seem to work?!
+	if player.character_name == "Kelsie":
+		player.get_node("Hair").visible = false
+	elif player.character_name == "Terje":
+		player.get_node("BrochureSpill").emitting = false
+	elif player.character_name == "John":
+		player.get_node("Bullets").emitting = false
+	lightbulb.visible = false
 	$FUGUM.stop()
 	$RetirementTimer.paused = true
 	player.fighting = false
@@ -233,6 +246,7 @@ func _on_RetirementTimer_timeout():
 			let_go = true
 		elif blade_caught == false:
 			$FUGUM.stop_blade()
+			lightbulb.visible = false
 			$AnimationPlayer.play("outro")
 			fight_over = true
 			if player.fighting:

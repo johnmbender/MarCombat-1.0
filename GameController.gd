@@ -56,20 +56,25 @@ func load_deathmatch(player1, player2):
 		scene.set_player2(characters[0])
 		scene.set_match_type("deathmatch")
 		scene.set_scene()
-		play_fight_music()
+		if fight_music_playing() == false:
+			play_fight_music() # is this always done twice?
 	else:
 		# 2 players
 		pass
 
-func play_fight_music():
+func play_fight_music(song:String = ""):
 	if menu_music_playing():
 		menu_music_fade("out")
 	elif storymode_music_playing():
 		storymode_music_fade("out")
+	
+	if song.length() == 0:
+		var random = RandomNumberGenerator.new()
+		random.randomize()
+		$FightMusic.stream = load("res://music/fight_0%s.wav" % random.randi_range(1,5))
+	else:
+		$FightMusic.stream = load("res://music/%s" % song)
 		
-	var random = RandomNumberGenerator.new()
-	random.randomize()
-	$FightMusic.stream = load("res://music/fight_0%s.wav" % random.randi_range(1,5))
 	fight_music_fade("in")
 
 func play_storymode_music():

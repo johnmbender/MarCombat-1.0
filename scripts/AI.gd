@@ -69,22 +69,12 @@ func doSomething():
 			action = "attack"
 	else:
 		if roll <= defensiveness:
-			# sometimes allow CD animation
 			if character_name == "John" and _JOHN_guns_jammed:
-				if randf() > 0.4:
-					action = null
-				else:
-					action = "special"
-			elif character_name == "Kelsie" and _KELSIE_special_spam <= 0:
-				if randf() > 0.4:
-					action = null
-				else:
-					action = "special"
+				action = "approach"
+			elif character_name == "Kelsie" and _KELSIE_is_dizzy:
+				action = "approach"
 			elif character_name == "Terje" and _TERJE_brochures_spilt:
-				if randf() > 0.4:
-					action = null
-				else:
-					action = "special"
+				action = "approach"
 			else:
 				action = "special"
 		elif roll <= aggression:
@@ -101,7 +91,7 @@ func doSomething():
 func _physics_process(_delta):
 	velocity = Vector2()
 	velocity.y = 0
-	velocity.y += GRAVITY
+	velocity.y += gravity
 
 	if action == null or attacking or blocking or crouching:
 		var _unused = move_and_slide(velocity, Vector2.UP)

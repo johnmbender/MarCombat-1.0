@@ -248,7 +248,7 @@ onready var dialogue = {
 						"action": "yes"
 					},
 					5: {
-						"line": "Yeah, I'm heading there right now, see ya.",
+						"line": "Yeah, I'm gonna run up there before you do. Your word against mine.",
 						"action": "normal"
 					},
 					7: {
