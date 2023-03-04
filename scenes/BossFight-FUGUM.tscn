@@ -853,7 +853,7 @@ nodes/Animation/position = Vector2( 80, 90 )
 nodes/TimeScale/node = SubResource( 12 )
 nodes/TimeScale/position = Vector2( 310, 70 )
 nodes/output/position = Vector2( 550, 70 )
-node_connections = [ "TimeScale", 0, "Animation", "output", 0, "TimeScale" ]
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
 
 [sub_resource type="DynamicFont" id=3]
 size = 100

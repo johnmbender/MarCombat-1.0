@@ -450,8 +450,10 @@ func _on_CountdownTimer_timeout():
 		$HBoxContainer2/Countdown.text = "%s" % continue_counter
 
 func pause_game():
+	game_controller.fight_music_adjust("lower")
 	get_tree().paused = true
 	$PauseDialog.visible = true
 
 func _on_PauseDialog_confirmed():
 	get_tree().paused = false
+	game_controller.fight_music_adjust("raise")

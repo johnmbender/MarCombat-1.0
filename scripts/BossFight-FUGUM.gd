@@ -171,7 +171,7 @@ func start_blade():
 
 func player_pierced(area:String):
 	$UI.set_player_health(1, 0)
-	player.get_node("AnimationPlayer").stop()
+	player.get_node("AnimationPlayer").seek(0.7)
 	# this doesn't seem to work?!
 	if player.character_name == "Kelsie":
 		player.get_node("Hair").visible = false
