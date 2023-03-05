@@ -1,0 +1,1472 @@
+[gd_scene load_steps=239 format=2]
+
+[ext_resource path="res://characters/Tyler/sprites/actions/victory/victory_05.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://characters/Tyler/sprites/actions/idle/idle_05.png" type="Texture" id=3]
+[ext_resource path="res://characters/Tyler/sprites/actions/idle/idle_02.png" type="Texture" id=4]
+[ext_resource path="res://characters/Tyler/sprites/actions/collapse/collapse_03.png" type="Texture" id=5]
+[ext_resource path="res://characters/Tyler/sprites/actions/idle/idle_01.png" type="Texture" id=6]
+[ext_resource path="res://characters/Tyler/sprites/actions/idle/idle_04.png" type="Texture" id=7]
+[ext_resource path="res://characters/Tyler/sprites/actions/thrown/thrown_extra.png" type="Texture" id=8]
+[ext_resource path="res://characters/Tyler/sprites/actions/bbq/bbq_02.png" type="Texture" id=9]
+[ext_resource path="res://characters/Tyler/sprites/actions/bbq/bbq_01.png" type="Texture" id=10]
+[ext_resource path="res://characters/Tyler/sprites/actions/bbq/bbq_05.png" type="Texture" id=11]
+[ext_resource path="res://characters/Tyler/sprites/actions/punch-far/punch-far_01.png" type="Texture" id=12]
+[ext_resource path="res://characters/Tyler/sprites/actions/stunned/stunned_02.png" type="Texture" id=13]
+[ext_resource path="res://characters/Tyler/sprites/actions/staggered/staggered_04.png" type="Texture" id=14]
+[ext_resource path="res://characters/Tyler/sprites/actions/staggered/staggered_07.png" type="Texture" id=15]
+[ext_resource path="res://characters/Tyler/sprites/actions/staggered/staggered_06.png" type="Texture" id=16]
+[ext_resource path="res://characters/Tyler/sprites/actions/get-up/get-up_07.png" type="Texture" id=17]
+[ext_resource path="res://characters/Tyler/sprites/actions/uppercut/uppercut_04.png" type="Texture" id=18]
+[ext_resource path="res://characters/Tyler/sprites/actions/staggered/staggered_05.png" type="Texture" id=19]
+[ext_resource path="res://characters/Tyler/sprites/actions/punch-far/punch-far_02.png" type="Texture" id=20]
+[ext_resource path="res://characters/Tyler/sprites/actions/punch-far/punch-far_03.png" type="Texture" id=21]
+[ext_resource path="res://characters/Tyler/sprites/actions/kick-far/kick-far_06.png" type="Texture" id=22]
+[ext_resource path="res://characters/Tyler/sprites/actions/kick-far/kick-far_02.png" type="Texture" id=23]
+[ext_resource path="res://characters/Tyler/sprites/actions/get-up/get-up_08.png" type="Texture" id=24]
+[ext_resource path="res://characters/Tyler/sprites/actions/get-up/get-up_09.png" type="Texture" id=25]
+[ext_resource path="res://characters/Tyler/sprites/actions/hit-face/hit-face_02.png" type="Texture" id=26]
+[ext_resource path="res://characters/Tyler/sprites/actions/get-up/get-up_02.png" type="Texture" id=27]
+[ext_resource path="res://characters/Tyler/sprites/actions/get-up/get-up_05.png" type="Texture" id=28]
+[ext_resource path="res://characters/Tyler/sprites/actions/get-up/get-up_06.png" type="Texture" id=29]
+[ext_resource path="res://characters/Tyler/sprites/actions/get-up/get-up_03.png" type="Texture" id=30]
+[ext_resource path="res://characters/Tyler/sprites/actions/get-up/get-up_04.png" type="Texture" id=31]
+[ext_resource path="res://characters/Tyler/sprites/actions/get-up/get-up_01.png" type="Texture" id=32]
+[ext_resource path="res://characters/Tyler/sprites/actions/crouch/crouch_03.png" type="Texture" id=33]
+[ext_resource path="res://characters/Tyler/sprites/actions/stunned/stunned_08.png" type="Texture" id=34]
+[ext_resource path="res://characters/Tyler/sprites/actions/stunned/stunned_01.png" type="Texture" id=35]
+[ext_resource path="res://characters/Tyler/sprites/actions/stunned/stunned_04.png" type="Texture" id=36]
+[ext_resource path="res://characters/Tyler/sprites/actions/stunned/stunned_09.png" type="Texture" id=37]
+[ext_resource path="res://characters/Tyler/sprites/actions/stunned/stunned_07.png" type="Texture" id=38]
+[ext_resource path="res://characters/Tyler/sprites/actions/stunned/stunned_03.png" type="Texture" id=39]
+[ext_resource path="res://characters/Tyler/sprites/actions/stunned/stunned_06.png" type="Texture" id=40]
+[ext_resource path="res://characters/Tyler/sprites/actions/stunned/stunned_10.png" type="Texture" id=41]
+[ext_resource path="res://characters/Tyler/sprites/actions/stunned/stunned_05.png" type="Texture" id=42]
+[ext_resource path="res://characters/Tyler/sprites/actions/staggered/staggered_01.png" type="Texture" id=43]
+[ext_resource path="res://characters/Tyler/sprites/actions/staggered/staggered_02.png" type="Texture" id=44]
+[ext_resource path="res://characters/Tyler/sprites/actions/staggered/staggered_03.png" type="Texture" id=45]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality-john/fatality-john_13.png" type="Texture" id=46]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality-john/fatality-john_11.png" type="Texture" id=47]
+[ext_resource path="res://characters/Tyler/sprites/actions/victory/victory_04.png" type="Texture" id=48]
+[ext_resource path="res://characters/Tyler/sprites/actions/victory/victory_09.png" type="Texture" id=49]
+[ext_resource path="res://characters/Tyler/sprites/actions/victory/victory_06.png" type="Texture" id=50]
+[ext_resource path="res://characters/Tyler/sprites/actions/victory/victory_01.png" type="Texture" id=51]
+[ext_resource path="res://characters/Tyler/sprites/actions/victory/victory_08.png" type="Texture" id=52]
+[ext_resource path="res://characters/Tyler/sprites/actions/victory/victory_03.png" type="Texture" id=53]
+[ext_resource path="res://characters/Tyler/sprites/actions/victory/victory_07.png" type="Texture" id=54]
+[ext_resource path="res://characters/Terje/sprites/actions/special/special_01.png" type="Texture" id=55]
+[ext_resource path="res://characters/Terje/sprites/actions/special/special_08.png" type="Texture" id=56]
+[ext_resource path="res://characters/Terje/sprites/actions/special/special_10.png" type="Texture" id=57]
+[ext_resource path="res://characters/Terje/sprites/actions/special/special_02.png" type="Texture" id=58]
+[ext_resource path="res://characters/Tyler/sprites/actions/punch-close/punch-close_02.png" type="Texture" id=59]
+[ext_resource path="res://characters/Tyler/sprites/actions/punch-close/punch-close_01.png" type="Texture" id=60]
+[ext_resource path="res://characters/Tyler/sprites/actions/punch-close/punch-close_03.png" type="Texture" id=61]
+[ext_resource path="res://characters/Tyler/sprites/actions/kick-far/kick-far_04.png" type="Texture" id=62]
+[ext_resource path="res://characters/Tyler/sprites/actions/kick-far/kick-far_03.png" type="Texture" id=63]
+[ext_resource path="res://characters/Tyler/sprites/actions/victory/victory_15.png" type="Texture" id=64]
+[ext_resource path="res://characters/Terje/sprites/actions/special/special_06.png" type="Texture" id=65]
+[ext_resource path="res://characters/Terje/sprites/actions/special/special_04.png" type="Texture" id=66]
+[ext_resource path="res://characters/Terje/sprites/actions/special/special_05.png" type="Texture" id=67]
+[ext_resource path="res://characters/Terje/sprites/actions/special/special_03.png" type="Texture" id=68]
+[ext_resource path="res://characters/Terje/sprites/actions/special/special_09.png" type="Texture" id=69]
+[ext_resource path="res://characters/Terje/sprites/actions/special/special_07.png" type="Texture" id=70]
+[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_08.png" type="Texture" id=71]
+[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_05.png" type="Texture" id=72]
+[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_06.png" type="Texture" id=73]
+[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_01.png" type="Texture" id=74]
+[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_02.png" type="Texture" id=75]
+[ext_resource path="res://characters/Tyler/sprites/actions/kick-close/kick-close_02.png" type="Texture" id=76]
+[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_04.png" type="Texture" id=77]
+[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_03.png" type="Texture" id=78]
+[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_12.png" type="Texture" id=79]
+[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_16.png" type="Texture" id=80]
+[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_11.png" type="Texture" id=81]
+[ext_resource path="res://characters/effects/nega-smoke/10.png" type="Texture" id=82]
+[ext_resource path="res://characters/effects/nega-smoke/11.png" type="Texture" id=83]
+[ext_resource path="res://characters/effects/nega-smoke/12.png" type="Texture" id=84]
+[ext_resource path="res://characters/effects/nega-smoke/13.png" type="Texture" id=85]
+[ext_resource path="res://characters/effects/nega-smoke/14.png" type="Texture" id=86]
+[ext_resource path="res://characters/effects/nega-smoke/15.png" type="Texture" id=87]
+[ext_resource path="res://characters/effects/nega-smoke/16.png" type="Texture" id=88]
+[ext_resource path="res://characters/effects/nega-smoke/17.png" type="Texture" id=89]
+[ext_resource path="res://characters/effects/nega-smoke/18.png" type="Texture" id=90]
+[ext_resource path="res://characters/effects/nega-smoke/19.png" type="Texture" id=91]
+[ext_resource path="res://characters/Tyler/sprites/actions/kick-close/kick-close_03.png" type="Texture" id=92]
+[ext_resource path="res://characters/Tyler/sprites/actions/kick-close/kick-close_04.png" type="Texture" id=93]
+[ext_resource path="res://characters/Tyler/sprites/actions/kick-close/kick-close_01.png" type="Texture" id=94]
+[ext_resource path="res://characters/Tyler/sprites/actions/victory/victory_13.png" type="Texture" id=95]
+[ext_resource path="res://characters/Tyler/sprites/actions/victory/victory_11.png" type="Texture" id=96]
+[ext_resource path="res://characters/Tyler/sprites/actions/victory/victory_14.png" type="Texture" id=97]
+[ext_resource path="res://characters/Tyler/sprites/actions/victory/victory_02.png" type="Texture" id=98]
+[ext_resource path="res://characters/Tyler/sprites/actions/victory/victory_10.png" type="Texture" id=99]
+[ext_resource path="res://characters/Tyler/sprites/actions/victory/victory_12.png" type="Texture" id=100]
+[ext_resource path="res://characters/Tyler/sprites/actions/kick-far/kick-far_01.png" type="Texture" id=101]
+[ext_resource path="res://characters/Tyler/sprites/actions/kick-far/kick-far_05.png" type="Texture" id=102]
+[ext_resource path="res://characters/Tyler/sprites/actions/hit-uppercut/hit-uppercut_04.png" type="Texture" id=103]
+[ext_resource path="res://characters/Tyler/sprites/actions/hit-uppercut/hit-uppercut_01.png" type="Texture" id=104]
+[ext_resource path="res://characters/Tyler/sprites/actions/hit-gut/hit-gut_03.png" type="Texture" id=105]
+[ext_resource path="res://characters/Tyler/sprites/actions/hit-gut/hit-gut_02.png" type="Texture" id=106]
+[ext_resource path="res://characters/Tyler/sprites/actions/hit-gut/hit-gut_01.png" type="Texture" id=107]
+[ext_resource path="res://characters/Tyler/sprites/actions/hit-face/hit-face_01.png" type="Texture" id=108]
+[ext_resource path="res://characters/Tyler/sprites/actions/collapse/collapse_05.png" type="Texture" id=109]
+[ext_resource path="res://characters/Tyler/sprites/actions/collapse/collapse_06.png" type="Texture" id=110]
+[ext_resource path="res://characters/Tyler/sprites/actions/collapse/collapse_04.png" type="Texture" id=111]
+[ext_resource path="res://characters/Tyler/sprites/actions/crouch/crouch_05.png" type="Texture" id=112]
+[ext_resource path="res://characters/Tyler/sprites/actions/crouch/crouch_02.png" type="Texture" id=113]
+[ext_resource path="res://characters/Tyler/sprites/actions/idle/idle_03.png" type="Texture" id=114]
+[ext_resource path="res://characters/Tyler/sprites/actions/uppercut/uppercut_06.png" type="Texture" id=115]
+[ext_resource path="res://characters/Tyler/sprites/actions/uppercut/uppercut_07.png" type="Texture" id=116]
+[ext_resource path="res://characters/Tyler/sprites/actions/uppercut/uppercut_02.png" type="Texture" id=117]
+[ext_resource path="res://characters/Tyler/sprites/actions/hit-uppercut/hit-uppercut_03.png" type="Texture" id=118]
+[ext_resource path="res://characters/Tyler/sprites/actions/hit-uppercut/hit-uppercut_02.png" type="Texture" id=119]
+[ext_resource path="res://characters/Tyler/sprites/actions/uppercut/uppercut_01.png" type="Texture" id=120]
+[ext_resource path="res://characters/Tyler/sprites/actions/uppercut/uppercut_03.png" type="Texture" id=121]
+[ext_resource path="res://characters/Tyler/sprites/actions/uppercut/uppercut_05.png" type="Texture" id=122]
+[ext_resource path="res://characters/Tyler/sprites/actions/thrown/thrown_01.png" type="Texture" id=123]
+[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_14.png" type="Texture" id=124]
+[ext_resource path="res://characters/Tyler/sprites/actions/thrown/thrown_06.png" type="Texture" id=125]
+[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_15.png" type="Texture" id=126]
+[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_10.png" type="Texture" id=127]
+[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_09.png" type="Texture" id=128]
+[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_17.png" type="Texture" id=129]
+[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_19.png" type="Texture" id=130]
+[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_18.png" type="Texture" id=131]
+[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_13.png" type="Texture" id=132]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality-john/fatality-john_12.png" type="Texture" id=133]
+[ext_resource path="res://characters/Tyler/sprites/actions/walk/walk_11.png" type="Texture" id=134]
+[ext_resource path="res://characters/Tyler/sprites/actions/hit-uppercut/hit-uppercut_06.png" type="Texture" id=135]
+[ext_resource path="res://characters/Tyler/sprites/actions/thrown/thrown_03.png" type="Texture" id=136]
+[ext_resource path="res://characters/Tyler/sprites/actions/block/block_04.png" type="Texture" id=137]
+[ext_resource path="res://characters/Tyler/sprites/actions/hit-uppercut/hit-uppercut_05.png" type="Texture" id=138]
+[ext_resource path="res://characters/Tyler/sprites/actions/hit-face/hit-face_03.png" type="Texture" id=139]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality-john/fatality-john_09.png" type="Texture" id=140]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality-john/fatality-john_05.png" type="Texture" id=141]
+[ext_resource path="res://characters/Tyler/sprites/actions/squish/squish_01.png" type="Texture" id=142]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality-john/fatality-john_14.png" type="Texture" id=143]
+[ext_resource path="res://characters/Tyler/sprites/actions/block/block_02.png" type="Texture" id=144]
+[ext_resource path="res://characters/Tyler/sprites/actions/bbq/bbq_07.png" type="Texture" id=145]
+[ext_resource path="res://characters/Tyler/sprites/actions/thrown/thrown_02.png" type="Texture" id=146]
+[ext_resource path="res://characters/Tyler/sprites/actions/thrown/thrown_07.png" type="Texture" id=147]
+[ext_resource path="res://characters/Tyler/sprites/actions/thrown/thrown_04.png" type="Texture" id=148]
+[ext_resource path="res://characters/Tyler/sprites/actions/thrown/thrown_05.png" type="Texture" id=149]
+[ext_resource path="res://characters/Tyler/sprites/actions/crouch/crouch_04.png" type="Texture" id=150]
+[ext_resource path="res://characters/Tyler/sprites/actions/block/block_05.png" type="Texture" id=151]
+[ext_resource path="res://characters/Tyler/sprites/actions/block/block_03.png" type="Texture" id=152]
+[ext_resource path="res://characters/Tyler/sprites/actions/bbq/bbq_03.png" type="Texture" id=153]
+[ext_resource path="res://characters/Tyler/sprites/actions/bbq/bbq_06.png" type="Texture" id=154]
+[ext_resource path="res://ui/cooldown-progress.png" type="Texture" id=155]
+[ext_resource path="res://ui/cooldown-under.png" type="Texture" id=156]
+[ext_resource path="res://characters/Tyler/sprites/actions/walk/walk_04.png" type="Texture" id=157]
+[ext_resource path="res://characters/Tyler/sprites/actions/walk/walk_05.png" type="Texture" id=158]
+[ext_resource path="res://characters/Tyler/sprites/actions/walk/walk_07.png" type="Texture" id=159]
+[ext_resource path="res://characters/Tyler/sprites/actions/walk/walk_01.png" type="Texture" id=160]
+[ext_resource path="res://characters/Tyler/sprites/actions/walk/walk_03.png" type="Texture" id=161]
+[ext_resource path="res://characters/Tyler/sprites/actions/walk/walk_15.png" type="Texture" id=162]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality-john/fatality-john_10.png" type="Texture" id=163]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality-john/fatality-john_08.png" type="Texture" id=164]
+[ext_resource path="res://characters/Tyler/sprites/actions/bbq/bbq_04.png" type="Texture" id=165]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality-john/fatality-john_07.png" type="Texture" id=166]
+[ext_resource path="res://characters/Tyler/sprites/actions/bbq/bbq_08.png" type="Texture" id=167]
+[ext_resource path="res://characters/Tyler/sprites/actions/bbq/bbq_09.png" type="Texture" id=168]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality-john/fatality-john_06.png" type="Texture" id=169]
+[ext_resource path="res://characters/Tyler/sprites/actions/bbq/bbq_12.png" type="Texture" id=170]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality-john/fatality-john_04.png" type="Texture" id=171]
+[ext_resource path="res://characters/Tyler/sprites/actions/bbq/bbq_10.png" type="Texture" id=172]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality-john/fatality-john_01.png" type="Texture" id=173]
+[ext_resource path="res://characters/Tyler/sprites/actions/bbq/bbq_11.png" type="Texture" id=174]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality-john/fatality-john_02.png" type="Texture" id=175]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality-john/fatality-john_03.png" type="Texture" id=176]
+[ext_resource path="res://characters/Tyler/sprites/actions/skeletonize/skeletonize.png" type="Texture" id=177]
+[ext_resource path="res://characters/effects/nega-smoke/20.png" type="Texture" id=184]
+[ext_resource path="res://characters/effects/nega-smoke/03.png" type="Texture" id=185]
+[ext_resource path="res://characters/effects/nega-smoke/04.png" type="Texture" id=186]
+[ext_resource path="res://characters/effects/nega-smoke/05.png" type="Texture" id=187]
+[ext_resource path="res://characters/effects/nega-smoke/06.png" type="Texture" id=188]
+[ext_resource path="res://characters/effects/nega-smoke/07.png" type="Texture" id=189]
+[ext_resource path="res://characters/effects/nega-smoke/08.png" type="Texture" id=190]
+[ext_resource path="res://characters/effects/nega-smoke/01.png" type="Texture" id=191]
+[ext_resource path="res://characters/effects/nega-smoke/02.png" type="Texture" id=192]
+[ext_resource path="res://characters/effects/nega-smoke/09.png" type="Texture" id=193]
+[ext_resource path="res://characters/effects/blood/blood.png" type="Texture" id=195]
+[ext_resource path="res://characters/Tyler/sprites/actions/walk/walk_14.png" type="Texture" id=210]
+[ext_resource path="res://characters/Tyler/sprites/actions/walk/walk_16.png" type="Texture" id=211]
+[ext_resource path="res://characters/Tyler/sprites/actions/walk/walk_17.png" type="Texture" id=212]
+[ext_resource path="res://characters/Tyler/sprites/actions/walk/walk_12.png" type="Texture" id=213]
+[ext_resource path="res://characters/Tyler/sprites/actions/walk/walk_08.png" type="Texture" id=214]
+[ext_resource path="res://characters/Tyler/sprites/actions/walk/walk_13.png" type="Texture" id=215]
+[ext_resource path="res://sprites/lightbulb_02.png" type="Texture" id=216]
+[ext_resource path="res://sprites/lightbulb_01.png" type="Texture" id=217]
+[ext_resource path="res://characters/Tyler/sprites/actions/walk/walk_10.png" type="Texture" id=218]
+[ext_resource path="res://characters/Tyler/sprites/actions/walk/walk_06.png" type="Texture" id=219]
+[ext_resource path="res://characters/Tyler/sprites/actions/walk/walk_02.png" type="Texture" id=220]
+[ext_resource path="res://characters/Tyler/sprites/actions/walk/walk_09.png" type="Texture" id=221]
+[ext_resource path="res://characters/Tyler/sprites/actions/thrown/thrown_08.png" type="Texture" id=222]
+
+[sub_resource type="RectangleShape2D" id=137]
+extents = Vector2( 40, 154 )
+
+[sub_resource type="CircleShape2D" id=20]
+radius = 24.0
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 114 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AttackCircle:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AttackCircle:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("HitBox:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 57 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("HitBox:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 0.93 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("AttackCircle/CollisionShape2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("AttackCircle/CollisionShape2D:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Sprite:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Lightbulb:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath(".:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1.1, 1.1 ) ]
+}
+
+[sub_resource type="Animation" id=151]
+resource_name = "bbq"
+length = 4.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 10 ), ExtResource( 9 ), ExtResource( 153 ), ExtResource( 165 ), ExtResource( 11 ), ExtResource( 154 ), ExtResource( 145 ), ExtResource( 167 ), ExtResource( 168 ), ExtResource( 172 ), ExtResource( 174 ), ExtResource( 170 ), ExtResource( 170 ), ExtResource( 174 ), ExtResource( 172 ), ExtResource( 168 ), ExtResource( 167 ), ExtResource( 145 ), ExtResource( 145 ), ExtResource( 167 ), ExtResource( 168 ), ExtResource( 172 ), ExtResource( 174 ), ExtResource( 170 ), ExtResource( 170 ), ExtResource( 174 ), ExtResource( 172 ), ExtResource( 168 ), ExtResource( 167 ), ExtResource( 145 ), ExtResource( 145 ), ExtResource( 167 ), ExtResource( 168 ), ExtResource( 172 ), ExtResource( 174 ), ExtResource( 170 ), ExtResource( 170 ), ExtResource( 174 ), ExtResource( 172 ), ExtResource( 168 ), ExtResource( 167 ), ExtResource( 145 ), ExtResource( 145 ) ]
+}
+
+[sub_resource type="Animation" id=144]
+resource_name = "blade-gut-hit"
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 149 ), ExtResource( 8 ), ExtResource( 149 ), ExtResource( 8 ), ExtResource( 149 ), ExtResource( 8 ), ExtResource( 149 ), ExtResource( 8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("GutBloodSquirt:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 30 ) ]
+}
+
+[sub_resource type="Animation" id=61]
+resource_name = "block"
+length = 0.18
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.06, 0.12, 0.18 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 144 ), ExtResource( 152 ), ExtResource( 137 ), ExtResource( 151 ) ]
+}
+
+[sub_resource type="Animation" id=62]
+resource_name = "block-release"
+length = 0.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 151 ), ExtResource( 137 ), ExtResource( 152 ), ExtResource( 144 ) ]
+}
+
+[sub_resource type="Animation" id=138]
+resource_name = "blocking"
+length = 0.001
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 151 ) ]
+}
+
+[sub_resource type="Animation" id=26]
+resource_name = "collapse"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 45 ), ExtResource( 19 ), ExtResource( 5 ), ExtResource( 111 ), ExtResource( 109 ), ExtResource( 110 ) ]
+}
+
+[sub_resource type="Animation" id=79]
+resource_name = "crouch"
+length = 0.18
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.06, 0.12, 0.18 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 113 ), ExtResource( 33 ), ExtResource( 150 ), ExtResource( 112 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HitBox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.06, 0.11, 0.12, 0.17, 0.18 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -2, 63 ), Vector2( -2, 63 ), Vector2( 0, 77 ), Vector2( 0, 77 ), Vector2( 0, 85 ), Vector2( 0, 85 ), Vector2( 0, 92 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HitBox:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.06, 0.11, 0.12, 0.17, 0.18 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 0.9 ), Vector2( 1, 0.9 ), Vector2( 1, 0.8 ), Vector2( 1, 0.8 ), Vector2( 1, 0.75 ), Vector2( 1, 0.75 ), Vector2( 1, 0.7 ) ]
+}
+
+[sub_resource type="Animation" id=150]
+resource_name = "crouch-return"
+length = 0.18
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.06, 0.12, 0.18 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 112 ), ExtResource( 150 ), ExtResource( 33 ), ExtResource( 113 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HitBox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.06, 0.11, 0.12, 0.17, 0.18 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 92 ), Vector2( 0, 92 ), Vector2( 0, 85 ), Vector2( 0, 85 ), Vector2( 0, 77 ), Vector2( 0, 77 ), Vector2( -2, 63 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HitBox:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.06, 0.11, 0.12, 0.17, 0.18 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 0.7 ), Vector2( 1, 0.7 ), Vector2( 1, 0.75 ), Vector2( 1, 0.75 ), Vector2( 1, 0.8 ), Vector2( 1, 0.8 ), Vector2( 1, 0.9 ) ]
+}
+
+[sub_resource type="Animation" id=140]
+resource_name = "crouching"
+length = 0.001
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 112 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HitBox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 91 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HitBox:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 0.7 ) ]
+}
+
+[sub_resource type="Animation" id=128]
+resource_name = "fatality"
+length = 4.96
+step = 0.08
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.48, 0.56, 0.64, 0.72, 0.8, 0.88, 0.96, 1.04, 1.12, 1.2, 1.28, 1.36, 1.44, 1.52, 1.6, 1.68, 1.76, 1.84, 1.92, 2, 2.08, 2.16, 2.24, 2.32, 2.4, 2.48, 2.56, 2.64, 2.72, 2.8, 2.88, 2.96, 4.72, 4.8, 4.88, 4.96 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 74 ), ExtResource( 75 ), ExtResource( 78 ), ExtResource( 77 ), ExtResource( 72 ), ExtResource( 73 ), ExtResource( 74 ), ExtResource( 75 ), ExtResource( 78 ), ExtResource( 77 ), ExtResource( 72 ), ExtResource( 73 ), ExtResource( 74 ), ExtResource( 75 ), ExtResource( 78 ), ExtResource( 77 ), ExtResource( 72 ), ExtResource( 73 ), ExtResource( 74 ), ExtResource( 75 ), ExtResource( 78 ), ExtResource( 77 ), ExtResource( 72 ), ExtResource( 73 ), ExtResource( 74 ), ExtResource( 75 ), ExtResource( 78 ), ExtResource( 77 ), ExtResource( 72 ), ExtResource( 73 ), ExtResource( 71 ), ExtResource( 128 ), ExtResource( 127 ), ExtResource( 81 ), ExtResource( 79 ), ExtResource( 132 ), ExtResource( 124 ), ExtResource( 126 ), ExtResource( 80 ), ExtResource( 129 ), ExtResource( 131 ), ExtResource( 130 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.64, 2.72, 3.2, 4.48 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_TERJE_play_brochureClone"
+}, {
+"args": [  ],
+"method": "_TERJE_throwCyclone"
+}, {
+"args": [  ],
+"method": "_TERJE_enemy_play_skeletonize_sound"
+}, {
+"args": [  ],
+"method": "_TERJE_skeletonize_enemy"
+} ]
+}
+
+[sub_resource type="Animation" id=88]
+resource_name = "get-up"
+length = 0.36
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 32 ), ExtResource( 27 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 17 ), ExtResource( 24 ), ExtResource( 25 ) ]
+}
+
+[sub_resource type="Animation" id=143]
+resource_name = "hit-blade"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.25, 0.45, 0.55, 0.65 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 104 ), ExtResource( 119 ), ExtResource( 118 ), ExtResource( 103 ), ExtResource( 138 ), ExtResource( 138 ), ExtResource( 135 ), ExtResource( 110 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.65 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://sounds/characters/effects/drop.wav" ],
+"method": "play_sound"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 0.15, 0.25, 0.35, 0.45, 0.55 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ Vector2( -100, -60 ), 0, 0.05 ],
+"method": "tween"
+}, {
+"args": [ Vector2( -150, -100 ), 0, 0.1 ],
+"method": "tween"
+}, {
+"args": [ Vector2( -150, -100 ), 0, 0.1 ],
+"method": "tween"
+}, {
+"args": [ Vector2( -120, -40 ), 0, 0.1 ],
+"method": "tween"
+}, {
+"args": [ Vector2( -40, 30 ), 0, 0.1 ],
+"method": "tween"
+}, {
+"args": [ Vector2( -40, 50 ), 0, 0.1 ],
+"method": "tween"
+} ]
+}
+
+[sub_resource type="Animation" id=25]
+resource_name = "hit-face"
+length = 0.4
+step = 0.06
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.06, 0.12, 0.24, 0.3, 0.36 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 108 ), ExtResource( 26 ), ExtResource( 139 ), ExtResource( 139 ), ExtResource( 26 ), ExtResource( 108 ) ]
+}
+
+[sub_resource type="Animation" id=57]
+resource_name = "hit-gut"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.25, 0.3, 0.35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 107 ), ExtResource( 106 ), ExtResource( 105 ), ExtResource( 105 ), ExtResource( 106 ), ExtResource( 107 ) ]
+}
+
+[sub_resource type="Animation" id=73]
+resource_name = "hit-uppercut"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.23, 0.37, 0.44, 0.5, 0.55 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 104 ), ExtResource( 119 ), ExtResource( 118 ), ExtResource( 103 ), ExtResource( 103 ), ExtResource( 138 ), ExtResource( 138 ), ExtResource( 135 ), ExtResource( 110 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.55 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://sounds/characters/effects/drop.wav" ],
+"method": "play_sound"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 0.15, 0.25, 0.35, 0.45, 0.55, 0.65 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ Vector2( -20, -30 ), 0, 0.05 ],
+"method": "tween"
+}, {
+"args": [ Vector2( -30, -50 ), 0, 0.1 ],
+"method": "tween"
+}, {
+"args": [ Vector2( -30, -50 ), 0, 0.1 ],
+"method": "tween"
+}, {
+"args": [ Vector2( -30, -20 ), 0, 0.1 ],
+"method": "tween"
+}, {
+"args": [ Vector2( -10, 30 ), 0, 0.1 ],
+"method": "tween"
+}, {
+"args": [ Vector2( -10, 50 ), 0, 0.1 ],
+"method": "tween"
+}, {
+"args": [ Vector2( -5, 60 ), 0, 0.05 ],
+"method": "tween"
+} ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "idle"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 6 ), ExtResource( 4 ), ExtResource( 114 ), ExtResource( 7 ), ExtResource( 3 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HitBox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -2, 46 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HitBox:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=49]
+resource_name = "kick-close"
+length = 0.5
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.3, 0.35, 0.4, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 94 ), ExtResource( 76 ), ExtResource( 92 ), ExtResource( 93 ), ExtResource( 93 ), ExtResource( 92 ), ExtResource( 76 ), ExtResource( 94 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AttackCircle:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.13, 0.15, 0.34, 0.35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 96, 0 ), Vector2( 96, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=53]
+resource_name = "kick-far"
+length = 0.65
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.12, 0.15, 0.24, 0.33, 0.4, 0.45, 0.5, 0.55, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 101 ), ExtResource( 23 ), ExtResource( 63 ), ExtResource( 62 ), ExtResource( 102 ), ExtResource( 102 ), ExtResource( 22 ), ExtResource( 62 ), ExtResource( 63 ), ExtResource( 23 ), ExtResource( 101 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AttackCircle:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.23, 0.24, 0.39, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 160, -8 ), Vector2( 160, -8 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=125]
+resource_name = "knock-back"
+length = 0.35
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ), ExtResource( 14 ), ExtResource( 19 ), ExtResource( 16 ), ExtResource( 15 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ Vector2( -150, 0 ), 0, 0.3 ],
+"method": "tween"
+} ]
+}
+
+[sub_resource type="Animation" id=36]
+resource_name = "punch-close"
+length = 0.35
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04, 0.08, 0.25, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 60 ), ExtResource( 59 ), ExtResource( 61 ), ExtResource( 59 ), ExtResource( 60 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AttackCircle:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.07, 0.08, 0.24, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 88, -64 ), Vector2( 88, -64 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "punch-far"
+length = 0.35
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.2, 0.25, 0.32 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 12 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 20 ), ExtResource( 12 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AttackCircle:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.09, 0.1, 0.24, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 136, -64 ), Vector2( 136, -64 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=133]
+resource_name = "response-john"
+length = 1.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.15, 1.2, 1.25, 1.3, 1.35, 1.4, 1.45, 1.5, 1.55 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 173 ), ExtResource( 175 ), ExtResource( 176 ), ExtResource( 171 ), ExtResource( 141 ), ExtResource( 169 ), ExtResource( 166 ), ExtResource( 164 ), ExtResource( 140 ), ExtResource( 163 ), ExtResource( 47 ), ExtResource( 133 ), ExtResource( 171 ), ExtResource( 141 ), ExtResource( 169 ), ExtResource( 166 ), ExtResource( 164 ), ExtResource( 140 ), ExtResource( 163 ), ExtResource( 47 ), ExtResource( 133 ), ExtResource( 171 ), ExtResource( 141 ), ExtResource( 169 ), ExtResource( 166 ), ExtResource( 164 ), ExtResource( 140 ), ExtResource( 163 ), ExtResource( 47 ), ExtResource( 133 ), ExtResource( 46 ), ExtResource( 143 ) ]
+}
+
+[sub_resource type="Animation" id=129]
+resource_name = "skeletonize"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 177 ) ]
+}
+
+[sub_resource type="Animation" id=127]
+resource_name = "special"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.07, 0.13, 0.3, 0.4, 0.45, 0.5, 0.55, 0.6, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 55 ), ExtResource( 58 ), ExtResource( 68 ), ExtResource( 66 ), ExtResource( 67 ), ExtResource( 65 ), ExtResource( 70 ), ExtResource( 56 ), ExtResource( 69 ), ExtResource( 57 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_TERJE_throwBrochures"
+} ]
+}
+
+[sub_resource type="Animation" id=121]
+resource_name = "squish"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.05, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 142 ), null ]
+}
+
+[sub_resource type="Animation" id=141]
+resource_name = "stagger"
+length = 0.3
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.08, 0.16, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ), ExtResource( 45 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.0588031 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "bullet_damage"
+} ]
+}
+
+[sub_resource type="Animation" id=29]
+resource_name = "stunned"
+length = 0.7
+loop = true
+step = 0.07
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.07, 0.14, 0.21, 0.28, 0.35, 0.42, 0.49, 0.56, 0.63 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 35 ), ExtResource( 13 ), ExtResource( 39 ), ExtResource( 36 ), ExtResource( 42 ), ExtResource( 40 ), ExtResource( 38 ), ExtResource( 34 ), ExtResource( 37 ), ExtResource( 41 ) ]
+}
+
+[sub_resource type="Animation" id=142]
+resource_name = "tossed-by-oxanna"
+length = 1.2
+step = 0.05
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://sounds/characters/effects/drop.wav", true ],
+"method": "play_sound"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ Vector2( 20, -45 ), 0, 0.05 ],
+"method": "tween"
+}, {
+"args": [ Vector2( 60, -105 ), 0, 0.05 ],
+"method": "tween"
+}, {
+"args": [ Vector2( 120, -150 ), 0, 0.05 ],
+"method": "tween"
+}, {
+"args": [ Vector2( 120, -75 ), 0, 0.1 ],
+"method": "tween"
+}, {
+"args": [ Vector2( 120, 40 ), 0, 0.1 ],
+"method": "tween"
+}, {
+"args": [ Vector2( 120, 0 ), 0, 0.1 ],
+"method": "tween"
+}, {
+"args": [ Vector2( 80, 60 ), 0, 0.1 ],
+"method": "tween"
+}, {
+"args": [ Vector2( 60, 100 ), 0, 0.1 ],
+"method": "tween"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.25, 0.3, 0.4, 0.6, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 123 ), ExtResource( 146 ), ExtResource( 136 ), ExtResource( 148 ), ExtResource( 149 ), ExtResource( 149 ), ExtResource( 125 ), ExtResource( 147 ), ExtResource( 222 ), ExtResource( 110 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "landing_damage"
+} ]
+}
+
+[sub_resource type="Animation" id=72]
+resource_name = "uppercut"
+length = 0.45
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.06, 0.12, 0.18, 0.24, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 120 ), ExtResource( 117 ), ExtResource( 121 ), ExtResource( 18 ), ExtResource( 122 ), ExtResource( 115 ), ExtResource( 116 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AttackCircle:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.11, 0.12, 0.17, 0.18, 0.23, 0.24 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 72, 112 ), Vector2( 72, 112 ), Vector2( 104, -24 ), Vector2( 104, -24 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HitBox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.06, 0.11, 0.12, 0.17, 0.18, 0.23, 0.24, 0.29, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 101 ), Vector2( 0, 101 ), Vector2( 0, 92 ), Vector2( 0, 92 ), Vector2( 0, 77.636 ), Vector2( 0, 77.636 ), Vector2( 0, 62 ), Vector2( 0, 62 ), Vector2( 0, 54.714 ), Vector2( 0, 54.714 ), Vector2( -2, 46 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("HitBox:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.05, 0.06, 0.11, 0.12, 0.17, 0.18, 0.23, 0.24, 0.29, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 0.65 ), Vector2( 1, 0.65 ), Vector2( 1, 0.7 ), Vector2( 1, 0.7 ), Vector2( 1, 0.8 ), Vector2( 1, 0.8 ), Vector2( 1, 0.9 ), Vector2( 1, 0.9 ), Vector2( 1, 0.95 ), Vector2( 1, 0.95 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=33]
+resource_name = "victory"
+length = 2.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 51 ), ExtResource( 98 ), ExtResource( 53 ), ExtResource( 48 ), ExtResource( 1 ), ExtResource( 50 ), ExtResource( 54 ), ExtResource( 52 ), ExtResource( 49 ), ExtResource( 99 ), ExtResource( 96 ), ExtResource( 100 ), ExtResource( 95 ), ExtResource( 97 ), ExtResource( 64 ), ExtResource( 100 ), ExtResource( 95 ), ExtResource( 97 ), ExtResource( 64 ), ExtResource( 100 ), ExtResource( 95 ), ExtResource( 97 ), ExtResource( 64 ), ExtResource( 100 ), ExtResource( 95 ), ExtResource( 97 ), ExtResource( 64 ) ]
+}
+
+[sub_resource type="Animation" id=149]
+resource_name = "walk-backward"
+length = 0.85
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 212 ), ExtResource( 211 ), ExtResource( 162 ), ExtResource( 210 ), ExtResource( 215 ), ExtResource( 213 ), ExtResource( 134 ), ExtResource( 218 ), ExtResource( 221 ), ExtResource( 214 ), ExtResource( 159 ), ExtResource( 219 ), ExtResource( 158 ), ExtResource( 157 ), ExtResource( 161 ), ExtResource( 220 ), ExtResource( 160 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "walk-forward"
+length = 0.85
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 160 ), ExtResource( 220 ), ExtResource( 161 ), ExtResource( 157 ), ExtResource( 158 ), ExtResource( 219 ), ExtResource( 159 ), ExtResource( 214 ), ExtResource( 221 ), ExtResource( 218 ), ExtResource( 134 ), ExtResource( 213 ), ExtResource( 215 ), ExtResource( 210 ), ExtResource( 162 ), ExtResource( 211 ), ExtResource( 212 ) ]
+}
+
+[sub_resource type="SpriteFrames" id=117]
+animations = [ {
+"frames": [ ExtResource( 191 ), ExtResource( 192 ), ExtResource( 185 ), ExtResource( 186 ), ExtResource( 187 ), ExtResource( 188 ), ExtResource( 189 ), ExtResource( 190 ), ExtResource( 193 ), ExtResource( 82 ), ExtResource( 83 ), ExtResource( 84 ), ExtResource( 85 ), ExtResource( 86 ), ExtResource( 87 ), ExtResource( 88 ), ExtResource( 89 ), ExtResource( 90 ), ExtResource( 91 ), ExtResource( 184 ) ],
+"loop": true,
+"name": "default",
+"speed": 18.0
+} ]
+
+[sub_resource type="SpriteFrames" id=148]
+animations = [ {
+"frames": [ ExtResource( 217 ), ExtResource( 216 ) ],
+"loop": true,
+"name": "default",
+"speed": 3.0
+} ]
+
+[node name="Tyler" type="KinematicBody2D"]
+scale = Vector2( 1.1, 1.1 )
+collision_layer = 0
+collision_mask = 2147483648
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 57 )
+scale = Vector2( 1, 0.93 )
+shape = SubResource( 137 )
+
+[node name="AttackCircle" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+monitorable = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackCircle"]
+shape = SubResource( 20 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 114 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BloodSquirt" type="CPUParticles2D" parent="."]
+position = Vector2( -16, -80 )
+rotation = -3.14159
+scale = Vector2( 0.5, 0.5 )
+emitting = false
+amount = 40
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.5
+texture = ExtResource( 195 )
+direction = Vector2( 1, 0.5 )
+spread = 30.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 300.0
+initial_velocity_random = 0.47
+angular_velocity_random = 1.0
+scale_amount = 2.0
+scale_amount_random = 1.0
+
+[node name="GutBloodSquirt" type="CPUParticles2D" parent="."]
+position = Vector2( 22.8571, 0 )
+rotation = -3.14159
+scale = Vector2( 0.5, 0.5 )
+emitting = false
+amount = 80
+lifetime = 1.3
+one_shot = true
+speed_scale = 30.0
+explosiveness = 1.0
+texture = ExtResource( 195 )
+direction = Vector2( -1, -2 )
+spread = 30.0
+gravity = Vector2( 100, 0 )
+initial_velocity = 171.21
+initial_velocity_random = 0.47
+angular_velocity_random = 1.0
+damping = 60.0
+damping_random = 1.0
+scale_amount = 3.0
+scale_amount_random = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+method_call_mode = 1
+anims/RESET = SubResource( 2 )
+anims/bbq = SubResource( 151 )
+anims/blade-gut-hit = SubResource( 144 )
+anims/block = SubResource( 61 )
+anims/block-release = SubResource( 62 )
+anims/blocking = SubResource( 138 )
+anims/collapse = SubResource( 26 )
+anims/crouch = SubResource( 79 )
+anims/crouch-return = SubResource( 150 )
+anims/crouching = SubResource( 140 )
+anims/fatality = SubResource( 128 )
+anims/get-up = SubResource( 88 )
+anims/hit-blade = SubResource( 143 )
+anims/hit-face = SubResource( 25 )
+anims/hit-gut = SubResource( 57 )
+anims/hit-uppercut = SubResource( 73 )
+anims/idle = SubResource( 3 )
+anims/kick-close = SubResource( 49 )
+anims/kick-far = SubResource( 53 )
+anims/knock-back = SubResource( 125 )
+anims/punch-close = SubResource( 36 )
+anims/punch-far = SubResource( 16 )
+anims/response-john = SubResource( 133 )
+anims/skeletonize = SubResource( 129 )
+anims/special = SubResource( 127 )
+anims/squish = SubResource( 121 )
+anims/stagger = SubResource( 141 )
+anims/stunned = SubResource( 29 )
+anims/tossed-by-oxanna = SubResource( 142 )
+anims/uppercut = SubResource( 72 )
+anims/victory = SubResource( 33 )
+anims/walk-backward = SubResource( 149 )
+anims/walk-forward = SubResource( 9 )
+
+[node name="SoundPlayer" type="AudioStreamPlayer2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="FatalityPlayer" type="AudioStreamPlayer2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="NegaSmoke" type="AnimatedSprite" parent="."]
+visible = false
+modulate = Color( 0, 0, 0, 0.392157 )
+position = Vector2( -8, -72 )
+frames = SubResource( 117 )
+frame = 4
+
+[node name="SpecialCooldown" type="TextureProgress" parent="."]
+visible = false
+margin_top = -152.0
+margin_right = 40.0
+margin_bottom = -112.0
+rect_scale = Vector2( 0.5, 0.5 )
+max_value = 5.0
+step = -0.1
+value = 5.0
+texture_under = ExtResource( 156 )
+texture_progress = ExtResource( 155 )
+fill_mode = 5
+
+[node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="Lightbulb" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 24, -224 )
+scale = Vector2( 1.2, 1.2 )
+frames = SubResource( 148 )
+
+[connection signal="body_entered" from="AttackCircle" to="." method="_on_AttackCircle_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
+[connection signal="finished" from="FatalityPlayer" to="." method="_on_FatalityPlayer_finished"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_CooldownTimer_timeout"]

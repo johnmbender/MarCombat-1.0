@@ -223,6 +223,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 							anim = "flossing"
 						"Terje":
 							anim = "dance"
+						"Tyler":
+							anim = "bbq"
 					$Player/AnimationPlayer.play(anim)
 					$EndFightTimer.wait_time = 8
 					$EndFightTimer.start()

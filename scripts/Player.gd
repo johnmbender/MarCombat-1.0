@@ -36,11 +36,16 @@ var character_name
 var health
 
 var game_controller
+var fight_controller
 
 var upside_down = false
 
 func set_game_controller(controller):
 	game_controller = controller
+
+func set_fight_controller(controller):
+	print("called! it's a ", controller)
+	fight_controller = controller
 
 func _ready():
 	var _1 = connect("update_health", get_parent(), "update_health")
@@ -112,7 +117,7 @@ func get_input():
 		return
 	
 	if Input.is_action_just_released("quit"):
-		get_parent().pause_game()
+		fight_controller.pause_game()
 	elif blocking and Input.is_action_just_released("block"):
 		$AnimationPlayer.play("block-release")
 	elif blocking and upside_down and Input.is_action_just_released("special"):

@@ -17,7 +17,7 @@ var fight_speed = 1.1
 var end_match = false
 var end_game_input = false
 
-var characters = ["John","Kelsie","Terje"]
+var characters = ["John","Kelsie","Terje","Tyler"]
 var backgrounds = ["arrivals","breakRoom","humanHistory","lobby","naturalHistory","officeSpace","parking","roundhouse","shop"]
 var fun_backgrounds = ["JapanRooftop","Japan_Bridge","JungleWater","Jungle","OldStreet"]
 var background
@@ -80,7 +80,8 @@ func end_demo():
 		var ox = {
 			"Kelsie": "flossing",
 			"John": "yes",
-			"Terje": "dance"
+			"Terje": "dance",
+			"Tyler": "bbq"
 		}
 		player1_node.get_node("AnimationPlayer").play(ox[player1_name])
 		player2_node.get_node("AnimationPlayer").play(ox[player2_name])
@@ -144,7 +145,9 @@ func addPlayer(character:String, node_name:String, bot:bool):
 		if player1_wins == 1:
 			$UI/Player1/SkullContainer/Skull.visible = true
 		$UI/Player1/HealthBar.value = 100
-	
+		
+		if not bot:
+			player.set_fight_controller(self)
 		player.position = Vector2(100, 350)
 		player.collision_layer = 1
 		player.collision_mask = 48

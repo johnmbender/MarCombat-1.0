@@ -20,7 +20,7 @@ var current_line
 var game_controller
 var storymode_controller
 # change this based on the script
-var last_coworker_fight = 1
+var last_coworker_fight = 2
 
 var speaker
 var next_action = null
@@ -104,7 +104,7 @@ func start_conversation():
 	merge_scripts()
 	
 	match fight_number:
-		1, 2, 3:
+		1, 2, 3, 4:
 			$ContentContainer/opponent.modulate = Color(1,1,1,0)
 
 	speak_line()
@@ -113,7 +113,7 @@ func set_exposition():
 	exposition = {
 		0: {
 			0: {
-				"line": "One day, %s comes up with the best idea ever.\n\n%s idea would skyrocket the prestige of the museum, make it highly profitable, and spike morale. It's risk-free and nearly zero cost.\n\n%s wants to run the idea past a coworker before taking it up the line.\n\n%s finds %s and explains it to %s, who cheerfully provides constructive feedback..." % [player, player_pronouns[2], player_pronouns[0], player, opponent, opponent_pronouns[1]],
+				"line": "The year is 2019. The new museum opened nearly two years ago to great fanfare, followed by a hugely successful feature exhibit.\n\nOptimism was high, and COVID-19 was completely unheard of.\n\nOne day, %s comes up with the best idea ever.\n\n%s idea would skyrocket the prestige of the museum, make it highly profitable, and spike morale. It's risk-free and nearly zero cost.\n\n%s wants to run the idea past a coworker before taking it up the line.\n\n%s finds %s and explains it to %s, who cheerfully provides constructive feedback..." % [player, player_pronouns[2], player_pronouns[0], player, opponent, opponent_pronouns[1]],
 			}
 		},
 		1: {
@@ -121,12 +121,12 @@ func set_exposition():
 				"line": "%s explains %s brilliant idea to %s, what just happened, and cautiously watches %s's response." % [player, player_pronouns[2], opponent, opponent]
 			}
 		},
-		3: {
+		4: {
 			4: {
 				"line": "%s goes to Starbucks and gets Oksana's favourite: Americano, black.\n\nWhen %s returns, %s finds Oksana upstairs on the patio." % [player, player_pronouns[0], player_pronouns[0]]
 			}
 		},
-		4: {
+		5: {
 			4: {
 				"line": "%s goes to %s desk and types a well-thought out and comprehensive explanation of %s idea, complete with tangible milestones, goals, and deliverables.\n\nAfter an hour and a half, %s is ready to hit send..." % [player, player_pronouns[2], player_pronouns[2], player]
 			},
@@ -142,15 +142,47 @@ func set_exposition():
 func merge_scripts():
 	var lines = player_script.size() + opponent_script.size() + exposition.size()
 	
-	# the fight before Self-Doubt, if it happens to be Kelsie v John
-	# swap out the last two lines for "Hey, %s, tell me... how do you pronounce 'gif'?"
-	# and "'gif'" - and then they fight
 	
-	if fight_number == last_coworker_fight:
-		if player == "Kelsie" or player == "John":
-			if opponent == "Kelsie" or opponent == "John":
-				player_script[9]['line'] = 'Tell me, %s... how do you pronounce "gif"?' % opponent
-				opponent_script[10]['line'] = ".... gif."
+	# if it's the fight before player loses their cool on a coworker,
+	# spice up the dialogue a bit
+	if fight_number == 2:
+		if player == "John":
+			match opponent:
+				"Kelsie":
+					player_script[9]['line'] = 'Tell me, %s... how do you pronounce "gif"?' % opponent
+					opponent_script[10]['line'] = ".... gif."
+				"Terje":
+					pass
+				"Tyler":
+					player_script[9]['line'] = 'You really bug me, %s.' % opponent
+					opponent_script[10]['line'] = "Thinking about that one all day, were ya?"
+		elif player == "Kelsie":
+			match opponent:
+				"John":
+					player_script[9]['line'] = 'Tell me, %s... how do you pronounce "gif"?' % opponent
+					opponent_script[10]['line'] = ".... gif."
+				"Terje":
+					pass
+				"Tyler":
+					pass
+		elif player == "Terje":
+			match opponent:
+				"John":
+					pass
+				"Kelsie":
+					player_script[9]['line'] = "Tell me, %s... are you still leeching off your sister's Peloton account? Mooch."
+					opponent_script[10]["line"] = "You son of a bitch."
+				"Tyler":
+					pass
+		elif player == "Tyler":
+			match opponent:
+				"John":
+					player_script[9]['line'] = "This game sucks."
+					opponent_script[10]["line"] = "You son of a bitch."
+				"Kelsie":
+					pass
+				"Terje":
+					pass
 	
 	for n in range(0, lines):
 		if exposition.has(fight_number) and exposition[fight_number].has(n):
@@ -317,8 +349,8 @@ func light_actor():
 		# slowly fade in self-doubt each line player speaks
 		$ContentContainer/opponent.modulate.a = clamp(current_line - 1, 0, 3) * 0.23
 		$ContentContainer/player.modulate = Color(1,1,1,1)
-	elif fight_number == 1 and current_line < 2:
-		# delay opponent for one line in fight #2 (1)
+	elif (fight_number == 1 and current_line < 2) or (fight_number == 2 and current_line < 1):
+		# delay opponent for one line in fight #2 and #3 (1)
 		$ContentContainer/player.modulate = Color(1,1,1,1)
 		$ContentContainer/opponent.modulate.a = 0.0
 	elif opponent == "Ox_Anna" and current_line < 5:

@@ -6,7 +6,7 @@ var player_count = 1
 var game_controller
 
 var selected = 0
-onready var characters = ["John","Kelsie","Terje"]
+onready var characters = ["John","Kelsie","Terje","Tyler"]
 onready var random_unselected = preload("res://sprites/UI/random-unselected.png")
 onready var random_selected = preload("res://sprites/UI/random-selected.png")
 onready var character_selected = preload("res://sprites/UI/character-selected.png")
