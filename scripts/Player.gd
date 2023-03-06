@@ -24,9 +24,9 @@ var enemy
 
 # CHARACTER-SPECIFIC VARIABLES 
 var _KELSIE_is_dizzy = false
-var _KELSIE_special_spam = 2
 var _JOHN_guns_jammed = false
 var _TERJE_brochures_spilt = false
+var _TYLER_bees_tired = false
 
 var velocity
 var free_animations = ["walk-backward","walk-forward","idle","crouch","crouching","crouch-return",] # list of animations that can be interrupted
@@ -44,7 +44,6 @@ func set_game_controller(controller):
 	game_controller = controller
 
 func set_fight_controller(controller):
-	print("called! it's a ", controller)
 	fight_controller = controller
 
 func _ready():
@@ -211,18 +210,20 @@ func get_input():
 				else:
 					velocity.x += MOVE_SPEED
 		elif can_use_fatality and Input.is_action_pressed("fatality"):
+			var distance = abs(global_position.x - enemy.global_position.x)
 			match character_name:
 				"Kelsie":
 					# can't be too close
-					if abs(global_position.x - enemy.global_position.x) < 200:
+					if distance < 200:
 						return
 				"Terje":
 					# can't be too close
-					if abs(global_position.x - enemy.global_position.x) < 200:
+					if distance < 300:
 						return
-				"John":
-					pass
-					
+				"Tyler":
+					# must be within arms reach
+					if distance > 120 or distance < 80:
+						return
 			fatality()
 		else:
 			$AnimationPlayer.play("idle")
@@ -237,6 +238,10 @@ func _on_AnimationPlayer_animation_started(anim_name):
 		$BrochureSpill.emitting = false
 	
 	match anim_name:
+		"bees":
+			attacking = false
+			fighting = false
+			completed_animation = false
 		"punch-far","punch-close","kick-far","kick-close":
 			attacking = true
 			play_sound("res://sounds/characters/effects/attack.wav", true)
@@ -267,6 +272,8 @@ func _on_AnimationPlayer_animation_started(anim_name):
 			if anim_name == "hit-uppercut":
 				completed_animation = false
 				$SpecialCooldown.visible = false
+				# disable enemy's attack so we don't get uppercut chained
+				enemy.get_node("AttackCircle").set_deferred("monitoring", false)
 		"hit-gut":
 			play_sound("res://sounds/characters/effects/kicked.wav", true)
 		"fatality":
@@ -305,6 +312,16 @@ func _on_AnimationPlayer_animation_started(anim_name):
 					return
 				else:
 					_TERJE_brochures_spilt = true
+			elif character_name == "Tyler":
+				if _TYLER_bees_tired:
+					attacking = true
+					completed_animation = false
+					$BeeSwarm.emitting = true
+					$Bees.playing = true
+					$AnimationPlayer.play("bees")
+					return
+				else:
+					_TYLER_bees_tired = true
 			
 			attacking = true
 
@@ -358,6 +375,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			if $NegaSmoke.is_playing():
 				$NegaSmoke.visible = true
 			completed_animation = true
+			enemy.get_node("AttackCircle").set_deferred("monitoring", true)
 			$AnimationPlayer.play("idle")
 		"victory":
 			$SpecialCooldown.visible = false
@@ -370,6 +388,13 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		"dizzy":
 			completed_animation = true
 			$AnimationPlayer.play("idle")
+		"bees":
+			completed_animation = true
+			fighting = true
+			attacking = true
+			$AnimationPlayer.play("idle")
+		"tyler-fatality-start":
+			$AnimationPlayer.play("tyler-fatality-loop")
 		_:
 			$AnimationPlayer.play("idle")
 		
@@ -390,8 +415,8 @@ func landing_damage():
 func damage_taken(animation:String):
 	attacking = false
 	crouching = false
+	$BeeSwarm.emitting = false
 
-	# jovi: testing this to see if it blocks AI from getting stuck
 	completed_animation = true
 	
 	# Kelsie's hair gets stuck sometimes if hit mid-swing
@@ -500,6 +525,35 @@ func is_getting_shot(currently:bool):
 		completed_animation = true
 		$AnimationPlayer.play("idle")
 
+func swarm_bees():
+	emit_signal("bot_damage_taken")
+	$AnimationPlayer.play("bees")
+	$Bees.playing = true
+	$BeeSwarm.emitting = true
+
+func being_slapped():
+	# set fightscene's fatality timer long
+	var timer = Timer.new()
+	timer.wait_time = 7
+	timer.one_shot = true
+	timer.connect("timeout", self, "_on_Tyler_FatalityTimer_timeout")
+	add_child(timer)
+	timer.start()
+	$SoundPlayer.stream = load("res://sounds/characters/Tyler/slap.wav")
+	$AnimationPlayer.play("tyler-fatality-start")
+
+func _on_Tyler_FatalityTimer_timeout():
+	get_parent().fatality_modulate("out")
+	var whichLine = randi() % 3 + 1
+	get_parent().announcer_speak("tyler-fatality-%s" % whichLine)
+	var end_fight_timer = get_parent().get_node("EndFightTimer")
+	end_fight_timer.wait_time = 7
+	end_fight_timer.start()
+
+func slap():
+	$SoundPlayer.pitch_scale = rand_range(0.9, 1.1)
+	$SoundPlayer.play()
+
 func bullet_damage():
 	health -= 5
 	emit_signal("update_health", self, health)
@@ -521,6 +575,8 @@ func fatality():
 			_KELSIE_fatality()
 		"Terje":
 			_TERJE_fatality()
+		"Tyler":
+			_TYLER_fatality()
 
 func special_cooldown_timer():
 	$SpecialCooldown.value = 5.0
@@ -533,6 +589,7 @@ func _on_CooldownTimer_timeout():
 	_TERJE_brochures_spilt = false
 	_KELSIE_is_dizzy = false
 	_JOHN_guns_jammed = false
+	_TYLER_bees_tired = false
 
 ################################
 # CHARACTER-SPECIFIC FUNCTIONS #
@@ -687,3 +744,29 @@ func _TERJE_skeletonize_enemy():
 	get_parent().get_node("EndFightTimer").start()
 	get_parent().fatality_modulate("out")
 
+func _TYLER_bee_travel_time():
+	# calculate bee travel time from BeesTravel particles
+	# setting lifetime to distance between Tyler and opponent
+	# and dividing by gravity.x
+	var lifetime = abs(enemy.global_position.x - global_position.x) / 750
+	$BeesTravel.lifetime = lifetime
+
+func _TYLER_bee_sound_tween():
+	# process the tween for the bee sound to travel with the particles to the opponent
+	$Tween.interpolate_property($Bees, "global_position",
+			global_position, enemy.global_position, $BeesTravel.lifetime,
+			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)			
+	$Tween.start()
+
+func _TYLER_bee_swarm():
+	enemy.swarm_bees()
+
+func _TYLER_fatality():
+	# make sure opponent's body obscures hand
+	if z_index >= enemy.z_index:
+		z_index = 0
+		enemy.z_index = 1
+	$AnimationPlayer.play("fatality-start")
+
+func _TYLER_enemy_slapping():
+	enemy.being_slapped()

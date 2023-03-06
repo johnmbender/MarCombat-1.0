@@ -23,7 +23,7 @@ func _ready():
 	dialogue = {
 		"opponent": {
 			"scene": {
-				5: {
+				4: {
 					"lines": {
 						2: {
 							"line": null,

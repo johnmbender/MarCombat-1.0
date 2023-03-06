@@ -1,4 +1,4 @@
-[gd_scene load_steps=274 format=2]
+[gd_scene load_steps=305 format=2]
 
 [ext_resource path="res://characters/Kelsie/sprites/actions/victory/victory_05.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
@@ -233,6 +233,34 @@
 [ext_resource path="res://ui/cooldown-under.png" type="Texture" id=231]
 [ext_resource path="res://sprites/lightbulb_02.png" type="Texture" id=232]
 [ext_resource path="res://sprites/lightbulb_01.png" type="Texture" id=233]
+[ext_resource path="res://characters/Kelsie/sprites/actions/bees/bees_06.png" type="Texture" id=234]
+[ext_resource path="res://characters/Kelsie/sprites/actions/bees/bees_02.png" type="Texture" id=235]
+[ext_resource path="res://characters/Kelsie/sprites/actions/bees/bees_03.png" type="Texture" id=236]
+[ext_resource path="res://characters/Kelsie/sprites/actions/bees/bees_11.png" type="Texture" id=237]
+[ext_resource path="res://characters/Kelsie/sprites/actions/bees/bees_14.png" type="Texture" id=238]
+[ext_resource path="res://characters/Kelsie/sprites/actions/bees/bees_10.png" type="Texture" id=239]
+[ext_resource path="res://characters/Kelsie/sprites/actions/bees/bees_16.png" type="Texture" id=240]
+[ext_resource path="res://characters/Kelsie/sprites/actions/bees/bees_05.png" type="Texture" id=241]
+[ext_resource path="res://characters/Kelsie/sprites/actions/bees/bees_13.png" type="Texture" id=242]
+[ext_resource path="res://characters/Kelsie/sprites/actions/bees/bees_01.png" type="Texture" id=243]
+[ext_resource path="res://characters/Kelsie/sprites/actions/bees/bees_09.png" type="Texture" id=244]
+[ext_resource path="res://characters/Kelsie/sprites/actions/bees/bees_12.png" type="Texture" id=245]
+[ext_resource path="res://characters/Kelsie/sprites/actions/bees/bees_04.png" type="Texture" id=246]
+[ext_resource path="res://characters/Kelsie/sprites/actions/bees/bees_15.png" type="Texture" id=247]
+[ext_resource path="res://characters/Kelsie/sprites/actions/bees/bees_07.png" type="Texture" id=248]
+[ext_resource path="res://characters/Kelsie/sprites/actions/bees/bees_08.png" type="Texture" id=249]
+[ext_resource path="res://sounds/characters/Tyler/bees.wav" type="AudioStream" id=250]
+[ext_resource path="res://characters/Terje/sprites/actions/tyler-fatality/tyler-fatality_06.png" type="Texture" id=251]
+[ext_resource path="res://characters/Terje/sprites/actions/tyler-fatality/tyler-fatality_02.png" type="Texture" id=252]
+[ext_resource path="res://characters/Terje/sprites/actions/tyler-fatality/tyler-fatality_10.png" type="Texture" id=253]
+[ext_resource path="res://characters/Terje/sprites/actions/tyler-fatality/tyler-fatality_04.png" type="Texture" id=254]
+[ext_resource path="res://characters/Terje/sprites/actions/tyler-fatality/tyler-fatality_07.png" type="Texture" id=255]
+[ext_resource path="res://characters/Terje/sprites/actions/tyler-fatality/tyler-fatality_11.png" type="Texture" id=256]
+[ext_resource path="res://characters/Terje/sprites/actions/tyler-fatality/tyler-fatality_09.png" type="Texture" id=257]
+[ext_resource path="res://characters/Terje/sprites/actions/tyler-fatality/tyler-fatality_03.png" type="Texture" id=258]
+[ext_resource path="res://characters/Terje/sprites/actions/tyler-fatality/tyler-fatality_01.png" type="Texture" id=259]
+[ext_resource path="res://characters/Terje/sprites/actions/tyler-fatality/tyler-fatality_08-center.png" type="Texture" id=260]
+[ext_resource path="res://characters/Terje/sprites/actions/tyler-fatality/tyler-fatality_05.png" type="Texture" id=261]
 
 [sub_resource type="RectangleShape2D" id=136]
 extents = Vector2( 40, 160 )
@@ -361,6 +389,23 @@ tracks/9/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
+}
+
+[sub_resource type="Animation" id=146]
+resource_name = "bees"
+length = 3.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.15, 1.2, 1.25, 1.3, 1.35, 1.4, 1.45, 1.5, 1.55, 1.6, 1.65, 1.7, 1.75, 1.8, 1.85, 1.9, 1.95, 2, 2.05, 2.1, 2.15, 2.2, 2.25, 2.3, 2.35, 2.4, 2.45, 2.5, 2.55, 2.6, 2.65, 2.7, 2.75, 2.8, 2.85, 2.9, 2.95 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 243 ), ExtResource( 235 ), ExtResource( 236 ), ExtResource( 246 ), ExtResource( 241 ), ExtResource( 234 ), ExtResource( 248 ), ExtResource( 249 ), ExtResource( 244 ), ExtResource( 239 ), ExtResource( 237 ), ExtResource( 245 ), ExtResource( 242 ), ExtResource( 238 ), ExtResource( 247 ), ExtResource( 240 ), ExtResource( 247 ), ExtResource( 238 ), ExtResource( 242 ), ExtResource( 245 ), ExtResource( 239 ), ExtResource( 244 ), ExtResource( 249 ), ExtResource( 248 ), ExtResource( 234 ), ExtResource( 241 ), ExtResource( 246 ), ExtResource( 241 ), ExtResource( 234 ), ExtResource( 248 ), ExtResource( 249 ), ExtResource( 244 ), ExtResource( 239 ), ExtResource( 237 ), ExtResource( 245 ), ExtResource( 242 ), ExtResource( 238 ), ExtResource( 247 ), ExtResource( 240 ), ExtResource( 247 ), ExtResource( 238 ), ExtResource( 242 ), ExtResource( 245 ), ExtResource( 239 ), ExtResource( 244 ), ExtResource( 249 ), ExtResource( 248 ), ExtResource( 234 ), ExtResource( 241 ), ExtResource( 246 ), ExtResource( 236 ), ExtResource( 235 ), ExtResource( 243 ) ]
 }
 
 [sub_resource type="Animation" id=142]
@@ -1351,6 +1396,39 @@ tracks/3/keys = {
 } ]
 }
 
+[sub_resource type="Animation" id=147]
+resource_name = "tyler-fatality-loop"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 261 ), ExtResource( 251 ), ExtResource( 255 ), ExtResource( 260 ), ExtResource( 257 ), ExtResource( 253 ), ExtResource( 256 ), ExtResource( 260 ) ]
+}
+
+[sub_resource type="Animation" id=148]
+resource_name = "tyler-fatality-start"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 259 ), ExtResource( 252 ), ExtResource( 258 ), ExtResource( 254 ) ]
+}
+
 [sub_resource type="Animation" id=72]
 resource_name = "uppercut"
 length = 0.44
@@ -1549,6 +1627,7 @@ texture = ExtResource( 194 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 method_call_mode = 1
 anims/RESET = SubResource( 2 )
+anims/bees = SubResource( 146 )
 anims/blade-gut-hit = SubResource( 142 )
 anims/block = SubResource( 61 )
 anims/block-release = SubResource( 62 )
@@ -1580,6 +1659,8 @@ anims/stunned = SubResource( 29 )
 anims/throw = SubResource( 92 )
 anims/thrown = SubResource( 96 )
 anims/tossed-by-oxanna = SubResource( 132 )
+anims/tyler-fatality-loop = SubResource( 147 )
+anims/tyler-fatality-start = SubResource( 148 )
 anims/uppercut = SubResource( 72 )
 anims/victory = SubResource( 33 )
 anims/walk-backward = SubResource( 109 )
@@ -1627,6 +1708,25 @@ visible = false
 position = Vector2( 0, -192 )
 scale = Vector2( 1.2, 1.2 )
 frames = SubResource( 145 )
+
+[node name="BeeSwarm" type="CPUParticles2D" parent="."]
+position = Vector2( 0, 58.1818 )
+emitting = false
+amount = 1000
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.31
+emission_shape = 1
+emission_sphere_radius = 100.0
+gravity = Vector2( 100, -50 )
+orbit_velocity = 0.4
+orbit_velocity_random = 0.3
+scale_amount = 2.0
+color = Color( 0.811765, 0.847059, 0.313726, 1 )
+
+[node name="Bees" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 250 )
+volume_db = -5.0
 
 [connection signal="body_entered" from="AttackCircle" to="." method="_on_AttackCircle_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

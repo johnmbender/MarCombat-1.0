@@ -20,7 +20,7 @@ var current_line
 var game_controller
 var storymode_controller
 # change this based on the script
-var last_coworker_fight = 2
+var last_coworker_fight = 1
 
 var speaker
 var next_action = null
@@ -104,7 +104,7 @@ func start_conversation():
 	merge_scripts()
 	
 	match fight_number:
-		1, 2, 3, 4:
+		1, 2, 3: # 4
 			$ContentContainer/opponent.modulate = Color(1,1,1,0)
 
 	speak_line()
@@ -121,12 +121,12 @@ func set_exposition():
 				"line": "%s explains %s brilliant idea to %s, what just happened, and cautiously watches %s's response." % [player, player_pronouns[2], opponent, opponent]
 			}
 		},
-		4: {
+		3: {
 			4: {
 				"line": "%s goes to Starbucks and gets Oksana's favourite: Americano, black.\n\nWhen %s returns, %s finds Oksana upstairs on the patio." % [player, player_pronouns[0], player_pronouns[0]]
 			}
 		},
-		5: {
+		4: {
 			4: {
 				"line": "%s goes to %s desk and types a well-thought out and comprehensive explanation of %s idea, complete with tangible milestones, goals, and deliverables.\n\nAfter an hour and a half, %s is ready to hit send..." % [player, player_pronouns[2], player_pronouns[2], player]
 			},
@@ -142,10 +142,9 @@ func set_exposition():
 func merge_scripts():
 	var lines = player_script.size() + opponent_script.size() + exposition.size()
 	
-	
 	# if it's the fight before player loses their cool on a coworker,
 	# spice up the dialogue a bit
-	if fight_number == 2:
+	if fight_number == last_coworker_fight:
 		if player == "John":
 			match opponent:
 				"Kelsie":
@@ -349,7 +348,7 @@ func light_actor():
 		# slowly fade in self-doubt each line player speaks
 		$ContentContainer/opponent.modulate.a = clamp(current_line - 1, 0, 3) * 0.23
 		$ContentContainer/player.modulate = Color(1,1,1,1)
-	elif (fight_number == 1 and current_line < 2) or (fight_number == 2 and current_line < 1):
+	elif (fight_number == 1 and current_line < 2): # or (fight_number == 2 and current_line < 1):
 		# delay opponent for one line in fight #2 and #3 (1)
 		$ContentContainer/player.modulate = Color(1,1,1,1)
 		$ContentContainer/opponent.modulate.a = 0.0

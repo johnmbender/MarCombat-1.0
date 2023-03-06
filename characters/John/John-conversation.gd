@@ -61,23 +61,23 @@ onready var dialogue = {
 					}
 				}
 			},
+#			2: {
+#				"lines": {
+#					0: {
+#						"line": "...",
+#						"action": "angry"
+#					},
+#					2: {
+#						"line": "Piss off.",
+#						"action": "angry"
+#					},
+#					4: {
+#						"line": "I don't like you.",
+#						"action": "fight"
+#					}
+#				}
+#			},
 			2: {
-				"lines": {
-					0: {
-						"line": "...",
-						"action": "angry"
-					},
-					2: {
-						"line": "Piss off.",
-						"action": "angry"
-					},
-					4: {
-						"line": "I don't like you.",
-						"action": "fight"
-					}
-				}
-			},
-			3: {
 				"lines": {
 					0: {
 						"line": "This is just... wrong.",
@@ -105,7 +105,7 @@ onready var dialogue = {
 					}
 				}
 			},
-			4: {
+			3: {
 				"lines": {
 					0: {
 						"line": "That was cathartic.",
@@ -141,7 +141,7 @@ onready var dialogue = {
 					},
 				}
 			},
-			5: {
+			4: {
 				"lines": {
 					0: {
 						"line": "Well, that was a Ms. Steak.",
@@ -305,23 +305,23 @@ onready var dialogue = {
 					}
 				}
 			},
+#			2: {
+#				"lines": {
+#					1: {
+#						"line": "Hi %s! How's your day going?",
+#						"action": "smile"
+#					},
+#					3: {
+#						"line": "Damn, what the hell did I do to you?!",
+#						"action": "offended"
+#					},
+#					5: {
+#						"line": null,
+#						"action": "fight"
+#					}
+#				}
+#			},
 			2: {
-				"lines": {
-					1: {
-						"line": "Hi %s! How's your day going?",
-						"action": "smile"
-					},
-					3: {
-						"line": "Damn, what the hell did I do to you?!",
-						"action": "offended"
-					},
-					5: {
-						"line": null,
-						"action": "fight"
-					}
-				}
-			},
-			3: {
 				"lines": {
 					5: {
 						"line": null,

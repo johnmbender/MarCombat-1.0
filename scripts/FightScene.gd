@@ -440,7 +440,6 @@ func _on_FatalityTimer_timeout():
 	winner.victory()
 	$EndFightTimer.start()
 
-
 func _on_CountdownTimer_timeout():
 	continue_counter -= 1
 	

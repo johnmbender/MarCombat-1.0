@@ -9,7 +9,7 @@ extends Node2D
 
 var player
 var opponent
-var player_characters = ["John", "Kelsie", "Terje"]
+var player_characters = ["John", "Kelsie", "Terje"] # Tyler
 var opponents = player_characters.duplicate()
 var bosses = ["Ox_Anna", "FUGUM"]
 var fight_number
@@ -27,7 +27,7 @@ func set_player(playerName:String):
 	player = playerName
 
 func prepare_story():
-	fight_number = 4
+	fight_number = 0
 	random = RandomNumberGenerator.new()
 	random.randomize()
 	randomize()
@@ -45,16 +45,17 @@ func pick_background():
 	if opponent == "FUGUM":
 		current_background = "rooftop-nighttime"
 		return
-		
-	if backgrounds == null or backgrounds.size() == 0:
-		shuffle_backgrounds()
-	var choice = random.randi_range(0, backgrounds.size()-1)
-	current_background = backgrounds[choice]
-	backgrounds.remove(choice)
+	
+	backgrounds = shuffle_backgrounds()
+	current_background = backgrounds[fight_number]
 
 func shuffle_backgrounds():
 	backgrounds = ['arrivals', 'breakroom', 'courtyard', 'humanHistory', 'lobby', 'office', 'parking', 'roundhouse', 'shop']
 	backgrounds.shuffle()
+	while backgrounds[0] == "office":
+		backgrounds.shuffle()
+	
+	return backgrounds
 
 func get_opponent():
 	opponent = opponents[fight_number]

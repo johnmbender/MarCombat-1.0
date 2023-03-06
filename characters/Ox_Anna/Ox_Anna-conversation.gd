@@ -9,7 +9,7 @@ onready var pronouns = ["she", "her", "her"]
 onready var dialogue = {
 	"opponent": {
 		"scene": {
-			4: {
+			3: {
 				"lines": {
 					6: {
 						"line": "Sure, %s! Whatcha got? Oh, is this coffee for me?  You're so sweet!	",

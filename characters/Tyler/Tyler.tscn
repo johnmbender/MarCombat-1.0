@@ -1,4 +1,4 @@
-[gd_scene load_steps=239 format=2]
+[gd_scene load_steps=276 format=2]
 
 [ext_resource path="res://characters/Tyler/sprites/actions/victory/victory_05.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
@@ -54,33 +54,33 @@
 [ext_resource path="res://characters/Tyler/sprites/actions/victory/victory_08.png" type="Texture" id=52]
 [ext_resource path="res://characters/Tyler/sprites/actions/victory/victory_03.png" type="Texture" id=53]
 [ext_resource path="res://characters/Tyler/sprites/actions/victory/victory_07.png" type="Texture" id=54]
-[ext_resource path="res://characters/Terje/sprites/actions/special/special_01.png" type="Texture" id=55]
-[ext_resource path="res://characters/Terje/sprites/actions/special/special_08.png" type="Texture" id=56]
-[ext_resource path="res://characters/Terje/sprites/actions/special/special_10.png" type="Texture" id=57]
-[ext_resource path="res://characters/Terje/sprites/actions/special/special_02.png" type="Texture" id=58]
+[ext_resource path="res://characters/Tyler/sprites/actions/special/special_17.png" type="Texture" id=55]
+[ext_resource path="res://characters/Tyler/sprites/actions/special/special_15.png" type="Texture" id=56]
+[ext_resource path="res://characters/Tyler/sprites/actions/special/special_14.png" type="Texture" id=57]
+[ext_resource path="res://characters/Tyler/sprites/actions/special/special_16.png" type="Texture" id=58]
 [ext_resource path="res://characters/Tyler/sprites/actions/punch-close/punch-close_02.png" type="Texture" id=59]
 [ext_resource path="res://characters/Tyler/sprites/actions/punch-close/punch-close_01.png" type="Texture" id=60]
 [ext_resource path="res://characters/Tyler/sprites/actions/punch-close/punch-close_03.png" type="Texture" id=61]
 [ext_resource path="res://characters/Tyler/sprites/actions/kick-far/kick-far_04.png" type="Texture" id=62]
 [ext_resource path="res://characters/Tyler/sprites/actions/kick-far/kick-far_03.png" type="Texture" id=63]
 [ext_resource path="res://characters/Tyler/sprites/actions/victory/victory_15.png" type="Texture" id=64]
-[ext_resource path="res://characters/Terje/sprites/actions/special/special_06.png" type="Texture" id=65]
-[ext_resource path="res://characters/Terje/sprites/actions/special/special_04.png" type="Texture" id=66]
-[ext_resource path="res://characters/Terje/sprites/actions/special/special_05.png" type="Texture" id=67]
-[ext_resource path="res://characters/Terje/sprites/actions/special/special_03.png" type="Texture" id=68]
-[ext_resource path="res://characters/Terje/sprites/actions/special/special_09.png" type="Texture" id=69]
-[ext_resource path="res://characters/Terje/sprites/actions/special/special_07.png" type="Texture" id=70]
-[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_08.png" type="Texture" id=71]
-[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_05.png" type="Texture" id=72]
-[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_06.png" type="Texture" id=73]
-[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_01.png" type="Texture" id=74]
-[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_02.png" type="Texture" id=75]
+[ext_resource path="res://characters/Tyler/sprites/actions/special/special_02.png" type="Texture" id=65]
+[ext_resource path="res://characters/Tyler/sprites/actions/special/special_01.png" type="Texture" id=66]
+[ext_resource path="res://characters/Tyler/sprites/actions/special/special_11.png" type="Texture" id=67]
+[ext_resource path="res://characters/Tyler/sprites/actions/special/special_06.png" type="Texture" id=68]
+[ext_resource path="res://characters/Tyler/sprites/actions/special/special_07.png" type="Texture" id=69]
+[ext_resource path="res://characters/Tyler/sprites/actions/special/special_03.png" type="Texture" id=70]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality/fatality_01.png" type="Texture" id=71]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality/fatality_04.png" type="Texture" id=72]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality/fatality_03.png" type="Texture" id=73]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality/fatality_02.png" type="Texture" id=74]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality/fatality_05.png" type="Texture" id=75]
 [ext_resource path="res://characters/Tyler/sprites/actions/kick-close/kick-close_02.png" type="Texture" id=76]
-[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_04.png" type="Texture" id=77]
-[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_03.png" type="Texture" id=78]
-[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_12.png" type="Texture" id=79]
-[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_16.png" type="Texture" id=80]
-[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_11.png" type="Texture" id=81]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality/fatality_07.png" type="Texture" id=77]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality/fatality_06.png" type="Texture" id=78]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality/fatality_12.png" type="Texture" id=79]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality/fatality_11.png" type="Texture" id=80]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality/fatality_10.png" type="Texture" id=81]
 [ext_resource path="res://characters/effects/nega-smoke/10.png" type="Texture" id=82]
 [ext_resource path="res://characters/effects/nega-smoke/11.png" type="Texture" id=83]
 [ext_resource path="res://characters/effects/nega-smoke/12.png" type="Texture" id=84]
@@ -123,15 +123,15 @@
 [ext_resource path="res://characters/Tyler/sprites/actions/uppercut/uppercut_03.png" type="Texture" id=121]
 [ext_resource path="res://characters/Tyler/sprites/actions/uppercut/uppercut_05.png" type="Texture" id=122]
 [ext_resource path="res://characters/Tyler/sprites/actions/thrown/thrown_01.png" type="Texture" id=123]
-[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_14.png" type="Texture" id=124]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality/fatality_19.png" type="Texture" id=124]
 [ext_resource path="res://characters/Tyler/sprites/actions/thrown/thrown_06.png" type="Texture" id=125]
-[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_15.png" type="Texture" id=126]
-[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_10.png" type="Texture" id=127]
-[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_09.png" type="Texture" id=128]
-[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_17.png" type="Texture" id=129]
-[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_19.png" type="Texture" id=130]
-[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_18.png" type="Texture" id=131]
-[ext_resource path="res://characters/Terje/sprites/actions/fatality/fatality_13.png" type="Texture" id=132]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality/fatality_13.png" type="Texture" id=126]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality/fatality_08.png" type="Texture" id=127]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality/fatality_16.png" type="Texture" id=128]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality/fatality_18.png" type="Texture" id=129]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality/fatality_17.png" type="Texture" id=130]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality/fatality_09.png" type="Texture" id=131]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality/fatality_14.png" type="Texture" id=132]
 [ext_resource path="res://characters/Tyler/sprites/actions/fatality-john/fatality-john_12.png" type="Texture" id=133]
 [ext_resource path="res://characters/Tyler/sprites/actions/walk/walk_11.png" type="Texture" id=134]
 [ext_resource path="res://characters/Tyler/sprites/actions/hit-uppercut/hit-uppercut_06.png" type="Texture" id=135]
@@ -177,6 +177,12 @@
 [ext_resource path="res://characters/Tyler/sprites/actions/fatality-john/fatality-john_02.png" type="Texture" id=175]
 [ext_resource path="res://characters/Tyler/sprites/actions/fatality-john/fatality-john_03.png" type="Texture" id=176]
 [ext_resource path="res://characters/Tyler/sprites/actions/skeletonize/skeletonize.png" type="Texture" id=177]
+[ext_resource path="res://characters/Tyler/sprites/actions/special/special_04.png" type="Texture" id=178]
+[ext_resource path="res://characters/Tyler/sprites/actions/special/special_08.png" type="Texture" id=179]
+[ext_resource path="res://characters/Tyler/sprites/actions/special/special_09.png" type="Texture" id=180]
+[ext_resource path="res://characters/Tyler/sprites/actions/special/special_12.png" type="Texture" id=181]
+[ext_resource path="res://characters/Tyler/sprites/actions/special/special_10.png" type="Texture" id=182]
+[ext_resource path="res://characters/Tyler/sprites/actions/special/special_13.png" type="Texture" id=183]
 [ext_resource path="res://characters/effects/nega-smoke/20.png" type="Texture" id=184]
 [ext_resource path="res://characters/effects/nega-smoke/03.png" type="Texture" id=185]
 [ext_resource path="res://characters/effects/nega-smoke/04.png" type="Texture" id=186]
@@ -187,7 +193,22 @@
 [ext_resource path="res://characters/effects/nega-smoke/01.png" type="Texture" id=191]
 [ext_resource path="res://characters/effects/nega-smoke/02.png" type="Texture" id=192]
 [ext_resource path="res://characters/effects/nega-smoke/09.png" type="Texture" id=193]
+[ext_resource path="res://characters/Tyler/sprites/actions/special/special_05.png" type="Texture" id=194]
 [ext_resource path="res://characters/effects/blood/blood.png" type="Texture" id=195]
+[ext_resource path="res://sounds/characters/Tyler/bees.wav" type="AudioStream" id=196]
+[ext_resource path="res://characters/Tyler/sprites/actions/bees/bees_09.png" type="Texture" id=197]
+[ext_resource path="res://characters/Tyler/sprites/actions/bees/bees_04.png" type="Texture" id=198]
+[ext_resource path="res://characters/Tyler/sprites/actions/bees/bees_07.png" type="Texture" id=199]
+[ext_resource path="res://characters/Tyler/sprites/actions/bees/bees_02.png" type="Texture" id=200]
+[ext_resource path="res://characters/Tyler/sprites/actions/bees/bees_01.png" type="Texture" id=201]
+[ext_resource path="res://characters/Tyler/sprites/actions/bees/bees_12.png" type="Texture" id=202]
+[ext_resource path="res://characters/Tyler/sprites/actions/bees/bees_06.png" type="Texture" id=203]
+[ext_resource path="res://characters/Tyler/sprites/actions/bees/bees_03.png" type="Texture" id=204]
+[ext_resource path="res://characters/Tyler/sprites/actions/bees/bees_05.png" type="Texture" id=205]
+[ext_resource path="res://characters/Tyler/sprites/actions/bees/bees_08.png" type="Texture" id=206]
+[ext_resource path="res://characters/Tyler/sprites/actions/bees/bees_11.png" type="Texture" id=207]
+[ext_resource path="res://characters/Tyler/sprites/actions/bees/bees_10.png" type="Texture" id=208]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality/fatality_15.png" type="Texture" id=209]
 [ext_resource path="res://characters/Tyler/sprites/actions/walk/walk_14.png" type="Texture" id=210]
 [ext_resource path="res://characters/Tyler/sprites/actions/walk/walk_16.png" type="Texture" id=211]
 [ext_resource path="res://characters/Tyler/sprites/actions/walk/walk_17.png" type="Texture" id=212]
@@ -201,6 +222,18 @@
 [ext_resource path="res://characters/Tyler/sprites/actions/walk/walk_02.png" type="Texture" id=220]
 [ext_resource path="res://characters/Tyler/sprites/actions/walk/walk_09.png" type="Texture" id=221]
 [ext_resource path="res://characters/Tyler/sprites/actions/thrown/thrown_08.png" type="Texture" id=222]
+[ext_resource path="res://characters/Tyler/sprites/actions/fatality/fatality_20.png" type="Texture" id=223]
+[ext_resource path="res://characters/Terje/sprites/actions/tyler-fatality/tyler-fatality_06.png" type="Texture" id=224]
+[ext_resource path="res://characters/Terje/sprites/actions/tyler-fatality/tyler-fatality_02.png" type="Texture" id=225]
+[ext_resource path="res://characters/Terje/sprites/actions/tyler-fatality/tyler-fatality_10.png" type="Texture" id=226]
+[ext_resource path="res://characters/Terje/sprites/actions/tyler-fatality/tyler-fatality_04.png" type="Texture" id=227]
+[ext_resource path="res://characters/Terje/sprites/actions/tyler-fatality/tyler-fatality_07.png" type="Texture" id=228]
+[ext_resource path="res://characters/Terje/sprites/actions/tyler-fatality/tyler-fatality_11.png" type="Texture" id=229]
+[ext_resource path="res://characters/Terje/sprites/actions/tyler-fatality/tyler-fatality_09.png" type="Texture" id=230]
+[ext_resource path="res://characters/Terje/sprites/actions/tyler-fatality/tyler-fatality_03.png" type="Texture" id=231]
+[ext_resource path="res://characters/Terje/sprites/actions/tyler-fatality/tyler-fatality_01.png" type="Texture" id=232]
+[ext_resource path="res://characters/Terje/sprites/actions/tyler-fatality/tyler-fatality_08-center.png" type="Texture" id=233]
+[ext_resource path="res://characters/Terje/sprites/actions/tyler-fatality/tyler-fatality_05.png" type="Texture" id=234]
 
 [sub_resource type="RectangleShape2D" id=137]
 extents = Vector2( 40, 154 )
@@ -328,7 +361,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1.1, 1.1 ) ]
+"values": [ Vector2( 1.05, 1.05 ) ]
 }
 
 [sub_resource type="Animation" id=151]
@@ -345,6 +378,22 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ ExtResource( 10 ), ExtResource( 9 ), ExtResource( 153 ), ExtResource( 165 ), ExtResource( 11 ), ExtResource( 154 ), ExtResource( 145 ), ExtResource( 167 ), ExtResource( 168 ), ExtResource( 172 ), ExtResource( 174 ), ExtResource( 170 ), ExtResource( 170 ), ExtResource( 174 ), ExtResource( 172 ), ExtResource( 168 ), ExtResource( 167 ), ExtResource( 145 ), ExtResource( 145 ), ExtResource( 167 ), ExtResource( 168 ), ExtResource( 172 ), ExtResource( 174 ), ExtResource( 170 ), ExtResource( 170 ), ExtResource( 174 ), ExtResource( 172 ), ExtResource( 168 ), ExtResource( 167 ), ExtResource( 145 ), ExtResource( 145 ), ExtResource( 167 ), ExtResource( 168 ), ExtResource( 172 ), ExtResource( 174 ), ExtResource( 170 ), ExtResource( 170 ), ExtResource( 174 ), ExtResource( 172 ), ExtResource( 168 ), ExtResource( 167 ), ExtResource( 145 ), ExtResource( 145 ) ]
+}
+
+[sub_resource type="Animation" id=155]
+resource_name = "bees"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 201 ), ExtResource( 200 ), ExtResource( 204 ), ExtResource( 198 ), ExtResource( 205 ), ExtResource( 203 ), ExtResource( 199 ), ExtResource( 206 ), ExtResource( 197 ), ExtResource( 208 ), ExtResource( 207 ), ExtResource( 202 ), ExtResource( 206 ), ExtResource( 199 ), ExtResource( 203 ), ExtResource( 205 ), ExtResource( 198 ), ExtResource( 205 ), ExtResource( 203 ), ExtResource( 199 ), ExtResource( 206 ), ExtResource( 197 ), ExtResource( 208 ), ExtResource( 207 ), ExtResource( 202 ), ExtResource( 206 ), ExtResource( 199 ), ExtResource( 203 ), ExtResource( 200 ), ExtResource( 201 ) ]
 }
 
 [sub_resource type="Animation" id=144]
@@ -581,10 +630,10 @@ tracks/2/keys = {
 "values": [ Vector2( 1, 0.7 ) ]
 }
 
-[sub_resource type="Animation" id=128]
-resource_name = "fatality"
-length = 4.96
-step = 0.08
+[sub_resource type="Animation" id=156]
+resource_name = "fatality-repeat"
+length = 0.8
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -592,10 +641,26 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.48, 0.56, 0.64, 0.72, 0.8, 0.88, 0.96, 1.04, 1.12, 1.2, 1.28, 1.36, 1.44, 1.52, 1.6, 1.68, 1.76, 1.84, 1.92, 2, 2.08, 2.16, 2.24, 2.32, 2.4, 2.48, 2.56, 2.64, 2.72, 2.8, 2.88, 2.96, 4.72, 4.8, 4.88, 4.96 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 74 ), ExtResource( 75 ), ExtResource( 78 ), ExtResource( 77 ), ExtResource( 72 ), ExtResource( 73 ), ExtResource( 74 ), ExtResource( 75 ), ExtResource( 78 ), ExtResource( 77 ), ExtResource( 72 ), ExtResource( 73 ), ExtResource( 74 ), ExtResource( 75 ), ExtResource( 78 ), ExtResource( 77 ), ExtResource( 72 ), ExtResource( 73 ), ExtResource( 74 ), ExtResource( 75 ), ExtResource( 78 ), ExtResource( 77 ), ExtResource( 72 ), ExtResource( 73 ), ExtResource( 74 ), ExtResource( 75 ), ExtResource( 78 ), ExtResource( 77 ), ExtResource( 72 ), ExtResource( 73 ), ExtResource( 71 ), ExtResource( 128 ), ExtResource( 127 ), ExtResource( 81 ), ExtResource( 79 ), ExtResource( 132 ), ExtResource( 124 ), ExtResource( 126 ), ExtResource( 80 ), ExtResource( 129 ), ExtResource( 131 ), ExtResource( 130 ) ]
+"values": [ ExtResource( 130 ), ExtResource( 129 ), ExtResource( 124 ), ExtResource( 223 ), ExtResource( 126 ), ExtResource( 132 ), ExtResource( 209 ), ExtResource( 128 ) ]
+}
+
+[sub_resource type="Animation" id=128]
+resource_name = "fatality-start"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.7, 0.8, 0.9, 1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 71 ), ExtResource( 74 ), ExtResource( 73 ), ExtResource( 72 ), ExtResource( 75 ), ExtResource( 78 ), ExtResource( 77 ), ExtResource( 127 ), ExtResource( 131 ), ExtResource( 81 ), ExtResource( 80 ), ExtResource( 79 ), ExtResource( 126 ), ExtResource( 132 ), ExtResource( 209 ), ExtResource( 128 ) ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -604,20 +669,11 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.64, 2.72, 3.2, 4.48 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "_TERJE_play_brochureClone"
-}, {
-"args": [  ],
-"method": "_TERJE_throwCyclone"
-}, {
-"args": [  ],
-"method": "_TERJE_enemy_play_skeletonize_sound"
-}, {
-"args": [  ],
-"method": "_TERJE_skeletonize_enemy"
+"method": "_TYLER_enemy_slapping"
 } ]
 }
 
@@ -1015,7 +1071,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=127]
 resource_name = "special"
-step = 0.01
+length = 1.3
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -1023,24 +1080,54 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13, 0.3, 0.4, 0.45, 0.5, 0.55, 0.6, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 55 ), ExtResource( 58 ), ExtResource( 68 ), ExtResource( 66 ), ExtResource( 67 ), ExtResource( 65 ), ExtResource( 70 ), ExtResource( 56 ), ExtResource( 69 ), ExtResource( 57 ) ]
+"values": [ ExtResource( 66 ), ExtResource( 65 ), ExtResource( 70 ), ExtResource( 178 ), ExtResource( 194 ), ExtResource( 68 ), ExtResource( 69 ), ExtResource( 179 ), ExtResource( 180 ), ExtResource( 182 ), ExtResource( 67 ), ExtResource( 181 ), ExtResource( 183 ), ExtResource( 57 ), ExtResource( 56 ), ExtResource( 58 ), ExtResource( 55 ) ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
+tracks/1/type = "value"
+tracks/1/path = NodePath("BeesTravel:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.6 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.65 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 1.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
-"method": "_TERJE_throwBrochures"
+"method": "_TYLER_bee_travel_time"
+}, {
+"args": [  ],
+"method": "_TYLER_bee_sound_tween"
+}, {
+"args": [  ],
+"method": "_TYLER_bee_swarm"
 } ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Bees:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=121]
@@ -1190,6 +1277,39 @@ tracks/3/keys = {
 } ]
 }
 
+[sub_resource type="Animation" id=157]
+resource_name = "tyler-fatality-loop"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 234 ), ExtResource( 224 ), ExtResource( 228 ), ExtResource( 233 ), ExtResource( 230 ), ExtResource( 226 ), ExtResource( 229 ), ExtResource( 233 ) ]
+}
+
+[sub_resource type="Animation" id=158]
+resource_name = "tyler-fatality-start"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 232 ), ExtResource( 225 ), ExtResource( 231 ), ExtResource( 227 ) ]
+}
+
 [sub_resource type="Animation" id=72]
 resource_name = "uppercut"
 length = 0.45
@@ -1313,7 +1433,7 @@ animations = [ {
 } ]
 
 [node name="Tyler" type="KinematicBody2D"]
-scale = Vector2( 1.1, 1.1 )
+scale = Vector2( 1.05, 1.05 )
 collision_layer = 0
 collision_mask = 2147483648
 script = ExtResource( 2 )
@@ -1331,7 +1451,8 @@ collision_layer = 0
 collision_mask = 0
 monitorable = false
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_lock_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackCircle"]
@@ -1391,6 +1512,7 @@ scale_amount_random = 1.0
 method_call_mode = 1
 anims/RESET = SubResource( 2 )
 anims/bbq = SubResource( 151 )
+anims/bees = SubResource( 155 )
 anims/blade-gut-hit = SubResource( 144 )
 anims/block = SubResource( 61 )
 anims/block-release = SubResource( 62 )
@@ -1399,7 +1521,8 @@ anims/collapse = SubResource( 26 )
 anims/crouch = SubResource( 79 )
 anims/crouch-return = SubResource( 150 )
 anims/crouching = SubResource( 140 )
-anims/fatality = SubResource( 128 )
+anims/fatality-repeat = SubResource( 156 )
+anims/fatality-start = SubResource( 128 )
 anims/get-up = SubResource( 88 )
 anims/hit-blade = SubResource( 143 )
 anims/hit-face = SubResource( 25 )
@@ -1418,6 +1541,8 @@ anims/squish = SubResource( 121 )
 anims/stagger = SubResource( 141 )
 anims/stunned = SubResource( 29 )
 anims/tossed-by-oxanna = SubResource( 142 )
+anims/tyler-fatality-loop = SubResource( 157 )
+anims/tyler-fatality-start = SubResource( 158 )
 anims/uppercut = SubResource( 72 )
 anims/victory = SubResource( 33 )
 anims/walk-backward = SubResource( 149 )
@@ -1464,6 +1589,37 @@ visible = false
 position = Vector2( 24, -224 )
 scale = Vector2( 1.2, 1.2 )
 frames = SubResource( 148 )
+
+[node name="BeesTravel" type="CPUParticles2D" parent="."]
+position = Vector2( 94.5454, 36.3636 )
+emitting = false
+amount = 500
+one_shot = true
+emission_shape = 1
+emission_sphere_radius = 25.0
+gravity = Vector2( 1000, 0 )
+initial_velocity = 1.0
+scale_amount = 2.0
+color = Color( 0.811765, 0.847059, 0.313726, 1 )
+
+[node name="BeeSwarm" type="CPUParticles2D" parent="."]
+position = Vector2( 0, 58.1818 )
+emitting = false
+amount = 1000
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.31
+emission_shape = 1
+emission_sphere_radius = 100.0
+gravity = Vector2( 100, -50 )
+orbit_velocity = 0.4
+orbit_velocity_random = 0.3
+scale_amount = 2.0
+color = Color( 0.811765, 0.847059, 0.313726, 1 )
+
+[node name="Bees" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 196 )
+volume_db = -5.0
 
 [connection signal="body_entered" from="AttackCircle" to="." method="_on_AttackCircle_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
