@@ -1262,6 +1262,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [ false, true, false ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Bullets:lifetime")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.45, 1.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 2.0, 2.5 ]
+}
 
 [sub_resource type="Animation" id=136]
 resource_name = "special jammed"

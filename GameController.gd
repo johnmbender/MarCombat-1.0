@@ -53,7 +53,8 @@ func load_deathmatch(player1, player2):
 		remove_scene()
 		current_scene = "FightScene"
 		scene.set_player1(player1)
-		scene.set_player2(characters[0])
+#		scene.set_player2(characters[0])
+		scene.set_player2("Tyler")
 		scene.set_match_type("deathmatch")
 		scene.set_scene()
 		if fight_music_playing() == false:
