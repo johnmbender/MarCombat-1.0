@@ -554,7 +554,7 @@ anims/lower = SubResource( 18 )
 anims/raise = SubResource( 19 )
 
 [node name="Ambience" type="AudioStreamPlayer" parent="."]
-volume_db = -80.0
+volume_db = -78.0
 
 [node name="AmbiencePlayer" type="AnimationPlayer" parent="Ambience"]
 "anims/fade in" = SubResource( 25 )

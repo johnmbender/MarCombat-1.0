@@ -1047,7 +1047,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ Vector2( -150, 0 ), 0, 0.3 ],
+"args": [ Vector2( -50, 0 ), 0, 0.3 ],
 "method": "tween"
 } ]
 }
@@ -1214,7 +1214,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0.05, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 142 ), null ]
+"values": [ ExtResource( 142 ), ExtResource( 110 ) ]
 }
 
 [sub_resource type="Animation" id=141]

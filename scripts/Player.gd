@@ -236,7 +236,7 @@ func get_input():
 			match character_name:
 				"Kelsie":
 					# can't be too close
-					if distance < 200:
+					if distance < 250:
 						return
 				"Terje":
 					# can't be too close
@@ -244,7 +244,7 @@ func get_input():
 						return
 				"Tyler":
 					# must be within arms reach
-					if distance > 120 or distance < 80:
+					if distance > 120 or distance < 90:
 						return
 			fatality()
 		else:
@@ -258,10 +258,12 @@ func _on_AnimationPlayer_animation_started(anim_name):
 		$Bullets.emitting = false
 	elif character_name == "Terje" and anim_name != "special":
 		$BrochureSpill.emitting = false
-	elif character_name == "Tyler" and anim_name != "special":
-		$BeesTravel.visible = false
-		$BeesTravel.emitting = false
-		$Bees.playing = false
+	
+	# here's the problem: need to cancel if hit, but not if idling and moving forward
+#	elif character_name == "Tyler" and anim_name != "special":
+#		$BeesTravel.visible = false
+#		$BeesTravel.emitting = false
+		
 	
 	match anim_name:
 		"bees":
@@ -341,7 +343,9 @@ func _on_AnimationPlayer_animation_started(anim_name):
 					return
 			elif character_name == "Tyler":
 				if _TYLER_bees_tired:
-					attacking = true
+					# maybe not?:
+#					attacking = true
+					attacking = false
 					completed_animation = false
 					$BeeSwarm.emitting = true
 					$Bees.playing = true
@@ -467,10 +471,9 @@ func landing_damage():
 func damage_taken(animation:String):
 	attacking = false
 	crouching = false
-	if character_name == "Tyler":
-		$BeesTravel.visible = false
-		$BeesTravel.emitting = false
 	$BeeSwarm.emitting = false
+	if $Bees.is_playing():
+		$Bees.seek(4.04) # fades them out rather than cancel
 
 	completed_animation = true
 	
@@ -482,6 +485,9 @@ func damage_taken(animation:String):
 			enemy.idle()
 	elif character_name == "Terje":
 		$BrochureSpill.emitting = false
+	elif character_name == "Tyler":
+		$BeesTravel.visible = false
+		$BeesTravel.emitting = false
 	
 	if bot:
 		emit_signal("bot_damage_taken")
@@ -542,6 +548,9 @@ func damage_taken(animation:String):
 				health -= 40
 			_:
 				idle()
+				
+		# jovi TEST
+		fighting = true
 
 	emit_signal("update_health", self, health)
 	

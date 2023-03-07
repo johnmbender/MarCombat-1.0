@@ -237,6 +237,12 @@ func ambience_fade(which:String):
 
 func play_ambience(which:String):
 	$Ambience.stream = load("res://sounds/ambience/%s.wav" % which)
+	if which == "pete":
+		# randomize start point for Pete
+		# this doesn't work because we set the time and then
+		# the animation actually plays and starts, which sets it back at 0
+		var start = rand_range(0.0, 90.0)
+		$Ambience.seek(start)
 	ambience_fade("in")
 
 func stop_ambience():
