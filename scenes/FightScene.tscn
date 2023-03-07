@@ -348,7 +348,7 @@ deselect_on_focus_loss_enabled = false
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2( -48, 576 )
 collision_layer = 2147483648
-collision_mask = 17
+collision_mask = 4113
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true

@@ -27,6 +27,7 @@ var _KELSIE_is_dizzy = false
 var _JOHN_guns_jammed = false
 var _TERJE_brochures_spilt = false
 var _TYLER_bees_tired = false
+var tyler_walking_away = false
 
 var velocity
 var free_animations = ["walk-backward","walk-forward","idle","crouch","crouching","crouch-return",] # list of animations that can be interrupted
@@ -126,6 +127,10 @@ func _physics_process(_delta):
 		velocity = Vector2()
 		velocity.y += gravity
 		get_input()
+		
+		if tyler_walking_away:
+			velocity.x -= MOVE_SPEED
+				
 		var _unused = move_and_slide(velocity, Vector2.UP)
 
 func get_input():
@@ -378,7 +383,12 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			$SpecialCooldown.visible = false
 			$AnimationPlayer.stop()
 		"fatality-start":
-			$AnimationPlayer.play("fatality-repeat")
+			if enemy.character_name != "John":
+				$AnimationPlayer.play("fatality-repeat")
+			else:
+				$AnimationPlayer.play("fatality-end-john")
+		"fatality-end-john":
+			_TYLER_walk_away()
 		"response-john":
 			if character_name != "John":
 				get_parent().fatality_modulate("out")
@@ -426,7 +436,17 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			fighting = true
 			idle()
 		"tyler-fatality-start":
-			$AnimationPlayer.play("tyler-fatality-loop")
+			fighting = false
+			if character_name != "John":
+				$AnimationPlayer.play("tyler-fatality-loop")
+			else:
+				$AnimationPlayer.play("tyler-fatality-end")
+				# remove the left wall so Tyler can pass
+				get_parent().get_node("WallLeft").queue_free()
+				# and flip John's head (?)
+				$Head.scale.x = -1
+		"tyler-fatality-end":
+			$AnimationPlayer.stop()
 		_:
 			idle()
 		
@@ -565,13 +585,15 @@ func swarm_bees():
 
 func being_slapped():
 	# set fightscene's fatality timer long
-	var timer = Timer.new()
-	timer.wait_time = 7
-	timer.one_shot = true
-	timer.connect("timeout", self, "_on_Tyler_FatalityTimer_timeout")
-	add_child(timer)
-	timer.start()
-	$SoundPlayer.stream = load("res://sounds/characters/Tyler/slap.wav")
+	if character_name != "John":
+		var timer = Timer.new()
+		timer.wait_time = 7
+		timer.one_shot = true
+		timer.connect("timeout", self, "_on_Tyler_FatalityTimer_timeout")
+		add_child(timer)
+		timer.start()
+		$SoundPlayer.stream = load("res://sounds/characters/Tyler/slap.wav")
+	
 	$AnimationPlayer.play("tyler-fatality-start")
 
 func _on_Tyler_FatalityTimer_timeout():
@@ -777,5 +799,25 @@ func _TYLER_fatality():
 		enemy.z_index = 1
 	$AnimationPlayer.play("fatality-start")
 
+func _TYLER_walk_away():
+	get_parent().fatality_modulate("out")
+	fighting = false
+	$SoundPlayer.stream = load("res://sounds/characters/Tyler/whistling.wav")
+	$SoundPlayer.play()
+	scale.x = -scale.x
+	$AnimationPlayer.play("walk-forward")
+	tyler_walking_away = true
+	get_parent().get_node("EndFightTimer").wait_time = 6
+	get_parent().get_node("EndFightTimer").start()
+	var timer = Timer.new()
+	timer.one_shot = true
+	timer.wait_time = 1
+	timer.connect("timeout", self, "announcer_clean_up")
+	add_child(timer)
+	timer.start()
+
+func announcer_clean_up():
+	get_parent().announcer_speak("tyler-clean-up")
+	
 func _TYLER_enemy_slapping():
 	enemy.being_slapped()

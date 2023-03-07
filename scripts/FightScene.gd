@@ -211,7 +211,7 @@ func set_scene():
 			$Background.texture = load("res://levels/backgrounds/%s.jpg" % background)
 			$Background.visible = true
 		else:
-			if picker >= 0.9:
+			if picker >= 1: #.95 jovi
 				scale = Vector2(1, -1)
 				position.y = 600
 				$Background.texture = load("res://levels/backgrounds/fun/upsideDown.jpg")
