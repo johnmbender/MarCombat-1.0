@@ -69,12 +69,15 @@ func doSomething():
 			action = "attack"
 	else:
 		if roll <= defensiveness:
-			if character_name == "John" and _JOHN_guns_jammed:
-				action = "approach"
-			elif character_name == "Kelsie" and _KELSIE_is_dizzy:
-				action = "approach"
-			elif character_name == "Terje" and _TERJE_brochures_spilt:
-				action = "approach"
+			if _JOHN_guns_jammed or _KELSIE_is_dizzy or _TERJE_brochures_spilt or _TYLER_bees_tired:
+				# very low chance for a bot to try their special too early
+				if randf() < 0.05:
+					if character_name == "Kelsie" and enemy_in_range("hair"):
+						action = "special"
+					else:
+						action = "approach"
+				else:
+					action = "approach"
 			else:
 				action = "special"
 		elif roll <= aggression:
@@ -84,6 +87,7 @@ func doSomething():
 				action = null
 		else:
 			action = null
+			idle()
 	
 	blocking = false
 	crouching = false
@@ -178,15 +182,18 @@ func bot_damage_taken():
 		blocking = true
 	else:
 		action = null
+		
+	fighting = true
 
 func enemy_in_range(relative:String):
+	var distance = abs(enemy.global_position.x - global_position.x)
+	
 	match relative:
 		"striking":
-			var result = abs(enemy.global_position.x - global_position.x) < 220
-			return result
+			return distance < 220
 		"uppercut":
-			var result = abs(enemy.global_position.x - global_position.x) < 150
-			return result
+			return distance < 150
 		"uncomfortable":
-			var result = abs(enemy.global_position.x - global_position.x) < 100
-			return result
+			return distance < 100
+		"hair":
+			return distance < 700

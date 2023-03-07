@@ -61,23 +61,23 @@ onready var dialogue = {
 					}
 				}
 			},
-#			2: {
-#				"lines": {
-#					0: {
-#						"line": "...",
-#						"action": "angry"
-#					},
-#					2: {
-#						"line": "Beat it, jackass.",
-#						"action": "angry"
-#					},
-#					4: {
-#						"line": "I don't like you.",
-#						"action": "fight"
-#					}
-#				}
-#			},
 			2: {
+				"lines": {
+					0: {
+						"line": "...",
+						"action": "angry"
+					},
+					2: {
+						"line": "Beat it, jackass.",
+						"action": "angry"
+					},
+					4: {
+						"line": "I don't like you.",
+						"action": "fight"
+					}
+				}
+			},
+			3: {
 				"lines": {
 					0: {
 						"line": "Why am I doing this? Why am I fighting at all?",
@@ -105,7 +105,7 @@ onready var dialogue = {
 					}
 				}
 			},
-			3: {
+			4: {
 				"lines": {
 					0: {
 						"line": "I feel better, strangely.",
@@ -141,7 +141,7 @@ onready var dialogue = {
 					},
 				}
 			},
-			4: {
+			5: {
 				"lines": {
 					0: {
 						"line": "Best steak I've had in years...",
@@ -305,23 +305,23 @@ onready var dialogue = {
 					}
 				}
 			},
-#			2: {
-#				"lines": {
-#					1: {
-#						"line": "Hey, how's your day going, %s?",
-#						"action": "smile"
-#					},
-#					3: {
-#						"line": "What's your problem, %s!?",
-#						"action": "offended"
-#					},
-#					5: {
-#						"line": null,
-#						"action": "fight"
-#					}
-#				}
-#			},
 			2: {
+				"lines": {
+					1: {
+						"line": "Hey, how's your day going, %s?",
+						"action": "smile"
+					},
+					3: {
+						"line": "What's your problem, %s!?",
+						"action": "offended"
+					},
+					5: {
+						"line": null,
+						"action": "fight"
+					}
+				}
+			},
+			3: {
 				"lines": {
 					5: {
 						"line": null,

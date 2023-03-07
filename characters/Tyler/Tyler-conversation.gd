@@ -77,35 +77,35 @@ onready var dialogue = {
 					}
 				}
 			},
-#			3: {
-#				"lines": {
-#					0: {
-#						"line": "Seriousy... what am I doing?",
-#						"action": "confused"
-#					},
-#					1: {
-#						"line": "This is crazy. I am crazy.",
-#						"action": "no",
-#					},
-#					2: {
-#						"line": "I should go look at some exoskeletons or something...",
-#						"action" :"no"
-#					},
-#					3: {
-#						"line": "... stick to what I know.",
-#						"action": "angry"
-#					},
-#					4: {
-#						"line": "What in the ...",
-#						"action": "offended"
-#					},
-#					6: {
-#						"line": null,
-#						"action": "fight"
-#					}
-#				}
-#			},
 			3: {
+				"lines": {
+					0: {
+						"line": "Seriousy... what am I doing?",
+						"action": "confused"
+					},
+					1: {
+						"line": "This is crazy. I am crazy.",
+						"action": "no",
+					},
+					2: {
+						"line": "I should go look at some exoskeletons or something...",
+						"action" :"no"
+					},
+					3: {
+						"line": "... stick to what I know.",
+						"action": "angry"
+					},
+					4: {
+						"line": "What in the ...",
+						"action": "offended"
+					},
+					6: {
+						"line": null,
+						"action": "fight"
+					}
+				}
+			},
+			4: {
 				"lines": {
 					0: {
 						"line": "What a strange day.",
@@ -305,23 +305,23 @@ onready var dialogue = {
 					}
 				}
 			},
-#			2: {
-#				"lines": {
-#					1: {
-#						"line": "Hey %s! How's it going?",
-#						"action": "smile"
-#					},
-#					3: {
-#						"line": "Whoa, what's your damn problem?",
-#						"action": "offended"
-#					},
-#					5: {
-#						"line": null,
-#						"action": "fight"
-#					}
-#				}
-#			},
 			2: {
+				"lines": {
+					1: {
+						"line": "Hey %s! How's it going?",
+						"action": "smile"
+					},
+					3: {
+						"line": "Whoa, what's your damn problem?",
+						"action": "offended"
+					},
+					5: {
+						"line": null,
+						"action": "fight"
+					}
+				}
+			},
+			3: {
 				"lines": {
 					5: {
 						"line": null,

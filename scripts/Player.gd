@@ -30,7 +30,7 @@ var _TYLER_bees_tired = false
 
 var velocity
 var free_animations = ["walk-backward","walk-forward","idle","crouch","crouching","crouch-return",] # list of animations that can be interrupted
-var blockable = ["punch-far","kick-far"]
+var blockable = ["punch-far","kick-far","punch-close"]
 
 var character_name
 var health
@@ -53,7 +53,9 @@ func set_health(h:int):
 	health = h
 
 func idle():
+	$AttackCircle.set_deferred("monitoring", true)
 	$AnimationPlayer.play("idle")
+	completed_animation = true
 	blocking = false
 	crouching = false
 	attacking = false
@@ -62,11 +64,26 @@ func idle():
 			$Hair.visible = false
 		"John":
 			$Bullets.emitting = false
+		"Terje":
+			$BrochureSpill.emitting = false
+		"Tyler":
+			$BeesTravel.visible = false
+			$BeesTravel.emitting = false
+
+func getting_shot():
+	attacking = false
+	
+	if bot:
+		fighting = false
+		completed_animation = false
+		emit_signal("bot_damage_taken")
+		
+	$AnimationPlayer.play("getting shot")
 
 func collapse():
 	if $NegaSmoke.is_playing():
 		$NegaSmoke.visible = false
-	#jovi
+
 	$AnimationPlayer.play("collapse")
 
 func stunned():
@@ -226,7 +243,7 @@ func get_input():
 						return
 			fatality()
 		else:
-			$AnimationPlayer.play("idle")
+			idle()
 			velocity.x = 0
 
 func _on_AnimationPlayer_animation_started(anim_name):
@@ -236,9 +253,17 @@ func _on_AnimationPlayer_animation_started(anim_name):
 		$Bullets.emitting = false
 	elif character_name == "Terje" and anim_name != "special":
 		$BrochureSpill.emitting = false
+	elif character_name == "Tyler" and anim_name != "special":
+		$BeesTravel.visible = false
+		$BeesTravel.emitting = false
+		$Bees.playing = false
 	
 	match anim_name:
 		"bees":
+			attacking = false
+			fighting = false
+			completed_animation = false
+		"getting shot":
 			attacking = false
 			fighting = false
 			completed_animation = false
@@ -280,9 +305,6 @@ func _on_AnimationPlayer_animation_started(anim_name):
 			$SpecialCooldown.visible = false
 		"fatality-start":
 			$SpecialCooldown.visible = false
-		"stagger":
-			if bot:
-				emit_signal("bot_damage_taken")
 		"collapse":
 			$SpecialCooldown.visible = false
 		"stunned":
@@ -294,8 +316,6 @@ func _on_AnimationPlayer_animation_started(anim_name):
 					completed_animation = false
 					$AnimationPlayer.play("dizzy")
 					return
-				else:
-					_KELSIE_is_dizzy = true
 			elif character_name == "John":
 				if _JOHN_guns_jammed:
 					attacking = true
@@ -303,15 +323,17 @@ func _on_AnimationPlayer_animation_started(anim_name):
 					$AnimationPlayer.play("special jammed")
 					return
 				else:
-					_JOHN_guns_jammed = true
+					$Bullets.lifetime = abs(enemy.global_position.x - global_position.x) / 180
+					$Bullets.emitting = true
+					enemy.getting_shot()
+					$SoundPlayer.stream = load("res://sounds/characters/John/shot.wav")
+					$SoundPlayer.play()
 			elif character_name == "Terje":
 				if _TERJE_brochures_spilt:
 					attacking = true
 					completed_animation = false
 					$AnimationPlayer.play("special flubbed")
 					return
-				else:
-					_TERJE_brochures_spilt = true
 			elif character_name == "Tyler":
 				if _TYLER_bees_tired:
 					attacking = true
@@ -320,8 +342,6 @@ func _on_AnimationPlayer_animation_started(anim_name):
 					$Bees.playing = true
 					$AnimationPlayer.play("bees")
 					return
-				else:
-					_TYLER_bees_tired = true
 			
 			attacking = true
 
@@ -335,13 +355,13 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 				$AnimationPlayer.play("blocking")
 		"block-release":
 			blocking = false
-			$AnimationPlayer.play("idle")
+			idle()
 		"crouch":
 			crouching = true
 			$AnimationPlayer.play("crouching")
 		"crouch-return":
 			crouching = false
-			$AnimationPlayer.play("idle")
+			idle()
 		"hit-uppercut","knock-back":
 			completed_animation = true
 			if will_collapse:
@@ -374,29 +394,41 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 				$SpecialCooldown.visible = true
 			if $NegaSmoke.is_playing():
 				$NegaSmoke.visible = true
+
+			fighting = true
 			completed_animation = true
 			enemy.get_node("AttackCircle").set_deferred("monitoring", true)
-			$AnimationPlayer.play("idle")
+			idle()
 		"victory":
 			$SpecialCooldown.visible = false
 			$AnimationPlayer.stop()
 		"special":
+			match character_name:
+				"Kelsie":
+					_KELSIE_is_dizzy = true
+				"John":
+					_JOHN_guns_jammed = true
+				"Terje":
+					_TERJE_brochures_spilt = true
+				"Tyler":
+					_TYLER_bees_tired = true
 			special_cooldown_timer()
-			$AnimationPlayer.play("idle")
+			idle()
+		"getting shot":
+			$AnimationPlayer.play("get-up")
 		"fatality-end":
 			$AnimationPlayer.stop()
 		"dizzy":
 			completed_animation = true
-			$AnimationPlayer.play("idle")
+			idle()
 		"bees":
 			completed_animation = true
 			fighting = true
-			attacking = true
-			$AnimationPlayer.play("idle")
+			idle()
 		"tyler-fatality-start":
 			$AnimationPlayer.play("tyler-fatality-loop")
 		_:
-			$AnimationPlayer.play("idle")
+			idle()
 		
 
 func _on_AttackCircle_body_entered(_body):
@@ -415,15 +447,19 @@ func landing_damage():
 func damage_taken(animation:String):
 	attacking = false
 	crouching = false
+	if character_name == "Tyler":
+		$BeesTravel.visible = false
+		$BeesTravel.emitting = false
 	$BeeSwarm.emitting = false
 
 	completed_animation = true
 	
-	# Kelsie's hair gets stuck sometimes if hit mid-swing
 	if character_name == "Kelsie":
 		$Hair.visible = false
 	elif character_name == "John":
 		$Bullets.emitting = false
+		if $AnimationPlayer.current_animation == "special":
+			enemy.idle()
 	elif character_name == "Terje":
 		$BrochureSpill.emitting = false
 	
@@ -467,7 +503,7 @@ func damage_taken(animation:String):
 				$AnimationPlayer.play("thrown")
 			"special":
 				match enemy.character_name:
-					# John's is calculated in getting_shot
+					# John's is done in take_bullet()
 					"Kelsie":
 						play_sound("res://sounds/characters/Kelsie/special-crack.wav", true)
 						health -= 20
@@ -485,7 +521,7 @@ func damage_taken(animation:String):
 				$AnimationPlayer.play("tossed-by-oxanna")
 				health -= 40
 			_:
-				$AnimationPlayer.play("idle")
+				idle()
 
 	emit_signal("update_health", self, health)
 	
@@ -517,13 +553,9 @@ func play_sound(soundPath:String, variate:bool):
 		$SoundPlayer.pitch_scale = 1
 	$SoundPlayer.play()
 
-func is_getting_shot(currently:bool):
-	if currently:
-		completed_animation = false
-		$AnimationPlayer.play("stagger")
-	else:
-		completed_animation = true
-		$AnimationPlayer.play("idle")
+func take_bullet():
+	health -= 5
+	emit_signal("update_health", self, health)
 
 func swarm_bees():
 	emit_signal("bot_damage_taken")
@@ -553,10 +585,6 @@ func _on_Tyler_FatalityTimer_timeout():
 func slap():
 	$SoundPlayer.pitch_scale = rand_range(0.9, 1.1)
 	$SoundPlayer.play()
-
-func bullet_damage():
-	health -= 5
-	emit_signal("update_health", self, health)
 
 func busy():
 	return free_animations.has($AnimationPlayer.current_animation) == false
@@ -599,19 +627,6 @@ func _on_CooldownTimer_timeout():
 func _JOHN_gun_jammed_click():
 	$SoundPlayer.stream = load("res://sounds/click.wav")
 	$SoundPlayer.play()
-	
-func _JOHN_shoot_bullets(shoot):
-	$Bullets.emitting = shoot
-	enemy.is_getting_shot(shoot)
-	
-	if shoot:
-		$SoundPlayer.stream = load("res://sounds/characters/John/shot.wav")
-		$SoundPlayer.play()
-		$Bullets.lifetime = abs(enemy.global_position.x - global_position.x) / 180
-
-func _JOHN_guns_cooled():
-	_JOHN_guns_jammed = false
-	$JOHN_TIMER.queue_free()
 
 func _JOHN_fatality_start():
 	$AnimationPlayer.play("fatality-start")
@@ -750,13 +765,7 @@ func _TYLER_bee_travel_time():
 	# and dividing by gravity.x
 	var lifetime = abs(enemy.global_position.x - global_position.x) / 750
 	$BeesTravel.lifetime = lifetime
-
-func _TYLER_bee_sound_tween():
-	# process the tween for the bee sound to travel with the particles to the opponent
-	$Tween.interpolate_property($Bees, "global_position",
-			global_position, enemy.global_position, $BeesTravel.lifetime,
-			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)			
-	$Tween.start()
+	$BeesTravel.visible = true
 
 func _TYLER_bee_swarm():
 	enemy.swarm_bees()

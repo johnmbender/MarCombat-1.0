@@ -63,6 +63,8 @@ func reset():
 func end_demo():
 	game_controller.destroy_demo_end_timer()
 	game_controller.ambience_fade("out")
+	if game_controller.fight_music_playing():
+		game_controller.fight_music_fade("out")
 	player1_node.get_node("ActionTimer").stop()
 	player1_node.action = null
 	player1_node.fighting = false
@@ -204,7 +206,8 @@ func set_scene():
 			picker = randf()
 			
 		if picker <= 0.5:
-			set_background(backgrounds[randi() % backgrounds.size()-1])
+			background = backgrounds[randi() % backgrounds.size()-1]
+			set_background(background)
 			$Background.texture = load("res://levels/backgrounds/%s.jpg" % background)
 			$Background.visible = true
 		else:
@@ -395,6 +398,8 @@ func match_over(w):
 	winner.fighting = false
 	winner.victory()
 	format_text_for_label("%s wins" % winner.character_name)
+	if game_controller.fight_music_playing():
+		game_controller.fight_music_fade("out")
 	announcer_speak(winner.character_name)
 	$EndFightTimer.start()
 

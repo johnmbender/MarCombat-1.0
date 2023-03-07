@@ -1,4 +1,4 @@
-[gd_scene load_steps=328 format=2]
+[gd_scene load_steps=340 format=2]
 
 [ext_resource path="res://characters/John/sprites/actions/idle/idle_1.png" type="Texture" id=1]
 [ext_resource path="res://characters/John/sprites/actions/idle/idle_2.png" type="Texture" id=2]
@@ -282,9 +282,20 @@
 [ext_resource path="res://characters/Terje/sprites/actions/tyler-fatality/tyler-fatality_01.png" type="Texture" id=280]
 [ext_resource path="res://characters/Terje/sprites/actions/tyler-fatality/tyler-fatality_08-center.png" type="Texture" id=281]
 [ext_resource path="res://characters/Terje/sprites/actions/tyler-fatality/tyler-fatality_05.png" type="Texture" id=282]
+[ext_resource path="res://characters/John/sprites/actions/stagger/stagger_07.png" type="Texture" id=283]
+[ext_resource path="res://characters/John/sprites/actions/stagger/stagger_01.png" type="Texture" id=284]
+[ext_resource path="res://characters/John/sprites/actions/stagger/stagger_11.png" type="Texture" id=285]
+[ext_resource path="res://characters/John/sprites/actions/stagger/stagger_08.png" type="Texture" id=286]
+[ext_resource path="res://characters/John/sprites/actions/stagger/stagger_03.png" type="Texture" id=287]
+[ext_resource path="res://characters/John/sprites/actions/stagger/stagger_02.png" type="Texture" id=288]
+[ext_resource path="res://characters/John/sprites/actions/stagger/stagger_05.png" type="Texture" id=289]
+[ext_resource path="res://characters/John/sprites/actions/stagger/stagger_04.png" type="Texture" id=290]
+[ext_resource path="res://characters/John/sprites/actions/stagger/stagger_10.png" type="Texture" id=291]
+[ext_resource path="res://characters/John/sprites/actions/stagger/stagger_06.png" type="Texture" id=292]
+[ext_resource path="res://characters/John/sprites/actions/stagger/stagger_09.png" type="Texture" id=293]
 
 [sub_resource type="RectangleShape2D" id=130]
-extents = Vector2( 40, 96.6667 )
+extents = Vector2( 56, 96.6667 )
 
 [sub_resource type="CircleShape2D" id=20]
 radius = 24.0
@@ -707,6 +718,62 @@ tracks/0/keys = {
 "values": [ ExtResource( 179 ), ExtResource( 190 ), ExtResource( 188 ), ExtResource( 178 ), ExtResource( 186 ), ExtResource( 181 ), ExtResource( 184 ), ExtResource( 182 ), ExtResource( 183 ), ExtResource( 189 ), ExtResource( 185 ), ExtResource( 187 ), ExtResource( 180 ) ]
 }
 
+[sub_resource type="Animation" id=141]
+resource_name = "getting shot"
+length = 1.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 284 ), ExtResource( 288 ), ExtResource( 287 ), ExtResource( 290 ), ExtResource( 289 ), ExtResource( 292 ), ExtResource( 283 ), ExtResource( 286 ), ExtResource( 293 ), ExtResource( 291 ), ExtResource( 285 ), ExtResource( 172 ), ExtResource( 171 ), ExtResource( 173 ), ExtResource( 177 ), ExtResource( 175 ), ExtResource( 174 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ Vector2( -100, 0 ), 0.0, 1.0 ],
+"method": "tween"
+}, {
+"args": [ "res://sounds/characters/effects/drop.wav", true ],
+"method": "play_sound"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2, 0.5, 0.8, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "take_bullet"
+}, {
+"args": [  ],
+"method": "take_bullet"
+}, {
+"args": [  ],
+"method": "take_bullet"
+}, {
+"args": [  ],
+"method": "take_bullet"
+} ]
+}
+
 [sub_resource type="Animation" id=127]
 resource_name = "hit-blade"
 step = 0.01
@@ -1111,22 +1178,17 @@ tracks/1/keys = {
 "method": "tween"
 } ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
+tracks/2/type = "value"
+tracks/2/path = NodePath("Bullets:emitting")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.05, 1.25 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ true ],
-"method": "_JOHN_shoot_bullets"
-}, {
-"args": [ false ],
-"method": "_JOHN_shoot_bullets"
-} ]
+"times": PoolRealArray( 0, 0.15, 1.25 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
 }
 
 [sub_resource type="Animation" id=136]
@@ -1694,6 +1756,7 @@ anims/fatality-end = SubResource( 42 )
 anims/fatality-repeat = SubResource( 41 )
 anims/fatality-start = SubResource( 40 )
 anims/get-up = SubResource( 88 )
+"anims/getting shot" = SubResource( 141 )
 anims/hit-blade = SubResource( 127 )
 anims/hit-face = SubResource( 25 )
 anims/hit-gut = SubResource( 57 )
@@ -1750,8 +1813,8 @@ frame = 4
 [node name="GunSmoke" type="CPUParticles2D" parent="."]
 position = Vector2( 64, -40 )
 emitting = false
-amount = 10
-lifetime = 1.2
+amount = 15
+lifetime = 1.5
 one_shot = true
 explosiveness = 0.4
 randomness = 1.0

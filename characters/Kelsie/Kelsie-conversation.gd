@@ -61,23 +61,23 @@ onready var dialogue = {
 					}
 				}
 			},
-#			2: {
-#				"lines": {
-#					0: {
-#						"line": "...",
-#						"action": "angry"
-#					},
-#					2: {
-#						"line": "Shut your face.",
-#						"action": "angry"
-#					},
-#					4: {
-#						"line": "I don't like you.",
-#						"action": "fight"
-#					}
-#				}
-#			},
 			2: {
+				"lines": {
+					0: {
+						"line": "...",
+						"action": "angry"
+					},
+					2: {
+						"line": "Shut your face.",
+						"action": "angry"
+					},
+					4: {
+						"line": "I don't like you.",
+						"action": "fight"
+					}
+				}
+			},
+			3: {
 				"lines": {
 					0: {
 						"line": "I can't do this. What am I doing fighting my coworkers?",
@@ -105,7 +105,7 @@ onready var dialogue = {
 					}
 				}
 			},
-			3: {
+			4: {
 				"lines": {
 					0: {
 						"line": "Well, that certainly won't require years of therapy.",
@@ -141,7 +141,7 @@ onready var dialogue = {
 					},
 				}
 			},
-			4: {
+			5: {
 				"lines": {
 					0: {
 						"line": "Mmmmm... that was delicious.",
@@ -305,23 +305,23 @@ onready var dialogue = {
 					}
 				}
 			},
-#			2: {
-#				"lines": {
-#					1: {
-#						"line": "Hi %s! What's new?",
-#						"action": "smile"
-#					},
-#					3: {
-#						"line": "What's up your ass today?",
-#						"action": "offended"
-#					},
-#					5: {
-#						"line": null,
-#						"action": "fight"
-#					}
-#				}
-#			},
 			2: {
+				"lines": {
+					1: {
+						"line": "Hi %s! What's new?",
+						"action": "smile"
+					},
+					3: {
+						"line": "What's up your ass today?",
+						"action": "offended"
+					},
+					5: {
+						"line": null,
+						"action": "fight"
+					}
+				}
+			},
+			3: {
 				"lines": {
 					5: {
 						"line": null,

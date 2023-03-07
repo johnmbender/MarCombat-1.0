@@ -9,7 +9,7 @@ extends Node2D
 
 var player
 var opponent
-var player_characters = ["John", "Kelsie", "Terje"] # Tyler
+var player_characters = ["John", "Kelsie", "Terje", "Tyler"]
 var opponents = player_characters.duplicate()
 var bosses = ["Ox_Anna", "FUGUM"]
 var fight_number

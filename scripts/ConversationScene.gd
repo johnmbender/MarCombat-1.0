@@ -20,7 +20,7 @@ var current_line
 var game_controller
 var storymode_controller
 # change this based on the script
-var last_coworker_fight = 1
+var last_coworker_fight = 2
 
 var speaker
 var next_action = null
@@ -104,7 +104,7 @@ func start_conversation():
 	merge_scripts()
 	
 	match fight_number:
-		1, 2, 3: # 4
+		1, 2, 3, 4:
 			$ContentContainer/opponent.modulate = Color(1,1,1,0)
 
 	speak_line()
@@ -348,7 +348,7 @@ func light_actor():
 		# slowly fade in self-doubt each line player speaks
 		$ContentContainer/opponent.modulate.a = clamp(current_line - 1, 0, 3) * 0.23
 		$ContentContainer/player.modulate = Color(1,1,1,1)
-	elif (fight_number == 1 and current_line < 2): # or (fight_number == 2 and current_line < 1):
+	elif (fight_number == 1 and current_line < 2) or (fight_number == 2 and current_line < 1):
 		# delay opponent for one line in fight #2 and #3 (1)
 		$ContentContainer/player.modulate = Color(1,1,1,1)
 		$ContentContainer/opponent.modulate.a = 0.0
