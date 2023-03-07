@@ -42,7 +42,7 @@ func load_storymode(player):
 	menu_music_fade("out")
 
 func load_deathmatch(player1, player2):
-	var characters = ["John","Kelsie","Terje"]
+	var characters = ["John","Kelsie","Terje","Tyler"]
 	randomize()
 	characters.shuffle()
 	if player2 == false:
