@@ -364,6 +364,18 @@ tracks/9/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
+tracks/10/type = "value"
+tracks/10/path = NodePath("Bees:playing")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=151]
 resource_name = "bbq"
@@ -1145,7 +1157,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=127]
 resource_name = "special"
 length = 1.3
-step = 0.05
+step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -1158,43 +1170,31 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 66 ), ExtResource( 65 ), ExtResource( 70 ), ExtResource( 178 ), ExtResource( 194 ), ExtResource( 68 ), ExtResource( 69 ), ExtResource( 179 ), ExtResource( 180 ), ExtResource( 182 ), ExtResource( 67 ), ExtResource( 181 ), ExtResource( 183 ), ExtResource( 57 ), ExtResource( 56 ), ExtResource( 58 ), ExtResource( 55 ) ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("BeesTravel:emitting")
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.65 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 1.3 ),
+"times": PoolRealArray( 0.6, 1.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
-"method": "_TYLER_bee_travel_time"
+"method": "_TYLER_release_bees"
 }, {
 "args": [  ],
 "method": "_TYLER_bee_swarm"
 } ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("Bees:playing")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
+tracks/2/type = "value"
+tracks/2/path = NodePath("Bees:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.02 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]

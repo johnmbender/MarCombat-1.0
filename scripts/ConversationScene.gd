@@ -196,8 +196,9 @@ func _input(event):
 	if ignore_keypress or event is InputEventMouse:
 		return # so dumb
 	
-	if event.is_action_pressed("cheat"):
-		current_line = scene_script.size()
+	# to skip chat straight to fight
+#	if event.is_action_pressed("cheat"):
+#		current_line = scene_script.size()
 	
 	# resart keypress timer
 	ignore_keypress = true

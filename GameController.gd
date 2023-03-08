@@ -3,9 +3,81 @@ extends Node2D
 var current_scene
 var game_mode
 var intro_shown = false
+var menu_options = ["Continue","Controls","Quit"]
+var menu_selection = 0
 
 func _ready():
 	load_launch_screen()
+	pause_mode = PAUSE_MODE_PROCESS
+
+func _unhandled_key_input(event):
+	# if we don't have a game mode, or it's a demo, ignore
+	if game_mode == null or game_mode == "ai_vs_ai":
+		return
+		
+	var fight_scene = get_node_or_null("FightScene")
+	if fight_scene == null:
+		var SM_fight_scene = get_node_or_null("StoryModeController/FightScene")	
+		
+		if SM_fight_scene == null:
+			return
+	elif fight_scene.match_type == "demo":
+		return
+	
+	if event.is_action_pressed("quit"):
+		pause_game()
+	elif $PauseMenu.visible == false:
+		return
+		
+	elif event.is_action_pressed("ui_down"):
+		move_menu_selection(1)
+	elif event.is_action_pressed("ui_up"):
+		move_menu_selection(-1)
+	elif event.is_action_pressed("ui_accept"):
+		if $PauseMenu/ControlsView.visible:
+			$PauseMenu/ControlsView.visible = false
+		else:
+			menu_action()
+	
+func pause_game():
+	if get_tree().is_paused():
+		get_tree().paused = false
+		fight_music_adjust("raise")
+		$PauseMenu.visible = false
+	else:
+		fight_music_adjust("lower")
+		menu_selection = 0
+		$PauseMenu/Continue.modulate = Color(1,0,0,1)
+		get_tree().paused = true
+		$PauseMenu.visible = true
+		move_child($PauseMenu, get_children().size())
+
+func move_menu_selection(move:int):
+	menu_selection += move
+	if menu_selection < 0:
+		menu_selection = menu_options.size()-1
+	elif menu_selection >= menu_options.size():
+		menu_selection = 0
+	
+	for n in menu_options.size():
+		if n == menu_selection:
+			get_node("PauseMenu/%s" % menu_options[n]).modulate = Color(1, 0, 0, 1)
+		else:
+			get_node("PauseMenu/%s" % menu_options[n]).modulate = Color(1, 1, 1, 1)
+
+func menu_action():
+	match menu_selection:
+		0:
+			pause_game()
+		1:
+			$PauseMenu/ControlsView.visible = true
+		2:
+			if game_mode == "storymode":
+				fight_music_fade("out")
+				ambience_fade("out")
+				load_launch_screen()
+			else:
+				fight_done()
 
 func load_launch_screen():
 	var scene = preload("res://scenes/LaunchScreen.tscn").instance()
@@ -53,8 +125,7 @@ func load_deathmatch(player1, player2):
 		remove_scene()
 		current_scene = "FightScene"
 		scene.set_player1(player1)
-#		scene.set_player2(characters[0])
-		scene.set_player2("Tyler")
+		scene.set_player2(characters[0])
 		scene.set_match_type("deathmatch")
 		scene.set_scene()
 		if fight_music_playing() == false:
@@ -156,6 +227,8 @@ func destroy_demo_end_timer():
 func fight_done():
 	if $FightMusic.is_playing():
 		fight_music_fade("out")
+	if $Ambience.is_playing():
+		ambience_fade("out")
 	remove_scene()
 
 	match game_mode:
@@ -178,6 +251,9 @@ func quit_game():
 	$AnimationPlayer.play("quit")
 
 func remove_scene():
+	if $PauseMenu.visible:
+		$PauseMenu.visible = false
+		
 	if current_scene:
 		var node = get_node_or_null(current_scene)
 		if node:

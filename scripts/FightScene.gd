@@ -288,6 +288,7 @@ func load_fun_background(bkg:String):
 
 func update_health(player, health:int):
 	if player.health == 0:
+		player.fighting = false
 		return
 	
 	if background != null and health_amount_to_trigger_random_sound != null and health_amount_to_trigger_random_sound > health:
@@ -455,12 +456,3 @@ func _on_CountdownTimer_timeout():
 		game_controller.storymode_quit()
 	else:
 		$HBoxContainer2/Countdown.text = "%s" % continue_counter
-
-func pause_game():
-	game_controller.fight_music_adjust("lower")
-	get_tree().paused = true
-	$PauseDialog.visible = true
-
-func _on_PauseDialog_confirmed():
-	get_tree().paused = false
-	game_controller.fight_music_adjust("raise")

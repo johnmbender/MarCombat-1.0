@@ -68,7 +68,6 @@ func idle():
 		"Terje":
 			$BrochureSpill.emitting = false
 		"Tyler":
-			$BeesTravel.visible = false
 			$BeesTravel.emitting = false
 
 func getting_shot():
@@ -137,9 +136,7 @@ func get_input():
 	if bot or not fighting:
 		return
 	
-	if Input.is_action_just_released("quit"):
-		fight_controller.pause_game()
-	elif blocking and Input.is_action_just_released("block"):
+	if blocking and Input.is_action_just_released("block"):
 		$AnimationPlayer.play("block-release")
 	elif blocking and upside_down and Input.is_action_just_released("special"):
 		$AnimationPlayer.play("block-release")
@@ -244,7 +241,7 @@ func get_input():
 						return
 				"Tyler":
 					# must be within arms reach
-					if distance > 120 or distance < 90:
+					if distance > 110 or distance < 80:
 						return
 			fatality()
 		else:
@@ -352,6 +349,7 @@ func _on_AnimationPlayer_animation_started(anim_name):
 					$AnimationPlayer.play("bees")
 					return
 			
+			completed_animation = false
 			attacking = true
 
 func _on_AnimationPlayer_animation_finished(anim_name):
@@ -460,9 +458,8 @@ func _on_AttackCircle_body_entered(_body):
 #	if free_animations.has($AnimationPlayer.current_animation):
 #		# don't want to freeze if we walk into each other
 #		return
-	if z_index <= enemy.z_index:
-		z_index = 1
-		enemy.z_index = 0
+	if get_position_in_parent() < enemy.get_position_in_parent():
+		get_parent().move_child(self, get_parent().get_children().size())
 	enemy.damage_taken($AnimationPlayer.current_animation)
 
 func landing_damage():
@@ -474,7 +471,9 @@ func damage_taken(animation:String):
 	crouching = false
 	$BeeSwarm.emitting = false
 	if $Bees.is_playing():
-		$Bees.seek(4.04) # fades them out rather than cancel
+		$Bees.playing = false
+		# this doesn't work very well, so just cancel
+#		$Bees.seek(4.5) # fades them out rather than cancel
 
 	completed_animation = true
 	
@@ -487,7 +486,7 @@ func damage_taken(animation:String):
 	elif character_name == "Terje":	
 		$BrochureSpill.emitting = false
 	elif character_name == "Tyler":
-		$BeesTravel.visible = false
+#		$BeesTravel.visible = false
 		$BeesTravel.emitting = false
 	
 	if bot:
@@ -791,13 +790,19 @@ func _TERJE_skeletonize_enemy():
 	get_parent().get_node("EndFightTimer").start()
 	get_parent().fatality_modulate("out")
 
-func _TYLER_bee_travel_time():
+func _TYLER_release_bees():
 	# calculate bee travel time from BeesTravel particles
 	# setting lifetime to distance between Tyler and opponent
 	# and dividing by gravity.x
-	var lifetime = abs(enemy.global_position.x - global_position.x) / 750
-	$BeesTravel.lifetime = lifetime
-	$BeesTravel.visible = true
+	# change gravity instead?
+	# 1000 gravity = 512px traveled in one sec
+	# 500 gravity = 256px travelled in one sec
+	# so:
+	#	500px		pixels to travel
+	#	1000			x gravity
+	#
+	$BeesTravel.gravity.x = (abs(enemy.global_position.x - global_position.x) * 1000) / 500
+	$BeesTravel.restart()
 
 func _TYLER_bee_swarm():
 	enemy.swarm_bees()

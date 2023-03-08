@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://GameController.gd" type="Script" id=1]
 [ext_resource path="res://fonts/Louis George Cafe.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://sounds/closingAnnouncement.wav" type="AudioStream" id=3]
+[ext_resource path="res://fonts/kenvector_future_thin.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://sounds/gong.wav" type="AudioStream" id=5]
 [ext_resource path="res://sounds/fatalityHorn.wav" type="AudioStream" id=6]
 [ext_resource path="res://sounds/characters/Kelsie/boot-stomp.wav" type="AudioStream" id=8]
@@ -33,6 +34,18 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PauseMenu:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -495,6 +508,21 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
+[sub_resource type="DynamicFont" id=27]
+size = 40
+font_data = ExtResource( 4 )
+
+[sub_resource type="Theme" id=28]
+default_font = SubResource( 27 )
+
+[sub_resource type="DynamicFont" id=29]
+size = 30
+outline_color = Color( 0.243137, 0.243137, 0.243137, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=30]
+default_font = SubResource( 29 )
+
 [node name="GameController" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -572,6 +600,114 @@ stream = ExtResource( 8 )
 [node name="RandomSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 volume_db = -10.0
+
+[node name="PauseMenu" type="PopupMenu" parent="."]
+pause_mode = 2
+self_modulate = Color( 1, 1, 1, 0.898039 )
+margin_left = 362.0
+margin_top = 150.0
+margin_right = 662.0
+margin_bottom = 450.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="fadeBkg" type="ColorRect" parent="PauseMenu"]
+modulate = Color( 0, 0, 0, 0.458824 )
+margin_left = -362.0
+margin_top = -150.0
+margin_right = 662.0
+margin_bottom = 450.0
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 295.0
+margin_bottom = 45.0
+color = Color( 0, 0, 0, 0.815686 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Menu" type="RichTextLabel" parent="PauseMenu"]
+margin_left = 95.0
+margin_top = 2.0
+margin_right = 212.0
+margin_bottom = 42.0
+rect_clip_content = false
+theme = SubResource( 28 )
+text = "MENU"
+scroll_active = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Continue" type="RichTextLabel" parent="PauseMenu"]
+modulate = Color( 1, 0, 0, 1 )
+margin_left = 52.0
+margin_top = 91.0
+margin_right = 256.0
+margin_bottom = 131.0
+rect_clip_content = false
+theme = SubResource( 28 )
+text = "CONTINUE"
+scroll_active = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Controls" type="RichTextLabel" parent="PauseMenu"]
+margin_left = 44.0
+margin_top = 146.0
+margin_right = 263.0
+margin_bottom = 186.0
+rect_clip_content = false
+theme = SubResource( 28 )
+text = "controls"
+scroll_active = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Quit" type="RichTextLabel" parent="PauseMenu"]
+margin_left = 107.0
+margin_top = 234.0
+margin_right = 200.0
+margin_bottom = 274.0
+rect_clip_content = false
+theme = SubResource( 28 )
+text = "quit"
+scroll_active = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ControlsView" type="ColorRect" parent="PauseMenu"]
+visible = false
+self_modulate = Color( 0.239216, 0.239216, 0.239216, 1 )
+margin_left = -156.0
+margin_top = -50.0
+margin_right = 444.0
+margin_bottom = 350.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Words" type="RichTextLabel" parent="PauseMenu/ControlsView"]
+margin_left = 100.0
+margin_top = 60.0
+margin_right = 500.0
+margin_bottom = 320.0
+theme = SubResource( 30 )
+text = "Move: left and right arrows
+Crouch: down arrow
+Punch: X
+Kick: Z
+Block: Shift
+Special: A
+Fatality: Q"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="animation_finished" from="MenuMusic/MenuPlayer" to="." method="_on_MenuPlayer_animation_finished"]

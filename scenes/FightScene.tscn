@@ -291,6 +291,7 @@ font_data = ExtResource( 4 )
 default_font = SubResource( 11 )
 
 [node name="FightScene" type="Node2D"]
+pause_mode = 1
 script = ExtResource( 2 )
 
 [node name="AnimatedBackground" type="AnimatedSprite" parent="."]
@@ -422,16 +423,7 @@ rect_clip_content = false
 theme = SubResource( 12 )
 text = "press any key to start"
 
-[node name="PauseDialog" type="AcceptDialog" parent="."]
-pause_mode = 2
-margin_left = 421.0
-margin_top = 240.0
-margin_right = 605.0
-margin_bottom = 312.0
-window_title = "Game paused"
-
 [connection signal="timeout" from="HBoxContainer2/CountdownTimer" to="." method="_on_CountdownTimer_timeout"]
 [connection signal="timeout" from="FatalityTimer" to="." method="_on_FatalityTimer_timeout"]
 [connection signal="timeout" from="EndFightTimer" to="." method="_on_EndFightTimer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
-[connection signal="confirmed" from="PauseDialog" to="." method="_on_PauseDialog_confirmed"]

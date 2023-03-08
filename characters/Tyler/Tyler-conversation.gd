@@ -24,7 +24,7 @@ onready var dialogue = {
 						"action": "confused",
 					},
 					6: {
-						"line": "Over my dead body!",
+						"line": "Over my dead body! I worked hard on this!",
 						"action": "angry",
 					},
 					8: {
