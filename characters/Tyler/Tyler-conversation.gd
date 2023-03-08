@@ -68,7 +68,7 @@ onready var dialogue = {
 						"action": "angry"
 					},
 					2: {
-						"line": "Go away.",
+						"line": "Up yours, %s.",
 						"action": "angry"
 					},
 					4: {
@@ -80,7 +80,7 @@ onready var dialogue = {
 			3: {
 				"lines": {
 					0: {
-						"line": "Seriousy... what am I doing?",
+						"line": "Seriously... what am I doing? Why am I so angry?",
 						"action": "confused"
 					},
 					1: {
@@ -108,7 +108,7 @@ onready var dialogue = {
 			4: {
 				"lines": {
 					0: {
-						"line": "What a strange day.",
+						"line": "What a straaaaange day.",
 						"action": "confused"
 					},
 					1: {
@@ -213,7 +213,7 @@ onready var dialogue = {
 					},
 					31: {
 						"line": "So my idea is approved then?",
-						"action": "angry"
+						"action": "yes"
 					},
 					33: {
 						"line": "TOO innovative?!",
@@ -221,7 +221,7 @@ onready var dialogue = {
 					}, 
 					35: {
 						"line": "You really had me come down here just to tell me no?",
-						"action": "angry"
+						"action": "no"
 					},
 					37: {
 						"line": "Okay...",
@@ -288,7 +288,7 @@ onready var dialogue = {
 						"action": "smile"
 					},
 					6: {
-						"line": "That's insane!.",
+						"line": "That's insane!",
 						"action": "confused"
 					},
 					8: {
@@ -296,7 +296,7 @@ onready var dialogue = {
 						"action": "yes"
 					},
 					10: {
-						"line": "They're a rewarding form of recognition!",
+						"line": "They're an integral form of recognition!",
 						"action": "offended"
 					},
 					12: {

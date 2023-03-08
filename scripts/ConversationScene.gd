@@ -19,8 +19,6 @@ var current_line
 
 var game_controller
 var storymode_controller
-# change this based on the script
-var last_coworker_fight = 2
 
 var speaker
 var next_action = null
@@ -121,12 +119,12 @@ func set_exposition():
 				"line": "%s explains %s brilliant idea to %s, what just happened, and cautiously watches %s's response." % [player, player_pronouns[2], opponent, opponent]
 			}
 		},
-		3: {
+		4: {
 			4: {
 				"line": "%s goes to Starbucks and gets Oksana's favourite: Americano, black.\n\nWhen %s returns, %s finds Oksana upstairs on the patio." % [player, player_pronouns[0], player_pronouns[0]]
 			}
 		},
-		4: {
+		5: {
 			4: {
 				"line": "%s goes to %s desk and types a well-thought out and comprehensive explanation of %s idea, complete with tangible milestones, goals, and deliverables.\n\nAfter an hour and a half, %s is ready to hit send..." % [player, player_pronouns[2], player_pronouns[2], player]
 			},
@@ -144,7 +142,7 @@ func merge_scripts():
 	
 	# if it's the fight before player loses their cool on a coworker,
 	# spice up the dialogue a bit
-	if fight_number == last_coworker_fight:
+	if fight_number == 1: # second fight; third fight we're just angry
 		if player == "John":
 			match opponent:
 				"Kelsie":
@@ -154,7 +152,7 @@ func merge_scripts():
 					pass
 				"Tyler":
 					player_script[9]['line'] = 'You really bug me, %s.' % opponent
-					opponent_script[10]['line'] = "Thinking about that one all day, were ya?"
+					opponent_script[10]['line'] = "Thinking that one up all day, were ya?"
 		elif player == "Kelsie":
 			match opponent:
 				"John":

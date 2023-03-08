@@ -300,3 +300,8 @@ func _on_CountdownTimer_timeout():
 		game_controller.storymode_quit()
 	else:
 		$HBoxContainer2/Countdown.text = "%s" % continue_counter
+
+func pause_game():
+	game_controller.fight_music_adjust("lower")
+	get_tree().paused = true
+	$PauseDialog.visible = true

@@ -411,7 +411,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 			fighting = true
 			completed_animation = true
-			enemy.get_node("AttackCircle").set_deferred("monitoring", true)
+			if enemy.character_name != "Ox Anna" and enemy.character_name != "F.U.G.U.M.":
+				enemy.get_node("AttackCircle").set_deferred("monitoring", true)
 			idle()
 		"victory":
 			$SpecialCooldown.visible = false
@@ -483,7 +484,7 @@ func damage_taken(animation:String):
 		$Bullets.emitting = false
 		if $AnimationPlayer.current_animation == "special":
 			enemy.idle()
-	elif character_name == "Terje":
+	elif character_name == "Terje":	
 		$BrochureSpill.emitting = false
 	elif character_name == "Tyler":
 		$BeesTravel.visible = false

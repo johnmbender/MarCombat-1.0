@@ -296,3 +296,8 @@ func return_to_launch():
 func match_over(_t1, _t2):
 	# ignoring
 	pass
+
+func pause_game():
+	game_controller.fight_music_adjust("lower")
+	get_tree().paused = true
+	$PauseDialog.visible = true

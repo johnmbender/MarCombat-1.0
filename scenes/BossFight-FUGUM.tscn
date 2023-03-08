@@ -853,7 +853,7 @@ nodes/Animation/position = Vector2( 80, 90 )
 nodes/TimeScale/node = SubResource( 12 )
 nodes/TimeScale/position = Vector2( 310, 70 )
 nodes/output/position = Vector2( 550, 70 )
-node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
+node_connections = [ "TimeScale", 0, "Animation", "output", 0, "TimeScale" ]
 
 [sub_resource type="DynamicFont" id=3]
 size = 100
@@ -1181,6 +1181,14 @@ rect_min_size = Vector2( 600, 150 )
 theme = SubResource( 24 )
 meta_underlined = false
 text = "This is a bunch of text that needs to be filler."
+
+[node name="PauseDialog" type="AcceptDialog" parent="."]
+pause_mode = 2
+margin_left = 421.0
+margin_top = 240.0
+margin_right = 605.0
+margin_bottom = 312.0
+window_title = "Game paused"
 
 [connection signal="timeout" from="BladeReleaseTimer" to="." method="_on_BladeReleaseTimer_timeout"]
 [connection signal="timeout" from="RetirementTimer" to="." method="_on_RetirementTimer_timeout"]

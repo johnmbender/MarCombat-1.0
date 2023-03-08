@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://characters/FUGUM/FUGUM.gd" type="Script" id=1]
 [ext_resource path="res://characters/FUGUM/sprites/diggerBase.png" type="Texture" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://characters/FUGUM/sounds/idle.mp3" type="AudioStream" id=15]
 [ext_resource path="res://characters/FUGUM/sounds/release.wav" type="AudioStream" id=16]
 [ext_resource path="res://characters/FUGUM/sounds/moving.mp3" type="AudioStream" id=17]
+[ext_resource path="res://sprites/skull.png" type="Texture" id=18]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 216.0
@@ -993,7 +994,7 @@ shape = SubResource( 18 )
 position = Vector2( -48, -80 )
 frames = SubResource( 5 )
 animation = "wave"
-frame = 2
+frame = 4
 playing = true
 __meta__ = {
 "_edit_lock_": true
@@ -1022,6 +1023,11 @@ anims/moving = SubResource( 12 )
 anims/stop = SubResource( 10 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="Skull" type="Sprite" parent="."]
+position = Vector2( -189.093, -43.875 )
+scale = Vector2( 0.445988, 0.445988 )
+texture = ExtResource( 18 )
 
 [connection signal="animation_finished" from="Swinger" to="." method="_on_Swinger_animation_finished"]
 [connection signal="body_entered" from="Wheel/AtRot0" to="." method="_on_AtRot0_body_entered"]

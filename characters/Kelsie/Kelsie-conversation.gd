@@ -220,7 +220,7 @@ onready var dialogue = {
 						"action": "shocked"
 					}, 
 					35: {
-						"line": "So why did you ask me to come down here just to tell me no?",
+						"line": "So why did you ask me to come down here? Just to tell me no?",
 						"action": "angry"
 					},
 					37: {
@@ -308,11 +308,11 @@ onready var dialogue = {
 			2: {
 				"lines": {
 					1: {
-						"line": "Hi %s! What's new?",
+						"line": "Hi %s! What's up?",
 						"action": "smile"
 					},
 					3: {
-						"line": "What's up your ass today?",
+						"line": "Whoa, what's up your ass today?",
 						"action": "offended"
 					},
 					5: {

@@ -68,7 +68,7 @@ onready var dialogue = {
 						"action": "angry"
 					},
 					2: {
-						"line": "Piss off.",
+						"line": "Piss off, %s.",
 						"action": "angry"
 					},
 					4: {
@@ -80,7 +80,7 @@ onready var dialogue = {
 			3: {
 				"lines": {
 					0: {
-						"line": "This is just... wrong.",
+						"line": "What is wrong with me? This is just... wrong.",
 						"action": "confused"
 					},
 					1: {
@@ -108,7 +108,7 @@ onready var dialogue = {
 			4: {
 				"lines": {
 					0: {
-						"line": "That was cathartic.",
+						"line": "That was cathartic. I feel better now.",
 						"action": "yes"
 					},
 					1: {
