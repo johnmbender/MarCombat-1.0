@@ -165,6 +165,7 @@ func attack():
 
 func special():
 	$AnimationPlayer.play("special")
+	action = null # TESTING jovi - this doesn't seem to be breaking anything...?
 
 func block():
 	if not blocking:
