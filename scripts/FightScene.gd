@@ -211,14 +211,14 @@ func set_scene():
 			$Background.texture = load("res://levels/backgrounds/%s.jpg" % background)
 			$Background.visible = true
 		else:
-			if picker >= 1: #.95 jovi
+			if picker >= 0.95:
 				scale = Vector2(1, -1)
 				position.y = 600
 				$Background.texture = load("res://levels/backgrounds/fun/upsideDown.jpg")
 				$Background.visible = true
 				if upside_down == false:
 					# only start music once
-					game_controller.play_fight_music("upsideDown.mp3")
+					game_controller.play_fight_music("upsideDown.ogg")
 				upside_down = true
 			else:
 				load_fun_background(fun_backgrounds[randi() % fun_backgrounds.size()-1])
