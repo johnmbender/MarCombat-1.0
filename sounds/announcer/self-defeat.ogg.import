@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/self-defeat.ogg-1fc0774d557add8c08a93c0779a39264.oggstr"
+
+[deps]
+
+source_file="res://sounds/announcer/self-defeat.ogg"
+dest_files=[ "res://.import/self-defeat.ogg-1fc0774d557add8c08a93c0779a39264.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

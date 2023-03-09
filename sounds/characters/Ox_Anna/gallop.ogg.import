@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/gallop.ogg-b3df14bed5ce32b1ef6bbc69012551ad.oggstr"
+
+[deps]
+
+source_file="res://sounds/characters/Ox_Anna/gallop.ogg"
+dest_files=[ "res://.import/gallop.ogg-b3df14bed5ce32b1ef6bbc69012551ad.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

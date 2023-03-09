@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Ox Anna correction.ogg-ef9d7039a6d9f2e4e28dea8781d2dda4.oggstr"
+
+[deps]
+
+source_file="res://sounds/announcer/Ox Anna correction.ogg"
+dest_files=[ "res://.import/Ox Anna correction.ogg-ef9d7039a6d9f2e4e28dea8781d2dda4.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

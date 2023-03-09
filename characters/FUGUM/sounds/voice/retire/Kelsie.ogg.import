@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Kelsie.ogg-cbceaab9164ee38530c513bb0a1bdc88.oggstr"
+
+[deps]
+
+source_file="res://characters/FUGUM/sounds/voice/retire/Kelsie.ogg"
+dest_files=[ "res://.import/Kelsie.ogg-cbceaab9164ee38530c513bb0a1bdc88.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

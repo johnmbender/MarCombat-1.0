@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/barbeque.ogg-700bb28267403167530369fdeb8d2873.oggstr"
+
+[deps]
+
+source_file="res://music/barbeque.ogg"
+dest_files=[ "res://.import/barbeque.ogg-700bb28267403167530369fdeb8d2873.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

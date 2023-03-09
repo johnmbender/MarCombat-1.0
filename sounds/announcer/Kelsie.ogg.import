@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Kelsie.ogg-91b81ae17d3387762ec5b82de9ad5a99.oggstr"
+
+[deps]
+
+source_file="res://sounds/announcer/Kelsie.ogg"
+dest_files=[ "res://.import/Kelsie.ogg-91b81ae17d3387762ec5b82de9ad5a99.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

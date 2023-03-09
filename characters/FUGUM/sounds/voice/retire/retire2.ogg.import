@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/retire2.ogg-a21414e96d0a3b287cc79dd4cc58815b.oggstr"
+
+[deps]
+
+source_file="res://characters/FUGUM/sounds/voice/retire/retire2.ogg"
+dest_files=[ "res://.import/retire2.ogg-a21414e96d0a3b287cc79dd4cc58815b.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/blade-gut-hit.ogg-65ef4dd65c14bf43dcb790f7aba9a3b7.oggstr"
+
+[deps]
+
+source_file="res://sounds/characters/effects/blade-gut-hit.ogg"
+dest_files=[ "res://.import/blade-gut-hit.ogg-65ef4dd65c14bf43dcb790f7aba9a3b7.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

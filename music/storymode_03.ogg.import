@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/storymode_03.ogg-ad3ade7bc0a985609fbf559904ae020e.oggstr"
+
+[deps]
+
+source_file="res://music/storymode_03.ogg"
+dest_files=[ "res://.import/storymode_03.ogg-ad3ade7bc0a985609fbf559904ae020e.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

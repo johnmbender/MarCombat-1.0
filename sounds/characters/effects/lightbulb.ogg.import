@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/lightbulb.ogg-79e8fab400a74cf2c42ba214b9ca8c73.oggstr"
+
+[deps]
+
+source_file="res://sounds/characters/effects/lightbulb.ogg"
+dest_files=[ "res://.import/lightbulb.ogg-79e8fab400a74cf2c42ba214b9ca8c73.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

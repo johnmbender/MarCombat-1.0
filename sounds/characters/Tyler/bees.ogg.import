@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bees.ogg-d8982b57d8b4ae17fbd7550e27f53aff.oggstr"
+
+[deps]
+
+source_file="res://sounds/characters/Tyler/bees.ogg"
+dest_files=[ "res://.import/bees.ogg-d8982b57d8b4ae17fbd7550e27f53aff.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

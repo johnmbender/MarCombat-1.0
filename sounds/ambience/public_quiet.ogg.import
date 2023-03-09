@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/public_quiet.ogg-6a94aad762519f87a58d95e2e6453c7a.oggstr"
+
+[deps]
+
+source_file="res://sounds/ambience/public_quiet.ogg"
+dest_files=[ "res://.import/public_quiet.ogg-6a94aad762519f87a58d95e2e6453c7a.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

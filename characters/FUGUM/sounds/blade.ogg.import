@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/blade.ogg-865bb377dd1ee92649b99357329d77cd.oggstr"
+
+[deps]
+
+source_file="res://characters/FUGUM/sounds/blade.ogg"
+dest_files=[ "res://.import/blade.ogg-865bb377dd1ee92649b99357329d77cd.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

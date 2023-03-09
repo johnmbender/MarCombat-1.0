@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/special-crack.ogg-d6e29e52a1b6013a9266efa26d400bd1.oggstr"
+
+[deps]
+
+source_file="res://sounds/characters/Kelsie/special-crack.ogg"
+dest_files=[ "res://.import/special-crack.ogg-d6e29e52a1b6013a9266efa26d400bd1.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/slide.ogg-ada9af56e37f4d2bb4ede05bfe71dfd7.oggstr"
+
+[deps]
+
+source_file="res://sounds/characters/Ox_Anna/slide.ogg"
+dest_files=[ "res://.import/slide.ogg-ada9af56e37f4d2bb4ede05bfe71dfd7.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

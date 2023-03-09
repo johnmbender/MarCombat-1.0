@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/office_drone.ogg-6122e2fa096c2d40c4a48365829d4634.oggstr"
+
+[deps]
+
+source_file="res://sounds/ambience/office_drone.ogg"
+dest_files=[ "res://.import/office_drone.ogg-6122e2fa096c2d40c4a48365829d4634.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

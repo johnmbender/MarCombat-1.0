@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/select-Terje.ogg-f0b71a5fa02a322f97f9ddd04194ebd5.oggstr"
+
+[deps]
+
+source_file="res://sounds/announcer/select-Terje.ogg"
+dest_files=[ "res://.import/select-Terje.ogg-f0b71a5fa02a322f97f9ddd04194ebd5.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/moo_3.ogg-d1ee76c0c5beee98c75599877e7ffb53.oggstr"
+
+[deps]
+
+source_file="res://sounds/characters/Ox_Anna/moo_3.ogg"
+dest_files=[ "res://.import/moo_3.ogg-d1ee76c0c5beee98c75599877e7ffb53.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

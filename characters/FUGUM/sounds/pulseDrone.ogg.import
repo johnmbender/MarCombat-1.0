@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/pulseDrone.ogg-fa3ce1a85809d3cb8fc31e6b5b6490df.oggstr"
+
+[deps]
+
+source_file="res://characters/FUGUM/sounds/pulseDrone.ogg"
+dest_files=[ "res://.import/pulseDrone.ogg-fa3ce1a85809d3cb8fc31e6b5b6490df.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

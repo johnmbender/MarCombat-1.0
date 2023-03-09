@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/fugum_01.ogg-e38270909fa717b8ff228eefafc70636.oggstr"
+
+[deps]
+
+source_file="res://sounds/announcer/fugum_01.ogg"
+dest_files=[ "res://.import/fugum_01.ogg-e38270909fa717b8ff228eefafc70636.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

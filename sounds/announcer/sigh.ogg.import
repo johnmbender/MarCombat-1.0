@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sigh.ogg-c5c9a6d5d43b8972967e7cf5b5a7f804.oggstr"
+
+[deps]
+
+source_file="res://sounds/announcer/sigh.ogg"
+dest_files=[ "res://.import/sigh.ogg-c5c9a6d5d43b8972967e7cf5b5a7f804.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/positive3.ogg-5eb75b807ae97fc3b766b1d7a134a488.oggstr"
+
+[deps]
+
+source_file="res://characters/FUGUM/sounds/voice/positive/positive3.ogg"
+dest_files=[ "res://.import/positive3.ogg-5eb75b807ae97fc3b766b1d7a134a488.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

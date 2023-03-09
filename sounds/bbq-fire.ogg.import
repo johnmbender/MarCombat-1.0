@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bbq-fire.ogg-cc296826cc6bf056a3f13c5bd2c156af.oggstr"
+
+[deps]
+
+source_file="res://sounds/bbq-fire.ogg"
+dest_files=[ "res://.import/bbq-fire.ogg-cc296826cc6bf056a3f13c5bd2c156af.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

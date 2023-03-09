@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/tyler-fatality-3.ogg-a9526311e547a345c0587f826f9a6000.oggstr"
+
+[deps]
+
+source_file="res://sounds/announcer/tyler-fatality-3.ogg"
+dest_files=[ "res://.import/tyler-fatality-3.ogg-a9526311e547a345c0587f826f9a6000.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

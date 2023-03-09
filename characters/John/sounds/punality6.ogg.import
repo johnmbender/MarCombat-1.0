@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/punality6.ogg-7717a21409f7dd1b657bef29ea35b1a1.oggstr"
+
+[deps]
+
+source_file="res://characters/John/sounds/punality6.ogg"
+dest_files=[ "res://.import/punality6.ogg-7717a21409f7dd1b657bef29ea35b1a1.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

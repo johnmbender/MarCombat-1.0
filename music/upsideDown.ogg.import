@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/upsideDown.ogg-02eadea29f33ca49c75e3cd79ce653bf.oggstr"
+
+[deps]
+
+source_file="res://music/upsideDown.ogg"
+dest_files=[ "res://.import/upsideDown.ogg-02eadea29f33ca49c75e3cd79ce653bf.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

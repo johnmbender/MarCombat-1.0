@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/continue.ogg-cdf40ce2a14a9a8b1af4cea64e58932a.oggstr"
+
+[deps]
+
+source_file="res://sounds/announcer/continue.ogg"
+dest_files=[ "res://.import/continue.ogg-cdf40ce2a14a9a8b1af4cea64e58932a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

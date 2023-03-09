@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/poland.ogg-06510e34b3c58dee98acec095459f957.oggstr"
+
+[deps]
+
+source_file="res://sounds/characters/Ox_Anna/poland.ogg"
+dest_files=[ "res://.import/poland.ogg-06510e34b3c58dee98acec095459f957.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

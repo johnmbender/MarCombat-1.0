@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/round3.ogg-6d0de1da20b08ea14da7aef281532486.oggstr"
+
+[deps]
+
+source_file="res://sounds/announcer/round3.ogg"
+dest_files=[ "res://.import/round3.ogg-6d0de1da20b08ea14da7aef281532486.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

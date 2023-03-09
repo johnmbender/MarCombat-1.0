@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/fight-boom.ogg-b4710f30736772db75f3b33652daa36c.oggstr"
+
+[deps]
+
+source_file="res://sounds/fight-boom.ogg"
+dest_files=[ "res://.import/fight-boom.ogg-b4710f30736772db75f3b33652daa36c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

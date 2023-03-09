@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/slap.ogg-1a5d74aba4e507adcda68dd1c0bf0b64.oggstr"
+
+[deps]
+
+source_file="res://sounds/characters/Tyler/slap.ogg"
+dest_files=[ "res://.import/slap.ogg-1a5d74aba4e507adcda68dd1c0bf0b64.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

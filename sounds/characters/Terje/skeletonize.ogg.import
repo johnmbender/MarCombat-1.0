@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/skeletonize.ogg-f2384c19dda4cdee2275bc0a0a49db6b.oggstr"
+
+[deps]
+
+source_file="res://sounds/characters/Terje/skeletonize.ogg"
+dest_files=[ "res://.import/skeletonize.ogg-f2384c19dda4cdee2275bc0a0a49db6b.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

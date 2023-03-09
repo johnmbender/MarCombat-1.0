@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Julie.ogg-196a448eaff55d822e4446beea2c72e0.oggstr"
+
+[deps]
+
+source_file="res://characters/FUGUM/sounds/voice/retire/Julie.ogg"
+dest_files=[ "res://.import/Julie.ogg-196a448eaff55d822e4446beea2c72e0.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

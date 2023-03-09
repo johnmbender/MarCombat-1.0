@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ledge.ogg-d23ab5681d598e7b33c3a6ab9bd61e61.oggstr"
+
+[deps]
+
+source_file="res://music/ledge.ogg"
+dest_files=[ "res://.import/ledge.ogg-d23ab5681d598e7b33c3a6ab9bd61e61.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

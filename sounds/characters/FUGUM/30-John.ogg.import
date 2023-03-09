@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/30-John.ogg-b6ba53c15b358181d0eee5360a6c59aa.oggstr"
+
+[deps]
+
+source_file="res://sounds/characters/FUGUM/30-John.ogg"
+dest_files=[ "res://.import/30-John.ogg-b6ba53c15b358181d0eee5360a6c59aa.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

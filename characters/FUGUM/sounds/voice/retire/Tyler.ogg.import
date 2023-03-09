@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Tyler.ogg-b1b1a3e901a8d67869073d0da1f11567.oggstr"
+
+[deps]
+
+source_file="res://characters/FUGUM/sounds/voice/retire/Tyler.ogg"
+dest_files=[ "res://.import/Tyler.ogg-b1b1a3e901a8d67869073d0da1f11567.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

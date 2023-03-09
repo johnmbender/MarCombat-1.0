@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/pawing.ogg-8e323025c304a6952f193eb8c45f5127.oggstr"
+
+[deps]
+
+source_file="res://sounds/characters/Ox_Anna/pawing.ogg"
+dest_files=[ "res://.import/pawing.ogg-8e323025c304a6952f193eb8c45f5127.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/special-whip.ogg-d2a681e1b7359de87776965bb6da365a.oggstr"
+
+[deps]
+
+source_file="res://sounds/characters/Kelsie/special-whip.ogg"
+dest_files=[ "res://.import/special-whip.ogg-d2a681e1b7359de87776965bb6da365a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

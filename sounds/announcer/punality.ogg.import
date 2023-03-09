@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/punality.ogg-e54abe43c6318bd99a292c2621c11048.oggstr"
+
+[deps]
+
+source_file="res://sounds/announcer/punality.ogg"
+dest_files=[ "res://.import/punality.ogg-e54abe43c6318bd99a292c2621c11048.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

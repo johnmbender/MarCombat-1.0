@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/40.ogg-c042b99438aa1d7d3fbb191b149c2bc3.oggstr"
+
+[deps]
+
+source_file="res://sounds/characters/FUGUM/40.ogg"
+dest_files=[ "res://.import/40.ogg-c042b99438aa1d7d3fbb191b149c2bc3.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

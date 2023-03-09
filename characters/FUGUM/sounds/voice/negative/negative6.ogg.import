@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/negative6.ogg-6139aefd32f5e79136ccd84693df6d91.oggstr"
+
+[deps]
+
+source_file="res://characters/FUGUM/sounds/voice/negative/negative6.ogg"
+dest_files=[ "res://.import/negative6.ogg-6139aefd32f5e79136ccd84693df6d91.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
