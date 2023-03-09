@@ -95,13 +95,13 @@ func squish():
 	$AnimationPlayer.play("squish")
 	if $NegaSmoke.is_playing():
 		$NegaSmoke.visible = false
-	play_sound("res://sounds/characters/Kelsie/boot-stomp.wav", false)
+	play_sound("res://sounds/characters/Kelsie/boot-stomp.ogg", false)
 
 func skeletonize():
 	$AnimationPlayer.play("skeletonize")
 
 func _TERJE_skeletonize_sound():
-	play_sound("res://sounds/characters/Terje/skeletonize.wav", false)
+	play_sound("res://sounds/characters/Terje/skeletonize.ogg", false)
 
 func victory():
 	$AnimationPlayer.play("victory")
@@ -273,7 +273,7 @@ func _on_AnimationPlayer_animation_started(anim_name):
 			completed_animation = false
 		"punch-far","punch-close","kick-far","kick-close":
 			attacking = true
-			play_sound("res://sounds/characters/effects/attack.wav", true)
+			play_sound("res://sounds/characters/effects/attack.ogg", true)
 		"block":
 			blocking = true
 		"block-release":
@@ -284,7 +284,7 @@ func _on_AnimationPlayer_animation_started(anim_name):
 			crouching = false
 			if anim_name == "uppercut":
 				attacking = true
-				play_sound("res://sounds/characters/effects/attack.wav", true)
+				play_sound("res://sounds/characters/effects/attack.ogg", true)
 		"blade-gut-hit":
 			if character_name == "Kelsie":
 				$Hair.visible = false
@@ -293,10 +293,10 @@ func _on_AnimationPlayer_animation_started(anim_name):
 			elif character_name == "John":
 				$Bullets.emitting = false
 			$SpecialCooldown.visible = false
-			play_sound("res://sounds/characters/effects/blade-gut-hit.wav", true)
+			play_sound("res://sounds/characters/effects/blade-gut-hit.ogg", true)
 		"hit-face","hit-uppercut":
 			if enemy.character_name != "Kelsie" or enemy.get_node("AnimationPlayer").current_animation != "special":
-				play_sound("res://sounds/characters/effects/punched.wav", true)
+				play_sound("res://sounds/characters/effects/punched.ogg", true)
 			$BloodSquirt.emitting = true
 			if anim_name == "hit-uppercut":
 				completed_animation = false
@@ -304,7 +304,7 @@ func _on_AnimationPlayer_animation_started(anim_name):
 				# disable enemy's attack so we don't get uppercut chained
 				enemy.get_node("AttackCircle").set_deferred("monitoring", false)
 		"hit-gut":
-			play_sound("res://sounds/characters/effects/kicked.wav", true)
+			play_sound("res://sounds/characters/effects/kicked.ogg", true)
 		"fatality":
 			$SpecialCooldown.visible = false
 		"fatality-start":
@@ -330,7 +330,7 @@ func _on_AnimationPlayer_animation_started(anim_name):
 					$Bullets.lifetime = abs(enemy.global_position.x - global_position.x) / 180
 					$Bullets.emitting = true
 					enemy.getting_shot()
-					$SoundPlayer.stream = load("res://sounds/characters/John/shot.wav")
+					$SoundPlayer.stream = load("res://sounds/characters/John/shot.ogg")
 					$SoundPlayer.play()
 			elif character_name == "Terje":
 				if _TERJE_brochures_spilt:
@@ -376,7 +376,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			else:
 				$AnimationPlayer.play("get-up")
 		"collapse":
-			play_sound("res://sounds/characters/effects/drop.wav", true)
+			play_sound("res://sounds/characters/effects/drop.ogg", true)
 			$AnimationPlayer.stop()
 		"squish":
 			$SpecialCooldown.visible = false
@@ -500,7 +500,7 @@ func damage_taken(animation:String):
 		$AnimationPlayer.play("collapse")
 		get_parent().match_over(enemy)
 	elif blocking and enemy.character_name != "Ox Anna":
-		play_sound("res://sounds/characters/effects/block.wav", true)
+		play_sound("res://sounds/characters/effects/block.ogg", true)
 		$AnimationPlayer.play("block-release")
 		health -= 2
 		if health <= 0:
@@ -531,7 +531,7 @@ func damage_taken(animation:String):
 				match enemy.character_name:
 					# John's is done in take_bullet()
 					"Kelsie":
-						play_sound("res://sounds/characters/Kelsie/special-crack.wav", true)
+						play_sound("res://sounds/characters/Kelsie/special-crack.ogg", true)
 						health -= 20
 						$AnimationPlayer.play("hit-face")
 					"Terje":
@@ -601,7 +601,7 @@ func being_slapped():
 		timer.connect("timeout", self, "_on_Tyler_FatalityTimer_timeout")
 		add_child(timer)
 		timer.start()
-		$SoundPlayer.stream = load("res://sounds/characters/Tyler/slap.wav")
+		$SoundPlayer.stream = load("res://sounds/characters/Tyler/slap.ogg")
 	
 	$AnimationPlayer.play("tyler-fatality-start")
 
@@ -656,7 +656,7 @@ func _on_CooldownTimer_timeout():
 
 # JOHN	
 func _JOHN_gun_jammed_click():
-	$SoundPlayer.stream = load("res://sounds/click.wav")
+	$SoundPlayer.stream = load("res://sounds/click.ogg")
 	$SoundPlayer.play()
 
 func _JOHN_fatality_start():
@@ -664,7 +664,7 @@ func _JOHN_fatality_start():
 	var random = RandomNumberGenerator.new()
 	random.randomize()
 	var punNum = random.randi_range(1, 6)
-	$FatalityPlayer.stream = load("res://characters/John/sounds/punality%s.wav" % punNum)
+	$FatalityPlayer.stream = load("res://characters/John/sounds/punality%s.ogg" % punNum)
 	$FatalityPlayer.play()
 
 func _JOHN_fatality_end():
@@ -817,7 +817,7 @@ func _TYLER_fatality():
 func _TYLER_walk_away():
 	get_parent().fatality_modulate("out")
 	fighting = false
-	$SoundPlayer.stream = load("res://sounds/characters/Tyler/whistling.wav")
+	$SoundPlayer.stream = load("res://sounds/characters/Tyler/whistling.ogg")
 	$SoundPlayer.play()
 	scale.x = -scale.x
 	$AnimationPlayer.play("walk-forward")

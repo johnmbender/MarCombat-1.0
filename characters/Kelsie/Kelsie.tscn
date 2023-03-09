@@ -1,4 +1,4 @@
-[gd_scene load_steps=329 format=2]
+[gd_scene load_steps=316 format=2]
 
 [ext_resource path="res://characters/Kelsie/sprites/actions/victory/victory_05.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
@@ -41,12 +41,9 @@
 [ext_resource path="res://characters/Kelsie/sprites/actions/stunned/stunned_12.png" type="Texture" id=39]
 [ext_resource path="res://characters/Kelsie/sprites/actions/stunned/stunned_05.png" type="Texture" id=40]
 [ext_resource path="res://characters/Kelsie/sprites/actions/stunned/stunned_09.png" type="Texture" id=41]
-[ext_resource path="res://characters/Kelsie/sprites/actions/throw/throw_04.png" type="Texture" id=42]
-[ext_resource path="res://characters/Kelsie/sprites/actions/throw/throw_06.png" type="Texture" id=43]
 [ext_resource path="res://characters/Kelsie/sprites/actions/stunned/stunned_04.png" type="Texture" id=44]
 [ext_resource path="res://characters/Kelsie/sprites/actions/stunned/stunned_01.png" type="Texture" id=45]
 [ext_resource path="res://characters/Kelsie/sprites/actions/stunned/stunned_06.png" type="Texture" id=46]
-[ext_resource path="res://characters/Kelsie/sprites/actions/throw/throw_07.png" type="Texture" id=47]
 [ext_resource path="res://characters/Kelsie/sprites/actions/victory/victory_04.png" type="Texture" id=48]
 [ext_resource path="res://characters/Kelsie/sprites/actions/victory/victory_03.png" type="Texture" id=49]
 [ext_resource path="res://characters/Kelsie/sprites/actions/victory/victory_01.png" type="Texture" id=50]
@@ -141,8 +138,6 @@
 [ext_resource path="res://characters/Kelsie/sprites/actions/special/special_06.png" type="Texture" id=139]
 [ext_resource path="res://characters/Kelsie/sprites/actions/special/special_10.png" type="Texture" id=140]
 [ext_resource path="res://characters/Kelsie/sprites/actions/special/special_12.png" type="Texture" id=141]
-[ext_resource path="res://characters/Kelsie/sprites/actions/throw/throw_10.png" type="Texture" id=142]
-[ext_resource path="res://characters/Kelsie/sprites/actions/throw/throw_03.png" type="Texture" id=143]
 [ext_resource path="res://characters/Kelsie/sprites/actions/block/block_02.png" type="Texture" id=144]
 [ext_resource path="res://characters/Kelsie/sprites/actions/uppercut/uppercut_04.png" type="Texture" id=145]
 [ext_resource path="res://characters/Kelsie/sprites/actions/uppercut/uppercut_07.png" type="Texture" id=146]
@@ -162,15 +157,10 @@
 [ext_resource path="res://characters/Kelsie/sprites/actions/hit-uppercut/hit-uppercut_03.png" type="Texture" id=160]
 [ext_resource path="res://characters/Kelsie/sprites/actions/hit-uppercut/hit-uppercut_06.png" type="Texture" id=161]
 [ext_resource path="res://characters/Kelsie/sprites/actions/hit-uppercut/hit-uppercut_04.png" type="Texture" id=162]
-[ext_resource path="res://characters/Kelsie/sprites/actions/throw/throw_08.png" type="Texture" id=163]
-[ext_resource path="res://characters/Kelsie/sprites/actions/throw/throw_02.png" type="Texture" id=164]
-[ext_resource path="res://characters/Kelsie/sprites/actions/throw/throw_01.png" type="Texture" id=165]
-[ext_resource path="res://characters/Kelsie/sprites/actions/throw/throw_05.png" type="Texture" id=166]
 [ext_resource path="res://characters/Kelsie/sprites/actions/get-up/get-up_09.png" type="Texture" id=167]
 [ext_resource path="res://characters/Kelsie/sprites/actions/get-up/get-up_10.png" type="Texture" id=168]
 [ext_resource path="res://characters/Kelsie/sprites/actions/get-up/get-up_04.png" type="Texture" id=169]
 [ext_resource path="res://characters/Kelsie/sprites/actions/hit-face/hit-face_01.png" type="Texture" id=170]
-[ext_resource path="res://characters/Kelsie/sprites/actions/throw/throw_09.png" type="Texture" id=171]
 [ext_resource path="res://characters/Kelsie/sprites/actions/thrown/thrown_03.png" type="Texture" id=172]
 [ext_resource path="res://characters/Kelsie/sprites/actions/thrown/thrown_02.png" type="Texture" id=173]
 [ext_resource path="res://characters/Kelsie/sprites/actions/thrown/thrown_10.png" type="Texture" id=174]
@@ -249,7 +239,6 @@
 [ext_resource path="res://characters/Kelsie/sprites/actions/bees/bees_15.png" type="Texture" id=247]
 [ext_resource path="res://characters/Kelsie/sprites/actions/bees/bees_07.png" type="Texture" id=248]
 [ext_resource path="res://characters/Kelsie/sprites/actions/bees/bees_08.png" type="Texture" id=249]
-[ext_resource path="res://sounds/characters/Tyler/bees.wav" type="AudioStream" id=250]
 [ext_resource path="res://characters/Kelsie/sprites/actions/tyler-fatality/tyler-fatality_14.png" type="Texture" id=251]
 [ext_resource path="res://characters/Kelsie/sprites/actions/tyler-fatality/tyler-fatality_21.png" type="Texture" id=252]
 [ext_resource path="res://characters/Kelsie/sprites/actions/tyler-fatality/tyler-fatality_09.png" type="Texture" id=253]
@@ -666,7 +655,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "res://sounds/characters/Kelsie/dizzy.wav", false ],
+"args": [ "res://sounds/characters/Kelsie/dizzy.ogg", false ],
 "method": "play_sound"
 } ]
 }
@@ -702,7 +691,7 @@ tracks/1/keys = {
 "args": [  ],
 "method": "_KELSIE_drop_boot"
 }, {
-"args": [ "res://sounds/characters/Kelsie/boot-stomp.wav" ],
+"args": [ "res://sounds/characters/Kelsie/boot-stomp.ogg" ],
 "method": "play_sound"
 }, {
 "args": [  ],
@@ -796,7 +785,7 @@ tracks/2/keys = {
 "args": [  ],
 "method": "take_bullet"
 }, {
-"args": [ "res://sounds/characters/effects/drop.wav", false ],
+"args": [ "res://sounds/characters/effects/drop.ogg", false ],
 "method": "play_sound"
 } ]
 }
@@ -826,7 +815,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0.65 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "res://sounds/characters/effects/drop.wav" ],
+"args": [ "res://sounds/characters/effects/drop.ogg" ],
 "method": "play_sound"
 } ]
 }
@@ -919,7 +908,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0.55 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "res://sounds/characters/effects/drop.wav", false ],
+"args": [ "res://sounds/characters/effects/drop.ogg", false ],
 "method": "play_sound"
 } ]
 }
@@ -1213,7 +1202,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0.21 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "res://sounds/characters/Kelsie/special-whip.wav", true ],
+"args": [ "res://sounds/characters/Kelsie/special-whip.ogg", true ],
 "method": "play_sound"
 } ]
 }
@@ -1253,118 +1242,6 @@ tracks/0/keys = {
 "values": [ ExtResource( 45 ), ExtResource( 35 ), ExtResource( 34 ), ExtResource( 44 ), ExtResource( 40 ), ExtResource( 46 ), ExtResource( 36 ), ExtResource( 41 ), ExtResource( 38 ), ExtResource( 37 ), ExtResource( 39 ) ]
 }
 
-[sub_resource type="Animation" id=92]
-resource_name = "throw"
-step = 0.01
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.1, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ ExtResource( 165 ), ExtResource( 164 ), ExtResource( 143 ), ExtResource( 42 ), ExtResource( 166 ), ExtResource( 43 ), ExtResource( 47 ), ExtResource( 163 ), ExtResource( 171 ), ExtResource( 142 ), ExtResource( 142 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("AttackCircle:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.09, 0.1, 0.34, 0.35, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 144, 8 ), Vector2( 144, 8 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("AttackCircle/CollisionShape2D:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.09, 0.1, 0.34, 0.35 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 3, 3 ), Vector2( 3, 3 ), Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=96]
-resource_name = "thrown"
-length = 1.2
-step = 0.05
-tracks/0/type = "method"
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"values": [ {
-"args": [ Vector2( 10, -30 ), 0, 0.05 ],
-"method": "tween"
-}, {
-"args": [ Vector2( 30, -70 ), 0, 0.05 ],
-"method": "tween"
-}, {
-"args": [ Vector2( 60, -100 ), 0, 0.05 ],
-"method": "tween"
-}, {
-"args": [ Vector2( 60, -50 ), 0, 0.1 ],
-"method": "tween"
-}, {
-"args": [ Vector2( 60, 20 ), 0, 0.1 ],
-"method": "tween"
-}, {
-"args": [ Vector2( 60, 0 ), 0, 0.1 ],
-"method": "tween"
-}, {
-"args": [ Vector2( 40, 30 ), 0, 0.1 ],
-"method": "tween"
-}, {
-"args": [ Vector2( 30, 50 ), 0, 0.1 ],
-"method": "tween"
-}, {
-"args": [ Vector2( 20, 70 ), 0, 0.1 ],
-"method": "tween"
-}, {
-"args": [ Vector2( 0, 120 ), null, 0.0 ],
-"method": "tween"
-} ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ ExtResource( 175 ), ExtResource( 173 ), ExtResource( 172 ), ExtResource( 180 ), ExtResource( 181 ), ExtResource( 177 ), ExtResource( 182 ), ExtResource( 176 ), ExtResource( 183 ), ExtResource( 174 ), ExtResource( 17 ) ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 1 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "landingDamage"
-} ]
-}
-
 [sub_resource type="Animation" id=132]
 resource_name = "tossed-by-oxanna"
 length = 1.2
@@ -1379,7 +1256,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 1 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "res://sounds/characters/effects/drop.wav", true ],
+"args": [ "res://sounds/characters/effects/drop.ogg", true ],
 "method": "play_sound"
 } ]
 }
@@ -1722,8 +1599,6 @@ anims/skeletonize = SubResource( 129 )
 anims/special = SubResource( 111 )
 anims/squish = SubResource( 121 )
 anims/stunned = SubResource( 29 )
-anims/throw = SubResource( 92 )
-anims/thrown = SubResource( 96 )
 anims/tossed-by-oxanna = SubResource( 132 )
 anims/tyler-fatality-loop = SubResource( 147 )
 anims/tyler-fatality-start = SubResource( 148 )
@@ -1791,7 +1666,6 @@ scale_amount = 2.0
 color = Color( 0.811765, 0.847059, 0.313726, 1 )
 
 [node name="Bees" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 250 )
 volume_db = -5.0
 
 [connection signal="body_entered" from="AttackCircle" to="." method="_on_AttackCircle_body_entered"]

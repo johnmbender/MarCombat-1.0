@@ -125,7 +125,7 @@ var characters_spoken = 0
 func read_employee_number():
 	var num_to_read = employee_number.substr(characters_spoken, 1)
 	if num_to_read.length() > 0:
-		$Voice.stream = load("res://sounds/characters/FUGUM/num-%s.wav" % num_to_read)
+		$Voice.stream = load("res://sounds/characters/FUGUM/num-%s.ogg" % num_to_read)
 		$Voice.play()
 		characters_spoken += 1
 	if characters_spoken == 7:
@@ -136,14 +136,14 @@ func _on_Voice_finished():
 	var path_array = resource_path.split("/")
 	var current = path_array[path_array.size()-1]
 	match current:
-		"20.wav":
+		"20.ogg":
 			read_employee_number()
 			return
-		"28.wav":
+		"28.ogg":
 			characters_spoken = 0
 			read_employee_number()
 			return
-		"num-0.wav","num-1.wav","num-2.wav","num-3.wav","num-4.wav","num-5.wav","num-6.wav","num-7.wav","num-8.wav","num-9.wav":
+		"num-0.ogg","num-1.ogg","num-2.ogg","num-3.ogg","num-4.ogg","num-5.ogg","num-6.ogg","num-7.ogg","num-8.ogg","num-9.ogg":
 			read_employee_number()
 			return
 	emit_signal("voice_finished")

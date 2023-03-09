@@ -2,12 +2,12 @@
 
 [ext_resource path="res://GameController.gd" type="Script" id=1]
 [ext_resource path="res://fonts/Louis George Cafe.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://sounds/closingAnnouncement.wav" type="AudioStream" id=3]
+[ext_resource path="res://sounds/closingAnnouncement.ogg" type="AudioStream" id=3]
 [ext_resource path="res://fonts/kenvector_future_thin.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://sounds/gong.wav" type="AudioStream" id=5]
-[ext_resource path="res://sounds/fatalityHorn.wav" type="AudioStream" id=6]
-[ext_resource path="res://sounds/characters/Kelsie/boot-stomp.wav" type="AudioStream" id=8]
-[ext_resource path="res://music/menu.wav" type="AudioStream" id=9]
+[ext_resource path="res://sounds/gong.ogg" type="AudioStream" id=5]
+[ext_resource path="res://sounds/fatalityHorn.ogg" type="AudioStream" id=6]
+[ext_resource path="res://music/menu.ogg" type="AudioStream" id=7]
+[ext_resource path="res://sounds/characters/Kelsie/boot-stomp.ogg" type="AudioStream" id=8]
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -550,7 +550,7 @@ scroll_active = false
 deselect_on_focus_loss_enabled = false
 
 [node name="MenuMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
+stream = ExtResource( 7 )
 volume_db = -80.0
 
 [node name="MenuPlayer" type="AnimationPlayer" parent="MenuMusic"]
@@ -582,7 +582,7 @@ anims/lower = SubResource( 18 )
 anims/raise = SubResource( 19 )
 
 [node name="Ambience" type="AudioStreamPlayer" parent="."]
-volume_db = -78.0
+volume_db = -80.0
 
 [node name="AmbiencePlayer" type="AnimationPlayer" parent="Ambience"]
 "anims/fade in" = SubResource( 25 )

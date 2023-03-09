@@ -13,10 +13,10 @@
 [ext_resource path="res://characters/FUGUM/sprites/flag/flag_02.png" type="Texture" id=11]
 [ext_resource path="res://characters/FUGUM/sprites/flag/flag_03.png" type="Texture" id=12]
 [ext_resource path="res://characters/FUGUM/sprites/flag/flag_10.png" type="Texture" id=13]
-[ext_resource path="res://characters/FUGUM/sounds/blade.mp3" type="AudioStream" id=14]
-[ext_resource path="res://characters/FUGUM/sounds/idle.mp3" type="AudioStream" id=15]
-[ext_resource path="res://characters/FUGUM/sounds/release.wav" type="AudioStream" id=16]
-[ext_resource path="res://characters/FUGUM/sounds/moving.mp3" type="AudioStream" id=17]
+[ext_resource path="res://characters/FUGUM/sounds/blade.ogg" type="AudioStream" id=14]
+[ext_resource path="res://characters/FUGUM/sounds/idle.ogg" type="AudioStream" id=15]
+[ext_resource path="res://characters/FUGUM/sounds/release.ogg" type="AudioStream" id=16]
+[ext_resource path="res://characters/FUGUM/sounds/moving.ogg" type="AudioStream" id=17]
 [ext_resource path="res://sprites/skull.png" type="Texture" id=18]
 
 [sub_resource type="CircleShape2D" id=1]
@@ -396,7 +396,7 @@ nodes/Animation/position = Vector2( 110, 90 )
 nodes/TimeScale/node = SubResource( 24 )
 nodes/TimeScale/position = Vector2( 400, 80 )
 nodes/output/position = Vector2( 650, 90 )
-node_connections = [ "TimeScale", 0, "Animation", "output", 0, "TimeScale" ]
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
 
 [sub_resource type="Animation" id=27]
 length = 0.001
@@ -994,7 +994,7 @@ shape = SubResource( 18 )
 position = Vector2( -48, -80 )
 frames = SubResource( 5 )
 animation = "wave"
-frame = 4
+frame = 6
 playing = true
 __meta__ = {
 "_edit_lock_": true

@@ -63,7 +63,7 @@ func draw_characters():
 		get_node("GridContainer/TextureRect%s" % c).texture = random_unselected
 
 func play_name(character:String):
-	$Announcer.stream = load("res://sounds/announcer/select-%s.wav" % character)
+	$Announcer.stream = load("res://sounds/announcer/select-%s.ogg" % character)
 	$Announcer.play()
 
 func draw_selection():

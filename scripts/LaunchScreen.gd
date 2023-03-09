@@ -56,7 +56,7 @@ func move_skulls(direction:int):
 
 func do_selection():
 	if selection == 2:
-		$Announcer.stream = load("res://sounds/announcer/TBD.wav")
+		$Announcer.stream = load("res://sounds/announcer/TBD.ogg")
 		$Announcer.play()
 		return
 		

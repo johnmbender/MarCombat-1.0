@@ -195,7 +195,7 @@
 [ext_resource path="res://characters/effects/nega-smoke/09.png" type="Texture" id=193]
 [ext_resource path="res://characters/Tyler/sprites/actions/special/special_05.png" type="Texture" id=194]
 [ext_resource path="res://characters/effects/blood/blood.png" type="Texture" id=195]
-[ext_resource path="res://sounds/characters/Tyler/bees.wav" type="AudioStream" id=196]
+[ext_resource path="res://sounds/characters/Tyler/bees.ogg" type="AudioStream" id=196]
 [ext_resource path="res://characters/Tyler/sprites/actions/bees/bees_09.png" type="Texture" id=197]
 [ext_resource path="res://characters/Tyler/sprites/actions/bees/bees_04.png" type="Texture" id=198]
 [ext_resource path="res://characters/Tyler/sprites/actions/bees/bees_07.png" type="Texture" id=199]
@@ -752,7 +752,7 @@ tracks/1/keys = {
 "args": [ Vector2( -100, 0 ), 0.0, 1.0 ],
 "method": "tween"
 }, {
-"args": [ "res://sounds/characters/effects/drop.wav", false ],
+"args": [ "res://sounds/characters/effects/drop.ogg", false ],
 "method": "play_sound"
 } ]
 }
@@ -898,7 +898,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0.55 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "res://sounds/characters/effects/drop.wav" ],
+"args": [ "res://sounds/characters/effects/drop.ogg" ],
 "method": "play_sound"
 } ]
 }
@@ -1282,7 +1282,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 1 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "res://sounds/characters/effects/drop.wav", true ],
+"args": [ "res://sounds/characters/effects/drop.ogg", true ],
 "method": "play_sound"
 } ]
 }

@@ -306,17 +306,17 @@ func speak_line():
 						20,22,24,26,28,30,32,34,36,38,40,42,47:
 							ignore_keypress = true
 							if current_line != 30:
-								$ContentContainer/opponent/AnimatedSprite/Voice.stream = load("res://sounds/characters/FUGUM/%s.wav" % current_line)
+								$ContentContainer/opponent/AnimatedSprite/Voice.stream = load("res://sounds/characters/FUGUM/%s.ogg" % current_line)
 							else:
-								$ContentContainer/opponent/AnimatedSprite/Voice.stream = load("res://sounds/characters/FUGUM/%s-%s.wav" % [current_line, player])
+								$ContentContainer/opponent/AnimatedSprite/Voice.stream = load("res://sounds/characters/FUGUM/%s-%s.ogg" % [current_line, player])
 							$ContentContainer/opponent/AnimatedSprite/Voice.play()
 						44:
 							ignore_keypress = true
-							$Announcer.stream = load("res://sounds/announcer/fugum_01.wav")
+							$Announcer.stream = load("res://sounds/announcer/fugum_01.ogg")
 							$Announcer.play()
 						46:
 							ignore_keypress = true
-							$Announcer.stream = load("res://sounds/announcer/fugum_02.wav")
+							$Announcer.stream = load("res://sounds/announcer/fugum_02.ogg")
 							$Announcer.play()
 					
 				current_line += 1

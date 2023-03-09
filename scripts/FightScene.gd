@@ -415,9 +415,9 @@ func announcer_speak(line:String):
 	var path = "res://sounds/announcer/"
 	if line == "round":
 		var round_number = player1_wins + player2_wins + 1
-		$Announcer.stream = load("%sround%s.wav" % [path, round_number])
+		$Announcer.stream = load("%sround%s.ogg" % [path, round_number])
 	else:
-		$Announcer.stream = load("%s%s.wav" % [path, line])
+		$Announcer.stream = load("%s%s.ogg" % [path, line])
 		
 	$Announcer.playing = true
 

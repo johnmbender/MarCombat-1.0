@@ -56,13 +56,13 @@ func voice(type:String):
 		if positive_lines.size() == 0:
 			positive_lines = [1,2,3,4]
 		num = random.randi_range(0, positive_lines.size()-1)
-		stream = "res://characters/FUGUM/sounds/voice/positive/positive%s.wav" % positive_lines[num]
+		stream = "res://characters/FUGUM/sounds/voice/positive/positive%s.ogg" % positive_lines[num]
 		positive_lines.remove(num)
 	else:
 		if negative_lines.size() == 0:
 			negative_lines = [1,2,3,4,5,6]
 		num = random.randi_range(0, negative_lines.size()-1)
-		stream = "res://characters/FUGUM/sounds/voice/negative/negative%s.wav" % negative_lines[num]
+		stream = "res://characters/FUGUM/sounds/voice/negative/negative%s.ogg" % negative_lines[num]
 		negative_lines.remove(num)
 		
 	$Wheel/Voice.stream = load(stream)

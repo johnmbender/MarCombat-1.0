@@ -138,11 +138,11 @@ func damage_taken(animation:String):
 		health -= 25
 		speed_modifier *= 1.15
 		emit_signal("update_health", self, health)
-		enemy.play_sound("res://sounds/characters/effects/punched.wav", true)
+		enemy.play_sound("res://sounds/characters/effects/punched.ogg", true)
 		moo()
 
 func pawing_sound():
-	$SoundPlayer.stream = load("res://sounds/characters/Ox_Anna/pawing.wav")
+	$SoundPlayer.stream = load("res://sounds/characters/Ox_Anna/pawing.ogg")
 	$SoundPlayer.pitch_scale = rand_range(0.8, 1.2)
 	$SoundPlayer.play()
 
@@ -150,7 +150,7 @@ func moo():
 	if $SoundPlayer.playing:
 		return
 		
-	$SoundPlayer.stream = load("res://sounds/characters/Ox_Anna/moo_%s.wav" % (randi() % 4))
+	$SoundPlayer.stream = load("res://sounds/characters/Ox_Anna/moo_%s.ogg" % (randi() % 4))
 	$SoundPlayer.pitch_scale = rand_range(0.8, 1.3)
 	$SoundPlayer.play()
 
@@ -266,7 +266,7 @@ func _on_RunAway_body_entered(body):
 
 func galloping(yes:bool):
 	if yes:
-		$SoundPlayer.stream = load("res://sounds/characters/Ox_Anna/gallop.wav")
+		$SoundPlayer.stream = load("res://sounds/characters/Ox_Anna/gallop.ogg")
 		$SoundPlayer.volume_db = -7
 		$SoundPlayer.pitch_scale = clamp(speed_modifier - 0.3, 0.7, 1.4)
 		$SoundPlayer.play()

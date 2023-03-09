@@ -110,9 +110,9 @@ func announcer_speak(line:String):
 	var path = "res://sounds/announcer/"
 	if line == "round":
 		var round_number = player_wins + boss_wins + 1
-		$Announcer.stream = load("%sround%s.wav" % [path, round_number])
+		$Announcer.stream = load("%sround%s.ogg" % [path, round_number])
 	else:
-		$Announcer.stream = load("%s%s.wav" % [path, line])
+		$Announcer.stream = load("%s%s.ogg" % [path, line])
 		
 	$Announcer.playing = true
 
@@ -203,7 +203,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 					# now we fade back into the roasting scene
 #					game_controller.play_ambience("rooftop")
 					game_controller.barbeque_music()
-					$Ox_Anna/SoundPlayer.stream = load("res://sounds/bbq-fire.wav")
+					$Ox_Anna/SoundPlayer.stream = load("res://sounds/bbq-fire.ogg")
 					$Ox_Anna/SoundPlayer.volume_db = -5
 					$Ox_Anna/SoundPlayer.play()
 					$Background.modulate = Color(0.5, 0.5, 0.5, 1)
@@ -277,14 +277,14 @@ func update_oksana():
 
 func _on_Announcer_finished():
 	match $Announcer.stream.resource_path:
-		"res://sounds/announcer/Ox Anna.wav":
+		"res://sounds/announcer/Ox Anna.ogg":
 			if boss_wins < 2:
 				$Ox_Anna/Coordinator.play("idle")
 				return
 			$Ox_Anna.moo()
 			var _1 = $Delay.connect("timeout", self, "speak_correction")
 			$Delay.start()
-		"res://sounds/announcer/Ox Anna correction.wav":
+		"res://sounds/announcer/Ox Anna correction.ogg":
 			$UI.visible = false
 			$HBoxContainer.visible = false
 			$Ox_Anna/Coordinator.play("victory")

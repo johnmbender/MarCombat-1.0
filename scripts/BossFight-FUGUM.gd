@@ -76,7 +76,7 @@ func _unhandled_key_input(event):
 	if allow_input:
 		if fight_over == false:
 			lightbulb.visible = true
-			player.play_sound("res://sounds/characters/effects/lightbulb.wav", false)
+			player.play_sound("res://sounds/characters/effects/lightbulb.ogg", false)
 			player.get_node("AnimationPlayer").play("get-up")
 			player.fighting = true
 			if retirement_years > 0:
@@ -256,7 +256,7 @@ func _on_RetirementTimer_timeout():
 		retirement_years -= 1
 
 func say_player_name():
-	$Announcer.stream = load("res://characters/FUGUM/sounds/voice/retire/%s.wav" % player_name)
+	$Announcer.stream = load("res://characters/FUGUM/sounds/voice/retire/%s.ogg" % player_name)
 	$Announcer.play()
 
 func show_gifts():

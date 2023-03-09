@@ -72,6 +72,7 @@ func menu_action():
 		1:
 			$PauseMenu/ControlsView.visible = true
 		2:
+			get_tree().paused = false
 			if game_mode == "storymode":
 				fight_music_fade("out")
 				ambience_fade("out")
@@ -80,7 +81,7 @@ func menu_action():
 				fight_done()
 
 func load_launch_screen():
-	var scene = preload("res://scenes/LaunchScreen.tscn").instance()
+	var scene = load("res://scenes/LaunchScreen.tscn").instance()
 	scene.set_game_controller(self)
 	add_child(scene)
 	
@@ -89,7 +90,7 @@ func load_launch_screen():
 	current_scene = "LaunchScreen"
 
 func load_character_select():
-	var scene = preload("res://scenes/CharacterSelect.tscn").instance()
+	var scene = load("res://scenes/CharacterSelect.tscn").instance()
 	scene.set_game_controller(self)
 	add_child(scene)
 	remove_scene()
@@ -143,7 +144,7 @@ func play_fight_music(song:String = ""):
 	if song.length() == 0:
 		var random = RandomNumberGenerator.new()
 		random.randomize()
-		$FightMusic.stream = load("res://music/fight_0%s.wav" % random.randi_range(1,5))
+		$FightMusic.stream = load("res://music/fight_0%s.ogg" % random.randi_range(1,5))
 	else:
 		$FightMusic.stream = load("res://music/%s" % song)
 		
@@ -157,14 +158,14 @@ func play_storymode_music():
 		
 	var random = RandomNumberGenerator.new()
 	random.randomize()
-	$StoryModeMusic.stream = load("res://music/storymode_0%s.wav" % random.randi_range(1,4))
+	$StoryModeMusic.stream = load("res://music/storymode_0%s.ogg" % random.randi_range(1,4))
 	storymode_music_fade("in")
 
 func play_random_sound(location:String):
 	match location:
 		"arrivals","breakroom","courtyard","hallway","humanHistory","lobby","naturalHistory","office","parking","roundhouse","shop":
 			# closing announcement for now, could add more later
-			$RandomSound.stream = load("res://sounds/closingAnnouncement.wav")
+			$RandomSound.stream = load("res://sounds/closingAnnouncement.ogg")
 			match location:
 				"arrivals","courtyard","lobby","parking","roundhouse","shop","breakroom","hallway","office":
 					# extra reverb
@@ -269,11 +270,11 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 func ledge_music():
 	storymode_music_fade("out")
 	ambience_fade("out")
-	$FightMusic.stream = load("res://music/ledge.wav")
+	$FightMusic.stream = load("res://music/ledge.ogg")
 	fight_music_fade("in")
 
 func barbeque_music():
-	$FightMusic.stream = load("res://music/barbeque.wav")
+	$FightMusic.stream = load("res://music/barbeque.ogg")
 	fight_music_fade("in")
 
 func menu_music_fade(which:String, speed:float = 1.0):
@@ -313,7 +314,7 @@ func ambience_fade(which:String):
 	$Ambience/AmbiencePlayer.play("fade %s" % which)
 
 func play_ambience(which:String):
-	$Ambience.stream = load("res://sounds/ambience/%s.wav" % which)
+	$Ambience.stream = load("res://sounds/ambience/%s.ogg" % which)
 	if which == "pete":
 		# randomize start point for Pete
 		# this doesn't work because we set the time and then
