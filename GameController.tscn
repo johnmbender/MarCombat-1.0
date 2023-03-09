@@ -609,7 +609,6 @@ margin_top = 150.0
 margin_right = 662.0
 margin_bottom = 450.0
 __meta__ = {
-"_edit_group_": true,
 "_edit_lock_": true
 }
 
@@ -633,7 +632,7 @@ __meta__ = {
 [node name="Menu" type="RichTextLabel" parent="PauseMenu"]
 margin_left = 95.0
 margin_top = 2.0
-margin_right = 212.0
+margin_right = 295.0
 margin_bottom = 42.0
 rect_clip_content = false
 theme = SubResource( 28 )
@@ -647,7 +646,7 @@ __meta__ = {
 modulate = Color( 1, 0, 0, 1 )
 margin_left = 52.0
 margin_top = 91.0
-margin_right = 256.0
+margin_right = 352.0
 margin_bottom = 131.0
 rect_clip_content = false
 theme = SubResource( 28 )
@@ -660,7 +659,7 @@ __meta__ = {
 [node name="Controls" type="RichTextLabel" parent="PauseMenu"]
 margin_left = 44.0
 margin_top = 146.0
-margin_right = 263.0
+margin_right = 344.0
 margin_bottom = 186.0
 rect_clip_content = false
 theme = SubResource( 28 )
@@ -673,7 +672,7 @@ __meta__ = {
 [node name="Quit" type="RichTextLabel" parent="PauseMenu"]
 margin_left = 107.0
 margin_top = 234.0
-margin_right = 200.0
+margin_right = 307.0
 margin_bottom = 274.0
 rect_clip_content = false
 theme = SubResource( 28 )
