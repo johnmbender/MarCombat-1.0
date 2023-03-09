@@ -380,6 +380,7 @@ tracks/10/keys = {
 [sub_resource type="Animation" id=151]
 resource_name = "bbq"
 length = 4.3
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -1420,10 +1421,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.11, 0.12, 0.17, 0.18, 0.23, 0.24 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.11, 0.12, 0.18, 0.23, 0.24 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 72, 112 ), Vector2( 72, 112 ), Vector2( 104, -24 ), Vector2( 104, -24 ), Vector2( 0, 0 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 72, 112 ), Vector2( 112, -24 ), Vector2( 112, -24 ), Vector2( 0, 0 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("HitBox:position")
@@ -1537,8 +1538,7 @@ collision_layer = 0
 collision_mask = 0
 monitorable = false
 __meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
+"_edit_group_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackCircle"]
