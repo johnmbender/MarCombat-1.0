@@ -548,8 +548,6 @@ func damage_taken(animation:String):
 				health -= 40
 			_:
 				idle()
-				
-		# jovi TEST
 		fighting = true
 
 	emit_signal("update_health", self, health)

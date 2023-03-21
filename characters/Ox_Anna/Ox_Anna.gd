@@ -135,7 +135,7 @@ func damage_taken(animation:String):
 		$RunAway.set_deferred("monitoring", false)
 		$HeadDown.set_deferred("monitoring", false)
 		$Gore.set_deferred("monitoring", false)
-		health -= 25
+		health -= 34
 		speed_modifier *= 1.15
 		emit_signal("update_health", self, health)
 		enemy.play_sound("res://sounds/characters/effects/punched.ogg", true)
