@@ -505,6 +505,7 @@ scroll_active = false
 deselect_on_focus_loss_enabled = false
 
 [node name="StoryMode" type="RichTextLabel" parent="."]
+visible = false
 modulate = Color( 1, 1, 1, 0 )
 margin_left = 393.0
 margin_top = 264.0
@@ -555,13 +556,13 @@ scroll_active = false
 
 [node name="MammothLeft" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 328, 289 )
+position = Vector2( 328, 352 )
 scale = Vector2( 0.456897, 0.456897 )
 texture = ExtResource( 8 )
 
 [node name="MammothRight" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 692, 289 )
+position = Vector2( 692, 352 )
 scale = Vector2( 0.456897, 0.456897 )
 texture = ExtResource( 8 )
 flip_h = true

@@ -7,7 +7,7 @@ var game_controller
 # selection(s) hold the options to select from menu and their positions
 var selection = 0
 var selections = [
-	[Vector2(328, 288), Vector2(692, 288)],
+#	[Vector2(328, 288), Vector2(692, 288)],
 	[Vector2(328, 352), Vector2(692, 352)],
 	[Vector2(320, 417), Vector2(700, 417)],
 	[Vector2(400, 529), Vector2(620, 529)],
@@ -55,21 +55,21 @@ func move_skulls(direction:int):
 	$Click.play()
 
 func do_selection():
-	if selection == 2:
+	if selection == 1:
 		$Announcer.stream = load("res://sounds/announcer/TBD.ogg")
 		$Announcer.play()
 		return
 		
 	
 	match selection:
-		3:
+		2:
 			$AnimationPlayer.play("quit")
 			return
+#		0:
+#			game_mode = "storymode"
 		0:
-			game_mode = "storymode"
-		1:
 			game_mode = "deathmatch"
-		2:
+		1:
 			game_mode = "multiplayer"
 			
 	game_controller.get_node("Boom").play()
